@@ -63,7 +63,7 @@ public class UsuarioRN {
         usuarioRNVal.validarAlterarUsuario(usuario);
         usuarioBD.alterarUsuario(usuario);
     }
-    /*
+    
     @GET
     @Produces("application/json")
     @Path("/pesquisarUsuario/{pesquisa}")
@@ -78,8 +78,8 @@ public class UsuarioRN {
     public String buscarTodosUsuario() {
         /*Usuario usuario = new Usuario(27, "aa", "aa", "aa", "aa", "aa", 1, 1111);
         String json = gson.toJson(usuario);
-        inserirUsuario(json);
+        inserirUsuario(json);*/
         return gson.toJson(usuarioBD.buscarTodosUsuario());
-    }*/
+    }
 
 }
