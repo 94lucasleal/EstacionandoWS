@@ -167,7 +167,7 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
         try {
             conn = abrirConexao();
 
-            PreparedStatement pstm = conn.prepareStatement("SELECT * FROM estabelecimento WHERE razaoSocial like ? OR cnpj like ?");
+            PreparedStatement pstm = conn.prepareStatement("SELECT * FROM estabelecimento WHERE razaoSocial like ? OR cnpj like ? order by idestabelecimento");
             pstm.setString(1, "%" + pesquisa + "%");
             pstm.setString(2, "%" + pesquisa + "%");
 
