@@ -10,9 +10,7 @@ public class Loader {
 
     public static void main(String[] args) throws IOException {
         
-        String port = System.getenv("PORT");
         String host = "http://0.0.0.0:";
-        String uri = "/service";
         
         final String baseUri = host+(System.getenv("PORT")!=null?System.getenv("PORT"):"9998")+"/";
         final Map<String, String> initParams = new HashMap<String, String>();
