@@ -21,7 +21,7 @@ public class EstabalecimentoRNVAL {
     }
     
     public void validarAlterarEstabelecimento(Estabelecimento bean) {
-        if (bean.getIdEstacionamento()== 0) {
+        if (bean.getIdestabelecimento()== 0) {
             throw new RuntimeException("Campo Código não informado");
         }
     }

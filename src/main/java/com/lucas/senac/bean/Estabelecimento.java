@@ -2,7 +2,7 @@ package com.lucas.senac.bean;
 
 public class Estabelecimento {
 
-    private Integer idEstacionamento;
+    private Integer idestabelecimento;
     private Integer idUsuario;
     private Integer idTipoEstabelecimento;
     private String razaoSocial;
@@ -26,8 +26,8 @@ public class Estabelecimento {
     public Estabelecimento() {
     }
 
-    public Estabelecimento(Integer idEstacionamento, Integer idUsuario, Integer idTipoEstabelecimento, String razaoSocial, String cnpj, String estado, String municipio, String bairro, String logradouro, Integer cep, Integer numero, String referencia, Double latitude, Double longitude, Double valormeiahora, Double valorhora, Double valordiaria, Double valormensal, Double valoradicional, Integer imagem) {
-        this.idEstacionamento = idEstacionamento;
+    public Estabelecimento(Integer idestabelecimento, Integer idUsuario, Integer idTipoEstabelecimento, String razaoSocial, String cnpj, String estado, String municipio, String bairro, String logradouro, Integer cep, Integer numero, String referencia, Double latitude, Double longitude, Double valormeiahora, Double valorhora, Double valordiaria, Double valormensal, Double valoradicional, Integer imagem) {
+        this.idestabelecimento = idestabelecimento;
         this.idUsuario = idUsuario;
         this.idTipoEstabelecimento = idTipoEstabelecimento;
         this.razaoSocial = razaoSocial;
@@ -49,12 +49,12 @@ public class Estabelecimento {
         this.imagem = imagem;
     }
 
-    public Integer getIdEstacionamento() {
-        return idEstacionamento;
+    public Integer getIdestabelecimento() {
+        return idestabelecimento;
     }
 
-    public void setIdEstacionamento(Integer idEstacionamento) {
-        this.idEstacionamento = idEstacionamento;
+    public void setIdestabelecimento(Integer idestabelecimento) {
+        this.idestabelecimento = idestabelecimento;
     }
 
     public Integer getIdUsuario() {
@@ -211,7 +211,7 @@ public class Estabelecimento {
 
     @Override
     public String toString() {
-        return "Estabelecimento{" + "idEstacionamento=" + idEstacionamento + ", idUsuario=" + idUsuario + ", idTipoEstabelecimento=" + idTipoEstabelecimento + ", razaoSocial=" + razaoSocial + ", cnpj=" + cnpj + ", estado=" + estado + ", municipio=" + municipio + ", bairro=" + bairro + ", logradouro=" + logradouro + ", cep=" + cep + ", numero=" + numero + ", referencia=" + referencia + ", latitude=" + latitude + ", longitude=" + longitude + ", valormeiahora=" + valormeiahora + ", valorhora=" + valorhora + ", valordiaria=" + valordiaria + ", valormensal=" + valormensal + ", valoradicional=" + valoradicional + ", imagem=" + imagem + '}';
+        return "Estabelecimento{" + "idestabelecimento=" + idestabelecimento + ", idUsuario=" + idUsuario + ", idTipoEstabelecimento=" + idTipoEstabelecimento + ", razaoSocial=" + razaoSocial + ", cnpj=" + cnpj + ", estado=" + estado + ", municipio=" + municipio + ", bairro=" + bairro + ", logradouro=" + logradouro + ", cep=" + cep + ", numero=" + numero + ", referencia=" + referencia + ", latitude=" + latitude + ", longitude=" + longitude + ", valormeiahora=" + valormeiahora + ", valorhora=" + valorhora + ", valordiaria=" + valordiaria + ", valormensal=" + valormensal + ", valoradicional=" + valoradicional + ", imagem=" + imagem + '}';
     }
 
 }
