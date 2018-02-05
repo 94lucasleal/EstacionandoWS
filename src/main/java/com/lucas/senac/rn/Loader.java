@@ -16,7 +16,7 @@ public class Loader {
         
         final String baseUri = host+(System.getenv("PORT")!=null?System.getenv("PORT"):"9998")+"/";
         final Map<String, String> initParams = new HashMap<String, String>();
-        initParams.put("com.sun.jersey.config.property.packages","org.example.resources");
+        initParams.put("com.sun.jersey.config.property.packages","com.lucas.senac.rn");
 
         System.out.println("Starting grizzly...");
         SelectorThread threadSelector = GrizzlyWebContainerFactory.create(baseUri, initParams);
