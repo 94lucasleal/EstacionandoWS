@@ -16,8 +16,8 @@ public class Loader {
         final Map<String, String> initParams = new HashMap<String, String>();
         initParams.put("com.sun.jersey.config.property.packages","com.lucas.senac.rn");
 
-        System.out.println("Starting grizzly...");
+        System.out.println("Iniciando grizzly...");
         SelectorThread threadSelector = GrizzlyWebContainerFactory.create(baseUri, initParams);
-        System.out.println(String.format("Jersey started with WADL available at %sapplication.wadl.",baseUri, baseUri));
+        System.out.println(String.format("Webservice disponivel em: %sapplication.wadl.",baseUri, baseUri));
     }
 }
