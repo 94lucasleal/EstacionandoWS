@@ -4,22 +4,17 @@ import com.google.gson.Gson;
 import com.lucas.senac.bd.UsuarioBD;
 import com.lucas.senac.bean.Usuario;
 import com.lucas.senac.rnval.UsuarioRNVAL;
-import java.util.List;
-import javax.jws.WebParam;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 
 
-@Path("usuario")
+@Path("usuario/")
 public class UsuarioRN {
 
     private final UsuarioBD usuarioBD;
     private final UsuarioRNVAL usuarioRNVal;
     private final Gson gson;
-    
-    @Context
-    private UriInfo context;
     
     
     public UsuarioRN() {
@@ -30,7 +25,7 @@ public class UsuarioRN {
 
     @POST
     @Consumes({"application/json"})
-    @Path("/inserirUsuario")
+    @Path("inserirUsuario")
     public void inserirUsuario(String content) {
         Usuario usuario = (Usuario) gson.fromJson(content, Usuario.class);
         usuarioRNVal.validarInserirUsuario(usuario);
@@ -38,7 +33,7 @@ public class UsuarioRN {
     }
 
     @DELETE
-    @Path("/excluirUsuario/{idusuario}")
+    @Path("excluirUsuario/{idusuario}")
     public void excluirUsuario(@PathParam("idusuario") String idUsuario) {
         Usuario usuario = new Usuario(Integer.parseInt(idUsuario), null, null, null, null, null, null, 0);
         usuarioRNVal.validarExcluirUsuario(usuario);
@@ -47,7 +42,7 @@ public class UsuarioRN {
 
     @GET
     @Produces("application/json")
-    @Path("/consultarUsuario/{email}/{senha}")
+    @Path("consultarUsuario/{email}/{senha}")
     public String consultarUsuario(@PathParam("email") String email,
             @PathParam("senha") String senha) {
         Usuario usuario = new Usuario(null, null, null, null, email, senha, null, 0);
@@ -57,7 +52,7 @@ public class UsuarioRN {
 
     @PUT
     @Consumes({"application/json"})
-    @Path("/alterarUsuario")
+    @Path("alterarUsuario")
     public void alterarUsuario(String content) {
         Usuario usuario = (Usuario) gson.fromJson(content, Usuario.class);
         usuarioRNVal.validarAlterarUsuario(usuario);
@@ -66,7 +61,7 @@ public class UsuarioRN {
     
     @GET
     @Produces("application/json")
-    @Path("/pesquisarUsuario/{pesquisa}")
+    @Path("pesquisarUsuario/{pesquisa}")
     public String pesquisarUsuario(@PathParam("pesquisa") String pesquisa) {
         System.out.println(pesquisa);
         return gson.toJson(usuarioBD.pesquisarUsuario(pesquisa));
@@ -74,7 +69,7 @@ public class UsuarioRN {
     
     @GET
     @Produces("application/json")
-    @Path("/buscarTodosUsuario")
+    @Path("buscarTodosUsuario")
     public String buscarTodosUsuario() {
         /*Usuario usuario = new Usuario(27, "aa", "aa", "aa", "aa", "aa", 1, 1111);
         String json = gson.toJson(usuario);

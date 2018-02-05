@@ -1,21 +1,25 @@
 package com.lucas.senac.rn;
 
+import com.google.gson.Gson;
 import javax.jws.WebService;
 import com.lucas.senac.bean.Estabelecimento;
 import com.lucas.senac.bd.EstabelecimetoBD;
 import com.lucas.senac.rnval.EstabalecimentoRNVAL;
 import java.util.List;
 import javax.jws.WebParam;
+import javax.ws.rs.Path;
 
-@WebService(endpointInterface = "com.lucas.senac.rn.EstabelecimentoRN", serviceName = "EstabelecimentoRN")
+@Path("estabelecimento/")
 public class EstabelecimentoRN {
 
     private final EstabelecimetoBD estabelecimetoBD;
     private final EstabalecimentoRNVAL estabalecimentoRNVAL;
+    private final Gson gson;
 
     public EstabelecimentoRN() {
         estabelecimetoBD = new EstabelecimetoBD();
         estabalecimentoRNVAL = new EstabalecimentoRNVAL();
+        gson = new Gson();
     }
 
     public void inserirEstabelecimento(@WebParam(name = "idEstacionamento") Integer idEstacionamento,
