@@ -47,11 +47,11 @@ public class EstabelecimentoRN {
     @GET
     @Produces("application/json")
     @Path("consultarEstabelecimento/{idestabelecimento}")
-    public Estabelecimento consultarEstabelecimento(@PathParam("idestabelecimento") String idestabelecimento) {
+    public String consultarEstabelecimento(@PathParam("idestabelecimento") String idestabelecimento) {
         Estabelecimento estabelecimento = new Estabelecimento(Integer.parseInt(idestabelecimento), null, null, null, null, null, null, null, null, null,
                 null, null, null, null, null, null, null, null, null, null);
         estabalecimentoRNVAL.validarConsultarEstabelecimento(estabelecimento);
-        return estabelecimetoBD.consultarEstabelecimento(estabelecimento);
+        return gson.toJson(estabelecimetoBD.consultarEstabelecimento(estabelecimento));
     }
 
     @PUT
