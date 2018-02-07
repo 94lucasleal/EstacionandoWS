@@ -1,12 +1,9 @@
 package com.lucas.senac.rn;
 
 import com.google.gson.Gson;
-import javax.jws.WebService;
 import com.lucas.senac.bean.Estabelecimento;
 import com.lucas.senac.bd.EstabelecimetoBD;
 import com.lucas.senac.rnval.EstabalecimentoRNVAL;
-import java.util.List;
-import javax.jws.WebParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -28,7 +25,7 @@ public class EstabelecimentoRN {
         estabalecimentoRNVAL = new EstabalecimentoRNVAL();
         gson = new Gson();
     }
-    
+
     @POST
     @Consumes({"application/json"})
     @Path("inserirEstabelecimento")
@@ -50,8 +47,8 @@ public class EstabelecimentoRN {
     @GET
     @Produces("application/json")
     @Path("consultarEstabelecimento/{idestabelecimento}")
-    public Estabelecimento consultarEstabelecimento(@PathParam("idestabelecimento") Integer idestabelecimento) {
-        Estabelecimento estabelecimento = new Estabelecimento(idestabelecimento, null, null, null, null, null, null, null, null, null,
+    public Estabelecimento consultarEstabelecimento(@PathParam("idestabelecimento") String idestabelecimento) {
+        Estabelecimento estabelecimento = new Estabelecimento(Integer.parseInt(idestabelecimento), null, null, null, null, null, null, null, null, null,
                 null, null, null, null, null, null, null, null, null, null);
         estabalecimentoRNVAL.validarConsultarEstabelecimento(estabelecimento);
         return estabelecimetoBD.consultarEstabelecimento(estabelecimento);

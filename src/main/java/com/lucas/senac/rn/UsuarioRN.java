@@ -5,8 +5,6 @@ import com.lucas.senac.bd.UsuarioBD;
 import com.lucas.senac.bean.Usuario;
 import com.lucas.senac.rnval.UsuarioRNVAL;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.UriInfo;
 
 
 @Path("usuario/")
