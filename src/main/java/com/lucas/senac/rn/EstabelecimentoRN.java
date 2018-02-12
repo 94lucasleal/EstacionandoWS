@@ -28,6 +28,7 @@ public class EstabelecimentoRN {
 
     @POST
     @Consumes({"application/json"})
+    @Produces("application/json")
     @Path("inserirEstabelecimento")
     public void inserirEstabelecimento(String content) {
         Estabelecimento estabelecimento = (Estabelecimento) gson.fromJson(content, Estabelecimento.class);
