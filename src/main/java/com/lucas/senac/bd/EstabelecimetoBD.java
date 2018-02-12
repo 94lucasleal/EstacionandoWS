@@ -38,6 +38,8 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
             pstm.setDouble(17, bean.getValormensal());
             pstm.setDouble(18, bean.getValoradicional());
             pstm.setInt(19, bean.getImagem());
+            pstm.toString();
+            System.out.println(pstm.toString());
 
             System.out.println("Salvando: " + bean);
             pstm.execute();
