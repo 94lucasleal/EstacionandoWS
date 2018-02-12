@@ -14,7 +14,7 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
         try {
             conn = abrirConexao();
 
-            PreparedStatement pstm = conn.prepareStatement("INSERT INTO estabelecimento (idestabelecimento, idusuario, "
+            PreparedStatement pstm = conn.prepareStatement("INSERT INTO estabelecimento (idusuario, "
                     + "idtipoestabelecimento, razaoSocial, cnpj, estado, bairro, "
                     + "logradouro, cep, numero, referencia, latitude, longitude,"
                     + "valormeiahora, valorhora, valordiaria, valormensal, valoradicional, imagem) "
