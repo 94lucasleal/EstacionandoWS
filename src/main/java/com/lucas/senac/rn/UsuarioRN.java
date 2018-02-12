@@ -40,7 +40,7 @@ public class UsuarioRN {
 
     @GET
     @Produces("application/json")
-    @Path("consultarUsuario/{email}/{senha}")
+        @Path("consultarUsuario/{email}/{senha}")
     public String consultarUsuario(@PathParam("email") String email,
             @PathParam("senha") String senha) {
         Usuario usuario = new Usuario(null, null, null, null, email, senha, null, 0);
