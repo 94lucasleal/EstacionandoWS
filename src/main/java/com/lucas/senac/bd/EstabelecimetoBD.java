@@ -15,7 +15,7 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
             conn = abrirConexao();
 
             PreparedStatement pstm = conn.prepareStatement("INSERT INTO estabelecimento (idusuario, "
-                    + "idtipoestabelecimento, razaoSocial, cnpj, estado, bairro, "
+                    + "idtipoestabelecimento, razaoSocial, cnpj, estado, municipio, bairro, "
                     + "logradouro, cep, numero, referencia, latitude, longitude,"
                     + "valormeiahora, valorhora, valordiaria, valormensal, valoradicional, imagem) "
                     + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
@@ -27,7 +27,7 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
             pstm.setString(6, bean.getMunicipio());
             pstm.setString(7, bean.getBairro());
             pstm.setString(8, bean.getLogradouro());
-            pstm.setInt(9, bean.getCep());
+            pstm.setString(9, ""+String.valueOf(bean.getCep()));
             pstm.setInt(10, bean.getNumero());
             pstm.setString(11, bean.getReferencia());
             pstm.setDouble(12, bean.getLatitude());
@@ -39,9 +39,9 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
             pstm.setDouble(18, bean.getValoradicional());
             pstm.setInt(19, bean.getImagem());
             pstm.toString();
-            System.out.println(pstm.toString());
-
+            
             System.out.println("Salvando: " + bean);
+            System.out.println(pstm.toString());
             pstm.execute();
             commitTransacao(conn);
             System.out.println("Salvamento executado com sucesso");
