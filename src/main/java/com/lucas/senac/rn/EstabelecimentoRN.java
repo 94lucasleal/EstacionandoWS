@@ -28,9 +28,10 @@ public class EstabelecimentoRN {
 
     @POST
     @Consumes({"application/json"})
-    @Produces("application/json")
+    //@Produces("application/json")
     @Path("inserirEstabelecimento")
     public void inserirEstabelecimento(String content) {
+        System.out.println(content);
         Estabelecimento estabelecimento = (Estabelecimento) gson.fromJson(content, Estabelecimento.class);
         estabalecimentoRNVAL.validarInserirEstabelecimento(estabelecimento);
         estabelecimetoBD.inserirEstabelecimento(estabelecimento);
