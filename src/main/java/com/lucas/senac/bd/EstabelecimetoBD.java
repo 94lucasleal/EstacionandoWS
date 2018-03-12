@@ -161,6 +161,55 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
             fecharConexao(conn);
         }
     }
+    
+    public ArrayList<Estabelecimento> pesquisarEstabelecimentoUsuario(String pesquisa) {
+        ArrayList<Estabelecimento> lista = new ArrayList<Estabelecimento>();
+
+        Connection conn = null;
+        try {
+            conn = abrirConexao();
+
+            PreparedStatement pstm = conn.prepareStatement("SELECT * FROM estabelecimento WHERE idusuario = ? order by idestabelecimento");
+            pstm.setString(1,pesquisa);
+
+            System.out.println("Pesquisando: " + pesquisa);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                System.out.println("Registro encontrado");
+
+                Estabelecimento estabelecimento = new Estabelecimento();
+                estabelecimento.setIdestabelecimento(rs.getInt("idestabelecimento"));
+                estabelecimento.setIdUsuario(rs.getInt("idusuario"));
+                estabelecimento.setIdTipoEstabelecimento(rs.getInt("idtipoestabelecimento"));
+                estabelecimento.setRazaoSocial(rs.getString("razaoSocial"));
+                estabelecimento.setCnpj(rs.getString("cnpj"));
+                estabelecimento.setEstado(rs.getString("estado"));
+                estabelecimento.setMunicipio(rs.getString("municipio"));
+                estabelecimento.setBairro(rs.getString("bairro"));
+                estabelecimento.setLogradouro(rs.getString("logradouro"));
+                estabelecimento.setCep(rs.getInt("cep"));
+                estabelecimento.setNumero(rs.getInt("numero"));
+                estabelecimento.setReferencia(rs.getString("referencia"));
+                estabelecimento.setLatitude(rs.getDouble("latitude"));
+                estabelecimento.setLongitude(rs.getDouble("longitude"));
+                estabelecimento.setValormeiahora(rs.getDouble("valormeiahora"));
+                estabelecimento.setValorhora(rs.getDouble("valorhora"));
+                estabelecimento.setValordiaria(rs.getDouble("valordiaria"));
+                estabelecimento.setValormensal(rs.getDouble("valormensal"));
+                estabelecimento.setValoradicional(rs.getDouble("valoradicional"));
+                estabelecimento.setImagem(rs.getInt("imagem"));
+
+                lista.add(estabelecimento);
+                System.out.println(estabelecimento.toString());
+            }
+            System.out.println("Pesquisa executada com sucesso");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            fecharConexao(conn);
+        }
+        return lista;
+    }
 
     public ArrayList<Estabelecimento> pesquisarEstabelecimento(String pesquisa) {
         ArrayList<Estabelecimento> lista = new ArrayList<Estabelecimento>();
