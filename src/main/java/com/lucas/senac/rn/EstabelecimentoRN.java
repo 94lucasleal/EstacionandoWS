@@ -28,7 +28,6 @@ public class EstabelecimentoRN {
 
     @POST
     @Consumes({"application/json"})
-    //@Produces("application/json")
     @Path("inserirEstabelecimento")
     public void inserirEstabelecimento(String content) {
         System.out.println(content);
@@ -64,13 +63,15 @@ public class EstabelecimentoRN {
         estabalecimentoRNVAL.validarAlterarEstabelecimento(estabelecimento);
         estabelecimetoBD.alterarEstabelecimento(estabelecimento);
     }
-    
+   
+    /*
     @GET
     @Produces("application/json")
     @Path("pesquisarEstabelecimentoUsuario/{pesquisa}")
     public String pesquisarEstabelecimentoUsuario(@PathParam("pesquisa") String pesquisa) {
         return gson.toJson(estabelecimetoBD.pesquisarEstabelecimento(pesquisa));
     }
+    */
 
     @GET
     @Produces("application/json")

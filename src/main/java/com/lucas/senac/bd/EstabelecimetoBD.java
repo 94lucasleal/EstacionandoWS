@@ -162,6 +162,7 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
         }
     }
     
+    /*
     public ArrayList<Estabelecimento> pesquisarEstabelecimentoUsuario(String pesquisa) {
         ArrayList<Estabelecimento> lista = new ArrayList<Estabelecimento>();
 
@@ -210,6 +211,7 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
         }
         return lista;
     }
+    */
 
     public ArrayList<Estabelecimento> pesquisarEstabelecimento(String pesquisa) {
         ArrayList<Estabelecimento> lista = new ArrayList<Estabelecimento>();
