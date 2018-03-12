@@ -28,6 +28,7 @@ public class EstabelecimentoRN {
 
     @POST
     @Consumes({"application/json"})
+    //@Produces("application/json")
     @Path("inserirEstabelecimento")
     public void inserirEstabelecimento(String content) {
         System.out.println(content);
@@ -70,6 +71,7 @@ public class EstabelecimentoRN {
     public String pesquisarEstabelecimentoUsuario(@PathParam("pesquisa") String pesquisa) {
         return gson.toJson(estabelecimetoBD.pesquisarEstabelecimento(pesquisa));
     }
+
 
     @GET
     @Produces("application/json")
