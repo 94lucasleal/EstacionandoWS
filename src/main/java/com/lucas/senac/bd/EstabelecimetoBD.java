@@ -172,7 +172,7 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
 
             System.out.println("1: " + pesquisa);
             PreparedStatement pstm = conn.prepareStatement("SELECT * FROM estabelecimento WHERE idusuario = ? order by idestabelecimento");
-            pstm.setString(1,pesquisa);
+            pstm.setInt(1,Integer.parseInt(pesquisa));
 
             System.out.println("2: " + pesquisa);
             System.out.println("Pesquisando: " + pesquisa);
