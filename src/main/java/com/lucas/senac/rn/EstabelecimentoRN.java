@@ -67,11 +67,10 @@ public class EstabelecimentoRN {
     
     @GET
     @Produces("application/json")
-    @Path("pesquisarEstabelecimento/{pesquisa}")
+    @Path("pesquisarEstabelecimentoUsuario/{pesquisa}")
     public String pesquisarEstabelecimentoUsuario(@PathParam("pesquisa") String pesquisa) {
         return gson.toJson(estabelecimetoBD.pesquisarEstabelecimento(pesquisa));
     }
-
 
     @GET
     @Produces("application/json")
