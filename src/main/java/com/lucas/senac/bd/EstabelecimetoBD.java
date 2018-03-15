@@ -126,6 +126,43 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
             PreparedStatement pstm = conn.prepareStatement("UPDATE estabelecimento SET idusuario = ?, "
                     + "idtipoestabelecimento = ?, razaoSocial = ?, cnpj = ?, estado = ?, municipio = ?, bairro = ?, "
                     + "logradouro = ?, cep = ?, numero = ?, referencia = ?, latitude = ?, longitude = ?,"
+                    + "WHERE idestabelecimento = ?");
+            pstm.setInt(1, bean.getIdUsuario());
+            pstm.setInt(2, bean.getIdTipoEstabelecimento());
+            pstm.setString(3, bean.getRazaoSocial());
+            pstm.setString(4, bean.getCnpj());
+            pstm.setString(5, bean.getEstado());
+            pstm.setString(6, bean.getMunicipio());
+            pstm.setString(7, bean.getBairro());
+            pstm.setString(8, bean.getLogradouro());
+            pstm.setInt(9, bean.getCep());
+            pstm.setInt(10, bean.getNumero());
+            pstm.setString(11, bean.getReferencia());
+            pstm.setDouble(12, bean.getLatitude());
+            pstm.setDouble(13, bean.getLongitude());
+            pstm.setInt(14, bean.getIdestabelecimento());
+
+            System.out.println("Alterando: " + bean);
+            pstm.execute();
+            commitTransacao(conn);
+            System.out.println("Alteração executada com sucesso");
+            System.out.println(bean.toString());
+        } catch (Exception e) {
+            rollbackTransacao(conn);
+            throw new RuntimeException(e);
+        } finally {
+            fecharConexao(conn);
+        }
+    }
+    
+        public void alterarEstabelecimentoCompleto(Estabelecimento bean) {
+        Connection conn = null;
+        try {
+            conn = abrirConexao();
+
+            PreparedStatement pstm = conn.prepareStatement("UPDATE estabelecimento SET idusuario = ?, "
+                    + "idtipoestabelecimento = ?, razaoSocial = ?, cnpj = ?, estado = ?, municipio = ?, bairro = ?, "
+                    + "logradouro = ?, cep = ?, numero = ?, referencia = ?, latitude = ?, longitude = ?,"
                     + "valormeiahora = ?, valorhora = ?, valordiaria = ?, valormensal = ?, valoradicional = ?, imagem = ? "
                     + "WHERE idestabelecimento = ?");
             pstm.setInt(1, bean.getIdUsuario());
