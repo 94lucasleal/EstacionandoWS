@@ -155,7 +155,7 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
         }
     }
     
-        public void alterarEstabelecimentoCompleto(Estabelecimento bean) {
+    public void alterarEstabelecimentoCompleto(Estabelecimento bean) {
         Connection conn = null;
         try {
             conn = abrirConexao();
@@ -199,6 +199,34 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
         }
     }
     
+        public void alterarEstabelecimentoPreco(Estabelecimento bean) {
+        Connection conn = null;
+        try {
+            conn = abrirConexao();
+
+            PreparedStatement pstm = conn.prepareStatement(" UPDATE estabelecimento SET valormeiahora = ?, valorhora = ?, valordiaria = ?, valormensal = ?, valoradicional = ? "
+                                                         + " WHERE idestabelecimento = ?");
+            pstm.setDouble(1, bean.getValormeiahora());
+            pstm.setDouble(2, bean.getValorhora());
+            pstm.setDouble(3, bean.getValordiaria());
+            pstm.setDouble(4, bean.getValormensal());
+            pstm.setDouble(5, bean.getValoradicional());
+            pstm.setInt(6, bean.getIdestabelecimento());
+            
+
+
+            System.out.println("Alterando: " + bean);
+            pstm.execute();
+            commitTransacao(conn);
+            System.out.println("Alteração executada com sucesso");
+            System.out.println(bean.toString());
+        } catch (Exception e) {
+            rollbackTransacao(conn);
+            throw new RuntimeException(e);
+        } finally {
+            fecharConexao(conn);
+        }
+    }
     
     public ArrayList<Estabelecimento> pesquisarEstabelecimentoUsuario(String pesquisa) {
         ArrayList<Estabelecimento> lista = new ArrayList<Estabelecimento>();
