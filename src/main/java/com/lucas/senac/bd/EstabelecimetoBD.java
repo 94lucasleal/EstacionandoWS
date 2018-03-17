@@ -163,7 +163,8 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
             PreparedStatement pstm = conn.prepareStatement("UPDATE estabelecimento SET idusuario = ?, "
                     + "idtipoestabelecimento = ?, razaoSocial = ?, cnpj = ?, estado = ?, municipio = ?, bairro = ?, "
                     + "logradouro = ?, cep = ?, numero = ?, referencia = ?, latitude = ?, longitude = ?,"
-                    + "valormeiahora = ?, valorhora = ?, valordiaria = ?, valormensal = ?, valoradicional = ?, imagem = ? "
+                    + "valormeiahora = ?, valorhora = ?, valordiaria = ?, valormensal = ?, valoradicional = ?, imagem = ?, "
+                    + "vagas_total = ?, vagas_reservada = ?, vagas_disponivel = ? "
                     + "WHERE idestabelecimento = ?");
             pstm.setInt(1, bean.getIdUsuario());
             pstm.setInt(2, bean.getIdTipoEstabelecimento());
@@ -184,36 +185,10 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
             pstm.setDouble(17, bean.getValormensal());
             pstm.setDouble(18, bean.getValoradicional());
             pstm.setInt(19, bean.getImagem());
-            pstm.setInt(20, bean.getIdestabelecimento());
-
-            System.out.println("Alterando: " + bean);
-            pstm.execute();
-            commitTransacao(conn);
-            System.out.println("Alteração executada com sucesso");
-            System.out.println(bean.toString());
-        } catch (Exception e) {
-            rollbackTransacao(conn);
-            throw new RuntimeException(e);
-        } finally {
-            fecharConexao(conn);
-        }
-    }
-    
-        public void alterarEstabelecimentoPreco(Estabelecimento bean) {
-        Connection conn = null;
-        try {
-            conn = abrirConexao();
-
-            PreparedStatement pstm = conn.prepareStatement(" UPDATE estabelecimento SET valormeiahora = ?, valorhora = ?, valordiaria = ?, valormensal = ?, valoradicional = ? "
-                                                         + " WHERE idestabelecimento = ?");
-            pstm.setDouble(1, bean.getValormeiahora());
-            pstm.setDouble(2, bean.getValorhora());
-            pstm.setDouble(3, bean.getValordiaria());
-            pstm.setDouble(4, bean.getValormensal());
-            pstm.setDouble(5, bean.getValoradicional());
-            pstm.setInt(6, bean.getIdestabelecimento());
-            
-
+            pstm.setInt(20, bean.getVagastotal());
+            pstm.setInt(21, bean.getVagasreservada());
+            pstm.setInt(22, bean.getVagasdisponivel());
+            pstm.setInt(23, bean.getIdestabelecimento());
 
             System.out.println("Alterando: " + bean);
             pstm.execute();

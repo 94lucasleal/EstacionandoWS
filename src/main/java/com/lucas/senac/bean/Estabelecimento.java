@@ -22,11 +22,14 @@ public class Estabelecimento {
     private Double valormensal;
     private Double valoradicional;
     private Integer imagem;
+    private Integer vagastotal;
+    private Integer vagasreservada;
+    private Integer vagasdisponivel;
 
     public Estabelecimento() {
     }
 
-    public Estabelecimento(Integer idestabelecimento, Integer idUsuario, Integer idTipoEstabelecimento, String razaoSocial, String cnpj, String estado, String municipio, String bairro, String logradouro, Integer cep, Integer numero, String referencia, Double latitude, Double longitude, Double valormeiahora, Double valorhora, Double valordiaria, Double valormensal, Double valoradicional, Integer imagem) {
+    public Estabelecimento(Integer idestabelecimento, Integer idUsuario, Integer idTipoEstabelecimento, String razaoSocial, String cnpj, String estado, String municipio, String bairro, String logradouro, Integer cep, Integer numero, String referencia, Double latitude, Double longitude, Double valormeiahora, Double valorhora, Double valordiaria, Double valormensal, Double valoradicional, Integer imagem, Integer vagastotal, Integer vagasreservada, Integer vagasdisponivel) {
         this.idestabelecimento = idestabelecimento;
         this.idUsuario = idUsuario;
         this.idTipoEstabelecimento = idTipoEstabelecimento;
@@ -47,6 +50,9 @@ public class Estabelecimento {
         this.valormensal = valormensal;
         this.valoradicional = valoradicional;
         this.imagem = imagem;
+        this.vagastotal = vagastotal;
+        this.vagasreservada = vagasreservada;
+        this.vagasdisponivel = vagasdisponivel;
     }
 
     public Integer getIdestabelecimento() {
@@ -209,9 +215,33 @@ public class Estabelecimento {
         this.imagem = imagem;
     }
 
+    public Integer getVagastotal() {
+        return vagastotal;
+    }
+
+    public void setVagastotal(Integer vagastotal) {
+        this.vagastotal = vagastotal;
+    }
+
+    public Integer getVagasreservada() {
+        return vagasreservada;
+    }
+
+    public void setVagasreservada(Integer vagasreservada) {
+        this.vagasreservada = vagasreservada;
+    }
+
+    public Integer getVagasdisponivel() {
+        return vagasdisponivel;
+    }
+
+    public void setVagasdisponivel(Integer vagasdisponivel) {
+        this.vagasdisponivel = vagasdisponivel;
+    }
+
     @Override
     public String toString() {
-        return "Estabelecimento{" + "idestabelecimento=" + idestabelecimento + ", idUsuario=" + idUsuario + ", idTipoEstabelecimento=" + idTipoEstabelecimento + ", razaoSocial=" + razaoSocial + ", cnpj=" + cnpj + ", estado=" + estado + ", municipio=" + municipio + ", bairro=" + bairro + ", logradouro=" + logradouro + ", cep=" + cep + ", numero=" + numero + ", referencia=" + referencia + ", latitude=" + latitude + ", longitude=" + longitude + ", valormeiahora=" + valormeiahora + ", valorhora=" + valorhora + ", valordiaria=" + valordiaria + ", valormensal=" + valormensal + ", valoradicional=" + valoradicional + ", imagem=" + imagem + '}';
+        return "Estabelecimento{" + "idestabelecimento=" + idestabelecimento + ", idUsuario=" + idUsuario + ", idTipoEstabelecimento=" + idTipoEstabelecimento + ", razaoSocial=" + razaoSocial + ", cnpj=" + cnpj + ", estado=" + estado + ", municipio=" + municipio + ", bairro=" + bairro + ", logradouro=" + logradouro + ", cep=" + cep + ", numero=" + numero + ", referencia=" + referencia + ", latitude=" + latitude + ", longitude=" + longitude + ", valormeiahora=" + valormeiahora + ", valorhora=" + valorhora + ", valordiaria=" + valordiaria + ", valormensal=" + valormensal + ", valoradicional=" + valoradicional + ", imagem=" + imagem + ", vagastotal=" + vagastotal + ", vagasreservada=" + vagasreservada + ", vagasdisponivel=" + vagasdisponivel + '}';
     }
 
 }
