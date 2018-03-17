@@ -38,6 +38,9 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
             pstm.setDouble(17, bean.getValormensal());
             pstm.setDouble(18, bean.getValoradicional());
             pstm.setInt(19, bean.getImagem());
+            pstm.setInt(20, bean.getVagastotal());
+            pstm.setInt(21, bean.getVagasreservada());
+            pstm.setInt(22, bean.getVagasdisponivel());
             pstm.toString();
             
             System.out.println("Salvando: " + bean);
@@ -108,6 +111,9 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
                 estabelecimentoRetorno.setValormensal(rs.getDouble("valormensal"));
                 estabelecimentoRetorno.setValoradicional(rs.getDouble("valoradicional"));
                 estabelecimentoRetorno.setImagem(rs.getInt("imagem"));
+                estabelecimentoRetorno.setVagastotal(rs.getInt("vagas_total"));
+                estabelecimentoRetorno.setVagasreservada(rs.getInt("vagas_reservada"));
+                estabelecimentoRetorno.setVagasdisponivel(rs.getInt("vagas_disponivel"));
             }
             System.out.println("Consulta executada com sucesso");
         } catch (Exception e) {
@@ -241,6 +247,9 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
                 estabelecimento.setValormensal(rs.getDouble("valormensal"));
                 estabelecimento.setValoradicional(rs.getDouble("valoradicional"));
                 estabelecimento.setImagem(rs.getInt("imagem"));
+                estabelecimento.setVagastotal(rs.getInt("vagas_total"));
+                estabelecimento.setVagasreservada(rs.getInt("vagas_reservada"));
+                estabelecimento.setVagasdisponivel(rs.getInt("vagas_disponivel"));
 
                 lista.add(estabelecimento);
                 System.out.println(estabelecimento.toString());
@@ -292,6 +301,9 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
                 estabelecimento.setValormensal(rs.getDouble("valormensal"));
                 estabelecimento.setValoradicional(rs.getDouble("valoradicional"));
                 estabelecimento.setImagem(rs.getInt("imagem"));
+                estabelecimento.setVagastotal(rs.getInt("vagas_total"));
+                estabelecimento.setVagasreservada(rs.getInt("vagas_reservada"));
+                estabelecimento.setVagasdisponivel(rs.getInt("vagas_disponivel"));
 
                 lista.add(estabelecimento);
                 System.out.println(estabelecimento.toString());
@@ -340,6 +352,9 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
                 estabelecimento.setValormensal(rs.getDouble("valormensal"));
                 estabelecimento.setValoradicional(rs.getDouble("valoradicional"));
                 estabelecimento.setImagem(rs.getInt("imagem"));
+                estabelecimento.setVagastotal(rs.getInt("vagas_total"));
+                estabelecimento.setVagasreservada(rs.getInt("vagas_reservada"));
+                estabelecimento.setVagasdisponivel(rs.getInt("vagas_disponivel"));
 
                 lista.add(estabelecimento);
                 System.out.println(estabelecimento.toString());
