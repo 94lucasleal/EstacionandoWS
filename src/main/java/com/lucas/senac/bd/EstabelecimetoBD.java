@@ -132,7 +132,7 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
             PreparedStatement pstm = conn.prepareStatement("UPDATE estabelecimento SET idusuario = ?, "
                     + "idtipoestabelecimento = ?, razaoSocial = ?, cnpj = ?, estado = ?, municipio = ?, bairro = ?, "
                     + "logradouro = ?, cep = ?, numero = ?, referencia = ?, latitude = ?, longitude = ?, "
-                    + "valormeiahora = ?, valorhora = ?, valordiaria = ?, valormensal = ?, imagem = ?, vagas_total = ?, "
+                    + "valormeiahora = ?, valorhora = ?, valordiaria = ?, valormensal = ?, valoradicional = ?, imagem = ?, vagas_total = ?, "
                     + "vagas_reservada = ?, vagas_disponivel = ? "
                     + "WHERE idestabelecimento = ?");
             pstm.setInt(1, bean.getIdusuario());
