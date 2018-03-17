@@ -3,9 +3,9 @@ package com.lucas.senac.bean;
 public class Estabelecimento {
 
     private Integer idestabelecimento;
-    private Integer idUsuario;
-    private Integer idTipoEstabelecimento;
-    private String razaoSocial;
+    private Integer idusuario;
+    private Integer idtipoestabelecimento;
+    private String razaosocial;
     private String cnpj;
     private String estado;
     private String municipio;
@@ -29,11 +29,11 @@ public class Estabelecimento {
     public Estabelecimento() {
     }
 
-    public Estabelecimento(Integer idestabelecimento, Integer idUsuario, Integer idTipoEstabelecimento, String razaoSocial, String cnpj, String estado, String municipio, String bairro, String logradouro, Integer cep, Integer numero, String referencia, Double latitude, Double longitude, Double valormeiahora, Double valorhora, Double valordiaria, Double valormensal, Double valoradicional, Integer imagem, Integer vagastotal, Integer vagasreservada, Integer vagasdisponivel) {
+    public Estabelecimento(Integer idestabelecimento, Integer idusuario, Integer idtipoestabelecimento, String razaosocial, String cnpj, String estado, String municipio, String bairro, String logradouro, Integer cep, Integer numero, String referencia, Double latitude, Double longitude, Double valormeiahora, Double valorhora, Double valordiaria, Double valormensal, Double valoradicional, Integer imagem, Integer vagastotal, Integer vagasreservada, Integer vagasdisponivel) {
         this.idestabelecimento = idestabelecimento;
-        this.idUsuario = idUsuario;
-        this.idTipoEstabelecimento = idTipoEstabelecimento;
-        this.razaoSocial = razaoSocial;
+        this.idusuario = idusuario;
+        this.idtipoestabelecimento = idtipoestabelecimento;
+        this.razaosocial = razaosocial;
         this.cnpj = cnpj;
         this.estado = estado;
         this.municipio = municipio;
@@ -63,28 +63,28 @@ public class Estabelecimento {
         this.idestabelecimento = idestabelecimento;
     }
 
-    public Integer getIdUsuario() {
-        return idUsuario;
+    public Integer getIdusuario() {
+        return idusuario;
     }
 
-    public void setIdUsuario(Integer idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setIdusuario(Integer idusuario) {
+        this.idusuario = idusuario;
     }
 
-    public Integer getIdTipoEstabelecimento() {
-        return idTipoEstabelecimento;
+    public Integer getIdtipoestabelecimento() {
+        return idtipoestabelecimento;
     }
 
-    public void setIdTipoEstabelecimento(Integer idTipoEstabelecimento) {
-        this.idTipoEstabelecimento = idTipoEstabelecimento;
+    public void setIdtipoestabelecimento(Integer idtipoestabelecimento) {
+        this.idtipoestabelecimento = idtipoestabelecimento;
     }
 
-    public String getRazaoSocial() {
-        return razaoSocial;
+    public String getRazaosocial() {
+        return razaosocial;
     }
 
-    public void setRazaoSocial(String razaoSocial) {
-        this.razaoSocial = razaoSocial;
+    public void setRazaosocial(String razaosocial) {
+        this.razaosocial = razaosocial;
     }
 
     public String getCnpj() {
@@ -241,7 +241,7 @@ public class Estabelecimento {
 
     @Override
     public String toString() {
-        return "Estabelecimento{" + "idestabelecimento=" + idestabelecimento + ", idUsuario=" + idUsuario + ", idTipoEstabelecimento=" + idTipoEstabelecimento + ", razaoSocial=" + razaoSocial + ", cnpj=" + cnpj + ", estado=" + estado + ", municipio=" + municipio + ", bairro=" + bairro + ", logradouro=" + logradouro + ", cep=" + cep + ", numero=" + numero + ", referencia=" + referencia + ", latitude=" + latitude + ", longitude=" + longitude + ", valormeiahora=" + valormeiahora + ", valorhora=" + valorhora + ", valordiaria=" + valordiaria + ", valormensal=" + valormensal + ", valoradicional=" + valoradicional + ", imagem=" + imagem + ", vagastotal=" + vagastotal + ", vagasreservada=" + vagasreservada + ", vagasdisponivel=" + vagasdisponivel + '}';
+        return "Estabelecimento{" + "idestabelecimento=" + idestabelecimento + ", idusuario=" + idusuario + ", idtipoestabelecimento=" + idtipoestabelecimento + ", razaosocial=" + razaosocial + ", cnpj=" + cnpj + ", estado=" + estado + ", municipio=" + municipio + ", bairro=" + bairro + ", logradouro=" + logradouro + ", cep=" + cep + ", numero=" + numero + ", referencia=" + referencia + ", latitude=" + latitude + ", longitude=" + longitude + ", valormeiahora=" + valormeiahora + ", valorhora=" + valorhora + ", valordiaria=" + valordiaria + ", valormensal=" + valormensal + ", valoradicional=" + valoradicional + ", imagem=" + imagem + ", vagastotal=" + vagastotal + ", vagasreservada=" + vagasreservada + ", vagasdisponivel=" + vagasdisponivel + '}';
     }
 
 }

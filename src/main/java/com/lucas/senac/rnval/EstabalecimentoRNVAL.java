@@ -5,7 +5,7 @@ import com.lucas.senac.bean.Estabelecimento;
 public class EstabalecimentoRNVAL {
     
     public void validarInserirEstabelecimento(Estabelecimento bean) {
-        if (bean.getRazaoSocial().isEmpty()) {
+        if (bean.getRazaosocial().isEmpty()) {
             throw new RuntimeException("Campo RAZAO SOCIAL não informado");
         }
         if (bean.getCnpj().isEmpty()) {

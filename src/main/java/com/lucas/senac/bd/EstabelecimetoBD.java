@@ -18,10 +18,10 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
                     + "idtipoestabelecimento, razaoSocial, cnpj, estado, municipio, bairro, "
                     + "logradouro, cep, numero, referencia, latitude, longitude,"
                     + "valormeiahora, valorhora, valordiaria, valormensal, valoradicional, imagem) "
-                    + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-            pstm.setInt(1, bean.getIdUsuario());
-            pstm.setInt(2, bean.getIdTipoEstabelecimento());
-            pstm.setString(3, bean.getRazaoSocial());
+                    + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            pstm.setInt(1, bean.getIdusuario());
+            pstm.setInt(2, bean.getIdtipoestabelecimento());
+            pstm.setString(3, bean.getRazaosocial());
             pstm.setString(4, bean.getCnpj());
             pstm.setString(5, bean.getEstado());
             pstm.setString(6, bean.getMunicipio());
@@ -92,9 +92,9 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
                 System.out.println("Registro encontrado");
                 estabelecimentoRetorno = new Estabelecimento();
                 estabelecimentoRetorno.setIdestabelecimento(rs.getInt("idestabelecimento"));
-                estabelecimentoRetorno.setIdUsuario(rs.getInt("idusuario"));
-                estabelecimentoRetorno.setIdTipoEstabelecimento(rs.getInt("idtipoestabelecimento"));
-                estabelecimentoRetorno.setRazaoSocial(rs.getString("razaoSocial"));
+                estabelecimentoRetorno.setIdusuario(rs.getInt("idusuario"));
+                estabelecimentoRetorno.setIdtipoestabelecimento(rs.getInt("idtipoestabelecimento"));
+                estabelecimentoRetorno.setRazaosocial(rs.getString("razaoSocial"));
                 estabelecimentoRetorno.setCnpj(rs.getString("cnpj"));
                 estabelecimentoRetorno.setEstado(rs.getString("estado"));
                 estabelecimentoRetorno.setMunicipio(rs.getString("municipio"));
@@ -133,9 +133,9 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
                     + "idtipoestabelecimento = ?, razaoSocial = ?, cnpj = ?, estado = ?, municipio = ?, bairro = ?, "
                     + "logradouro = ?, cep = ?, numero = ?, referencia = ?, latitude = ?, longitude = ?"
                     + "WHERE idestabelecimento = ?");
-            pstm.setInt(1, bean.getIdUsuario());
-            pstm.setInt(2, bean.getIdTipoEstabelecimento());
-            pstm.setString(3, bean.getRazaoSocial());
+            pstm.setInt(1, bean.getIdusuario());
+            pstm.setInt(2, bean.getIdtipoestabelecimento());
+            pstm.setString(3, bean.getRazaosocial());
             pstm.setString(4, bean.getCnpj());
             pstm.setString(5, bean.getEstado());
             pstm.setString(6, bean.getMunicipio());
@@ -172,9 +172,9 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
                     + "valormeiahora = ?, valorhora = ?, valordiaria = ?, valormensal = ?, valoradicional = ?, imagem = ?, "
                     + "vagas_total = ?, vagas_reservada = ?, vagas_disponivel = ? "
                     + "WHERE idestabelecimento = ?");
-            pstm.setInt(1, bean.getIdUsuario());
-            pstm.setInt(2, bean.getIdTipoEstabelecimento());
-            pstm.setString(3, bean.getRazaoSocial());
+            pstm.setInt(1, bean.getIdusuario());
+            pstm.setInt(2, bean.getIdtipoestabelecimento());
+            pstm.setString(3, bean.getRazaosocial());
             pstm.setString(4, bean.getCnpj());
             pstm.setString(5, bean.getEstado());
             pstm.setString(6, bean.getMunicipio());
@@ -228,9 +228,9 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
 
                 Estabelecimento estabelecimento = new Estabelecimento();
                 estabelecimento.setIdestabelecimento(rs.getInt("idestabelecimento"));
-                estabelecimento.setIdUsuario(rs.getInt("idusuario"));
-                estabelecimento.setIdTipoEstabelecimento(rs.getInt("idtipoestabelecimento"));
-                estabelecimento.setRazaoSocial(rs.getString("razaoSocial"));
+                estabelecimento.setIdusuario(rs.getInt("idusuario"));
+                estabelecimento.setIdtipoestabelecimento(rs.getInt("idtipoestabelecimento"));
+                estabelecimento.setRazaosocial(rs.getString("razaoSocial"));
                 estabelecimento.setCnpj(rs.getString("cnpj"));
                 estabelecimento.setEstado(rs.getString("estado"));
                 estabelecimento.setMunicipio(rs.getString("municipio"));
@@ -282,9 +282,9 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
 
                 Estabelecimento estabelecimento = new Estabelecimento();
                 estabelecimento.setIdestabelecimento(rs.getInt("idestabelecimento"));
-                estabelecimento.setIdUsuario(rs.getInt("idusuario"));
-                estabelecimento.setIdTipoEstabelecimento(rs.getInt("idtipoestabelecimento"));
-                estabelecimento.setRazaoSocial(rs.getString("razaoSocial"));
+                estabelecimento.setIdusuario(rs.getInt("idusuario"));
+                estabelecimento.setIdtipoestabelecimento(rs.getInt("idtipoestabelecimento"));
+                estabelecimento.setRazaosocial(rs.getString("razaoSocial"));
                 estabelecimento.setCnpj(rs.getString("cnpj"));
                 estabelecimento.setEstado(rs.getString("estado"));
                 estabelecimento.setMunicipio(rs.getString("municipio"));
@@ -333,9 +333,9 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
 
                 Estabelecimento estabelecimento = new Estabelecimento();
                 estabelecimento.setIdestabelecimento(rs.getInt("idestabelecimento"));
-                estabelecimento.setIdUsuario(rs.getInt("idusuario"));
-                estabelecimento.setIdTipoEstabelecimento(rs.getInt("idtipoestabelecimento"));
-                estabelecimento.setRazaoSocial(rs.getString("razaoSocial"));
+                estabelecimento.setIdusuario(rs.getInt("idusuario"));
+                estabelecimento.setIdtipoestabelecimento(rs.getInt("idtipoestabelecimento"));
+                estabelecimento.setRazaosocial(rs.getString("razaoSocial"));
                 estabelecimento.setCnpj(rs.getString("cnpj"));
                 estabelecimento.setEstado(rs.getString("estado"));
                 estabelecimento.setMunicipio(rs.getString("municipio"));
