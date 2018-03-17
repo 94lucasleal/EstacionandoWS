@@ -17,7 +17,7 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
             PreparedStatement pstm = conn.prepareStatement("INSERT INTO estabelecimento (idusuario, "
                     + "idtipoestabelecimento, razaoSocial, cnpj, estado, municipio, bairro, "
                     + "logradouro, cep, numero, referencia, latitude, longitude,"
-                    + "valormeiahora, valorhora, valordiaria, valormensal, valoradicional, imagem) "
+                    + "valormeiahora, valorhora, valordiaria, valormensal, valoradicional, imagem, vagas_total, vagas_reservada, vagas_disponivel) "
                     + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             pstm.setInt(1, bean.getIdusuario());
             pstm.setInt(2, bean.getIdtipoestabelecimento());
@@ -131,7 +131,9 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
 
             PreparedStatement pstm = conn.prepareStatement("UPDATE estabelecimento SET idusuario = ?, "
                     + "idtipoestabelecimento = ?, razaoSocial = ?, cnpj = ?, estado = ?, municipio = ?, bairro = ?, "
-                    + "logradouro = ?, cep = ?, numero = ?, referencia = ?, latitude = ?, longitude = ?"
+                    + "logradouro = ?, cep = ?, numero = ?, referencia = ?, latitude = ?, longitude = ?, "
+                    + "valormeiahora = ?, valorhora = ?, valordiaria = ?, valormensal = ?, imagem = ?, vagas_total = ?, "
+                    + "vagas_reservada = ?, vagas_disponivel = ? "
                     + "WHERE idestabelecimento = ?");
             pstm.setInt(1, bean.getIdusuario());
             pstm.setInt(2, bean.getIdtipoestabelecimento());
@@ -141,12 +143,23 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
             pstm.setString(6, bean.getMunicipio());
             pstm.setString(7, bean.getBairro());
             pstm.setString(8, bean.getLogradouro());
-            pstm.setInt(9, bean.getCep());
+            pstm.setString(9, ""+String.valueOf(bean.getCep()));
             pstm.setInt(10, bean.getNumero());
             pstm.setString(11, bean.getReferencia());
             pstm.setDouble(12, bean.getLatitude());
             pstm.setDouble(13, bean.getLongitude());
-            pstm.setInt(14, bean.getIdestabelecimento());
+            pstm.setDouble(14, bean.getValormeiahora());
+            pstm.setDouble(15, bean.getValorhora());
+            pstm.setDouble(16, bean.getValordiaria());
+            pstm.setDouble(17, bean.getValormensal());
+            pstm.setDouble(18, bean.getValoradicional());
+            pstm.setInt(19, bean.getImagem());
+            pstm.setInt(20, bean.getVagastotal());
+            pstm.setInt(21, bean.getVagasreservada());
+            pstm.setInt(22, bean.getVagasdisponivel());
+            pstm.setInt(23, bean.getIdestabelecimento());
+            
+
 
             System.out.println("Alterando: " + bean);
             pstm.execute();
