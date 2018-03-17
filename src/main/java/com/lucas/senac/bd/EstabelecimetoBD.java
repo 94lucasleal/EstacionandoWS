@@ -210,6 +210,7 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
             pstm.setInt(23, bean.getIdestabelecimento());
 
             System.out.println("Alterando: " + bean);
+            System.out.println("Script: " + pstm.toString());
             pstm.execute();
             commitTransacao(conn);
             System.out.println("Alteração executada com sucesso");
