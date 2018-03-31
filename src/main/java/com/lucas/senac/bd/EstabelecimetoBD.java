@@ -41,10 +41,9 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
             pstm.setInt(20, bean.getVagastotal());
             pstm.setInt(21, bean.getVagasreservada());
             pstm.setInt(22, bean.getVagasdisponivel());
-            pstm.toString();
             
-            System.out.println("Salvando: " + bean);
             System.out.println(pstm.toString());
+            System.out.println("Salvando: " + bean);
             pstm.execute();
             commitTransacao(conn);
             System.out.println("Salvamento executado com sucesso");
@@ -64,6 +63,7 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
             PreparedStatement pstm = conn.prepareStatement("DELETE FROM estabelecimento WHERE idestabelecimento=?");
             pstm.setInt(1, bean.getIdestabelecimento());
 
+            System.out.println(pstm.toString());
             System.out.println("Excluindo: " + bean);
             pstm.execute();
             commitTransacao(conn);
