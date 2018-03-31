@@ -32,6 +32,7 @@ public class EstabelecimentoRN {
     public void inserirEstabelecimento(String content) {
         System.out.println(content);
         Estabelecimento estabelecimento = (Estabelecimento) gson.fromJson(content, Estabelecimento.class);
+        System.out.println(estabelecimento.toString());
         estabalecimentoRNVAL.validarInserirEstabelecimento(estabelecimento);
         estabelecimetoBD.inserirEstabelecimento(estabelecimento);
     }
