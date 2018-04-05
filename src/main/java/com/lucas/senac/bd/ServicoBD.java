@@ -54,7 +54,6 @@ public class ServicoBD extends CrudBD<Usuario>{
     }
 
     public ArrayList<Servico> consultarServico(Servico bean) {
-        Servico servicoRetorno = null;
         ArrayList<Servico> lista = new ArrayList<Servico>();
 
         Connection conn = null;
@@ -64,7 +63,7 @@ public class ServicoBD extends CrudBD<Usuario>{
             PreparedStatement pstm = conn.prepareStatement("SELECT * FROM servico WHERE idestabelecimento = ?");
             pstm.setInt(1, bean.getIdestabelecimento());
 
-            System.out.println("Consultando: " + bean);
+            System.out.println("Pesquisando: ");
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
                 System.out.println("Registro encontrado");
@@ -77,13 +76,12 @@ public class ServicoBD extends CrudBD<Usuario>{
                 servico.setPreco(rs.getDouble("preco"));
                 lista.add(servico);
             }
-            System.out.println("Consulta executada com sucesso");
+            System.out.println("Pesquisa executada com sucesso");
         } catch (Exception e) {
             throw new RuntimeException(e);
         } finally {
             fecharConexao(conn);
         }
-
         return lista;
     }
 
