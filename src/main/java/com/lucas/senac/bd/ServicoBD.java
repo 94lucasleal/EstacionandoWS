@@ -53,8 +53,9 @@ public class ServicoBD extends CrudBD<Usuario>{
         }
     }
 
-    public Servico consultarServico(Servico bean) {
+    public ArrayList<Servico> consultarServico(Servico bean) {
         Servico servicoRetorno = null;
+        ArrayList<Servico> lista = new ArrayList<Servico>();
 
         Connection conn = null;
         try {
@@ -65,15 +66,16 @@ public class ServicoBD extends CrudBD<Usuario>{
 
             System.out.println("Consultando: " + bean);
             ResultSet rs = pstm.executeQuery();
-            if (rs.next()) {
+            while (rs.next()) {
                 System.out.println("Registro encontrado");
-                servicoRetorno = new Servico();
-                servicoRetorno.setIdservico(rs.getInt("idservico"));
-                servicoRetorno.setIdestabelecimento(rs.getInt("idestabelecimento"));
-                servicoRetorno.setNome(rs.getString("nome"));
-                servicoRetorno.setDescricao(rs.getString("descricao"));
-                servicoRetorno.setPreco(rs.getDouble("preco"));
-
+                
+                Servico servico = new Servico();
+                servico.setIdservico(rs.getInt("idservico"));
+                servico.setIdestabelecimento(rs.getInt("idestabelecimento"));
+                servico.setNome(rs.getString("nome"));
+                servico.setDescricao(rs.getString("descricao"));
+                servico.setPreco(rs.getDouble("preco"));
+                lista.add(servico);
             }
             System.out.println("Consulta executada com sucesso");
         } catch (Exception e) {
@@ -82,7 +84,7 @@ public class ServicoBD extends CrudBD<Usuario>{
             fecharConexao(conn);
         }
 
-        return servicoRetorno;
+        return lista;
     }
 
     public void alterarServico(Servico bean) {
