@@ -40,8 +40,8 @@ public class ServicoRN {
 
     @DELETE
     @Path("excluirServico/{idservico}")
-    public void excluirServico(@PathParam("idservico") String idServico) {
-        Servico servico = new Servico(Integer.parseInt(idServico), null, null, null, 0);
+    public void excluirServico(@PathParam("idservico") String idservico) {
+        Servico servico = new Servico(Integer.parseInt(idservico), null, null, null, 0);
         servicoRNVal.validarExcluirServico(servico);
         servicoBD.excluirServico(servico);
     }
