@@ -12,6 +12,7 @@ public class Usuario {
     private String senha;
     private Integer idTipoAcesso;
     private long telefone;
+    private byte[] imagem;
 
     public Usuario() {
     }
@@ -27,6 +28,26 @@ public class Usuario {
         this.telefone = telefone;
     }
 
+    public Usuario(Integer idUsuario, String nome, String cpf, String rg, String email, String senha, Integer idTipoAcesso, long telefone, byte[] imagem) {
+        this.idUsuario = idUsuario;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.rg = rg;
+        this.email = email;
+        this.senha = senha;
+        this.idTipoAcesso = idTipoAcesso;
+        this.telefone = telefone;
+        this.imagem = imagem;
+    }
+
+    public byte[] getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(byte[] imagem) {
+        this.imagem = imagem;
+    }
+    
     public Integer getIdUsuario() {
         return idUsuario;
     }

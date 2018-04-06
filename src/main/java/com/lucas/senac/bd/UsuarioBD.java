@@ -95,7 +95,7 @@ public class UsuarioBD extends CrudBD<Usuario>{
         try {
             conn = abrirConexao();
 
-            PreparedStatement pstm = conn.prepareStatement("UPDATE usuario SET nome = ?, cpf = ?, rg = ?, email = ?, senha = ?, idtipoacesso = ?, telefone = ? WHERE idusuario = ?");
+            PreparedStatement pstm = conn.prepareStatement("UPDATE usuario SET nome = ?, cpf = ?, rg = ?, email = ?, senha = ?, idtipoacesso = ?, telefone = ?, imagem = ? WHERE idusuario = ?");
             pstm.setString(1, bean.getNome());
             pstm.setString(2, bean.getCpf());
             pstm.setString(3, bean.getRg());
@@ -103,7 +103,8 @@ public class UsuarioBD extends CrudBD<Usuario>{
             pstm.setString(5, bean.getSenha());
             pstm.setInt(6, bean.getIdTipoAcesso());
             pstm.setLong(7, bean.getTelefone());
-            pstm.setInt(8, bean.getIdUsuario());
+            pstm.setBytes(8, bean.getImagem());
+            pstm.setInt(9, bean.getIdUsuario());
 
             System.out.println("Alterando: " + bean);
             pstm.execute();
