@@ -79,6 +79,7 @@ public class UsuarioBD extends CrudBD<Usuario>{
                 usuarioRetorno.setSenha(rs.getString("senha"));
                 usuarioRetorno.setIdTipoAcesso(rs.getInt("idtipoacesso"));
                 usuarioRetorno.setTelefone(rs.getLong("telefone"));
+                usuarioRetorno.setImagem(rs.getBytes("imagem"));
             }
             System.out.println("Consulta executada com sucesso");
         } catch (Exception e) {
