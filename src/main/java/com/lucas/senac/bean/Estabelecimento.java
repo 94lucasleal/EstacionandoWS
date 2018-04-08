@@ -21,7 +21,7 @@ public class Estabelecimento {
     private Double valordiaria;
     private Double valormensal;
     private Double valoradicional;
-    private Integer imagem;
+    private String imagem;
     private Integer vagastotal;
     private Integer vagasreservada;
     private Integer vagasdisponivel;
@@ -29,7 +29,7 @@ public class Estabelecimento {
     public Estabelecimento() {
     }
 
-    public Estabelecimento(Integer idestabelecimento, Integer idusuario, Integer idtipoestabelecimento, String razaosocial, String cnpj, String estado, String municipio, String bairro, String logradouro, Integer cep, Integer numero, String referencia, Double latitude, Double longitude, Double valormeiahora, Double valorhora, Double valordiaria, Double valormensal, Double valoradicional, Integer imagem, Integer vagastotal, Integer vagasreservada, Integer vagasdisponivel) {
+    public Estabelecimento(Integer idestabelecimento, Integer idusuario, Integer idtipoestabelecimento, String razaosocial, String cnpj, String estado, String municipio, String bairro, String logradouro, Integer cep, Integer numero, String referencia, Double latitude, Double longitude, Double valormeiahora, Double valorhora, Double valordiaria, Double valormensal, Double valoradicional, String imagem, Integer vagastotal, Integer vagasreservada, Integer vagasdisponivel) {
         this.idestabelecimento = idestabelecimento;
         this.idusuario = idusuario;
         this.idtipoestabelecimento = idtipoestabelecimento;
@@ -207,11 +207,11 @@ public class Estabelecimento {
         this.valoradicional = valoradicional;
     }
 
-    public Integer getImagem() {
+    public String getImagem() {
         return imagem;
     }
 
-    public void setImagem(Integer imagem) {
+    public void setImagem(String imagem) {
         this.imagem = imagem;
     }
 
