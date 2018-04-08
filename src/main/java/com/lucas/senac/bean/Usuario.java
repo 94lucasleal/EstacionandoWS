@@ -13,7 +13,7 @@ public class Usuario {
     private String senha;
     private Integer idTipoAcesso;
     private long telefone;
-    private byte[] imagem;
+    private String imagem;
 
     public Usuario() {
     }
@@ -29,7 +29,7 @@ public class Usuario {
         this.telefone = telefone;
     }
 
-    public Usuario(Integer idUsuario, String nome, String cpf, String rg, String email, String senha, Integer idTipoAcesso, long telefone, byte[] imagem) {
+    public Usuario(Integer idUsuario, String nome, String cpf, String rg, String email, String senha, Integer idTipoAcesso, long telefone, String imagem) {
         this.idUsuario = idUsuario;
         this.nome = nome;
         this.cpf = cpf;
@@ -41,11 +41,11 @@ public class Usuario {
         this.imagem = imagem;
     }
 
-    public byte[] getImagem() {
+    public String getImagem() {
         return imagem;
     }
 
-    public void setImagem(byte[] imagem) {
+    public void setImagem(String imagem) {
         this.imagem = imagem;
     }
     
@@ -115,7 +115,7 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" + "idUsuario=" + idUsuario + ", nome=" + nome + ", cpf=" + cpf + ", rg=" + rg + ", email=" + email + ", senha=" + senha + ", idTipoAcesso=" + idTipoAcesso + ", telefone=" + telefone + ", imagem=" + Arrays.toString(imagem) + '}';
+        return "Usuario{" + "idUsuario=" + idUsuario + ", nome=" + nome + ", cpf=" + cpf + ", rg=" + rg + ", email=" + email + ", senha=" + senha + ", idTipoAcesso=" + idTipoAcesso + ", telefone=" + telefone + ", imagem=" + imagem + '}';
     }
     
     

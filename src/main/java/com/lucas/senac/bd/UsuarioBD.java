@@ -80,8 +80,8 @@ public class UsuarioBD extends CrudBD<Usuario>{
                 usuarioRetorno.setSenha(rs.getString("senha"));
                 usuarioRetorno.setIdTipoAcesso(rs.getInt("idtipoacesso"));
                 usuarioRetorno.setTelefone(rs.getLong("telefone"));
-                usuarioRetorno.setImagem(rs.getBytes("imagem"));
-                System.out.println(Arrays.toString(usuarioRetorno.getImagem()));
+                usuarioRetorno.setImagem(rs.getString("imagem"));
+                System.out.println(usuarioRetorno.getImagem());
             }
             System.out.println("Consulta executada com sucesso");
         } catch (Exception e) {
@@ -106,7 +106,7 @@ public class UsuarioBD extends CrudBD<Usuario>{
             pstm.setString(5, bean.getSenha());
             pstm.setInt(6, bean.getIdTipoAcesso());
             pstm.setLong(7, bean.getTelefone());
-            pstm.setBytes(8, bean.getImagem());
+            pstm.setString(8, bean.getImagem());
             pstm.setInt(9, bean.getIdUsuario());
             
             System.out.println(""+bean.getImagem().toString());
