@@ -107,6 +107,8 @@ public class UsuarioBD extends CrudBD<Usuario>{
             pstm.setLong(7, bean.getTelefone());
             pstm.setBytes(8, bean.getImagem());
             pstm.setInt(9, bean.getIdUsuario());
+            
+            System.out.println(""+bean.getImagem().toString());
 
             System.out.println("Alterando: " + bean);
             pstm.execute();
