@@ -15,7 +15,7 @@ public class UsuarioBD extends CrudBD<Usuario>{
         try {
             conn = abrirConexao();
 
-            PreparedStatement pstm = conn.prepareStatement("INSERT INTO usuario(nome, cpf, rg, email, senha, idtipoacesso, telefone) VALUES (?,?,?,?,?,?,?)");
+            PreparedStatement pstm = conn.prepareStatement("INSERT INTO usuario(nome, cpf, rg, email, senha, idtipoacesso, telefone, imagem) VALUES (?,?,?,?,?,?,?,?)");
             pstm.setString(1, usuario.getNome());
             pstm.setString(2, usuario.getCpf());
             pstm.setString(3, usuario.getRg());
@@ -23,6 +23,7 @@ public class UsuarioBD extends CrudBD<Usuario>{
             pstm.setString(5, usuario.getSenha());
             pstm.setInt(6, usuario.getIdTipoAcesso());
             pstm.setLong(7, usuario.getTelefone());
+            pstm.setString(8, usuario.getImagem());
 
             System.out.println("Salvando: " + usuario);
             pstm.execute();
@@ -81,7 +82,6 @@ public class UsuarioBD extends CrudBD<Usuario>{
                 usuarioRetorno.setIdTipoAcesso(rs.getInt("idtipoacesso"));
                 usuarioRetorno.setTelefone(rs.getLong("telefone"));
                 usuarioRetorno.setImagem(rs.getString("imagem"));
-                System.out.println(usuarioRetorno.getImagem());
             }
             System.out.println("Consulta executada com sucesso");
         } catch (Exception e) {
@@ -150,6 +150,7 @@ public class UsuarioBD extends CrudBD<Usuario>{
                 usuario.setSenha(rs.getString("senha"));
                 usuario.setIdTipoAcesso(rs.getInt("idtipoacesso"));
                 usuario.setTelefone(rs.getLong("telefone"));
+                usuario.setImagem(rs.getString("imagem"));
                 
                 lista.add(usuario);
                 System.out.println(usuario.toString());
@@ -186,6 +187,7 @@ public class UsuarioBD extends CrudBD<Usuario>{
                 usuario.setSenha(rs.getString("senha"));
                 usuario.setIdTipoAcesso(rs.getInt("idtipoacesso"));
                 usuario.setTelefone(rs.getLong("telefone"));
+                usuario.setImagem(rs.getString("imagem"));
                 
                 lista.add(usuario);
             }

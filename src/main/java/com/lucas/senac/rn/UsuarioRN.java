@@ -33,7 +33,7 @@ public class UsuarioRN {
     @DELETE
     @Path("excluirUsuario/{idusuario}")
     public void excluirUsuario(@PathParam("idusuario") String idUsuario) {
-        Usuario usuario = new Usuario(Integer.parseInt(idUsuario), null, null, null, null, null, null, 0);
+        Usuario usuario = new Usuario(Integer.parseInt(idUsuario), null, null, null, null, null, null, 0, null);
         usuarioRNVal.validarExcluirUsuario(usuario);
         usuarioBD.excluirUsuario(usuario);
     }
@@ -43,7 +43,7 @@ public class UsuarioRN {
         @Path("consultarUsuario/{email}/{senha}")
     public String consultarUsuario(@PathParam("email") String email,
             @PathParam("senha") String senha) {
-        Usuario usuario = new Usuario(null, null, null, null, email, senha, null, 0);
+        Usuario usuario = new Usuario(null, null, null, null, email, senha, null, 0, null);
         usuarioRNVal.validarConsultarUsuario(usuario);
         return gson.toJson(usuarioBD.consultarUsuario(usuario));
     }

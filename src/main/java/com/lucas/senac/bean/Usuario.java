@@ -18,17 +18,6 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(Integer idUsuario, String nome, String cpf, String rg, String email, String senha, Integer idTipoAcesso, long telefone) {
-        this.idUsuario = idUsuario;
-        this.nome = nome;
-        this.cpf = cpf;
-        this.rg = rg;
-        this.email = email;
-        this.senha = senha;
-        this.idTipoAcesso = idTipoAcesso;
-        this.telefone = telefone;
-    }
-
     public Usuario(Integer idUsuario, String nome, String cpf, String rg, String email, String senha, Integer idTipoAcesso, long telefone, String imagem) {
         this.idUsuario = idUsuario;
         this.nome = nome;
