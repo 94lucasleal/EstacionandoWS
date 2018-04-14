@@ -114,8 +114,10 @@ public class FavoritosBD extends CrudBD<Favoritos>{
         try {
             conn = abrirConexao();
 
-            PreparedStatement pstm = conn.prepareStatement("SELECT esta.* FROM favoritos fav, estabelecimento esta WHERE fav.idestabelecimento = esta.idestabelecimento AND fav.ativo = 'S' AND fav.idusuario = ? ");
+            PreparedStatement pstm = conn.prepareStatement("SELECT esta.* FROM favoritos fav, estabelecimento esta WHERE fav.idestabelecimento = esta.idestabelecimento AND fav.ativo = ''S'' AND fav.idusuario = ? ");
             pstm.setInt(1, bean.getIdusuario());
+            
+            System.out.println(pstm.toString());
 
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
