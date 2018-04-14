@@ -57,9 +57,9 @@ public class FavoritosRN {
     
     @GET
     @Produces("application/json")
-    @Path("pesquisarUsuario/{idestabelecimento}/{idusuario}")
-    public String pesquisar(@PathParam("idestabelecimento") int idestabelecimento, @PathParam("idusuario") int idusuario) {
-         Favoritos favoritos = new Favoritos(idestabelecimento, idusuario, '0');
+    @Path("pesquisarUsuario/{idusuario}")
+    public String pesquisar(@PathParam("idusuario") int idusuario) {
+         Favoritos favoritos = new Favoritos(0, idusuario, '0');
         return gson.toJson(favoritosBD.pesquisar(favoritos));
     }
 

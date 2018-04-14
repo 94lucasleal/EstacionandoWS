@@ -1,5 +1,6 @@
 package com.lucas.senac.bd;
 
+import com.lucas.senac.bean.Estabelecimento;
 import com.lucas.senac.bean.Favoritos;
 import com.lucas.senac.infra.CrudBD;
 import java.util.ArrayList;
@@ -106,27 +107,46 @@ public class FavoritosBD extends CrudBD<Favoritos>{
         }
     }
 
-    public ArrayList<Favoritos> pesquisar(Favoritos bean) {
-        ArrayList<Favoritos> lista = new ArrayList<Favoritos>();
+    public ArrayList<Estabelecimento> pesquisar(Favoritos bean) {
+        ArrayList<Estabelecimento> lista = new ArrayList<Estabelecimento>();
         
         Connection conn = null;
         try {
             conn = abrirConexao();
 
-            PreparedStatement pstm = conn.prepareStatement("SELECT * FROM favoritos WHERE idusuario = ?");
+            PreparedStatement pstm = conn.prepareStatement("SELECT esta.* FROM favoritos fav, estabelecimento esta WHERE fav.idestabelecimento = esta.idestabelecimento AND fav.ativo = 'S' AND fav.idusuario = ? ");
             pstm.setInt(1, bean.getIdusuario());
 
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
                 System.out.println("Registro encontrado");
                 
-                Favoritos favoritos = new Favoritos();
-                favoritos.setIdestabelecimento(rs.getInt("idestabelecimento"));
-                favoritos.setIdusuario(rs.getInt("idusuario"));
-                favoritos.setAtivo(rs.getString("ativo").charAt(0));
+                Estabelecimento estabelecimento = new Estabelecimento();
+                estabelecimento.setIdestabelecimento(rs.getInt("idestabelecimento"));
+                estabelecimento.setIdusuario(rs.getInt("idusuario"));
+                estabelecimento.setIdtipoestabelecimento(rs.getInt("idtipoestabelecimento"));
+                estabelecimento.setRazaosocial(rs.getString("razaoSocial"));
+                estabelecimento.setCnpj(rs.getString("cnpj"));
+                estabelecimento.setEstado(rs.getString("estado"));
+                estabelecimento.setMunicipio(rs.getString("municipio"));
+                estabelecimento.setBairro(rs.getString("bairro"));
+                estabelecimento.setLogradouro(rs.getString("logradouro"));
+                estabelecimento.setCep(rs.getInt("cep"));
+                estabelecimento.setNumero(rs.getInt("numero"));
+                estabelecimento.setReferencia(rs.getString("referencia"));
+                estabelecimento.setLatitude(rs.getDouble("latitude"));
+                estabelecimento.setLongitude(rs.getDouble("longitude"));
+                estabelecimento.setValormeiahora(rs.getDouble("valormeiahora"));
+                estabelecimento.setValorhora(rs.getDouble("valorhora"));
+                estabelecimento.setValordiaria(rs.getDouble("valordiaria"));
+                estabelecimento.setValormensal(rs.getDouble("valormensal"));
+                estabelecimento.setValoradicional(rs.getDouble("valoradicional"));
+                estabelecimento.setImagem(rs.getString("imagem"));
+                estabelecimento.setVagastotal(rs.getInt("vagas_total"));
+                estabelecimento.setVagasreservada(rs.getInt("vagas_reservada"));
+                estabelecimento.setVagasdisponivel(rs.getInt("vagas_disponivel"));
 
-                lista.add(favoritos);
-                System.out.println(favoritos.toString());
+                lista.add(estabelecimento);
             }
             System.out.println("Pesquisa executada com sucesso");
         } catch (Exception e) {
