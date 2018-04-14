@@ -2,6 +2,7 @@ package com.lucas.senac.rn;
 
 import com.google.gson.Gson;
 import com.lucas.senac.bd.FavoritosBD;
+import com.lucas.senac.bean.Estabelecimento;
 import com.lucas.senac.bean.Favoritos;
 import javax.ws.rs.*;
 
@@ -57,7 +58,7 @@ public class FavoritosRN {
     
     @GET
     @Produces("application/json")
-    @Path("pesquisarUsuario/{idusuario}")
+    @Path("pesquisar/{idusuario}")
     public String pesquisar(@PathParam("idusuario") int idusuario) {
          Favoritos favoritos = new Favoritos(0, idusuario, '0');
         return gson.toJson(favoritosBD.pesquisar(favoritos));
