@@ -40,10 +40,9 @@ public class CartaoRN {
     @POST
     @Consumes({"application/json"})
     @Path("inserir")
-    public void inserir(String content){
+    public String inserir(String content){
         System.out.println(content);
         Cartao cartao = (Cartao) gson.fromJson(content, Cartao.class);
-        System.out.println("Chegou aqui:"+cartao);
         PagarMe.init("ak_test_U9HHME9pST6E6ZDv0cBWeVfd3UoVLG");
         Map<String, Object> metadata = new HashMap<String, Object>();
         metadata.put("id", cartao.getId());
@@ -55,9 +54,11 @@ public class CartaoRN {
             tx.setPaymentMethod(PaymentMethod.CREDIT_CARD);
             tx.setMetadata(metadata);
             tx.save();
-            System.out.println(gson.toJson(tx));;
+            System.out.println(gson.toJson(tx));
+            return gson.toJson(tx);
         } catch (Exception e) {
             System.out.println(e);
+            return gson.toJson(e);
         }          
     }
     
