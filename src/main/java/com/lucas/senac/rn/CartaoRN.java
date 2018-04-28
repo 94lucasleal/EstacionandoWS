@@ -18,6 +18,7 @@ import me.pagar.model.Transaction;
 import me.pagar.model.Transaction.PaymentMethod;
 import java.util.HashMap;
 import java.util.Map;
+import me.pagar.model.PagarMeException;
 
 
 @Path("cartao/")
@@ -43,16 +44,20 @@ public class CartaoRN {
         
         Map<String, Object> metadata = new HashMap<String, Object>();
         metadata.put("id", cartao);
+        
             
         PagarMe.init("ak_test_U9HHME9pST6E6ZDv0cBWeVfd3UoVLG");
         Transaction tx = new Transaction();
         tx.setAmount(6990);
+        System.out.println("1"+tx.getAmount());
         tx.setCardHash(cartao.getToken());
+        System.out.println("2"+tx.cardHashKey().toString());
         tx.setPaymentMethod(PaymentMethod.CREDIT_CARD);
+        System.out.println("3"+tx.getPaymentMethod());
         //tx.setMetadata(metadata);
         tx.save();
         
-        System.out.println("Bombou");
+        System.out.println("Bombou"+tx.getAmount());
 
         /*
         MP mp = new MP("TEST-5932925008911488-042718-876ba434b898faaf69a929436bc55479-317543512");
