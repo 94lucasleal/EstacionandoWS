@@ -44,7 +44,7 @@ public class CartaoRN {
         Map<String, Object> metadata = new HashMap<String, Object>();
         metadata.put("id", cartao);
             
-        PagarMe.init("k_test_grXijQ4GicOa2BLGZrDRTR5qNQxJW0");
+        PagarMe.init("ek_test_GikTJCDJkdSRDaS0IgPNZoYhCtLQg9");
         Transaction tx = new Transaction();
         tx.setAmount(100);
         tx.setCardHash(cartao.getToken());
