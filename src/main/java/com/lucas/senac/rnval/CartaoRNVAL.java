@@ -5,6 +5,7 @@ import com.lucas.senac.bean.Cartao;
 public class CartaoRNVAL {
     
     public void validarInserirCartao(Cartao bean) {
+        /*
         if (bean.getNomeTitular().isEmpty()) {
             throw new RuntimeException("Campo NOME DO TITULAR não informado");
         }
@@ -14,20 +15,23 @@ public class CartaoRNVAL {
         if (bean.getNumeroCartao().isEmpty()) {
             throw new RuntimeException("Campo NUMERO DO CARTAO não informado");
         }
+        */
     }
 
     public void validarExcluirCartao(Cartao bean) {
-        validarConsultarCartao(bean);
+        //validarConsultarCartao(bean);
     }
 
     public void validarConsultarCartao(Cartao bean) {
+        /*
         if (bean.getIdCartao() == 0) {
             throw new RuntimeException("Campo Código não informado");
         }
+        */
     }
     
     public void validarAlterarCartao(Cartao bean) {
-        validarConsultarCartao(bean);
+        //validarConsultarCartao(bean);
     }
     
 }

@@ -15,9 +15,9 @@ public class CartaoBD extends CrudBD<Cartao> {
             conn = abrirConexao();
 
             PreparedStatement pstm = conn.prepareStatement("INSERT INTO cartao(nometitular, cpftitular, numerocartao) VALUES (?,?,?)");
-            pstm.setString(1, bean.getNomeTitular());
-            pstm.setString(2, bean.getCpfTitular());
-            pstm.setString(3, bean.getNumeroCartao());
+            pstm.setString(1, bean.getId());
+            pstm.setString(2, bean.getId());
+            pstm.setString(3, bean.getId());
 
             System.out.println("Salvando: " + bean);
             pstm.execute();
@@ -37,7 +37,7 @@ public class CartaoBD extends CrudBD<Cartao> {
             conn = abrirConexao();
 
             PreparedStatement pstm = conn.prepareStatement("DELETE FROM cartao WHERE idcartao=?");
-            pstm.setInt(1, bean.getIdCartao());
+            pstm.setInt(1, bean.getParcels());
 
             System.out.println("Excluindo: " + bean);
             pstm.execute();
@@ -59,17 +59,17 @@ public class CartaoBD extends CrudBD<Cartao> {
             conn = abrirConexao();
 
             PreparedStatement pstm = conn.prepareStatement("SELECT * FROM cartao WHERE idcartao=?");
-            pstm.setInt(1, bean.getIdCartao());
+            pstm.setInt(1, bean.getParcels());
 
             System.out.println("Consultando: " + bean);
             ResultSet rs = pstm.executeQuery();
             if (rs.next()) {
                 System.out.println("Registro encontrado");
                 cartaoRetorno = new Cartao();
-                cartaoRetorno.setIdCartao(rs.getInt("idcartao"));
-                cartaoRetorno.setNomeTitular(rs.getString("nometitular"));
-                cartaoRetorno.setCpfTitular(rs.getString("cpftitular"));
-                cartaoRetorno.setNumeroCartao(rs.getString("numerocartao"));
+                cartaoRetorno.setParcels(rs.getInt("idcartao"));
+                cartaoRetorno.setId(rs.getString("nometitular"));
+                cartaoRetorno.setId(rs.getString("cpftitular"));
+                cartaoRetorno.setId(rs.getString("numerocartao"));
             }
             System.out.println("Consulta executada com sucesso");
         } catch (Exception e) {
@@ -86,10 +86,10 @@ public class CartaoBD extends CrudBD<Cartao> {
             conn = abrirConexao();
 
             PreparedStatement pstm = conn.prepareStatement("UPDATE cartao SET nometitular = ?, cpftitular = ?, numerocartao = ? WHERE idcartao = ?");
-            pstm.setString(1, bean.getNomeTitular());
-            pstm.setString(2, bean.getCpfTitular());
-            pstm.setString(3, bean.getNumeroCartao());
-            pstm.setInt(4, bean.getIdCartao());
+            pstm.setString(1, bean.getId());
+            pstm.setString(2, bean.getId());
+            pstm.setString(3, bean.getId());
+            pstm.setInt(4, bean.getParcels());
 
             System.out.println("Alterando: " + bean);
             pstm.execute();
@@ -122,10 +122,10 @@ public class CartaoBD extends CrudBD<Cartao> {
                 System.out.println("Registro encontrado");
 
                 Cartao cartao = new Cartao();
-                cartao.setIdCartao(rs.getInt("idcartao"));
-                cartao.setNomeTitular(rs.getString("nometitular"));
-                cartao.setCpfTitular(rs.getString("cpftitular"));
-                cartao.setNumeroCartao(rs.getString("numerocartao"));
+                cartao.setParcels(rs.getInt("idcartao"));
+                cartao.setId(rs.getString("nometitular"));
+                cartao.setId(rs.getString("cpftitular"));
+                cartao.setId(rs.getString("numerocartao"));
 
                 lista.add(cartao);
                 System.out.println(cartao.toString());
@@ -154,10 +154,10 @@ public class CartaoBD extends CrudBD<Cartao> {
                 System.out.println("Registro encontrado");
 
                 Cartao cartao = new Cartao();
-                cartao.setIdCartao(rs.getInt("idcartao"));
-                cartao.setNomeTitular(rs.getString("nometitular"));
-                cartao.setCpfTitular(rs.getString("cpftitular"));
-                cartao.setNumeroCartao(rs.getString("numerocartao"));
+                cartao.setParcels(rs.getInt("idcartao"));
+                cartao.setId(rs.getString("nometitular"));
+                cartao.setId(rs.getString("cpftitular"));
+                cartao.setId(rs.getString("numerocartao"));
 
                 lista.add(cartao);
                 System.out.println(cartao.toString());

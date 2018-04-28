@@ -6,8 +6,15 @@ import com.lucas.senac.rnval.CartaoRNVAL;
 import java.util.List;
 import javax.jws.WebParam;
 import javax.jws.WebService;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 
-@WebService(endpointInterface = "com.lucas.senac.rn.CartaoRN", serviceName = "CartaoRN")
+@Path("cartao/")
 public class CartaoRN {
     
     private final CartaoBD cartaoBD;
@@ -18,43 +25,62 @@ public class CartaoRN {
         cartaoRNVal = new CartaoRNVAL();
     }
     
-    public void inserirCartao(@WebParam(name = "idCartao") Integer idCartao,
-                        @WebParam(name = "nomeTitular") String nomeTitular,
-                        @WebParam(name = "cpfTitular") String cpfTitular,
-                        @WebParam(name = "numeroCartao") String numeroCartao) {
+    @POST
+    @Consumes({"application/json"})
+    @Path("inserir")
+    public void inserir(@WebParam(name = "id") String id,
+                        @WebParam(name = "value") Double value,
+                        @WebParam(name = "token") String token,
+                        @WebParam(name = "parcels") int parcels) {
 
-        Cartao cartao = new Cartao(idCartao,nomeTitular,cpfTitular,numeroCartao);
-        cartaoRNVal.validarInserirCartao(cartao);
-        cartaoBD.inserirCartao(cartao);
+        Cartao cartao = new Cartao(id,value,token,parcels);
+        
+        System.out.println("Chegou aqui:"+cartao);
+        //cartaoRNVal.validarInserirCartao(cartao);
+        //cartaoBD.inserirCartao(cartao);
     }
 
-    public void excluirCartao(@WebParam(name = "idCartao") Integer idCartao) {
-        Cartao cartao = new Cartao(idCartao,null,null,null);
-        cartaoRNVal.validarExcluirCartao(cartao);
-        cartaoBD.excluirCartao(cartao);
+       @DELETE
+    @Path("excluir/{id}")
+    public void excluir(@WebParam(name = "id") String id) {
+        Cartao cartao = new Cartao(id,null,null,0);
+        //cartaoRNVal.validarExcluirCartao(cartao);
+        //cartaoBD.excluirCartao(cartao);
     }
-
-    public Cartao consultarCartao(@WebParam(name = "idCartao") Integer idCartao) {
-        Cartao cartao = new Cartao(idCartao,null,null,null);
-        cartaoRNVal.validarConsultarCartao(cartao);
+    
+    @GET
+    @Produces("application/json")
+    @Path("consultar/{id}")
+    public Cartao consultar(@WebParam(name = "id") String id) {
+        Cartao cartao = new Cartao(id,null,null,0);
+        //cartaoRNVal.validarConsultarCartao(cartao);
         return cartaoBD.consultarCartao(cartao);
     }
-
-    public void alterarCartao(@WebParam(name = "idCartao") Integer idCartao,
-                        @WebParam(name = "nomeTitular") String nomeTitular,
-                        @WebParam(name = "cpfTitular") String cpfTitular,
-                        @WebParam(name = "numeroCartao") String numeroCartao) {
+    
+    @PUT
+    @Consumes({"application/json"})
+    @Path("alterar")
+    public void alterar(@WebParam(name = "id") String id,
+                        @WebParam(name = "value") Double value,
+                        @WebParam(name = "token") String token,
+                        @WebParam(name = "parcels") int parcels) {
         
-        Cartao cartao = new Cartao(idCartao,nomeTitular,cpfTitular,numeroCartao);
+        Cartao cartao = new Cartao(id,value,token,parcels);
         cartaoRNVal.validarAlterarCartao(cartao);
         cartaoBD.alterarCartao(cartao);
     }
-
-    public List<Cartao> pesquisarCartao(@WebParam(name = "pesquisa") String pesquisa) {
+    
+    @GET
+    @Produces("application/json")
+    @Path("pesquisar/{pesquisa}")
+    public List<Cartao> pesquisar(@WebParam(name = "pesquisa") String pesquisa) {
         return cartaoBD.pesquisarCartao(pesquisa);
     }
     
-    public List<Cartao> buscarTodosCartao() {
+    @GET
+    @Produces("application/json")
+    @Path("buscarTodos")
+    public List<Cartao> buscarTodos() {
         return cartaoBD.buscarTodosCartao();
     }
 

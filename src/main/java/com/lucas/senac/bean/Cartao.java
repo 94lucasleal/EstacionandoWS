@@ -2,56 +2,56 @@ package com.lucas.senac.bean;
 
 public class Cartao {
 
-    private Integer idCartao;
-    private String nomeTitular;
-    private String cpfTitular;
-    private String numeroCartao;
+    private String id;
+    private Double value;
+    private String token;
+    private int parcels;
 
     public Cartao() {
     }
 
-    public Cartao(Integer idCartao, String nomeTitular, String cpfTitular, String numeroCartao) {
-        this.idCartao = idCartao;
-        this.nomeTitular = nomeTitular;
-        this.cpfTitular = cpfTitular;
-        this.numeroCartao = numeroCartao;
+    public Cartao(String id, Double value, String token, int parcels) {
+        this.id = id;
+        this.value = value;
+        this.token = token;
+        this.parcels = parcels;
     }
 
-    public Integer getIdCartao() {
-        return idCartao;
+    public String getId() {
+        return id;
     }
 
-    public void setIdCartao(Integer idCartao) {
-        this.idCartao = idCartao;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getNomeTitular() {
-        return nomeTitular;
+    public Double getValue() {
+        return value;
     }
 
-    public void setNomeTitular(String nomeTitular) {
-        this.nomeTitular = nomeTitular;
+    public void setValue(Double value) {
+        this.value = value;
     }
 
-    public String getCpfTitular() {
-        return cpfTitular;
+    public String getToken() {
+        return token;
     }
 
-    public void setCpfTitular(String cpfTitular) {
-        this.cpfTitular = cpfTitular;
+    public void setToken(String token) {
+        this.token = token;
     }
 
-    public String getNumeroCartao() {
-        return numeroCartao;
+    public int getParcels() {
+        return parcels;
     }
 
-    public void setNumeroCartao(String numeroCartao) {
-        this.numeroCartao = numeroCartao;
+    public void setParcels(int parcels) {
+        this.parcels = parcels;
     }
 
     @Override
     public String toString() {
-        return "Cartao{" + "idCartao=" + idCartao + ", nomeTitular=" + nomeTitular + ", cpfTitular=" + cpfTitular + ", numeroCartao=" + numeroCartao + '}';
+        return "Cartao{" + "id=" + id + ", value=" + value + ", token=" + token + ", parcels=" + parcels + '}';
     }
-
+    
 }
