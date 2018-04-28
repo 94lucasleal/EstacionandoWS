@@ -40,7 +40,7 @@ public class CartaoRN {
     @POST
     @Consumes({"application/json"})
     @Path("inserir")
-    public boolean inserir(String content){
+    public void inserir(String content){
         System.out.println(content);
         Cartao cartao = (Cartao) gson.fromJson(content, Cartao.class);
         System.out.println("Chegou aqui:"+cartao);
@@ -55,9 +55,8 @@ public class CartaoRN {
             tx.setPaymentMethod(PaymentMethod.CREDIT_CARD);
             tx.setMetadata(metadata);
             tx.save();
-            return true;
         } catch (Exception e) {
-            return false;
+            System.out.println(e);
         }          
     }
 
