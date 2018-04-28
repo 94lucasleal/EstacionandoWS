@@ -47,10 +47,10 @@ public class CartaoRN {
         PagarMe.init("ak_test_U9HHME9pST6E6ZDv0cBWeVfd3UoVLG");
         Map<String, Object> metadata = new HashMap<String, Object>();
         metadata.put("id", cartao.getId());
-        String value = cartao.getValue() * 100 + "";
+        Double value = cartao.getValue() * 100;
         try {
             Transaction tx = new Transaction();
-            tx.setAmount(Integer.parseInt(value));
+            tx.setAmount(value.intValue());
             tx.setCardHash(cartao.getToken());
             tx.setPaymentMethod(PaymentMethod.CREDIT_CARD);
             tx.setMetadata(metadata);
