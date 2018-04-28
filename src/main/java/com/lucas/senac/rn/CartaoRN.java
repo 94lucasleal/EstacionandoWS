@@ -62,6 +62,35 @@ public class CartaoRN {
         }          
     }
     
+    @GET
+    @Consumes({"application/json"})
+    @Path("pagamento/{id}/{value}/{token}/{parcels}")
+    public String pagamento(@PathParam("id") String id,
+                            @PathParam("value") Double value,
+                            @PathParam("token") String token,
+                            @PathParam("parcels") int parcels){
+        
+        Cartao cartao = new Cartao(id, value, token, parcels);
+        System.out.println(cartao);
+        PagarMe.init("ak_test_U9HHME9pST6E6ZDv0cBWeVfd3UoVLG");
+        Map<String, Object> metadata = new HashMap<String, Object>();
+        metadata.put("id", cartao.getId());
+        Double valor = cartao.getValue() * 100;
+        try {
+            Transaction tx = new Transaction();
+            tx.setAmount(valor.intValue());
+            tx.setCardHash(cartao.getToken());
+            tx.setPaymentMethod(PaymentMethod.CREDIT_CARD);
+            tx.setMetadata(metadata);
+            tx.save();
+            System.out.println(gson.toJson(tx));
+            return gson.toJson(tx);
+        } catch (Exception e) {
+            System.out.println(e);
+            return e.toString();
+        }          
+    }
+    
     @DELETE
     @Path("excluir/{id}")
     public void excluir(@PathParam("id") String id) {
