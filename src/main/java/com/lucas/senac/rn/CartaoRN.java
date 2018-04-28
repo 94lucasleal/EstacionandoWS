@@ -55,11 +55,12 @@ public class CartaoRN {
             tx.setPaymentMethod(PaymentMethod.CREDIT_CARD);
             tx.setMetadata(metadata);
             tx.save();
+            System.out.println(gson.toJson(tx));;
         } catch (Exception e) {
             System.out.println(e);
         }          
     }
-
+    
     @DELETE
     @Path("excluir/{id}")
     public void excluir(@PathParam("id") String id) {
