@@ -4,15 +4,13 @@ import com.google.gson.Gson;
 import com.lucas.senac.bd.CartaoBD;
 import com.lucas.senac.bean.Cartao;
 import com.lucas.senac.rnval.CartaoRNVAL;
-import java.util.List;
-import javax.jws.WebParam;
-import javax.jws.WebService;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 @Path("cartao/")
@@ -39,9 +37,9 @@ public class CartaoRN {
         //cartaoBD.inserirCartao(cartao);
     }
 
-       @DELETE
+    @DELETE
     @Path("excluir/{id}")
-    public void excluir(@WebParam(name = "id") String id) {
+    public void excluir(@PathParam("id") String id) {
         Cartao cartao = new Cartao(id,null,null,0);
         //cartaoRNVal.validarExcluirCartao(cartao);
         //cartaoBD.excluirCartao(cartao);
@@ -50,7 +48,7 @@ public class CartaoRN {
     @GET
     @Produces("application/json")
     @Path("consultar/{id}")
-    public Cartao consultar(@WebParam(name = "id") String id) {
+    public Cartao consultar(@PathParam("id") String id) {
         Cartao cartao = new Cartao(id,null,null,0);
         //cartaoRNVal.validarConsultarCartao(cartao);
         return cartaoBD.consultarCartao(cartao);
@@ -59,28 +57,24 @@ public class CartaoRN {
     @PUT
     @Consumes({"application/json"})
     @Path("alterar")
-    public void alterar(@WebParam(name = "id") String id,
-                        @WebParam(name = "value") Double value,
-                        @WebParam(name = "token") String token,
-                        @WebParam(name = "parcels") int parcels) {
-        
-        Cartao cartao = new Cartao(id,value,token,parcels);
-        cartaoRNVal.validarAlterarCartao(cartao);
-        cartaoBD.alterarCartao(cartao);
+    public void alterar(String content) {
+        System.out.println(content);
+        Cartao cartao = (Cartao) gson.fromJson(content, Cartao.class);
+        System.out.println("Chegou aqui:"+cartao);
     }
     
     @GET
     @Produces("application/json")
     @Path("pesquisar/{pesquisa}")
-    public List<Cartao> pesquisar(@WebParam(name = "pesquisa") String pesquisa) {
-        return cartaoBD.pesquisarCartao(pesquisa);
+    public String pesquisar(@PathParam("pesquisa")  String pesquisa) {
+        return gson.toJson(cartaoBD.pesquisarCartao(pesquisa));
     }
     
     @GET
     @Produces("application/json")
     @Path("buscarTodos")
-    public List<Cartao> buscarTodos() {
-        return cartaoBD.buscarTodosCartao();
+    public String buscarTodos() {
+        return gson.toJson(cartaoBD.buscarTodosCartao());
     }
 
 }
