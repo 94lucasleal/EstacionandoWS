@@ -49,7 +49,7 @@ public class CartaoRN {
         tx.setAmount(6990);
         tx.setCardHash(cartao.getToken());
         tx.setPaymentMethod(PaymentMethod.CREDIT_CARD);
-        tx.setMetadata(metadata);
+        //tx.setMetadata(metadata);
         tx.save();
         
         System.out.println("Bombou");
