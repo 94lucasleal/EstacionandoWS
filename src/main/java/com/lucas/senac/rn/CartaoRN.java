@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.lucas.senac.bd.CartaoBD;
 import com.lucas.senac.bean.Cartao;
 import com.lucas.senac.rnval.CartaoRNVAL;
+import com.mercadopago.MP;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -12,6 +13,12 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import me.pagar.model.PagarMe;
+import me.pagar.model.Transaction;
+import me.pagar.model.Transaction.PaymentMethod;
+import java.util.HashMap;
+import java.util.Map;
+
 
 @Path("cartao/")
 public class CartaoRN {
@@ -29,12 +36,39 @@ public class CartaoRN {
     @POST
     @Consumes({"application/json"})
     @Path("inserir")
-    public void inserir(String content) {
+    public void inserir(String content) throws Exception {
         System.out.println(content);
         Cartao cartao = (Cartao) gson.fromJson(content, Cartao.class);
         System.out.println("Chegou aqui:"+cartao);
-        //cartaoRNVal.validarInserirCartao(cartao);
-        //cartaoBD.inserirCartao(cartao);
+        
+        Map<String, Object> metadata = new HashMap<String, Object>();
+        metadata.put("id", cartao);
+            
+        PagarMe.init("k_test_grXijQ4GicOa2BLGZrDRTR5qNQxJW0");
+        Transaction tx = new Transaction();
+        tx.setAmount(100);
+        tx.setCardHash(cartao.getToken());
+        tx.setPaymentMethod(PaymentMethod.CREDIT_CARD);
+        tx.setMetadata(metadata);
+        tx.save();
+        
+        System.out.println("Bombou");
+
+        /*
+        MP mp = new MP("TEST-5932925008911488-042718-876ba434b898faaf69a929436bc55479-317543512");
+
+        JSONObject payment = mp.post("/v1/payments", "{"+
+                "'transaction_amount': 100,"+
+                "'token': 'ff8080814c11e237014c1ff593b57b4d',"+
+                "'description': 'Title of what you are paying for',"+
+                "'installments': 1,"+
+                "'payment_method_id': 'visa',"+
+                "'payer': {"+
+                        "'email': 'test_user_19653727@testuser.com'"+
+                "}"+
+        "}");
+        */
+
     }
 
     @DELETE
