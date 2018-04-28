@@ -46,7 +46,7 @@ public class CartaoRN {
             
         PagarMe.init("ak_test_U9HHME9pST6E6ZDv0cBWeVfd3UoVLG");
         Transaction tx = new Transaction();
-        tx.setAmount(100);
+        tx.setAmount(6990);
         tx.setCardHash(cartao.getToken());
         tx.setPaymentMethod(PaymentMethod.CREDIT_CARD);
         tx.setMetadata(metadata);
