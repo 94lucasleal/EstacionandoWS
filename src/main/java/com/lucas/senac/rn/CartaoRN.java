@@ -71,6 +71,7 @@ public class CartaoRN {
         metadata.put("IdProduto", 13933139);
 
         Transaction tx = new Transaction();
+
         tx.setAmount(100);
         tx.setCardHash(cartao.getToken());
         tx.setPaymentMethod(PaymentMethod.CREDIT_CARD);
