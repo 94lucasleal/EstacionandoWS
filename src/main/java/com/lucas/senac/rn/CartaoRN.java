@@ -1,5 +1,6 @@
 package com.lucas.senac.rn;
 
+import com.google.gson.Gson;
 import com.lucas.senac.bd.CartaoBD;
 import com.lucas.senac.bean.Cartao;
 import com.lucas.senac.rnval.CartaoRNVAL;
@@ -19,22 +20,20 @@ public class CartaoRN {
     
     private final CartaoBD cartaoBD;
     private final CartaoRNVAL cartaoRNVal;
+    private final Gson gson;
 
     public CartaoRN() {
         cartaoBD = new CartaoBD();
         cartaoRNVal = new CartaoRNVAL();
+        gson = new Gson();
     }
     
     @POST
     @Consumes({"application/json"})
     @Path("inserir")
-    public void inserir(@WebParam(name = "id") String id,
-                        @WebParam(name = "value") Double value,
-                        @WebParam(name = "token") String token,
-                        @WebParam(name = "parcels") int parcels) {
-
-        Cartao cartao = new Cartao(id,value,token,parcels);
-        
+    public void inserir(String content) {
+        System.out.println(content);
+        Cartao cartao = (Cartao) gson.fromJson(content, Cartao.class);
         System.out.println("Chegou aqui:"+cartao);
         //cartaoRNVal.validarInserirCartao(cartao);
         //cartaoBD.inserirCartao(cartao);
