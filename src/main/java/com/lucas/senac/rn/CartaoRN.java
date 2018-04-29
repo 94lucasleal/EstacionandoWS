@@ -6,6 +6,7 @@ import com.lucas.senac.bean.Cartao;
 import com.lucas.senac.bean.Pagamento;
 import com.lucas.senac.rnval.CartaoRNVAL;
 import com.mercadopago.MP;
+import java.util.Collection;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -45,13 +46,38 @@ public class CartaoRN {
         System.out.println(content);
         Cartao cartao = (Cartao) gson.fromJson(content, Cartao.class);
         PagarMe.init("ak_test_U9HHME9pST6E6ZDv0cBWeVfd3UoVLG");
-        
+        Phone phone = new Phone();
+        phone.setDdd("11");
+        phone.setDdi("55");
+        phone.setNumber("99999999");
+
+        String street = "Avenida Brigadeiro Faria Lima";
+        String streetNumber = "1811";
+        String neighborhood = "Jardim Paulistano";
+        String zipcode = "01451001";
+        Address address = new Address(street, streetNumber, neighborhood, zipcode);
+
+        String name = "Aardvark Silva";
+        String email = "aardvark.silva@pagar.me";
+        String documentNumber = "18152564000105";
+        Customer customer = new Customer(name, email);
+        customer.setDocumentType("individual");
+        customer.setAddress(address);
+        customer.setPhone(phone);
+        customer.setDocumentNumber(documentNumber);
+
+        Map<String, Object> metadata = new HashMap<String, Object>();
+        metadata.put("IdProduto", 13933139);
+
         Double value = cartao.getValue() * 100;
         try {
-            Transaction tx = new Transaction();
-            tx.setAmount(100);
-            tx.setPaymentMethod(PaymentMethod.BOLETO);
-            tx.save();
+        Transaction tx = new Transaction();
+        tx.setCustomer(customer);
+        tx.setAmount(100);
+        tx.setPaymentMethod(PaymentMethod.BOLETO);
+        tx.setMetadata(metadata);
+        tx.setPostbackUrl("http://requestb.in/pkt7pgpk");
+        tx.save();
             System.out.println(gson.toJson(tx));
             Pagamento pagamento = new Pagamento();
             pagamento.setAmount(tx.getAmount());
