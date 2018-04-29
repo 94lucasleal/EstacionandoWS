@@ -61,7 +61,7 @@ public class CartaoRN {
         String email = "aardvark.silva@pagar.me";
         String documentNumber = "18152564000105";
         Customer customer = new Customer(name, email);
-        customer.setDocumentType("individual");
+        customer.setDocumentType("corporation");
         customer.setAddress(address);
         customer.setPhone(phone);
         customer.setDocumentNumber(documentNumber);
