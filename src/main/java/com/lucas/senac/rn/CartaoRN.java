@@ -23,7 +23,7 @@ import me.pagar.model.Address;
 import me.pagar.model.Customer;
 import me.pagar.model.PagarMeException;
 import me.pagar.model.Phone;
-
+import me.pagar.model.Recipient;
 
 @Path("cartao/")
 public class CartaoRN {
@@ -46,35 +46,12 @@ public class CartaoRN {
         Cartao cartao = (Cartao) gson.fromJson(content, Cartao.class);
         PagarMe.init("ak_test_U9HHME9pST6E6ZDv0cBWeVfd3UoVLG");
         
-        Phone phone = new Phone();
-        phone.setDdd("11");
-        phone.setDdi("55");
-        phone.setNumber("99999999");
-
-        String street = "Avenida Brigadeiro Faria Lima";
-        String streetNumber = "1811";
-        String neighborhood = "Jardim Paulistano";
-        String zipcode = "01451001";
-        Address address = new Address(street, streetNumber, neighborhood, zipcode);
-
-        String name = "Aardvark Silva";
-        String email = "aardvark.silva@pagar.me";
-        String documentNumber = "18152564000105";
-        Customer customer = new Customer(name, email);
-        customer.setAddress(address);
-        customer.setPhone(phone);
-        customer.setDocumentNumber(documentNumber);
-
-        Map<String, Object> metadata = new HashMap<String, Object>();
-        metadata.put("IdProduto", 13933139);
-
         Double value = cartao.getValue() * 100;
         try {
             Transaction tx = new Transaction();
-            tx.setCustomer(customer);
             tx.setAmount(100);
             tx.setPaymentMethod(PaymentMethod.BOLETO);
-            tx.setMetadata(metadata);
+            tx.setPostbackUrl("http://requestb.in/pkt7pgpk");
             tx.save();
             System.out.println(gson.toJson(tx));
             Pagamento pagamento = new Pagamento();
