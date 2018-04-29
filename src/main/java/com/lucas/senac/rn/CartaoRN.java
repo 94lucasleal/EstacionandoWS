@@ -51,7 +51,6 @@ public class CartaoRN {
             Transaction tx = new Transaction();
             tx.setAmount(100);
             tx.setPaymentMethod(PaymentMethod.BOLETO);
-            tx.setPostbackUrl("http://requestb.in/pkt7pgpk");
             tx.save();
             System.out.println(gson.toJson(tx));
             Pagamento pagamento = new Pagamento();
