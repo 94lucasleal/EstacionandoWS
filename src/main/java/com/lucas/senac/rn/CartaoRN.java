@@ -54,6 +54,7 @@ public class CartaoRN {
         MercadoPago.SDK.configure("TEST-5932925008911488-042718-876ba434b898faaf69a929436bc55479-317543512");
         
         Preference preference = new Preference();
+        System.out.println(preference.toString());
 
         Item item = new Item();
         item.setId("1234")
@@ -61,13 +62,17 @@ public class CartaoRN {
             .setQuantity(7)
             .setCategoryId("BRL")
             .setUnitPrice((float)51.34);
+        System.out.println(item.toString());
 
         Payer payer = new Payer();
         payer.setEmail("telly@bol.com.br");
+        System.out.println(payer.toString());
 
         preference.setPayer(payer);
         preference.appendItem(item);
+        System.out.println(preference.toString());
         preference.save();
+        System.out.println(preference.toString());
         /*
         MercadoPago.SDK.configure("ENV_ACCESS_TOKEN");
         
