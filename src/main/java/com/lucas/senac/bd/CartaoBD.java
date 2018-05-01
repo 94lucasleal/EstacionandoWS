@@ -18,7 +18,7 @@ public class CartaoBD extends CrudBD<Cartao> {
             PreparedStatement pstm = conn.prepareStatement("INSERT INTO pagamento(idestabelecimento, idusuario, product_id, amount,  "+
                     "installments, nsu, tid, authorization_code, acquirer_name, payment_method, status, refuse_reason, status_reason, card_brand, "+
                     "date_updated, date_created, boleto_url, boleto_barcode, dta_pagamento, dta_entrada, dta_saida) "+
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             
             pstm.setInt(1, bean.getIdestabelecimento());
             pstm.setInt(2, bean.getIdusuario());
@@ -30,18 +30,17 @@ public class CartaoBD extends CrudBD<Cartao> {
             pstm.setString(8, bean.getAuthorization_code());
             pstm.setString(9, bean.getAcquirer_name());
             pstm.setString(10, bean.getPayment_method());
-            pstm.setString(11, bean.getProduct_id());
-            pstm.setString(12, bean.getStatus());
-            pstm.setString(13, bean.getRefuse_reason());
-            pstm.setString(14, bean.getStatus_reason());
-            pstm.setString(15, bean.getCard_brand());
-            pstm.setString(16, bean.getDate_updated());
-            pstm.setString(17, bean.getDate_created());
-            pstm.setString(18, bean.getBoleto_url());
-            pstm.setString(19, bean.getBoleto_barcode());
-            pstm.setDate(20, new java.sql.Date(bean.getDta_pagamento().getTime()));
-            pstm.setDate(21, new java.sql.Date(bean.getDta_entrada().getTime()));
-            pstm.setDate(22, new java.sql.Date(bean.getDta_saida().getTime()));
+            pstm.setString(11, bean.getStatus());
+            pstm.setString(12, bean.getRefuse_reason());
+            pstm.setString(13, bean.getStatus_reason());
+            pstm.setString(14, bean.getCard_brand());
+            pstm.setString(15, bean.getDate_updated());
+            pstm.setString(16, bean.getDate_created());
+            pstm.setString(17, bean.getBoleto_url());
+            pstm.setString(18, bean.getBoleto_barcode());
+            pstm.setDate(19, new java.sql.Date(bean.getDta_pagamento().getTime()));
+            pstm.setDate(20, new java.sql.Date(bean.getDta_entrada().getTime()));
+            pstm.setDate(21, new java.sql.Date(bean.getDta_saida().getTime()));
 
             System.out.println("Salvando: " + bean);
             pstm.execute();
