@@ -19,10 +19,10 @@ import me.pagar.model.Transaction;
 import me.pagar.model.Transaction.PaymentMethod;
 import java.util.HashMap;
 import java.util.Map;
-import me.pagar.model.Address;
+//import me.pagar.model.Address;
 import me.pagar.model.Customer;
 import me.pagar.model.PagarMeException;
-import me.pagar.model.Phone;
+//import me.pagar.model.Phone;
 import me.pagar.model.Recipient;
 
   import com.mercadopago.*;
@@ -30,8 +30,11 @@ import me.pagar.model.Recipient;
   import com.mercadopago.exceptions.MPException;
   import com.mercadopago.resources.Payment;
 import com.mercadopago.resources.Preference;
+import com.mercadopago.resources.datastructures.preference.Address;
+import com.mercadopago.resources.datastructures.preference.Identification;
 import com.mercadopago.resources.datastructures.preference.Item;
 import com.mercadopago.resources.datastructures.preference.Payer;
+import com.mercadopago.resources.datastructures.preference.Phone;
 
 @Path("cartao/")
 public class CartaoRN {
@@ -66,6 +69,27 @@ public class CartaoRN {
 
         Payer payer = new Payer();
         payer.setEmail("telly@bol.com.br");
+        
+        payer.setName("Charles");
+        payer.setSurname("Santos");
+        payer.setEmail("telly@bol.com.br");
+        payer.setDateCreated("2018-06-02T12:58:41.425-04:00");
+        
+        Phone phone = new Phone();
+        phone.setAreaCode("");
+        phone.setNumber("+351 (52) 787-1271");
+        payer.setPhone(phone);
+        
+        Identification identification = new Identification();
+        identification.setType("DNI");
+        identification.setNumber("12345678");
+        payer.setIdentification(identification);
+        
+        Address address = new Address();
+        address.setStreetName("Braga Travessa");
+        address.setStreetNumber(1874);
+        address.setZipCode("6807");
+        payer.setAddress(address);
         System.out.println(payer.toString());
 
         preference.setPayer(payer);
@@ -74,25 +98,6 @@ public class CartaoRN {
         preference.save();
         System.out.println(preference.toString());
         /*
-        MercadoPago.SDK.configure("ENV_ACCESS_TOKEN");
-        
-        Preference preference = new Preference();
-
-        Item item = new Item();
-        item.setId("1234")
-            .setTitle("Aerodynamic Wooden Table")
-            .setQuantity(7)
-            .setCategoryId("BRL")
-            .setUnitPrice((float)51.34);
-
-        Payer payer = new Payer();
-        payer.setEmail("telly@bol.com.br");
-
-        preference.setPayer(payer);
-        preference.appendItem(item);
-        preference.save();
-        
-        
         System.out.println(content);
         Cartao cartao = (Cartao) gson.fromJson(content, Cartao.class);
         PagarMe.init("ak_test_U9HHME9pST6E6ZDv0cBWeVfd3UoVLG");
