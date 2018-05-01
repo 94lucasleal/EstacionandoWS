@@ -14,29 +14,16 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-
-import java.util.HashMap;
-import java.util.Map;
-/*
 import me.pagar.model.PagarMe;
 import me.pagar.model.Transaction;
 import me.pagar.model.Transaction.PaymentMethod;
+import java.util.HashMap;
+import java.util.Map;
 import me.pagar.model.Address;
 import me.pagar.model.Customer;
 import me.pagar.model.PagarMeException;
 import me.pagar.model.Phone;
 import me.pagar.model.Recipient;
-*/
-  import com.mercadopago.*;
-  import com.mercadopago.exceptions.MPConfException;
-  import com.mercadopago.exceptions.MPException;
-  import com.mercadopago.resources.Payment;
-import com.mercadopago.resources.Preference;
-import com.mercadopago.resources.datastructures.preference.Address;
-import com.mercadopago.resources.datastructures.preference.Identification;
-import com.mercadopago.resources.datastructures.preference.Item;
-import com.mercadopago.resources.datastructures.preference.Payer;
-import com.mercadopago.resources.datastructures.preference.Phone;
 
 @Path("cartao/")
 public class CartaoRN {
@@ -54,29 +41,7 @@ public class CartaoRN {
     @POST
     @Consumes({"application/json"})
     @Path("inserir")
-    public void inserir(String content) throws MPException{
-        System.out.println(content);
-        Cartao cartao = (Cartao) gson.fromJson(content, Cartao.class);
-        
-        //MercadoPago.SDK.setAccessToken("TEST-5932925008911488-042718-876ba434b898faaf69a929436bc55479-317543512");
-        MercadoPago.SDK.configure("TEST-5932925008911488-042718-876ba434b898faaf69a929436bc55479-317543512");
-        
-        Preference preference = new Preference();
-
-        Item item = new Item();
-        item.setId(cartao.getItem_id())
-            .setTitle("Aerodynamic Wooden Table")
-            .setQuantity(1)
-            .setCategoryId(cartao.getCurrency_id())
-            .setUnitPrice(cartao.getAmount());
-
-        Payer payer = new Payer();
-        payer.setEmail(cartao.getPayer_email());
-
-        preference.setPayer(payer);
-        preference.appendItem(item);
-        preference.save();
-        /*
+    public String inserir(String content){
         System.out.println(content);
         Cartao cartao = (Cartao) gson.fromJson(content, Cartao.class);
         PagarMe.init("ak_test_U9HHME9pST6E6ZDv0cBWeVfd3UoVLG");
@@ -112,12 +77,9 @@ public class CartaoRN {
         } catch (Exception e) {
             System.out.println(e);
             return gson.toJson(e);
-        }      
-
-*/
-    
+        }          
     }
-    /*
+    
     @GET
     @Consumes({"application/json"})
     @Path("pagamento/{id}/{value}/{token}/{parcels}")
@@ -186,5 +148,5 @@ public class CartaoRN {
     public String buscarTodos() {
         return gson.toJson(cartaoBD.buscarTodosCartao());
     }
-*/
+
 }

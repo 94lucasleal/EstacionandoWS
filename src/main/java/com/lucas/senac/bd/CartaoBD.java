@@ -8,8 +8,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class CartaoBD extends CrudBD<Cartao> {
-    
-    /*
 
     public void inserirCartao(Cartao bean) {
         Connection conn = null;
@@ -172,6 +170,5 @@ public class CartaoBD extends CrudBD<Cartao> {
         }
         return lista;
     }
-*/
 
 }
