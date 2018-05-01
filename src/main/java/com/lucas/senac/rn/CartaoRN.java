@@ -54,7 +54,9 @@ public class CartaoRN {
     @Path("inserir")
     public void inserir(String content) throws MPException{
         System.out.println(content);
-        MercadoPago.SDK.configure("TEST-5932925008911488-042718-876ba434b898faaf69a929436bc55479-317543512");
+        
+        MercadoPago.SDK.setAccessToken("TEST-5932925008911488-042718-876ba434b898faaf69a929436bc55479-317543512");
+        //MercadoPago.SDK.configure("TEST-5932925008911488-042718-876ba434b898faaf69a929436bc55479-317543512");
         
         Preference preference = new Preference();
         System.out.println(preference.toString());
@@ -89,6 +91,7 @@ public class CartaoRN {
         address.setStreetName("Braga Travessa");
         address.setStreetNumber(1874);
         address.setZipCode("6807");
+        
         payer.setAddress(address);
         System.out.println(payer.toString());
 
