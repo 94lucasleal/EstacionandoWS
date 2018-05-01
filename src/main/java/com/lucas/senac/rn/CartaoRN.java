@@ -71,6 +71,8 @@ public class CartaoRN {
         item.setUnitPrice((float) 120);
         
         Customer customer = new Customer(name, email);
+        customer.setDocumentType("corporation");
+        customer.setName(name);
         customer.setAddress(address);
         customer.setPhone(phone);
         customer.setDocumentNumber(documentNumber);
