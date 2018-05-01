@@ -5,7 +5,6 @@ import com.lucas.senac.bd.CartaoBD;
 import com.lucas.senac.bean.Cartao;
 import com.lucas.senac.bean.Pagamento;
 import com.lucas.senac.rnval.CartaoRNVAL;
-import com.mercadopago.MP;
 import java.util.Collection;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -26,6 +25,14 @@ import me.pagar.model.PagarMeException;
 import me.pagar.model.Phone;
 import me.pagar.model.Recipient;
 
+  import com.mercadopago.*;
+  import com.mercadopago.exceptions.MPConfException;
+  import com.mercadopago.exceptions.MPException;
+  import com.mercadopago.resources.Payment;
+import com.mercadopago.resources.Preference;
+import com.mercadopago.resources.datastructures.preference.Item;
+import com.mercadopago.resources.datastructures.preference.Payer;
+
 @Path("cartao/")
 public class CartaoRN {
     
@@ -42,7 +49,45 @@ public class CartaoRN {
     @POST
     @Consumes({"application/json"})
     @Path("inserir")
-    public String inserir(String content){
+    public void inserir(String content) throws MPException{
+        System.out.println(content);
+        MercadoPago.SDK.configure("TEST-5932925008911488-042718-876ba434b898faaf69a929436bc55479-317543512");
+        
+        Preference preference = new Preference();
+
+        Item item = new Item();
+        item.setId("1234")
+            .setTitle("Aerodynamic Wooden Table")
+            .setQuantity(7)
+            .setCategoryId("BRL")
+            .setUnitPrice((float)51.34);
+
+        Payer payer = new Payer();
+        payer.setEmail("telly@bol.com.br");
+
+        preference.setPayer(payer);
+        preference.appendItem(item);
+        preference.save();
+        /*
+        MercadoPago.SDK.configure("ENV_ACCESS_TOKEN");
+        
+        Preference preference = new Preference();
+
+        Item item = new Item();
+        item.setId("1234")
+            .setTitle("Aerodynamic Wooden Table")
+            .setQuantity(7)
+            .setCategoryId("BRL")
+            .setUnitPrice((float)51.34);
+
+        Payer payer = new Payer();
+        payer.setEmail("telly@bol.com.br");
+
+        preference.setPayer(payer);
+        preference.appendItem(item);
+        preference.save();
+        
+        
         System.out.println(content);
         Cartao cartao = (Cartao) gson.fromJson(content, Cartao.class);
         PagarMe.init("ak_test_U9HHME9pST6E6ZDv0cBWeVfd3UoVLG");
@@ -78,7 +123,10 @@ public class CartaoRN {
         } catch (Exception e) {
             System.out.println(e);
             return gson.toJson(e);
-        }          
+        }      
+
+*/
+    
     }
     
     @GET
