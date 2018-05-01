@@ -241,7 +241,7 @@ public class Estabelecimento {
 
     @Override
     public String toString() {
-        return "Estabelecimento{" + "idestabelecimento=" + idestabelecimento + ", idusuario=" + idusuario + ", idtipoestabelecimento=" + idtipoestabelecimento + ", razaosocial=" + razaosocial + ", cnpj=" + cnpj + ", estado=" + estado + ", municipio=" + municipio + ", bairro=" + bairro + ", logradouro=" + logradouro + ", cep=" + cep + ", numero=" + numero + ", referencia=" + referencia + ", latitude=" + latitude + ", longitude=" + longitude + ", valormeiahora=" + valormeiahora + ", valorhora=" + valorhora + ", valordiaria=" + valordiaria + ", valormensal=" + valormensal + ", valoradicional=" + valoradicional + ", imagem=" + imagem + ", vagastotal=" + vagastotal + ", vagasreservada=" + vagasreservada + ", vagasdisponivel=" + vagasdisponivel + '}';
+        return "Estabelecimento{" + "idestabelecimento=" + idestabelecimento + ", idusuario=" + idusuario + ", idtipoestabelecimento=" + idtipoestabelecimento + ", razaosocial=" + razaosocial + ", cnpj=" + cnpj + ", estado=" + estado + ", municipio=" + municipio + ", bairro=" + bairro + ", logradouro=" + logradouro + ", cep=" + cep + ", numero=" + numero + ", referencia=" + referencia + ", latitude=" + latitude + ", longitude=" + longitude + ", valormeiahora=" + valormeiahora + ", valorhora=" + valorhora + ", valordiaria=" + valordiaria + ", valormensal=" + valormensal + ", valoradicional=" + valoradicional + ", vagastotal=" + vagastotal + ", vagasreservada=" + vagasreservada + ", vagasdisponivel=" + vagasdisponivel + '}';
     }
 
 }

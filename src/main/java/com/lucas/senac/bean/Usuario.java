@@ -104,7 +104,7 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" + "idUsuario=" + idUsuario + ", nome=" + nome + ", cpf=" + cpf + ", rg=" + rg + ", email=" + email + ", senha=" + senha + ", idTipoAcesso=" + idTipoAcesso + ", telefone=" + telefone + ", imagem=" + imagem + '}';
+        return "Usuario{" + "idUsuario=" + idUsuario + ", nome=" + nome + ", cpf=" + cpf + ", rg=" + rg + ", email=" + email + ", senha=" + senha + ", idTipoAcesso=" + idTipoAcesso + ", telefone=" + telefone + '}';
     }
     
     
