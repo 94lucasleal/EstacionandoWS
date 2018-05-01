@@ -41,6 +41,8 @@ public class CartaoBD extends CrudBD<Cartao> {
             pstm.setDate(19, new java.sql.Date(bean.getDta_pagamento().getTime()));
             pstm.setDate(20, new java.sql.Date(bean.getDta_entrada().getTime()));
             pstm.setDate(21, new java.sql.Date(bean.getDta_saida().getTime()));
+            
+            System.out.println(pstm.toString());
 
             System.out.println("Salvando: " + bean);
             pstm.execute();
