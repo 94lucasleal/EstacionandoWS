@@ -158,7 +158,7 @@ public class CartaoRN {
     @Produces("application/json")
     @Path("pesquisar/{pesquisa}")
     public String pesquisar(@PathParam("pesquisa")  String pesquisa) {
-        return gson.toJson(cartaoBD.pesquisarCartao(pesquisa));
+        return gson.toJson(cartaoBD.pesquisar(pesquisa));
     }
     
     @GET

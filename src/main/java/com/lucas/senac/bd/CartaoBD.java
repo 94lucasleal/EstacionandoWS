@@ -127,31 +127,48 @@ public class CartaoBD extends CrudBD<Cartao> {
         }
     }
 
-    public ArrayList<Cartao> pesquisarCartao(String pesquisa) {
-        ArrayList<Cartao> lista = new ArrayList<Cartao>();
+    public ArrayList<Pagamento> pesquisar(String pesquisa) {
+        ArrayList<Pagamento> lista = new ArrayList<Pagamento>();
 
         Connection conn = null;
         try {
             conn = abrirConexao();
 
-            PreparedStatement pstm = conn.prepareStatement("SELECT * FROM cartao WHERE nometitular like ? OR cpftitular like ? OR numerocartao like ?");
-            pstm.setString(1, "%" + pesquisa + "%");
-            pstm.setString(2, "%" + pesquisa + "%");
-            pstm.setString(3, "%" + pesquisa + "%");
+            PreparedStatement pstm = conn.prepareStatement("SELECT * FROM pagamento WHERE idusuario = ? ORDER BY idpagamento");
+            pstm.setString(1, pesquisa);
+
 
             System.out.println("Pesquisando: " + pesquisa);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
                 System.out.println("Registro encontrado");
 
-                Cartao cartao = new Cartao();
-                cartao.setParcels(rs.getInt("idcartao"));
-                cartao.setProduct_id(rs.getString("nometitular"));
-                cartao.setProduct_id(rs.getString("cpftitular"));
-                cartao.setProduct_id(rs.getString("numerocartao"));
+                Pagamento pagamento = new Pagamento();
+                pagamento.setIdpagamento(rs.getInt("idpagamento"));
+                pagamento.setIdestabelecimento(rs.getInt("idestabelecimento"));
+                pagamento.setIdusuario(rs.getInt("idusuario"));
+                pagamento.setProduct_id(rs.getString("product_id"));
+                pagamento.setAmount(rs.getInt("amount"));
+                pagamento.setInstallments(rs.getInt("installments"));
+                pagamento.setNsu(rs.getString("nsu"));
+                pagamento.setTid(rs.getString("tid"));
+                pagamento.setAuthorization_code(rs.getString("authorization_code"));
+                pagamento.setAcquirer_name(rs.getString("acquirer_name"));
+                pagamento.setPayment_method(rs.getString("payment_method"));
+                pagamento.setStatus(rs.getString("status"));
+                pagamento.setRefuse_reason(rs.getString("refuse_reason"));
+                pagamento.setStatus_reason(rs.getString("status_reason"));
+                pagamento.setCard_brand(rs.getString("card_brand"));
+                pagamento.setDate_updated(rs.getString("date_updated"));
+                pagamento.setDate_created(rs.getString("date_created"));
+                pagamento.setBoleto_url(rs.getString("boleto_url"));
+                pagamento.setBoleto_barcode(rs.getString("boleto_barcode"));
+                pagamento.setDta_pagamento(rs.getDate("dta_pagamento"));
+                pagamento.setDta_entrada(rs.getDate("dta_entrada"));
+                pagamento.setDta_saida(rs.getDate("dta_saida"));
 
-                lista.add(cartao);
-                System.out.println(cartao.toString());
+                lista.add(pagamento);
+                System.out.println(pagamento.toString());
             }
             System.out.println("Pesquisa executada com sucesso");
         } catch (Exception e) {
