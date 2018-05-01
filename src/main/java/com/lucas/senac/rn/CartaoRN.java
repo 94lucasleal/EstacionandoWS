@@ -91,7 +91,7 @@ public class CartaoRN {
                             @PathParam("token") String token,
                             @PathParam("parcels") int parcels){
         
-        Cartao cartao = new Cartao(0,0,id, value, token, parcels,null);
+        Cartao cartao = new Cartao(0,0,id, value, token, parcels,null,null);
         System.out.println(cartao);
         PagarMe.init("ak_test_U9HHME9pST6E6ZDv0cBWeVfd3UoVLG");
         Map<String, Object> metadata = new HashMap<String, Object>();
@@ -115,7 +115,7 @@ public class CartaoRN {
     @DELETE
     @Path("excluir/{id}")
     public void excluir(@PathParam("id") String id) {
-        Cartao cartao = new Cartao(0,0,id,null,null,0,null);
+        Cartao cartao = new Cartao(0,0,id,null,null,0,null,null);
         //cartaoRNVal.validarExcluirCartao(cartao);
         //cartaoBD.excluirCartao(cartao);
     }
@@ -124,7 +124,7 @@ public class CartaoRN {
     @Produces("application/json")
     @Path("consultar/{id}")
     public Cartao consultar(@PathParam("id") String id) {
-        Cartao cartao = new Cartao(0,0,id,null,null,0,null);
+        Cartao cartao = new Cartao(0,0,id,null,null,0,null,null);
         //cartaoRNVal.validarConsultarCartao(cartao);
         return cartaoBD.consultarCartao(cartao);
     }

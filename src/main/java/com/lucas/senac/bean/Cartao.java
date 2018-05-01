@@ -10,19 +10,21 @@ public class Cartao {
     private Double value;
     private String token;
     private int parcels;
-    private Date dta_agendamento;
-
+    private Date dta_entrada;
+    private Date dta_saida;
+    
     public Cartao() {
     }
 
-    public Cartao(Integer idestabelecimento, Integer idusuario, String product_id, Double value, String token, int parcels, Date dta_agendamento) {
+    public Cartao(Integer idestabelecimento, Integer idusuario, String product_id, Double value, String token, int parcels, Date dta_entrada, Date dta_saida) {
         this.idestabelecimento = idestabelecimento;
         this.idusuario = idusuario;
         this.product_id = product_id;
         this.value = value;
         this.token = token;
         this.parcels = parcels;
-        this.dta_agendamento = dta_agendamento;
+        this.dta_entrada = dta_entrada;
+        this.dta_saida = dta_saida;
     }
 
     public Integer getIdestabelecimento() {
@@ -73,16 +75,24 @@ public class Cartao {
         this.parcels = parcels;
     }
 
-    public Date getDta_agendamento() {
-        return dta_agendamento;
+    public Date getDta_entrada() {
+        return dta_entrada;
     }
 
-    public void setDta_agendamento(Date dta_agendamento) {
-        this.dta_agendamento = dta_agendamento;
+    public void setDta_entrada(Date dta_entrada) {
+        this.dta_entrada = dta_entrada;
+    }
+
+    public Date getDta_saida() {
+        return dta_saida;
+    }
+
+    public void setDta_saida(Date dta_saida) {
+        this.dta_saida = dta_saida;
     }
 
     @Override
     public String toString() {
-        return "Cartao{" + "idestabelecimento=" + idestabelecimento + ", idusuario=" + idusuario + ", product_id=" + product_id + ", value=" + value + ", token=" + token + ", parcels=" + parcels + ", dta_agendamento=" + dta_agendamento + '}';
+        return "Cartao{" + "idestabelecimento=" + idestabelecimento + ", idusuario=" + idusuario + ", product_id=" + product_id + ", value=" + value + ", token=" + token + ", parcels=" + parcels + ", dta_entrada=" + dta_entrada + ", dta_saida=" + dta_saida + '}';
     }
 }
