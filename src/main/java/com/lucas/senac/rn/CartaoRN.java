@@ -42,6 +42,64 @@ public class CartaoRN {
     @Consumes({"application/json"})
     @Path("inserir")
     public String inserir(String content){
+                System.out.println(content);
+        Cartao cartao = (Cartao) gson.fromJson(content, Cartao.class);
+        PagarMe.init("ak_test_U9HHME9pST6E6ZDv0cBWeVfd3UoVLG");
+        
+        Phone phone = new Phone();
+        phone.setDdd("11");
+        phone.setDdi("55");
+        phone.setNumber("99999999");
+
+        String street = "Avenida Brigadeiro Faria Lima";
+        String streetNumber = "1811";
+        String neighborhood = "Jardim Paulistano";
+        String zipcode = "01451001";
+        Address address = new Address(street, streetNumber, neighborhood, zipcode);
+
+        String name = "Aardvark Silva";
+        String email = "aardvark.silva@pagar.me";
+        String documentNumber = "18152564000105";
+        Customer customer = new Customer(name, email);
+        customer.setAddress(address);
+        customer.setPhone(phone);
+        customer.setDocumentNumber(documentNumber);
+
+        Map<String, Object> metadata = new HashMap<String, Object>();
+        metadata.put("IdProduto", 13933139);
+        
+        Double value = cartao.getValue() * 100;
+        try {
+            Transaction tx = new Transaction();
+            tx.setAmount(value.intValue());
+            tx.setPaymentMethod(PaymentMethod.BOLETO);
+            tx.setMetadata(metadata);
+            tx.save();
+            System.out.println(gson.toJson(tx));
+            Pagamento pagamento = new Pagamento();
+            pagamento.setAmount(tx.getAmount());
+            pagamento.setInstallments(tx.getInstallments());
+            pagamento.setNsu(tx.getNsu());
+            pagamento.setTid(tx.getTid());
+            pagamento.setAuthorization_code(tx.getAuthorizationCode());
+            pagamento.setAcquirer_name(tx.getAcquirerName().name());
+            pagamento.setPayment_method(tx.getPaymentMethod().name());
+            pagamento.setStatus(tx.getStatus().name());
+            pagamento.setRefuse_reason(tx.getRefuseReason());
+            pagamento.setStatus_reason(tx.getStatusReason().name());
+            pagamento.setCard_brand(tx.getCard().getBrand().name());
+            pagamento.setDate_updated(tx.getUpdatedAt().toString());
+            pagamento.setDate_created(tx.getCreatedAt().toString());
+            pagamento.setBoleto_url(tx.getBoletoUrl());
+            pagamento.setBoleto_barcode(tx.getBoletoBarcode());
+            System.out.println(pagamento);
+            return gson.toJson(tx);
+        } catch (Exception e) {
+            System.out.println(e);
+            return gson.toJson(e);
+        }   
+        
+        /*
         System.out.println(content);
         Cartao cartao = (Cartao) gson.fromJson(content, Cartao.class);
         PagarMe.init("ak_test_U9HHME9pST6E6ZDv0cBWeVfd3UoVLG");
@@ -77,7 +135,8 @@ public class CartaoRN {
         } catch (Exception e) {
             System.out.println(e);
             return gson.toJson(e);
-        }          
+        }   
+     */
     }
     
     @GET
