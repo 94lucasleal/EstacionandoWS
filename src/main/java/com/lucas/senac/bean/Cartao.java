@@ -1,39 +1,43 @@
 package com.lucas.senac.bean;
 
+import java.util.Date;
+
 public class Cartao {
 
-    private int idestabelecimento;
-    private int idusuario;
+    private Integer idestabelecimento;
+    private Integer idusuario;
     private String product_id;
     private Double value;
     private String token;
     private int parcels;
+    private Date dta_agendamento;
 
     public Cartao() {
     }
 
-    public Cartao(int idestabelecimento, int idusuario, String product_id, Double value, String token, int parcels) {
+    public Cartao(Integer idestabelecimento, Integer idusuario, String product_id, Double value, String token, int parcels, Date dta_agendamento) {
         this.idestabelecimento = idestabelecimento;
         this.idusuario = idusuario;
         this.product_id = product_id;
         this.value = value;
         this.token = token;
         this.parcels = parcels;
+        this.dta_agendamento = dta_agendamento;
     }
 
-    public int getIdestabelecimento() {
+    public Integer getIdestabelecimento() {
         return idestabelecimento;
     }
 
-    public void setIdestabelecimento(int idestabelecimento) {
+    public void setIdestabelecimento(Integer idestabelecimento) {
         this.idestabelecimento = idestabelecimento;
     }
 
-    public int getIdusuario() {
+    public Integer getIdusuario() {
         return idusuario;
     }
 
-    public void setIdusuario(int idusuario) {
+    public void setIdusuario(Integer idusuario) {
         this.idusuario = idusuario;
     }
 
@@ -69,8 +73,16 @@ public class Cartao {
         this.parcels = parcels;
     }
 
+    public Date getDta_agendamento() {
+        return dta_agendamento;
+    }
+
+    public void setDta_agendamento(Date dta_agendamento) {
+        this.dta_agendamento = dta_agendamento;
+    }
+
     @Override
     public String toString() {
-        return "Cartao{" + "idestabelecimento=" + idestabelecimento + ", idusuario=" + idusuario + ", product_id=" + product_id + ", value=" + value + ", token=" + token + ", parcels=" + parcels + '}';
-    }    
+        return "Cartao{" + "idestabelecimento=" + idestabelecimento + ", idusuario=" + idusuario + ", product_id=" + product_id + ", value=" + value + ", token=" + token + ", parcels=" + parcels + ", dta_agendamento=" + dta_agendamento + '}';
+    }
 }

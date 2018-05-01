@@ -5,8 +5,6 @@ import com.lucas.senac.bd.CartaoBD;
 import com.lucas.senac.bean.Cartao;
 import com.lucas.senac.bean.Pagamento;
 import com.lucas.senac.rnval.CartaoRNVAL;
-import java.util.ArrayList;
-import java.util.Collection;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -20,11 +18,6 @@ import me.pagar.model.Transaction;
 import me.pagar.model.Transaction.PaymentMethod;
 import java.util.HashMap;
 import java.util.Map;
-import me.pagar.model.Address;
-import me.pagar.model.Customer;
-import me.pagar.model.PagarMeException;
-import me.pagar.model.Phone;
-import me.pagar.model.Recipient;
 
 @Path("cartao/")
 public class CartaoRN {
@@ -63,6 +56,9 @@ public class CartaoRN {
             System.out.println(gson.toJson(tx));
             
             Pagamento pagamento = new Pagamento();
+            pagamento.setIdestabelecimento(cartao.getIdestabelecimento());
+            pagamento.setIdusuario(cartao.getIdusuario());
+            pagamento.setProduct_id(cartao.getProduct_id());
             pagamento.setAmount(tx.getAmount());
             pagamento.setInstallments(tx.getInstallments());
             pagamento.setNsu(tx.getNsu());
@@ -95,7 +91,7 @@ public class CartaoRN {
                             @PathParam("token") String token,
                             @PathParam("parcels") int parcels){
         
-        Cartao cartao = new Cartao(0,0,id, value, token, parcels);
+        Cartao cartao = new Cartao(0,0,id, value, token, parcels,null);
         System.out.println(cartao);
         PagarMe.init("ak_test_U9HHME9pST6E6ZDv0cBWeVfd3UoVLG");
         Map<String, Object> metadata = new HashMap<String, Object>();
@@ -119,7 +115,7 @@ public class CartaoRN {
     @DELETE
     @Path("excluir/{id}")
     public void excluir(@PathParam("id") String id) {
-        Cartao cartao = new Cartao(0,0,id,null,null,0);
+        Cartao cartao = new Cartao(0,0,id,null,null,0,null);
         //cartaoRNVal.validarExcluirCartao(cartao);
         //cartaoBD.excluirCartao(cartao);
     }
@@ -128,7 +124,7 @@ public class CartaoRN {
     @Produces("application/json")
     @Path("consultar/{id}")
     public Cartao consultar(@PathParam("id") String id) {
-        Cartao cartao = new Cartao(0,0,id,null,null,0);
+        Cartao cartao = new Cartao(0,0,id,null,null,0,null);
         //cartaoRNVal.validarConsultarCartao(cartao);
         return cartaoBD.consultarCartao(cartao);
     }

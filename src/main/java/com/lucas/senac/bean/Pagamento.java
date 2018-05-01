@@ -5,6 +5,7 @@ public class Pagamento {
     private int idpagamento;
     private int idestabelecimento;
     private int idusuario;
+    private String product_id;
     //Valor, em centavos, da transação.
     private int amount;
     //Número de parcelas a serem cobradas.
@@ -33,6 +34,60 @@ public class Pagamento {
     private String boleto_barcode;
 
     public Pagamento() {
+    }
+
+    public Pagamento(int idpagamento, int idestabelecimento, int idusuario, String product_id, int amount, int installments, String nsu, String tid, String authorization_code, String acquirer_name, String payment_method, String status, String refuse_reason, String status_reason, String card_brand, String date_updated, String date_created, String boleto_url, String boleto_barcode) {
+        this.idpagamento = idpagamento;
+        this.idestabelecimento = idestabelecimento;
+        this.idusuario = idusuario;
+        this.product_id = product_id;
+        this.amount = amount;
+        this.installments = installments;
+        this.nsu = nsu;
+        this.tid = tid;
+        this.authorization_code = authorization_code;
+        this.acquirer_name = acquirer_name;
+        this.payment_method = payment_method;
+        this.status = status;
+        this.refuse_reason = refuse_reason;
+        this.status_reason = status_reason;
+        this.card_brand = card_brand;
+        this.date_updated = date_updated;
+        this.date_created = date_created;
+        this.boleto_url = boleto_url;
+        this.boleto_barcode = boleto_barcode;
+    }
+
+    public int getIdpagamento() {
+        return idpagamento;
+    }
+
+    public void setIdpagamento(int idpagamento) {
+        this.idpagamento = idpagamento;
+    }
+
+    public int getIdestabelecimento() {
+        return idestabelecimento;
+    }
+
+    public void setIdestabelecimento(int idestabelecimento) {
+        this.idestabelecimento = idestabelecimento;
+    }
+
+    public int getIdusuario() {
+        return idusuario;
+    }
+
+    public void setIdusuario(int idusuario) {
+        this.idusuario = idusuario;
+    }
+
+    public String getProduct_id() {
+        return product_id;
+    }
+
+    public void setProduct_id(String product_id) {
+        this.product_id = product_id;
     }
 
     public int getAmount() {
@@ -157,7 +212,6 @@ public class Pagamento {
 
     @Override
     public String toString() {
-        return "Pagamento{" + "amount=" + amount + ", installments=" + installments + ", nsu=" + nsu + ", tid=" + tid + ", authorization_code=" + authorization_code + ", acquirer_name=" + acquirer_name + ", payment_method=" + payment_method + ", status=" + status + ", refuse_reason=" + refuse_reason + ", status_reason=" + status_reason + ", card_brand=" + card_brand + ", date_updated=" + date_updated + ", date_created=" + date_created + ", boleto_url=" + boleto_url + ", boleto_barcode=" + boleto_barcode + '}';
-    }   
-
+        return "Pagamento{" + "idpagamento=" + idpagamento + ", idestabelecimento=" + idestabelecimento + ", idusuario=" + idusuario + ", product_id=" + product_id + ", amount=" + amount + ", installments=" + installments + ", nsu=" + nsu + ", tid=" + tid + ", authorization_code=" + authorization_code + ", acquirer_name=" + acquirer_name + ", payment_method=" + payment_method + ", status=" + status + ", refuse_reason=" + refuse_reason + ", status_reason=" + status_reason + ", card_brand=" + card_brand + ", date_updated=" + date_updated + ", date_created=" + date_created + ", boleto_url=" + boleto_url + ", boleto_barcode=" + boleto_barcode + '}';
+    }
 }
