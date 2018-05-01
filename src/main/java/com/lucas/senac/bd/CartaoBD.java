@@ -135,7 +135,7 @@ public class CartaoBD extends CrudBD<Cartao> {
             conn = abrirConexao();
 
             PreparedStatement pstm = conn.prepareStatement("SELECT * FROM pagamento WHERE idusuario = ? ORDER BY idpagamento");
-            pstm.setString(1, pesquisa);
+            pstm.setInt(1, Integer.parseInt(pesquisa));
 
 
             System.out.println("Pesquisando: " + pesquisa);
