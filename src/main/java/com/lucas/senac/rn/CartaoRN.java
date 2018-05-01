@@ -5,6 +5,10 @@ import com.lucas.senac.bd.CartaoBD;
 import com.lucas.senac.bean.Cartao;
 import com.lucas.senac.bean.Pagamento;
 import com.lucas.senac.rnval.CartaoRNVAL;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -18,6 +22,8 @@ import me.pagar.model.Transaction;
 import me.pagar.model.Transaction.PaymentMethod;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Path("cartao/")
 public class CartaoRN {
@@ -35,9 +41,19 @@ public class CartaoRN {
     @POST
     @Consumes({"application/json"})
     @Path("inserir")
-    public String inserir(String content){       
+    public String inserir(String content){ 
+        Date dta_entrada = null;
+        Date dta_saida = null;
         System.out.println(content);
         Cartao cartao = (Cartao) gson.fromJson(content, Cartao.class);
+        
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        try {
+            dta_entrada = (Date) format.parse(cartao.getDta_entrada());
+            dta_saida = (Date) format.parse(cartao.getDta_saida());
+        } catch (ParseException ex) {
+            System.out.println(ex);
+        }
         
         PagarMe.init("ak_test_U9HHME9pST6E6ZDv0cBWeVfd3UoVLG");
         
@@ -55,7 +71,12 @@ public class CartaoRN {
             tx.save();
             System.out.println(gson.toJson(tx));
             
+            Calendar hoje = Calendar.getInstance();
+           
             Pagamento pagamento = new Pagamento();
+            pagamento.setDta_pagamento((Date) format.parse(hoje.toString()));
+            pagamento.setDta_entrada(dta_entrada);
+            pagamento.setDta_saida(dta_saida);
             pagamento.setIdestabelecimento(cartao.getIdestabelecimento());
             pagamento.setIdusuario(cartao.getIdusuario());
             pagamento.setProduct_id(cartao.getProduct_id());

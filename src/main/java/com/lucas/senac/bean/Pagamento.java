@@ -1,5 +1,7 @@
 package com.lucas.senac.bean;
 
+import java.sql.Date;
+
 public class Pagamento {
 
     private int idpagamento;
@@ -32,11 +34,14 @@ public class Pagamento {
     private String date_created;
     private String boleto_url;
     private String boleto_barcode;
+    private Date dta_pagamento;
+    private Date dta_entrada;
+    private Date dta_saida;
 
     public Pagamento() {
     }
 
-    public Pagamento(int idpagamento, int idestabelecimento, int idusuario, String product_id, int amount, int installments, String nsu, String tid, String authorization_code, String acquirer_name, String payment_method, String status, String refuse_reason, String status_reason, String card_brand, String date_updated, String date_created, String boleto_url, String boleto_barcode) {
+    public Pagamento(int idpagamento, int idestabelecimento, int idusuario, String product_id, int amount, int installments, String nsu, String tid, String authorization_code, String acquirer_name, String payment_method, String status, String refuse_reason, String status_reason, String card_brand, String date_updated, String date_created, String boleto_url, String boleto_barcode, Date dta_pagamento, Date dta_entrada, Date dta_saida) {
         this.idpagamento = idpagamento;
         this.idestabelecimento = idestabelecimento;
         this.idusuario = idusuario;
@@ -56,6 +61,9 @@ public class Pagamento {
         this.date_created = date_created;
         this.boleto_url = boleto_url;
         this.boleto_barcode = boleto_barcode;
+        this.dta_pagamento = dta_pagamento;
+        this.dta_entrada = dta_entrada;
+        this.dta_saida = dta_saida;
     }
 
     public int getIdpagamento() {
@@ -210,8 +218,32 @@ public class Pagamento {
         this.boleto_barcode = boleto_barcode;
     }
 
+    public Date getDta_pagamento() {
+        return dta_pagamento;
+    }
+
+    public void setDta_pagamento(Date dta_pagamento) {
+        this.dta_pagamento = dta_pagamento;
+    }
+
+    public Date getDta_entrada() {
+        return dta_entrada;
+    }
+
+    public void setDta_entrada(Date dta_entrada) {
+        this.dta_entrada = dta_entrada;
+    }
+
+    public Date getDta_saida() {
+        return dta_saida;
+    }
+
+    public void setDta_saida(Date dta_saida) {
+        this.dta_saida = dta_saida;
+    }
+
     @Override
     public String toString() {
-        return "Pagamento{" + "idpagamento=" + idpagamento + ", idestabelecimento=" + idestabelecimento + ", idusuario=" + idusuario + ", product_id=" + product_id + ", amount=" + amount + ", installments=" + installments + ", nsu=" + nsu + ", tid=" + tid + ", authorization_code=" + authorization_code + ", acquirer_name=" + acquirer_name + ", payment_method=" + payment_method + ", status=" + status + ", refuse_reason=" + refuse_reason + ", status_reason=" + status_reason + ", card_brand=" + card_brand + ", date_updated=" + date_updated + ", date_created=" + date_created + ", boleto_url=" + boleto_url + ", boleto_barcode=" + boleto_barcode + '}';
+        return "Pagamento{" + "idpagamento=" + idpagamento + ", idestabelecimento=" + idestabelecimento + ", idusuario=" + idusuario + ", product_id=" + product_id + ", amount=" + amount + ", installments=" + installments + ", nsu=" + nsu + ", tid=" + tid + ", authorization_code=" + authorization_code + ", acquirer_name=" + acquirer_name + ", payment_method=" + payment_method + ", status=" + status + ", refuse_reason=" + refuse_reason + ", status_reason=" + status_reason + ", card_brand=" + card_brand + ", date_updated=" + date_updated + ", date_created=" + date_created + ", boleto_url=" + boleto_url + ", boleto_barcode=" + boleto_barcode + ", dta_pagamento=" + dta_pagamento + ", dta_entrada=" + dta_entrada + ", dta_saida=" + dta_saida + '}';
     }
 }
