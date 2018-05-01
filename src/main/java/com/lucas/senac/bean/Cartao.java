@@ -10,13 +10,13 @@ public class Cartao {
     private Double value;
     private String token;
     private int parcels;
-    private Date dta_entrada;
-    private Date dta_saida;
+    private String dta_entrada;
+    private String dta_saida;
     
     public Cartao() {
     }
 
-    public Cartao(Integer idestabelecimento, Integer idusuario, String product_id, Double value, String token, int parcels, Date dta_entrada, Date dta_saida) {
+    public Cartao(Integer idestabelecimento, Integer idusuario, String product_id, Double value, String token, int parcels, String dta_entrada, String dta_saida) {
         this.idestabelecimento = idestabelecimento;
         this.idusuario = idusuario;
         this.product_id = product_id;
@@ -75,19 +75,19 @@ public class Cartao {
         this.parcels = parcels;
     }
 
-    public Date getDta_entrada() {
+    public String getDta_entrada() {
         return dta_entrada;
     }
 
-    public void setDta_entrada(Date dta_entrada) {
+    public void setDta_entrada(String dta_entrada) {
         this.dta_entrada = dta_entrada;
     }
 
-    public Date getDta_saida() {
+    public String getDta_saida() {
         return dta_saida;
     }
 
-    public void setDta_saida(Date dta_saida) {
+    public void setDta_saida(String dta_saida) {
         this.dta_saida = dta_saida;
     }
 
