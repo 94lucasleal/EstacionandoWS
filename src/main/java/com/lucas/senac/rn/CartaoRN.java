@@ -42,18 +42,11 @@ public class CartaoRN {
     @Consumes({"application/json"})
     @Path("inserir")
     public String inserir(String content){ 
-        Date dta_entrada = null;
-        Date dta_saida = null;
+
         System.out.println(content);
         Cartao cartao = (Cartao) gson.fromJson(content, Cartao.class);
         
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        try {
-            dta_entrada = (Date) format.parse(cartao.getDta_entrada());
-            dta_saida = (Date) format.parse(cartao.getDta_saida());
-        } catch (ParseException ex) {
-            System.out.println(ex);
-        }
         
         PagarMe.init("ak_test_U9HHME9pST6E6ZDv0cBWeVfd3UoVLG");
         
@@ -74,9 +67,9 @@ public class CartaoRN {
             Calendar hoje = Calendar.getInstance();
            
             Pagamento pagamento = new Pagamento();
-            pagamento.setDta_pagamento((Date) format.parse(hoje.toString()));
-            pagamento.setDta_entrada(dta_entrada);
-            pagamento.setDta_saida(dta_saida);
+            pagamento.setDta_pagamento(hoje.getTime());
+            pagamento.setDta_entrada(format.parse(cartao.getDta_entrada()));
+            pagamento.setDta_saida(format.parse(cartao.getDta_saida()));
             pagamento.setIdestabelecimento(cartao.getIdestabelecimento());
             pagamento.setIdusuario(cartao.getIdusuario());
             pagamento.setProduct_id(cartao.getProduct_id());
