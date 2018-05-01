@@ -38,9 +38,9 @@ public class CartaoBD extends CrudBD<Cartao> {
             pstm.setString(16, bean.getDate_created());
             pstm.setString(17, bean.getBoleto_url());
             pstm.setString(18, bean.getBoleto_barcode());
-            pstm.setDate(19, new java.sql.Date(bean.getDta_pagamento().getTime()));
-            pstm.setDate(20, new java.sql.Date(bean.getDta_entrada().getTime()));
-            pstm.setDate(21, new java.sql.Date(bean.getDta_saida().getTime()));
+            pstm.setTimestamp(19, new java.sql.Timestamp(bean.getDta_pagamento().getTime()));
+            pstm.setTimestamp(20, new java.sql.Timestamp(bean.getDta_entrada().getTime()));
+            pstm.setTimestamp(21, new java.sql.Timestamp(bean.getDta_saida().getTime()));
             
             System.out.println(pstm.toString());
 
