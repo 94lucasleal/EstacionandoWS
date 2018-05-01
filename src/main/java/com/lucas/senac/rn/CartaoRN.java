@@ -14,17 +14,19 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+
+import java.util.HashMap;
+import java.util.Map;
+/*
 import me.pagar.model.PagarMe;
 import me.pagar.model.Transaction;
 import me.pagar.model.Transaction.PaymentMethod;
-import java.util.HashMap;
-import java.util.Map;
-//import me.pagar.model.Address;
+import me.pagar.model.Address;
 import me.pagar.model.Customer;
 import me.pagar.model.PagarMeException;
-//import me.pagar.model.Phone;
+import me.pagar.model.Phone;
 import me.pagar.model.Recipient;
-
+*/
   import com.mercadopago.*;
   import com.mercadopago.exceptions.MPConfException;
   import com.mercadopago.exceptions.MPException;
@@ -54,52 +56,26 @@ public class CartaoRN {
     @Path("inserir")
     public void inserir(String content) throws MPException{
         System.out.println(content);
+        Cartao cartao = (Cartao) gson.fromJson(content, Cartao.class);
         
-        MercadoPago.SDK.setAccessToken("TEST-5932925008911488-042718-876ba434b898faaf69a929436bc55479-317543512");
-        //MercadoPago.SDK.configure("TEST-5932925008911488-042718-876ba434b898faaf69a929436bc55479-317543512");
+        //MercadoPago.SDK.setAccessToken("TEST-5932925008911488-042718-876ba434b898faaf69a929436bc55479-317543512");
+        MercadoPago.SDK.configure("TEST-5932925008911488-042718-876ba434b898faaf69a929436bc55479-317543512");
         
         Preference preference = new Preference();
-        System.out.println(preference.toString());
 
         Item item = new Item();
-        item.setId("1234")
+        item.setId(cartao.getItem_id())
             .setTitle("Aerodynamic Wooden Table")
-            .setQuantity(7)
-            .setCategoryId("BRL")
-            .setUnitPrice((float)51.34);
-        System.out.println(item.toString());
+            .setQuantity(1)
+            .setCategoryId(cartao.getCurrency_id())
+            .setUnitPrice(cartao.getAmount());
 
         Payer payer = new Payer();
-        payer.setEmail("telly@bol.com.br");
-        
-        payer.setName("Charles");
-        payer.setSurname("Santos");
-        payer.setEmail("telly@bol.com.br");
-        payer.setDateCreated("2018-06-02T12:58:41.425-04:00");
-        
-        Phone phone = new Phone();
-        phone.setAreaCode("");
-        phone.setNumber("+351 (52) 787-1271");
-        payer.setPhone(phone);
-        
-        Identification identification = new Identification();
-        identification.setType("DNI");
-        identification.setNumber("12345678");
-        payer.setIdentification(identification);
-        
-        Address address = new Address();
-        address.setStreetName("Braga Travessa");
-        address.setStreetNumber(1874);
-        address.setZipCode("6807");
-        
-        payer.setAddress(address);
-        System.out.println(payer.toString());
+        payer.setEmail(cartao.getPayer_email());
 
         preference.setPayer(payer);
         preference.appendItem(item);
-        System.out.println(preference.toString());
         preference.save();
-        System.out.println(preference.toString());
         /*
         System.out.println(content);
         Cartao cartao = (Cartao) gson.fromJson(content, Cartao.class);
@@ -141,7 +117,7 @@ public class CartaoRN {
 */
     
     }
-    
+    /*
     @GET
     @Consumes({"application/json"})
     @Path("pagamento/{id}/{value}/{token}/{parcels}")
@@ -210,5 +186,5 @@ public class CartaoRN {
     public String buscarTodos() {
         return gson.toJson(cartaoBD.buscarTodosCartao());
     }
-
+*/
 }
