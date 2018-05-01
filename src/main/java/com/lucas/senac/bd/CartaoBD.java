@@ -166,9 +166,9 @@ public class CartaoBD extends CrudBD<Cartao> {
                 pagamento.setDate_created(rs.getString("date_created"));
                 pagamento.setBoleto_url(rs.getString("boleto_url"));
                 pagamento.setBoleto_barcode(rs.getString("boleto_barcode"));
-                pagamento.setDta_pagamento(rs.getDate("dta_pagamento"));
-                pagamento.setDta_entrada(rs.getDate("dta_entrada"));
-                pagamento.setDta_saida(rs.getDate("dta_saida"));
+                pagamento.setDta_pagamento(rs.getTimestamp("dta_pagamento"));
+                pagamento.setDta_entrada(rs.getTimestamp("dta_entrada"));
+                pagamento.setDta_saida(rs.getTimestamp("dta_saida"));
 
                 lista.add(pagamento);
                 System.out.println(pagamento.toString());
