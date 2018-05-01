@@ -60,6 +60,7 @@ public class CartaoRN {
         String name = "Aardvark Silva";
         String email = "aardvark.silva@pagar.me";
         String documentNumber = "18152564000105";
+        
         Customer customer = new Customer(name, email);
         customer.setAddress(address);
         customer.setPhone(phone);
