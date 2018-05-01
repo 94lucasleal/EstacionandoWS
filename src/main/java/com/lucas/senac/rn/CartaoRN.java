@@ -5,6 +5,8 @@ import com.lucas.senac.bd.CartaoBD;
 import com.lucas.senac.bean.Cartao;
 import com.lucas.senac.bean.Pagamento;
 import com.lucas.senac.rnval.CartaoRNVAL;
+import com.mercadopago.resources.datastructures.preference.Item;
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -60,6 +62,13 @@ public class CartaoRN {
         String name = "Aardvark Silva";
         String email = "aardvark.silva@pagar.me";
         String documentNumber = "18152564000105";
+        
+        Collection<Item> items = new ArrayList();
+        Item item = new Item(); 
+        item.setId("OX890");
+        item.setQuantity(12);
+        item.setTitle("Rockets");
+        item.setUnitPrice((float) 120);
         
         Customer customer = new Customer(name, email);
         customer.setAddress(address);
