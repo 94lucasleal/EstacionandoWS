@@ -5,7 +5,6 @@ import com.lucas.senac.bd.CartaoBD;
 import com.lucas.senac.bean.Cartao;
 import com.lucas.senac.bean.Pagamento;
 import com.lucas.senac.rnval.CartaoRNVAL;
-import com.mercadopago.resources.datastructures.preference.Item;
 import java.util.ArrayList;
 import java.util.Collection;
 import javax.ws.rs.Consumes;
@@ -46,10 +45,14 @@ public class CartaoRN {
     public String inserir(String content){       
         System.out.println(content);
         Cartao cartao = (Cartao) gson.fromJson(content, Cartao.class);
+        
         PagarMe.init("ak_test_U9HHME9pST6E6ZDv0cBWeVfd3UoVLG");
+        
         Map<String, Object> metadata = new HashMap<String, Object>();
-        metadata.put("id", cartao.getId());
+        metadata.put("id", cartao.getIdcartao());
+        
         Double value = cartao.getValue() * 100;
+        
         try {
             Transaction tx = new Transaction();
             tx.setAmount(value.intValue());
@@ -58,6 +61,7 @@ public class CartaoRN {
             tx.setMetadata(metadata);
             tx.save();
             System.out.println(gson.toJson(tx));
+            
             Pagamento pagamento = new Pagamento();
             pagamento.setAmount(tx.getAmount());
             pagamento.setInstallments(tx.getInstallments());
@@ -75,6 +79,7 @@ public class CartaoRN {
             pagamento.setBoleto_url(tx.getBoletoUrl());
             pagamento.setBoleto_barcode(tx.getBoletoBarcode());
             System.out.println(pagamento);
+
             return gson.toJson(tx);
         } catch (Exception e) {
             System.out.println(e);
@@ -90,11 +95,11 @@ public class CartaoRN {
                             @PathParam("token") String token,
                             @PathParam("parcels") int parcels){
         
-        Cartao cartao = new Cartao(id, value, token, parcels);
+        Cartao cartao = new Cartao(0,0,id, value, token, parcels);
         System.out.println(cartao);
         PagarMe.init("ak_test_U9HHME9pST6E6ZDv0cBWeVfd3UoVLG");
         Map<String, Object> metadata = new HashMap<String, Object>();
-        metadata.put("id", cartao.getId());
+        metadata.put("id", cartao.getIdcartao());
         Double valor = cartao.getValue() * 100;
         try {
             Transaction tx = new Transaction();
@@ -114,7 +119,7 @@ public class CartaoRN {
     @DELETE
     @Path("excluir/{id}")
     public void excluir(@PathParam("id") String id) {
-        Cartao cartao = new Cartao(id,null,null,0);
+        Cartao cartao = new Cartao(0,0,id,null,null,0);
         //cartaoRNVal.validarExcluirCartao(cartao);
         //cartaoBD.excluirCartao(cartao);
     }
@@ -123,7 +128,7 @@ public class CartaoRN {
     @Produces("application/json")
     @Path("consultar/{id}")
     public Cartao consultar(@PathParam("id") String id) {
-        Cartao cartao = new Cartao(id,null,null,0);
+        Cartao cartao = new Cartao(0,0,id,null,null,0);
         //cartaoRNVal.validarConsultarCartao(cartao);
         return cartaoBD.consultarCartao(cartao);
     }

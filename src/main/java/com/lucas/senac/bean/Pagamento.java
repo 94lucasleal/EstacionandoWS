@@ -2,6 +2,9 @@ package com.lucas.senac.bean;
 
 public class Pagamento {
 
+    private int idpagamento;
+    private int idestabelecimento;
+    private int idusuario;
     //Valor, em centavos, da transação.
     private int amount;
     //Número de parcelas a serem cobradas.

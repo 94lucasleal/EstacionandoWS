@@ -15,9 +15,9 @@ public class CartaoBD extends CrudBD<Cartao> {
             conn = abrirConexao();
 
             PreparedStatement pstm = conn.prepareStatement("INSERT INTO cartao(nometitular, cpftitular, numerocartao) VALUES (?,?,?)");
-            pstm.setString(1, bean.getId());
-            pstm.setString(2, bean.getId());
-            pstm.setString(3, bean.getId());
+            pstm.setString(1, bean.getIdcartao());
+            pstm.setString(2, bean.getIdcartao());
+            pstm.setString(3, bean.getIdcartao());
 
             System.out.println("Salvando: " + bean);
             pstm.execute();
@@ -67,9 +67,9 @@ public class CartaoBD extends CrudBD<Cartao> {
                 System.out.println("Registro encontrado");
                 cartaoRetorno = new Cartao();
                 cartaoRetorno.setParcels(rs.getInt("idcartao"));
-                cartaoRetorno.setId(rs.getString("nometitular"));
-                cartaoRetorno.setId(rs.getString("cpftitular"));
-                cartaoRetorno.setId(rs.getString("numerocartao"));
+                cartaoRetorno.setIdcartao(rs.getString("nometitular"));
+                cartaoRetorno.setIdcartao(rs.getString("cpftitular"));
+                cartaoRetorno.setIdcartao(rs.getString("numerocartao"));
             }
             System.out.println("Consulta executada com sucesso");
         } catch (Exception e) {
@@ -86,9 +86,9 @@ public class CartaoBD extends CrudBD<Cartao> {
             conn = abrirConexao();
 
             PreparedStatement pstm = conn.prepareStatement("UPDATE cartao SET nometitular = ?, cpftitular = ?, numerocartao = ? WHERE idcartao = ?");
-            pstm.setString(1, bean.getId());
-            pstm.setString(2, bean.getId());
-            pstm.setString(3, bean.getId());
+            pstm.setString(1, bean.getIdcartao());
+            pstm.setString(2, bean.getIdcartao());
+            pstm.setString(3, bean.getIdcartao());
             pstm.setInt(4, bean.getParcels());
 
             System.out.println("Alterando: " + bean);
@@ -123,9 +123,9 @@ public class CartaoBD extends CrudBD<Cartao> {
 
                 Cartao cartao = new Cartao();
                 cartao.setParcels(rs.getInt("idcartao"));
-                cartao.setId(rs.getString("nometitular"));
-                cartao.setId(rs.getString("cpftitular"));
-                cartao.setId(rs.getString("numerocartao"));
+                cartao.setIdcartao(rs.getString("nometitular"));
+                cartao.setIdcartao(rs.getString("cpftitular"));
+                cartao.setIdcartao(rs.getString("numerocartao"));
 
                 lista.add(cartao);
                 System.out.println(cartao.toString());
@@ -155,9 +155,9 @@ public class CartaoBD extends CrudBD<Cartao> {
 
                 Cartao cartao = new Cartao();
                 cartao.setParcels(rs.getInt("idcartao"));
-                cartao.setId(rs.getString("nometitular"));
-                cartao.setId(rs.getString("cpftitular"));
-                cartao.setId(rs.getString("numerocartao"));
+                cartao.setIdcartao(rs.getString("nometitular"));
+                cartao.setIdcartao(rs.getString("cpftitular"));
+                cartao.setIdcartao(rs.getString("numerocartao"));
 
                 lista.add(cartao);
                 System.out.println(cartao.toString());

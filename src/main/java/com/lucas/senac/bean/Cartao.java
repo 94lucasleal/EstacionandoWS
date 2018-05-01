@@ -2,7 +2,9 @@ package com.lucas.senac.bean;
 
 public class Cartao {
 
-    private String id;
+    private int idestabelecimento;
+    private int idusuario;
+    private String idcartao;
     private Double value;
     private String token;
     private int parcels;
@@ -10,19 +12,37 @@ public class Cartao {
     public Cartao() {
     }
 
-    public Cartao(String id, Double value, String token, int parcels) {
-        this.id = id;
+    public Cartao(int idestabelecimento, int idusuario, String idcartao, Double value, String token, int parcels) {
+        this.idestabelecimento = idestabelecimento;
+        this.idusuario = idusuario;
+        this.idcartao = idcartao;
         this.value = value;
         this.token = token;
         this.parcels = parcels;
     }
 
-    public String getId() {
-        return id;
+    public int getIdestabelecimento() {
+        return idestabelecimento;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setIdestabelecimento(int idestabelecimento) {
+        this.idestabelecimento = idestabelecimento;
+    }
+
+    public int getIdusuario() {
+        return idusuario;
+    }
+
+    public void setIdusuario(int idusuario) {
+        this.idusuario = idusuario;
+    }
+
+    public String getIdcartao() {
+        return idcartao;
+    }
+
+    public void setIdcartao(String idcartao) {
+        this.idcartao = idcartao;
     }
 
     public Double getValue() {
@@ -51,7 +71,7 @@ public class Cartao {
 
     @Override
     public String toString() {
-        return "Cartao{" + "id=" + id + ", value=" + value + ", token=" + token + ", parcels=" + parcels + '}';
+        return "Cartao{" + "idestabelecimento=" + idestabelecimento + ", idusuario=" + idusuario + ", idcartao=" + idcartao + ", value=" + value + ", token=" + token + ", parcels=" + parcels + '}';
     }
     
 }
