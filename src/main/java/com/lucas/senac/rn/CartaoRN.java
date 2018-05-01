@@ -89,6 +89,8 @@ public class CartaoRN {
             pagamento.setBoleto_url(tx.getBoletoUrl());
             pagamento.setBoleto_barcode(tx.getBoletoBarcode());
             System.out.println(pagamento);
+            
+            cartaoBD.inserir(pagamento);
 
             return gson.toJson(tx);
         } catch (Exception e) {
