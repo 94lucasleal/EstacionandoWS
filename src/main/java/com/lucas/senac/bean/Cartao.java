@@ -4,7 +4,7 @@ public class Cartao {
 
     private int idestabelecimento;
     private int idusuario;
-    private String idcartao;
+    private String product_id;
     private Double value;
     private String token;
     private int parcels;
@@ -12,10 +12,10 @@ public class Cartao {
     public Cartao() {
     }
 
-    public Cartao(int idestabelecimento, int idusuario, String idcartao, Double value, String token, int parcels) {
+    public Cartao(int idestabelecimento, int idusuario, String product_id, Double value, String token, int parcels) {
         this.idestabelecimento = idestabelecimento;
         this.idusuario = idusuario;
-        this.idcartao = idcartao;
+        this.product_id = product_id;
         this.value = value;
         this.token = token;
         this.parcels = parcels;
@@ -37,12 +37,12 @@ public class Cartao {
         this.idusuario = idusuario;
     }
 
-    public String getIdcartao() {
-        return idcartao;
+    public String getProduct_id() {
+        return product_id;
     }
 
-    public void setIdcartao(String idcartao) {
-        this.idcartao = idcartao;
+    public void setProduct_id(String product_id) {
+        this.product_id = product_id;
     }
 
     public Double getValue() {
@@ -71,7 +71,6 @@ public class Cartao {
 
     @Override
     public String toString() {
-        return "Cartao{" + "idestabelecimento=" + idestabelecimento + ", idusuario=" + idusuario + ", idcartao=" + idcartao + ", value=" + value + ", token=" + token + ", parcels=" + parcels + '}';
-    }
-    
+        return "Cartao{" + "idestabelecimento=" + idestabelecimento + ", idusuario=" + idusuario + ", product_id=" + product_id + ", value=" + value + ", token=" + token + ", parcels=" + parcels + '}';
+    }    
 }

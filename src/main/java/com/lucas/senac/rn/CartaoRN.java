@@ -49,7 +49,7 @@ public class CartaoRN {
         PagarMe.init("ak_test_U9HHME9pST6E6ZDv0cBWeVfd3UoVLG");
         
         Map<String, Object> metadata = new HashMap<String, Object>();
-        metadata.put("id", cartao.getIdcartao());
+        metadata.put("id", cartao.getProduct_id());
         
         Double value = cartao.getValue() * 100;
         
@@ -99,7 +99,7 @@ public class CartaoRN {
         System.out.println(cartao);
         PagarMe.init("ak_test_U9HHME9pST6E6ZDv0cBWeVfd3UoVLG");
         Map<String, Object> metadata = new HashMap<String, Object>();
-        metadata.put("id", cartao.getIdcartao());
+        metadata.put("id", cartao.getProduct_id());
         Double valor = cartao.getValue() * 100;
         try {
             Transaction tx = new Transaction();
