@@ -139,6 +139,7 @@ public class CartaoBD extends CrudBD<Cartao> {
 
 
             System.out.println("Pesquisando: " + pesquisa);
+            System.out.println(pstm.toString());
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
                 System.out.println("Registro encontrado");
