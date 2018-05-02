@@ -46,7 +46,7 @@ public class CartaoRN {
     @Path("inserir")
     public String inserir(String content){ 
         
-                Cartao cartao = (Cartao) gson.fromJson(content, Cartao.class);
+        Cartao cartao = (Cartao) gson.fromJson(content, Cartao.class);
         
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         
@@ -77,9 +77,10 @@ public class CartaoRN {
         Double value = cartao.getValue() * 100;
         
         try {
+            
             Transaction tx = new Transaction();
+            tx.setCustomer(customer);
             tx.setAmount(value.intValue());
-            //tx.setCardHash(cartao.getToken());
             tx.setPaymentMethod(PaymentMethod.BOLETO);
             tx.setMetadata(metadata);
             tx.save();
