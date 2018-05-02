@@ -84,7 +84,7 @@ public class CartaoRN {
             tx.setPaymentMethod(PaymentMethod.BOLETO);
             tx.setMetadata(metadata);
             tx.save();
-            System.out.println(gson.toJson(tx));
+            System.out.println("***1");
             
             Calendar hoje = Calendar.getInstance();
            
