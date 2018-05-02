@@ -122,7 +122,10 @@ public class CartaoRN {
             System.out.println("16");
             pagamento.setStatus_reason(tx.getStatusReason().name());
             System.out.println("17");
-            pagamento.setCard_brand(tx.getCard().getBrand().name());
+            if (tx.getCard() != null)
+                if (tx.getCard().getBrand() != null)
+                    if (tx.getCard().getBrand().name() != null)
+                        pagamento.setCard_brand(tx.getCard().getBrand().name());
             System.out.println("18");
             pagamento.setDate_updated(tx.getUpdatedAt().toString());
             System.out.println("19");
