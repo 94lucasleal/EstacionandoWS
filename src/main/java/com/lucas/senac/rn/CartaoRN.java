@@ -84,55 +84,35 @@ public class CartaoRN {
             tx.setPaymentMethod(PaymentMethod.BOLETO);
             tx.setMetadata(metadata);
             tx.save();
-            System.out.println("***1");
+            System.out.println(tx.toJson());
+            System.out.println(tx.toString());
             
             Calendar hoje = Calendar.getInstance();
            
             Pagamento pagamento = new Pagamento();
-            System.out.println("1");
             pagamento.setDta_pagamento(hoje.getTime());
-            System.out.println("2");
             pagamento.setDta_entrada(format.parse(cartao.getDta_entrada()));
-            System.out.println("3");
             pagamento.setDta_saida(format.parse(cartao.getDta_saida()));
-            System.out.println("4");
             pagamento.setIdestabelecimento(cartao.getIdestabelecimento());
-            System.out.println("5");
             pagamento.setIdusuario(cartao.getIdusuario());
-            System.out.println("6");
             pagamento.setProduct_id(cartao.getProduct_id());
-            System.out.println("7");
             pagamento.setAmount(tx.getAmount());
-            System.out.println("8");
             pagamento.setInstallments(tx.getInstallments());
-            System.out.println("9");
             pagamento.setNsu(tx.getNsu());
-            System.out.println("10");
             pagamento.setTid(tx.getTid());
-            System.out.println("11");
             pagamento.setAuthorization_code(tx.getAuthorizationCode());
-            System.out.println("12");
             pagamento.setAcquirer_name(tx.getAcquirerName().name());
-            System.out.println("13");
             pagamento.setPayment_method(tx.getPaymentMethod().name());
-            System.out.println("14");
             pagamento.setStatus(tx.getStatus().name());
-            System.out.println("15");
             pagamento.setRefuse_reason(tx.getRefuseReason());
-            System.out.println("16");
             pagamento.setStatus_reason(tx.getStatusReason().name());
-            System.out.println("17");
             if (tx.getCard() != null)
                 if (tx.getCard().getBrand() != null)
                     if (tx.getCard().getBrand().name() != null)
                         pagamento.setCard_brand(tx.getCard().getBrand().name());
-            System.out.println("18");
             pagamento.setDate_updated(tx.getUpdatedAt().toString());
-            System.out.println("19");
             pagamento.setDate_created(tx.getCreatedAt().toString());
-            System.out.println("20");
             pagamento.setBoleto_url(tx.getBoletoUrl());
-            System.out.println("21");
             pagamento.setBoleto_barcode(tx.getBoletoBarcode());
             System.out.println(pagamento);
             
