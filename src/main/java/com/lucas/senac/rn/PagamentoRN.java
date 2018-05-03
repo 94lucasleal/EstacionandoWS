@@ -18,6 +18,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -75,15 +76,19 @@ public class PagamentoRN {
                                       pagamento.getCustomer().getAddresses().get(0).getStreetNumber(), 
                                       pagamento.getCustomer().getAddresses().get(0).getNeighborhood(),
                                       pagamento.getCustomer().getAddresses().get(0).getZipcode());
+        Collection<Address> addresses = new ArrayList<Address>();
+        addresses.add(address);
         
         Phone phone = new Phone();
         phone.setDdd(pagamento.getCustomer().getPhones().get(0).getDdd());
         phone.setDdi(pagamento.getCustomer().getPhones().get(0).getDdi());
         phone.setNumber(pagamento.getCustomer().getPhones().get(0).getNumber());
+        Collection<Phone> phones = new ArrayList<Phone>();
+        phones.add(phone);
 
         Customer customer = new Customer();
-        customer.setAddress(address);
-        customer.setPhone(phone);
+        customer.setAddresses(addresses);
+        customer.setPhones(phones);
         customer.setName(user.getNome());
         customer.setEmail(user.getEmail());
         customer.setDocumentNumber(user.getCpf());
@@ -205,8 +210,8 @@ public class PagamentoRN {
         cus.setDocumentNumber(tx.getCustomer().getDocumentNumber());
         cus.setName(tx.getCustomer().getName());
         cus.setEmail(tx.getCustomer().getEmail());
+        
         System.out.println("6");
-
         List<Telefone> tels = new ArrayList<Telefone>();
         for (Phone a : tx.getCustomer().getPhones()) {
             Telefone tel = new Telefone();
