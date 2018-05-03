@@ -70,10 +70,20 @@ public class PagamentoRN {
         EstabelecimentoRN estabelecimentoRN = new EstabelecimentoRN();
         String aux2 = estabelecimentoRN.consultarEstabelecimento(pagamento.getIdestabelecimento());
         Estabelecimento estabelecimento = (Estabelecimento) gson.fromJson(aux2, Estabelecimento.class);
+        
+        Address address = new Address(pagamento.getCustomer().getAddresses().get(0).getStreet(), 
+                                      pagamento.getCustomer().getAddresses().get(0).getStreetNumber(), 
+                                      pagamento.getCustomer().getAddresses().get(0).getNeighborhood(),
+                                      pagamento.getCustomer().getAddresses().get(0).getZipcode());
+        
+        Phone phone = new Phone();
+        phone.setDdd(pagamento.getCustomer().getPhones().get(0).getDdd());
+        phone.setDdi(pagamento.getCustomer().getPhones().get(0).getDdi());
+        phone.setNumber(pagamento.getCustomer().getPhones().get(0).getNumber());
 
         Customer customer = new Customer();
-        customer.setAddresses(pagamento.getCustomer().getAddresses());
-        customer.setPhones(pagamento.getCustomer().getPhones());
+        customer.setAddress(address);
+        customer.setPhone(phone);
         customer.setName(user.getNome());
         customer.setEmail(user.getEmail());
         customer.setDocumentNumber(user.getCpf());

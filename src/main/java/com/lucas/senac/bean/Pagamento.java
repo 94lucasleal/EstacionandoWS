@@ -1,5 +1,6 @@
 package com.lucas.senac.bean;
 
+import com.lucas.senac.bean.utils.Customers;
 import java.util.Date;
 import me.pagar.model.Customer;
 
@@ -12,12 +13,12 @@ public class Pagamento {
     private int parcels;
     private String dta_entrada;
     private String dta_saida;
-    private Customer customer;
+    private Customers customer;
     
     public Pagamento() {
     }
 
-    public Pagamento(Integer idestabelecimento, Integer idusuario, Double value, String token, int parcels, String dta_entrada, String dta_saida, Customer customer) {
+    public Pagamento(Integer idestabelecimento, Integer idusuario, Double value, String token, int parcels, String dta_entrada, String dta_saida, Customers customer) {
         this.idestabelecimento = idestabelecimento;
         this.idusuario = idusuario;
         this.value = value;
@@ -84,11 +85,11 @@ public class Pagamento {
         this.dta_saida = dta_saida;
     }
 
-    public Customer getCustomer() {
+    public Customers getCustomer() {
         return customer;
     }
 
-    public void setCustomer(Customer customer) {
+    public void setCustomer(Customers customer) {
         this.customer = customer;
     }
 
