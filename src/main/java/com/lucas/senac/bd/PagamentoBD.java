@@ -1,16 +1,16 @@
 package com.lucas.senac.bd;
 
-import com.lucas.senac.bean.Cartao;
 import com.lucas.senac.bean.Pagamento;
+import com.lucas.senac.bean.Historico;
 import com.lucas.senac.infra.CrudBD;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-public class CartaoBD extends CrudBD<Cartao> {
+public class PagamentoBD extends CrudBD<Pagamento> {
 
-    public void inserir(Pagamento bean) {
+    public void inserir(Historico bean) {
         Connection conn = null;
         try {
             conn = abrirConexao();
@@ -20,25 +20,25 @@ public class CartaoBD extends CrudBD<Cartao> {
                     "date_updated, date_created, boleto_url, boleto_barcode, dta_pagamento, dta_entrada, dta_saida) "+
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             
-            pstm.setInt(1, bean.getIdestabelecimento());
-            pstm.setInt(2, bean.getIdusuario());
-            pstm.setString(3, bean.getProduct_id());
-            pstm.setInt(4, bean.getAmount());
-            pstm.setInt(5, bean.getInstallments());
-            pstm.setString(6, bean.getNsu());
-            pstm.setString(7, bean.getTid());
-            pstm.setString(8, bean.getAuthorization_code());
-            pstm.setString(9, bean.getAcquirer_name());
-            pstm.setString(10, bean.getPayment_method());
-            pstm.setString(11, bean.getStatus());
-            pstm.setString(12, bean.getRefuse_reason());
-            pstm.setString(13, bean.getStatus_reason());
-            pstm.setString(14, bean.getCard_brand());
-            pstm.setString(15, bean.getDate_updated());
-            pstm.setString(16, bean.getDate_created());
-            pstm.setString(17, bean.getBoleto_url());
-            pstm.setString(18, bean.getBoleto_barcode());
-            pstm.setTimestamp(19, new java.sql.Timestamp(bean.getDta_pagamento().getTime()));
+            pstm.setInt(1, bean.getEstabelecimento().getIdestabelecimento());
+            pstm.setInt(2, bean.getUsuario().getIdUsuario());
+            pstm.setString(3, "product_id");
+            pstm.setInt(4, bean.getTrancasao().getAmount());
+            pstm.setInt(5, bean.getTrancasao().getInstallments());
+            pstm.setString(6, bean.getTrancasao().getNsu());
+            pstm.setString(7, bean.getTrancasao().getTid());
+            pstm.setString(8, "authorization_code");
+            pstm.setString(9, bean.getTrancasao().getAcquirerName());
+            pstm.setString(10, bean.getTrancasao().getPaymentMethod());
+            pstm.setString(11, bean.getTrancasao().getStatus());
+            pstm.setString(12, "refuse_reason");
+            pstm.setString(13, bean.getTrancasao().getStatusReason());
+            pstm.setString(14, "card_brand");
+            pstm.setString(15, bean.getTrancasao().getDateUpdated());
+            pstm.setString(16, bean.getTrancasao().getDateCreated());
+            pstm.setString(17, bean.getTrancasao().getBoletoUrl());
+            pstm.setString(18, bean.getTrancasao().getBoletoBarcode());
+            pstm.setTimestamp(19, new java.sql.Timestamp(bean.getDta_entrada().getTime()));
             pstm.setTimestamp(20, new java.sql.Timestamp(bean.getDta_entrada().getTime()));
             pstm.setTimestamp(21, new java.sql.Timestamp(bean.getDta_saida().getTime()));
             
@@ -56,7 +56,7 @@ public class CartaoBD extends CrudBD<Cartao> {
         }
     }
 
-    public void excluirCartao(Cartao bean) {
+    public void excluirCartao(Pagamento bean) {
         Connection conn = null;
         try {
             conn = abrirConexao();
@@ -76,8 +76,8 @@ public class CartaoBD extends CrudBD<Cartao> {
         }
     }
 
-    public Cartao consultarCartao(Cartao bean) {
-        Cartao cartaoRetorno = null;
+    public Pagamento consultarCartao(Pagamento bean) {
+        Pagamento cartaoRetorno = null;
 
         Connection conn = null;
         try {
@@ -90,11 +90,11 @@ public class CartaoBD extends CrudBD<Cartao> {
             ResultSet rs = pstm.executeQuery();
             if (rs.next()) {
                 System.out.println("Registro encontrado");
-                cartaoRetorno = new Cartao();
+                cartaoRetorno = new Pagamento();
                 cartaoRetorno.setParcels(rs.getInt("idcartao"));
-                cartaoRetorno.setProduct_id(rs.getString("nometitular"));
-                cartaoRetorno.setProduct_id(rs.getString("cpftitular"));
-                cartaoRetorno.setProduct_id(rs.getString("numerocartao"));
+                cartaoRetorno.setDta_entrada(rs.getString("nometitular"));
+                cartaoRetorno.setDta_entrada(rs.getString("cpftitular"));
+                cartaoRetorno.setDta_entrada(rs.getString("numerocartao"));
             }
             System.out.println("Consulta executada com sucesso");
         } catch (Exception e) {
@@ -105,15 +105,15 @@ public class CartaoBD extends CrudBD<Cartao> {
         return cartaoRetorno;
     }
 
-    public void alterarCartao(Cartao bean) {
+    public void alterarCartao(Pagamento bean) {
         Connection conn = null;
         try {
             conn = abrirConexao();
 
             PreparedStatement pstm = conn.prepareStatement("UPDATE cartao SET nometitular = ?, cpftitular = ?, numerocartao = ? WHERE idcartao = ?");
-            pstm.setString(1, bean.getProduct_id());
-            pstm.setString(2, bean.getProduct_id());
-            pstm.setString(3, bean.getProduct_id());
+            pstm.setString(1, bean.getDta_entrada());
+            pstm.setString(2, bean.getDta_entrada());
+            pstm.setString(3, bean.getDta_entrada());
             pstm.setInt(4, bean.getParcels());
 
             System.out.println("Alterando: " + bean);
@@ -129,8 +129,8 @@ public class CartaoBD extends CrudBD<Cartao> {
         }
     }
 
-    public ArrayList<Pagamento> pesquisar(String pesquisa) {
-        ArrayList<Pagamento> lista = new ArrayList<Pagamento>();
+    public ArrayList<Historico> pesquisar(String pesquisa) {
+        ArrayList<Historico> lista = new ArrayList<Historico>();
 
         Connection conn = null;
         try {
@@ -146,7 +146,8 @@ public class CartaoBD extends CrudBD<Cartao> {
             while (rs.next()) {
                 System.out.println("Registro encontrado");
 
-                Pagamento pagamento = new Pagamento();
+                /*
+                Historico pagamento = new Historico();
                 pagamento.setIdpagamento(rs.getInt("idpagamento"));
                 pagamento.setIdestabelecimento(rs.getInt("idestabelecimento"));
                 pagamento.setIdusuario(rs.getInt("idusuario"));
@@ -171,7 +172,9 @@ public class CartaoBD extends CrudBD<Cartao> {
                 pagamento.setDta_saida(rs.getTimestamp("dta_saida"));
 
                 lista.add(pagamento);
+
                 System.out.println(pagamento.toString());
+                */
             }
             System.out.println("Pesquisa executada com sucesso");
         } catch (Exception e) {
@@ -182,8 +185,8 @@ public class CartaoBD extends CrudBD<Cartao> {
         return lista;
     }
 
-    public ArrayList<Cartao> buscarTodosCartao() {
-        ArrayList<Cartao> lista = new ArrayList<Cartao>();
+    public ArrayList<Pagamento> buscarTodosCartao() {
+        ArrayList<Pagamento> lista = new ArrayList<Pagamento>();
 
         Connection conn = null;
         try {
@@ -196,11 +199,11 @@ public class CartaoBD extends CrudBD<Cartao> {
             while (rs.next()) {
                 System.out.println("Registro encontrado");
 
-                Cartao cartao = new Cartao();
+                Pagamento cartao = new Pagamento();
                 cartao.setParcels(rs.getInt("idcartao"));
-                cartao.setProduct_id(rs.getString("nometitular"));
-                cartao.setProduct_id(rs.getString("cpftitular"));
-                cartao.setProduct_id(rs.getString("numerocartao"));
+                cartao.setDta_entrada(rs.getString("nometitular"));
+                cartao.setDta_entrada(rs.getString("cpftitular"));
+                cartao.setDta_entrada(rs.getString("numerocartao"));
 
                 lista.add(cartao);
                 System.out.println(cartao.toString());

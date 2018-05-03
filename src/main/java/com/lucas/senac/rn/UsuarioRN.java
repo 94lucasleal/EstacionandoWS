@@ -47,6 +47,14 @@ public class UsuarioRN {
         usuarioRNVal.validarConsultarUsuario(usuario);
         return gson.toJson(usuarioBD.consultarUsuario(usuario));
     }
+    
+    @GET
+    @Produces("application/json")
+    @Path("consultar/{idusuario}")
+    public String consultar(@PathParam("idusuario") int idusuario) {
+        Usuario usuario = new Usuario(idusuario, null, null, null, null, null, null, 0, null);
+        return gson.toJson(usuarioBD.consultar(usuario));
+    }
 
     @PUT
     @Consumes({"application/json"})

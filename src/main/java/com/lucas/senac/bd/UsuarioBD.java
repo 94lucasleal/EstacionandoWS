@@ -92,6 +92,41 @@ public class UsuarioBD extends CrudBD<Usuario>{
 
         return usuarioRetorno;
     }
+    
+    public Usuario consultar(Usuario bean) {
+        Usuario usuarioRetorno = null;
+
+        Connection conn = null;
+        try {
+            conn = abrirConexao();
+
+            PreparedStatement pstm = conn.prepareStatement("SELECT * FROM usuario WHERE idusuario = ? ");
+            pstm.setInt(1, bean.getIdUsuario());
+
+            System.out.println("Consultando: " + bean);
+            ResultSet rs = pstm.executeQuery();
+            if (rs.next()) {
+                System.out.println("Registro encontrado");
+                usuarioRetorno = new Usuario();
+                usuarioRetorno.setIdUsuario(rs.getInt("idusuario"));
+                usuarioRetorno.setNome(rs.getString("nome"));
+                usuarioRetorno.setCpf(rs.getString("cpf"));
+                usuarioRetorno.setRg(rs.getString("rg"));
+                usuarioRetorno.setEmail(rs.getString("email"));
+                usuarioRetorno.setSenha(rs.getString("senha"));
+                usuarioRetorno.setIdTipoAcesso(rs.getInt("idtipoacesso"));
+                usuarioRetorno.setTelefone(rs.getLong("telefone"));
+                usuarioRetorno.setImagem(rs.getString("imagem"));
+            }
+            System.out.println("Consulta executada com sucesso");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            fecharConexao(conn);
+        }
+
+        return usuarioRetorno;
+    }
 
     public void alterarUsuario(Usuario bean) {
         Connection conn = null;

@@ -1,10 +1,10 @@
 package com.lucas.senac.rnval;
 
-import com.lucas.senac.bean.Cartao;
+import com.lucas.senac.bean.Pagamento;
 
 public class CartaoRNVAL {
     
-    public void validarInserirCartao(Cartao bean) {
+    public void validarInserirCartao(Pagamento bean) {
         /*
         if (bean.getNomeTitular().isEmpty()) {
             throw new RuntimeException("Campo NOME DO TITULAR não informado");
@@ -18,11 +18,11 @@ public class CartaoRNVAL {
         */
     }
 
-    public void validarExcluirCartao(Cartao bean) {
+    public void validarExcluirCartao(Pagamento bean) {
         //validarConsultarCartao(bean);
     }
 
-    public void validarConsultarCartao(Cartao bean) {
+    public void validarConsultarCartao(Pagamento bean) {
         /*
         if (bean.getIdCartao() == 0) {
             throw new RuntimeException("Campo Código não informado");
@@ -30,7 +30,7 @@ public class CartaoRNVAL {
         */
     }
     
-    public void validarAlterarCartao(Cartao bean) {
+    public void validarAlterarCartao(Pagamento bean) {
         //validarConsultarCartao(bean);
     }
     
