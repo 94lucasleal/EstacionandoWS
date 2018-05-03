@@ -33,7 +33,7 @@ public class PagamentoBD extends CrudBD<Pagamento> {
             pstm.setString(11, bean.getTrancasao().getStatus());
             pstm.setString(12, "refuse_reason");
             pstm.setString(13, bean.getTrancasao().getStatusReason());
-            pstm.setString(14, "card_brand");
+            pstm.setString(14, bean.getTrancasao().getCard().getBrand());
             pstm.setString(15, bean.getTrancasao().getDateUpdated());
             pstm.setString(16, bean.getTrancasao().getDateCreated());
             pstm.setString(17, bean.getTrancasao().getBoletoUrl());
@@ -174,7 +174,7 @@ public class PagamentoBD extends CrudBD<Pagamento> {
                 lista.add(pagamento);
 
                 System.out.println(pagamento.toString());
-                */
+            */
             }
             System.out.println("Pesquisa executada com sucesso");
         } catch (Exception e) {

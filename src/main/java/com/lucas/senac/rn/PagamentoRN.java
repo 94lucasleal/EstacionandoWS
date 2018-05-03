@@ -9,6 +9,7 @@ import com.lucas.senac.bean.utils.Endereco;
 import com.lucas.senac.bean.utils.Metadado;
 import com.lucas.senac.bean.Historico;
 import com.lucas.senac.bean.Usuario;
+import com.lucas.senac.bean.utils.Cartao;
 import com.lucas.senac.bean.utils.Telefone;
 import com.lucas.senac.bean.utils.Transacao;
 import com.lucas.senac.rnval.CartaoRNVAL;
@@ -208,7 +209,17 @@ public class PagamentoRN {
             ends.add(end);
         }
         cus.setAddresses(ends);
-
+        
+        Cartao card = new Cartao();
+        card.setBrand(tx.getCard().getBrand().name());
+        card.setLastDigits(tx.getCard().getLastDigits());
+        card.setFirstDigits(tx.getCard().getFirstDigits());
+        card.setCountry(tx.getCard().getCountry());
+        card.setId(tx.getCard().getId());
+        card.setHolderName(tx.getCard().getHolderName());
+        card.setValid(tx.getCard().getValid());
+        
+        transacao.setCard(card);
         transacao.setCustomer(cus);
         transacao.setId(tx.getId());
         transacao.setDateCreated(tx.getCreatedAt().toString("dd/MM/yyyy HH:mm:ss"));

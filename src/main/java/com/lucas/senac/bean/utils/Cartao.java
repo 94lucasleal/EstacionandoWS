@@ -2,43 +2,25 @@ package com.lucas.senac.bean.utils;
 
 public class Cartao {
 
-    private String object;
     private String id;
-    private String dateCreated;
-    private String dateUpdated;
     private String brand;
     private String holderName;
     private String firstDigits;
     private String lastDigits;
     private String country;
-    private String fingerprint;
     private Boolean valid;
-    private String expirationDate;
-
+    
     public Cartao() {
     }
 
-    public Cartao(String object, String id, String dateCreated, String dateUpdated, String brand, String holderName, String firstDigits, String lastDigits, String country, String fingerprint, Boolean valid, String expirationDate) {
-        this.object = object;
+    public Cartao(String id, String brand, String holderName, String firstDigits, String lastDigits, String country, Boolean valid) {
         this.id = id;
-        this.dateCreated = dateCreated;
-        this.dateUpdated = dateUpdated;
         this.brand = brand;
         this.holderName = holderName;
         this.firstDigits = firstDigits;
         this.lastDigits = lastDigits;
         this.country = country;
-        this.fingerprint = fingerprint;
         this.valid = valid;
-        this.expirationDate = expirationDate;
-    }
-
-    public String getObject() {
-        return object;
-    }
-
-    public void setObject(String object) {
-        this.object = object;
     }
 
     public String getId() {
@@ -47,22 +29,6 @@ public class Cartao {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getDateCreated() {
-        return dateCreated;
-    }
-
-    public void setDateCreated(String dateCreated) {
-        this.dateCreated = dateCreated;
-    }
-
-    public String getDateUpdated() {
-        return dateUpdated;
-    }
-
-    public void setDateUpdated(String dateUpdated) {
-        this.dateUpdated = dateUpdated;
     }
 
     public String getBrand() {
@@ -105,14 +71,6 @@ public class Cartao {
         this.country = country;
     }
 
-    public String getFingerprint() {
-        return fingerprint;
-    }
-
-    public void setFingerprint(String fingerprint) {
-        this.fingerprint = fingerprint;
-    }
-
     public Boolean getValid() {
         return valid;
     }
@@ -121,16 +79,8 @@ public class Cartao {
         this.valid = valid;
     }
 
-    public String getExpirationDate() {
-        return expirationDate;
-    }
-
-    public void setExpirationDate(String expirationDate) {
-        this.expirationDate = expirationDate;
-    }
-
     @Override
     public String toString() {
-        return "Cartao{" + "object=" + object + ", id=" + id + ", dateCreated=" + dateCreated + ", dateUpdated=" + dateUpdated + ", brand=" + brand + ", holderName=" + holderName + ", firstDigits=" + firstDigits + ", lastDigits=" + lastDigits + ", country=" + country + ", fingerprint=" + fingerprint + ", valid=" + valid + ", expirationDate=" + expirationDate + '}';
+        return "Cartao{" + "id=" + id + ", brand=" + brand + ", holderName=" + holderName + ", firstDigits=" + firstDigits + ", lastDigits=" + lastDigits + ", country=" + country + ", valid=" + valid + '}';
     }
 }
