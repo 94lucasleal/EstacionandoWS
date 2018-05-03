@@ -235,17 +235,19 @@ public class PagamentoRN {
         cus.setAddresses(ends);
         System.out.println("8");
         
-        Cartao card = new Cartao();
-        card.setBrand(tx.getCard().getBrand().name());
-        card.setLastDigits(tx.getCard().getLastDigits());
-        card.setFirstDigits(tx.getCard().getFirstDigits());
-        card.setCountry(tx.getCard().getCountry());
-        card.setId(tx.getCard().getId());
-        card.setHolderName(tx.getCard().getHolderName());
-        card.setValid(tx.getCard().getValid());
-        System.out.println("9");
+        if (tx.getCard() != null){
+            Cartao card = new Cartao();
+            card.setBrand(tx.getCard().getBrand().name());
+            card.setLastDigits(tx.getCard().getLastDigits());
+            card.setFirstDigits(tx.getCard().getFirstDigits());
+            card.setCountry(tx.getCard().getCountry());
+            card.setId(tx.getCard().getId());
+            card.setHolderName(tx.getCard().getHolderName());
+            card.setValid(tx.getCard().getValid());
+            System.out.println("9");
+            transacao.setCard(card);
+        }
         
-        transacao.setCard(card);
         transacao.setCustomer(cus);
         transacao.setId(tx.getId());
         transacao.setDateCreated(tx.getCreatedAt().toString("dd/MM/yyyy HH:mm:ss"));
