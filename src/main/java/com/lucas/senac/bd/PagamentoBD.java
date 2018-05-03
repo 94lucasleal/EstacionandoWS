@@ -20,27 +20,49 @@ public class PagamentoBD extends CrudBD<Pagamento> {
                     "date_updated, date_created, boleto_url, boleto_barcode, dta_pagamento, dta_entrada, dta_saida) "+
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             
+            System.out.println("21");
             pstm.setInt(1, bean.getEstabelecimento().getIdestabelecimento());
+            System.out.println("22");
             pstm.setInt(2, bean.getUsuario().getIdUsuario());
+            System.out.println("23");
             pstm.setString(3, "product_id");
+            System.out.println("24");
             pstm.setInt(4, bean.getTrancasao().getAmount());
+            System.out.println("25");
             pstm.setInt(5, bean.getTrancasao().getInstallments());
+            System.out.println("26");
             pstm.setString(6, bean.getTrancasao().getNsu());
+            System.out.println("27");
             pstm.setString(7, bean.getTrancasao().getTid());
+            System.out.println("28");
             pstm.setString(8, "authorization_code");
+            System.out.println("29");
             pstm.setString(9, bean.getTrancasao().getAcquirerName());
+            System.out.println("30");
             pstm.setString(10, bean.getTrancasao().getPaymentMethod());
+            System.out.println("31");
             pstm.setString(11, bean.getTrancasao().getStatus());
+            System.out.println("32");
             pstm.setString(12, "refuse_reason");
+            System.out.println("33");
             pstm.setString(13, bean.getTrancasao().getStatusReason());
+            System.out.println("34");
             pstm.setString(14, bean.getTrancasao().getCard().getBrand());
+            System.out.println("35");
             pstm.setString(15, bean.getTrancasao().getDateUpdated());
+            System.out.println("36");
             pstm.setString(16, bean.getTrancasao().getDateCreated());
+            System.out.println("37");
             pstm.setString(17, bean.getTrancasao().getBoletoUrl());
+            System.out.println("38");
             pstm.setString(18, bean.getTrancasao().getBoletoBarcode());
+            System.out.println("39");
             pstm.setTimestamp(19, new java.sql.Timestamp(bean.getDta_entrada().getTime()));
+            System.out.println("40");
             pstm.setTimestamp(20, new java.sql.Timestamp(bean.getDta_entrada().getTime()));
+            System.out.println("41");
             pstm.setTimestamp(21, new java.sql.Timestamp(bean.getDta_saida().getTime()));
+            System.out.println("42");
             
             System.out.println(pstm.toString());
 
