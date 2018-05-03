@@ -47,7 +47,11 @@ public class PagamentoBD extends CrudBD<Pagamento> {
             System.out.println("33");
             pstm.setString(13, bean.getTrancasao().getStatusReason());
             System.out.println("34");
-            pstm.setString(14, bean.getTrancasao().getCard().getBrand());
+            if (bean.getTrancasao().getCard() != null){
+                 pstm.setString(14, bean.getTrancasao().getCard().getBrand());
+            } else {
+                pstm.setString(14, bean.getTrancasao().getPaymentMethod());
+            }
             System.out.println("35");
             pstm.setString(15, bean.getTrancasao().getDateUpdated());
             System.out.println("36");
