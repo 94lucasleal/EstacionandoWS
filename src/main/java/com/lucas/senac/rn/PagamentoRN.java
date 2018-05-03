@@ -98,14 +98,18 @@ public class PagamentoRN {
             tx.save();
             System.out.println(tx.toString());
             
+            System.out.println("1");
             Transacao transacao = carregaTransacao(tx);
+            System.out.println("11");
             
             Historico historico = new Historico();
+            System.out.println("12");
             historico.setDta_entrada(format.parse(pagamento.getDta_entrada()));
             historico.setDta_saida(format.parse(pagamento.getDta_saida()));
             historico.setTrancasao(transacao);
             historico.setUsuario(user);
             historico.setEstabelecimento(estabelecimento);
+            System.out.println("13");
                               
             cartaoBD.inserir(historico);
 
@@ -174,7 +178,7 @@ public class PagamentoRN {
     }
     
     public Transacao carregaTransacao(Transaction tx){
-        
+        System.out.println("2");
         Transacao transacao = new Transacao();
         transacao.setAmount(tx.getAmount());
         transacao.setRefundedAmount(tx.getRefundedAmount());
@@ -183,21 +187,25 @@ public class PagamentoRN {
         transacao.setInstallments(tx.getInstallments());
         transacao.setCost(tx.getCost());
         transacao.setTid(tx.getTid());
+        System.out.println("3");
         transacao.setNsu(tx.getNsu());
         transacao.setBoletoUrl(tx.getBoletoUrl());
         transacao.setBoletoBarcode(tx.getBoletoBarcode());
         transacao.setReferer(tx.getReferer());
         transacao.setIp(tx.getIp());
+        System.out.println("4");
         transacao.setAcquirerName(tx.getAcquirerName().name());
         transacao.setPaymentMethod(tx.getPaymentMethod().name());
         transacao.setStatus(tx.getStatus().name());
         transacao.setStatusReason(tx.getStatusReason().name());
+        System.out.println("5");
         transacao.setDateUpdated(tx.getUpdatedAt().toString("dd/MM/yyyy HH:mm:ss"));
 
         Customers cus = new Customers();
         cus.setDocumentNumber(tx.getCustomer().getDocumentNumber());
         cus.setName(tx.getCustomer().getName());
         cus.setEmail(tx.getCustomer().getEmail());
+        System.out.println("6");
 
         List<Telefone> tels = new ArrayList<Telefone>();
         for (Phone a : tx.getCustomer().getPhones()) {
@@ -208,6 +216,7 @@ public class PagamentoRN {
             tels.add(tel);
         }
         cus.setPhones(tels);
+        System.out.println("7");
 
         List<Endereco> ends = new ArrayList<Endereco>();
         for (Address a : tx.getCustomer().getAddresses()) {
@@ -219,6 +228,7 @@ public class PagamentoRN {
             ends.add(end);
         }
         cus.setAddresses(ends);
+        System.out.println("8");
         
         Cartao card = new Cartao();
         card.setBrand(tx.getCard().getBrand().name());
@@ -228,11 +238,13 @@ public class PagamentoRN {
         card.setId(tx.getCard().getId());
         card.setHolderName(tx.getCard().getHolderName());
         card.setValid(tx.getCard().getValid());
+        System.out.println("9");
         
         transacao.setCard(card);
         transacao.setCustomer(cus);
         transacao.setId(tx.getId());
         transacao.setDateCreated(tx.getCreatedAt().toString("dd/MM/yyyy HH:mm:ss"));
+        System.out.println("10");
         
         return transacao;
     }
