@@ -268,37 +268,42 @@ public class PagamentoRN {
 
         Customers cus = new Customers();
         System.out.println("5-2");
-        if (tx.getCustomer() != null)
+        if (tx.getCustomer() != null) {
+                
             cus.setDocumentNumber(tx.getCustomer().getDocumentNumber());
-        System.out.println("5-3");
-        cus.setName(tx.getCustomer().getName());
-        System.out.println("5-4");
-        cus.setEmail(tx.getCustomer().getEmail());
-        
-        System.out.println("6");
-        List<Telefone> tels = new ArrayList<Telefone>();
-        for (Phone a : tx.getCustomer().getPhones()) {
-            Telefone tel = new Telefone();
-            tel.setDdi(a.getDdi());
-            tel.setDdd(a.getDdd());
-            tel.setNumber(a.getNumber());
-            tels.add(tel);
-        }
-        cus.setPhones(tels);
-        System.out.println("7");
+            System.out.println("5-3");
+            cus.setName(tx.getCustomer().getName());
+            System.out.println("5-4");
+            cus.setEmail(tx.getCustomer().getEmail());
 
-        List<Endereco> ends = new ArrayList<Endereco>();
-        for (Address a : tx.getCustomer().getAddresses()) {
-            Endereco end = new Endereco();
-            end.setStreet(a.getStreet());
-            end.setStreetNumber(a.getStreetNumber());
-            end.setNeighborhood(a.getNeighborhood());
-            end.setZipcode(a.getZipcode());
-            ends.add(end);
+
+            System.out.println("6");
+            List<Telefone> tels = new ArrayList<Telefone>();
+            for (Phone a : tx.getCustomer().getPhones()) {
+                Telefone tel = new Telefone();
+                tel.setDdi(a.getDdi());
+                tel.setDdd(a.getDdd());
+                tel.setNumber(a.getNumber());
+                tels.add(tel);
+            }
+            cus.setPhones(tels);
+            System.out.println("7");
+
+            List<Endereco> ends = new ArrayList<Endereco>();
+            for (Address a : tx.getCustomer().getAddresses()) {
+                Endereco end = new Endereco();
+                end.setStreet(a.getStreet());
+                end.setStreetNumber(a.getStreetNumber());
+                end.setNeighborhood(a.getNeighborhood());
+                end.setZipcode(a.getZipcode());
+                ends.add(end);
+            }
+            cus.setAddresses(ends);
+            System.out.println("8");
+            
+            transacao.setCustomer(cus);
         }
-        cus.setAddresses(ends);
-        System.out.println("8");
-        
+
         if (tx.getCard() != null){
             Cartao card = new Cartao();
             card.setBrand(tx.getCard().getBrand().name());
@@ -312,7 +317,6 @@ public class PagamentoRN {
             transacao.setCard(card);
         }
         
-        transacao.setCustomer(cus);
         transacao.setId(tx.getId());
         transacao.setDateCreated(tx.getCreatedAt().toString("dd/MM/yyyy HH:mm:ss"));
         System.out.println("10");
