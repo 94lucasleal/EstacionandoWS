@@ -267,8 +267,11 @@ public class PagamentoRN {
         System.out.println("5-1");
 
         Customers cus = new Customers();
+        System.out.println("5-2");
         cus.setDocumentNumber(tx.getCustomer().getDocumentNumber());
+        System.out.println("5-3");
         cus.setName(tx.getCustomer().getName());
+        System.out.println("5-4");
         cus.setEmail(tx.getCustomer().getEmail());
         
         System.out.println("6");
