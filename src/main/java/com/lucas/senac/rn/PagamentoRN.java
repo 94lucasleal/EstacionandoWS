@@ -268,7 +268,7 @@ public class PagamentoRN {
 
         Customers cus = new Customers();
         System.out.println("5-2");
-        if (tx.getCustomer().getDocumentNumber() != null)
+        if (tx.getCustomer() != null)
             cus.setDocumentNumber(tx.getCustomer().getDocumentNumber());
         System.out.println("5-3");
         cus.setName(tx.getCustomer().getName());
