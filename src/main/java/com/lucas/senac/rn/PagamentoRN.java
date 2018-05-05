@@ -264,6 +264,7 @@ public class PagamentoRN {
         transacao.setStatusReason(tx.getStatusReason().name());
         System.out.println("5");
         transacao.setDateUpdated(tx.getUpdatedAt().toString("dd/MM/yyyy HH:mm:ss"));
+        System.out.println("5-1");
 
         Customers cus = new Customers();
         cus.setDocumentNumber(tx.getCustomer().getDocumentNumber());
