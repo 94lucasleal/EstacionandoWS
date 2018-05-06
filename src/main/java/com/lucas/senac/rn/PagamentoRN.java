@@ -96,18 +96,14 @@ public class PagamentoRN {
             tx.save();
             System.out.println(tx.toString());
             
-            System.out.println("1");
             Transacao transacao = carregaTransacao(tx);
-            System.out.println("11");
             
             Historico historico = new Historico();
-            System.out.println("12");
             historico.setDta_entrada(format.parse(pagamento.getDta_entrada()));
             historico.setDta_saida(format.parse(pagamento.getDta_saida()));
             historico.setTrancasao(transacao);
             historico.setUsuario(user);
             historico.setEstabelecimento(estabelecimento);
-            System.out.println("13");
                               
             cartaoBD.inserir(historico);
 
@@ -116,63 +112,6 @@ public class PagamentoRN {
             System.out.println(e);
             return gson.toJson(e);
         }   
-        /*
-        System.out.println(content);
-        Cartao cartao = (Cartao) gson.fromJson(content, Cartao.class);
-        
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        
-        PagarMe.init("ak_test_U9HHME9pST6E6ZDv0cBWeVfd3UoVLG");
-        
-        
-        Map<String, Object> metadata = new HashMap<String, Object>();
-        metadata.put("id", cartao.getProduct_id());
-        
-        Double value = cartao.getValue() * 100;
-        
-        try {
-            Transaction tx = new Transaction();
-            tx.setAmount(value.intValue());
-            tx.setCardHash(cartao.getToken());
-            tx.setPaymentMethod(PaymentMethod.CREDIT_CARD);
-            tx.setMetadata(metadata);
-            tx.save();
-            System.out.println(gson.toJson(tx));
-            
-            Calendar hoje = Calendar.getInstance();
-           
-            Pagamento pagamento = new Pagamento();
-            pagamento.setDta_pagamento(hoje.getTime());
-            pagamento.setDta_entrada(format.parse(cartao.getDta_entrada()));
-            pagamento.setDta_saida(format.parse(cartao.getDta_saida()));
-            pagamento.setIdestabelecimento(cartao.getIdestabelecimento());
-            pagamento.setIdusuario(cartao.getIdusuario());
-            pagamento.setProduct_id(cartao.getProduct_id());
-            pagamento.setAmount(tx.getAmount());
-            pagamento.setInstallments(tx.getInstallments());
-            pagamento.setNsu(tx.getNsu());
-            pagamento.setTid(tx.getTid());
-            pagamento.setAuthorization_code(tx.getAuthorizationCode());
-            pagamento.setAcquirer_name(tx.getAcquirerName().name());
-            pagamento.setPayment_method(tx.getPaymentMethod().name());
-            pagamento.setStatus(tx.getStatus().name());
-            pagamento.setRefuse_reason(tx.getRefuseReason());
-            pagamento.setStatus_reason(tx.getStatusReason().name());
-            pagamento.setCard_brand(tx.getCard().getBrand().name());
-            pagamento.setDate_updated(tx.getUpdatedAt().toString());
-            pagamento.setDate_created(tx.getCreatedAt().toString());
-            pagamento.setBoleto_url(tx.getBoletoUrl());
-            pagamento.setBoleto_barcode(tx.getBoletoBarcode());
-            System.out.println(pagamento);
-            
-            cartaoBD.inserir(pagamento);
-
-            return gson.toJson(tx);
-        } catch (Exception e) {
-            System.out.println(e);
-            return gson.toJson(e);
-        }   
-    */
     }
     
     @POST
@@ -221,7 +160,6 @@ public class PagamentoRN {
     }
     
     public Transacao carregaTransacao(Transaction tx){
-        System.out.println("2");
         Transacao transacao = new Transacao();
         transacao.setAmount(tx.getAmount());
         transacao.setRefundedAmount(tx.getRefundedAmount());
@@ -230,33 +168,24 @@ public class PagamentoRN {
         transacao.setInstallments(tx.getInstallments());
         transacao.setCost(tx.getCost());
         transacao.setTid(tx.getTid());
-        System.out.println("3");
         transacao.setNsu(tx.getNsu());
         transacao.setBoletoUrl(tx.getBoletoUrl());
         transacao.setBoletoBarcode(tx.getBoletoBarcode());
         transacao.setReferer(tx.getReferer());
         transacao.setIp(tx.getIp());
-        System.out.println("4");
         transacao.setAcquirerName(tx.getAcquirerName().name());
         transacao.setPaymentMethod(tx.getPaymentMethod().name());
         transacao.setStatus(tx.getStatus().name());
         transacao.setStatusReason(tx.getStatusReason().name());
-        System.out.println("5");
         transacao.setDateUpdated(tx.getUpdatedAt().toString("dd/MM/yyyy HH:mm:ss"));
-        System.out.println("5-1");
 
         Customers cus = new Customers();
-        System.out.println("5-2");
         if (tx.getCustomer() != null) {
                 
             cus.setDocumentNumber(tx.getCustomer().getDocumentNumber());
-            System.out.println("5-3");
             cus.setName(tx.getCustomer().getName());
-            System.out.println("5-4");
             cus.setEmail(tx.getCustomer().getEmail());
 
-
-            System.out.println("6");
             List<Telefone> tels = new ArrayList<Telefone>();
             for (Phone a : tx.getCustomer().getPhones()) {
                 Telefone tel = new Telefone();
@@ -266,7 +195,6 @@ public class PagamentoRN {
                 tels.add(tel);
             }
             cus.setPhones(tels);
-            System.out.println("7");
 
             List<Endereco> ends = new ArrayList<Endereco>();
             for (Address a : tx.getCustomer().getAddresses()) {
@@ -278,7 +206,6 @@ public class PagamentoRN {
                 ends.add(end);
             }
             cus.setAddresses(ends);
-            System.out.println("8");
             
             transacao.setCustomer(cus);
         }
@@ -292,13 +219,11 @@ public class PagamentoRN {
             card.setId(tx.getCard().getId());
             card.setHolderName(tx.getCard().getHolderName());
             card.setValid(tx.getCard().getValid());
-            System.out.println("9");
             transacao.setCard(card);
         }
         
         transacao.setId(tx.getId());
         transacao.setDateCreated(tx.getCreatedAt().toString("dd/MM/yyyy HH:mm:ss"));
-        System.out.println("10");
         
         return transacao;
     }
