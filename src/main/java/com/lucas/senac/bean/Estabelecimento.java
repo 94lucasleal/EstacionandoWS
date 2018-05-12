@@ -1,7 +1,5 @@
 package com.lucas.senac.bean;
 
-import java.util.Date;
-
 public class Estabelecimento {
 
     private Integer idestabelecimento;
@@ -27,25 +25,25 @@ public class Estabelecimento {
     private Integer vagastotal;
     private Integer vagasreservada;
     private Integer vagasdisponivel;
-    private Date entrada_segunda;
-    private Date entrada_terca;
-    private Date entrada_quarta;
-    private Date entrada_quinta;
-    private Date entrada_sexta;
-    private Date entrada_sabado;
-    private Date entrada_domingo;
-    private Date saida_segunda;
-    private Date saida_terca;
-    private Date saida_quarta;
-    private Date saida_quinta;
-    private Date saida_sexta;
-    private Date saida_sabado;
-    private Date saida_domingo;
+    private String entrada_segunda;
+    private String entrada_terca;
+    private String entrada_quarta;
+    private String entrada_quinta;
+    private String entrada_sexta;
+    private String entrada_sabado;
+    private String entrada_domingo;
+    private String saida_segunda;
+    private String saida_terca;
+    private String saida_quarta;
+    private String saida_quinta;
+    private String saida_sexta;
+    private String saida_sabado;
+    private String saida_domingo;
 
     public Estabelecimento() {
     }
 
-    public Estabelecimento(Integer idestabelecimento, Integer idusuario, Integer idtipoestabelecimento, String razaosocial, String cnpj, String estado, String municipio, String bairro, String logradouro, Integer cep, Integer numero, String referencia, Double latitude, Double longitude, Double valormeiahora, Double valorhora, Double valordiaria, Double valormensal, Double valoradicional, String imagem, Integer vagastotal, Integer vagasreservada, Integer vagasdisponivel, Date entrada_segunda, Date entrada_terca, Date entrada_quarta, Date entrada_quinta, Date entrada_sexta, Date entrada_sabado, Date entrada_domingo, Date saida_segunda, Date saida_terca, Date saida_quarta, Date saida_quinta, Date saida_sexta, Date saida_sabado, Date saida_domingo) {
+    public Estabelecimento(Integer idestabelecimento, Integer idusuario, Integer idtipoestabelecimento, String razaosocial, String cnpj, String estado, String municipio, String bairro, String logradouro, Integer cep, Integer numero, String referencia, Double latitude, Double longitude, Double valormeiahora, Double valorhora, Double valordiaria, Double valormensal, Double valoradicional, String imagem, Integer vagastotal, Integer vagasreservada, Integer vagasdisponivel, String entrada_segunda, String entrada_terca, String entrada_quarta, String entrada_quinta, String entrada_sexta, String entrada_sabado, String entrada_domingo, String saida_segunda, String saida_terca, String saida_quarta, String saida_quinta, String saida_sexta, String saida_sabado, String saida_domingo) {
         this.idestabelecimento = idestabelecimento;
         this.idusuario = idusuario;
         this.idtipoestabelecimento = idtipoestabelecimento;
@@ -269,115 +267,115 @@ public class Estabelecimento {
         this.vagasdisponivel = vagasdisponivel;
     }
 
-    public Date getEntrada_segunda() {
+    public String getEntrada_segunda() {
         return entrada_segunda;
     }
 
-    public void setEntrada_segunda(Date entrada_segunda) {
+    public void setEntrada_segunda(String entrada_segunda) {
         this.entrada_segunda = entrada_segunda;
     }
 
-    public Date getEntrada_terca() {
+    public String getEntrada_terca() {
         return entrada_terca;
     }
 
-    public void setEntrada_terca(Date entrada_terca) {
+    public void setEntrada_terca(String entrada_terca) {
         this.entrada_terca = entrada_terca;
     }
 
-    public Date getEntrada_quarta() {
+    public String getEntrada_quarta() {
         return entrada_quarta;
     }
 
-    public void setEntrada_quarta(Date entrada_quarta) {
+    public void setEntrada_quarta(String entrada_quarta) {
         this.entrada_quarta = entrada_quarta;
     }
 
-    public Date getEntrada_quinta() {
+    public String getEntrada_quinta() {
         return entrada_quinta;
     }
 
-    public void setEntrada_quinta(Date entrada_quinta) {
+    public void setEntrada_quinta(String entrada_quinta) {
         this.entrada_quinta = entrada_quinta;
     }
 
-    public Date getEntrada_sexta() {
+    public String getEntrada_sexta() {
         return entrada_sexta;
     }
 
-    public void setEntrada_sexta(Date entrada_sexta) {
+    public void setEntrada_sexta(String entrada_sexta) {
         this.entrada_sexta = entrada_sexta;
     }
 
-    public Date getEntrada_sabado() {
+    public String getEntrada_sabado() {
         return entrada_sabado;
     }
 
-    public void setEntrada_sabado(Date entrada_sabado) {
+    public void setEntrada_sabado(String entrada_sabado) {
         this.entrada_sabado = entrada_sabado;
     }
 
-    public Date getEntrada_domingo() {
+    public String getEntrada_domingo() {
         return entrada_domingo;
     }
 
-    public void setEntrada_domingo(Date entrada_domingo) {
+    public void setEntrada_domingo(String entrada_domingo) {
         this.entrada_domingo = entrada_domingo;
     }
 
-    public Date getSaida_segunda() {
+    public String getSaida_segunda() {
         return saida_segunda;
     }
 
-    public void setSaida_segunda(Date saida_segunda) {
+    public void setSaida_segunda(String saida_segunda) {
         this.saida_segunda = saida_segunda;
     }
 
-    public Date getSaida_terca() {
+    public String getSaida_terca() {
         return saida_terca;
     }
 
-    public void setSaida_terca(Date saida_terca) {
+    public void setSaida_terca(String saida_terca) {
         this.saida_terca = saida_terca;
     }
 
-    public Date getSaida_quarta() {
+    public String getSaida_quarta() {
         return saida_quarta;
     }
 
-    public void setSaida_quarta(Date saida_quarta) {
+    public void setSaida_quarta(String saida_quarta) {
         this.saida_quarta = saida_quarta;
     }
 
-    public Date getSaida_quinta() {
+    public String getSaida_quinta() {
         return saida_quinta;
     }
 
-    public void setSaida_quinta(Date saida_quinta) {
+    public void setSaida_quinta(String saida_quinta) {
         this.saida_quinta = saida_quinta;
     }
 
-    public Date getSaida_sexta() {
+    public String getSaida_sexta() {
         return saida_sexta;
     }
 
-    public void setSaida_sexta(Date saida_sexta) {
+    public void setSaida_sexta(String saida_sexta) {
         this.saida_sexta = saida_sexta;
     }
 
-    public Date getSaida_sabado() {
+    public String getSaida_sabado() {
         return saida_sabado;
     }
 
-    public void setSaida_sabado(Date saida_sabado) {
+    public void setSaida_sabado(String saida_sabado) {
         this.saida_sabado = saida_sabado;
     }
 
-    public Date getSaida_domingo() {
+    public String getSaida_domingo() {
         return saida_domingo;
     }
 
-    public void setSaida_domingo(Date saida_domingo) {
+    public void setSaida_domingo(String saida_domingo) {
         this.saida_domingo = saida_domingo;
     }
 
