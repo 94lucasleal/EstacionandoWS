@@ -22,9 +22,9 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
                     + "idtipoestabelecimento, razaoSocial, cnpj, estado, municipio, bairro, "
                     + "logradouro, cep, numero, referencia, latitude, longitude,"
                     + "valormeiahora, valorhora, valordiaria, valormensal, valoradicional, imagem, vagas_total, vagas_reservada, vagas_disponivel "
-                    + "entrada_segunda, entrada_terca, entrada_quarta, entrada_quinta, entrada_sexta,	entrada_sabado, entrada_domingo,"
+                    + "entrada_segunda, entrada_terca, entrada_quarta, entrada_quinta, entrada_sexta, entrada_sabado, entrada_domingo,"
                     + "saida_segunda, saida_terca, saida_quarta, saida_quinta, saida_sexta, saida_sabado, saida_domingo) "
-                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                    + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             pstm.setInt(1, bean.getIdusuario());
             pstm.setInt(2, bean.getIdtipoestabelecimento());
             pstm.setString(3, bean.getRazaosocial());
@@ -62,7 +62,6 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
             pstm.setTime(34, time);
             pstm.setTime(35, time);
             pstm.setTime(36, time);
-            pstm.setTime(37, time);
             
             System.out.println(pstm.toString());
             System.out.println("Salvando: " + bean);
