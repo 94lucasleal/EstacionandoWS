@@ -40,8 +40,8 @@ public class EstabelecimentoRN {
     @DELETE
     @Path("excluirEstabelecimento/{idestabelecimento}")
     public void excluirEstabelecimento(@PathParam("idestabelecimento") Integer idestabelecimento) {
-        Estabelecimento estabelecimento = new Estabelecimento(idestabelecimento, null, null, null, null, null, null, null, null, null,
-                null, null, null, null, null, null, null, null, null, null, null, null, null);
+        Estabelecimento estabelecimento = new Estabelecimento();
+        estabelecimento.setIdestabelecimento(idestabelecimento);
         estabalecimentoRNVAL.validarExcluirEstabelecimento(estabelecimento);
         estabelecimetoBD.excluirEstabelecimento(estabelecimento);
     }
@@ -50,8 +50,8 @@ public class EstabelecimentoRN {
     @Produces("application/json")
     @Path("consultarEstabelecimento/{idestabelecimento}")
     public String consultarEstabelecimento(@PathParam("idestabelecimento") Integer idestabelecimento) {
-        Estabelecimento estabelecimento = new Estabelecimento(idestabelecimento, null, null, null, null, null, null, null, null, null,
-                null, null, null, null, null, null, null, null, null, null, null, null, null);
+        Estabelecimento estabelecimento = new Estabelecimento();
+        estabelecimento.setIdestabelecimento(idestabelecimento);
         estabalecimentoRNVAL.validarConsultarEstabelecimento(estabelecimento);
         return gson.toJson(estabelecimetoBD.consultarEstabelecimento(estabelecimento));
     }

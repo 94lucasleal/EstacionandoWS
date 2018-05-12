@@ -17,8 +17,10 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
             PreparedStatement pstm = conn.prepareStatement("INSERT INTO estabelecimento (idusuario, "
                     + "idtipoestabelecimento, razaoSocial, cnpj, estado, municipio, bairro, "
                     + "logradouro, cep, numero, referencia, latitude, longitude,"
-                    + "valormeiahora, valorhora, valordiaria, valormensal, valoradicional, imagem, vagas_total, vagas_reservada, vagas_disponivel) "
-                    + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                    + "valormeiahora, valorhora, valordiaria, valormensal, valoradicional, imagem, vagas_total, vagas_reservada, vagas_disponivel "
+                    + "entrada_segunda, entrada_terca, entrada_quarta, entrada_quinta, entrada_sexta,	entrada_sabado, entrada_domingo,"
+                    + "saida_segunda, saida_terca, saida_quarta, saida_quinta, saida_sexta, saida_sabado, saida_domingo) "
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             pstm.setInt(1, bean.getIdusuario());
             pstm.setInt(2, bean.getIdtipoestabelecimento());
             pstm.setString(3, bean.getRazaosocial());
@@ -41,6 +43,21 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
             pstm.setInt(20, bean.getVagastotal());
             pstm.setInt(21, bean.getVagasreservada());
             pstm.setInt(22, bean.getVagasdisponivel());
+            pstm.setTimestamp(23, new java.sql.Timestamp(bean.getEntrada_segunda().getTime()));
+            pstm.setTimestamp(24, new java.sql.Timestamp(bean.getEntrada_terca().getTime()));
+            pstm.setTimestamp(25, new java.sql.Timestamp(bean.getEntrada_quarta().getTime()));
+            pstm.setTimestamp(26, new java.sql.Timestamp(bean.getEntrada_quinta().getTime()));
+            pstm.setTimestamp(27, new java.sql.Timestamp(bean.getEntrada_sexta().getTime()));
+            pstm.setTimestamp(28, new java.sql.Timestamp(bean.getEntrada_sabado().getTime()));
+            pstm.setTimestamp(29, new java.sql.Timestamp(bean.getEntrada_domingo().getTime()));
+            pstm.setTimestamp(30, new java.sql.Timestamp(bean.getSaida_segunda().getTime()));
+            pstm.setTimestamp(31, new java.sql.Timestamp(bean.getSaida_terca().getTime()));
+            pstm.setTimestamp(32, new java.sql.Timestamp(bean.getSaida_quarta().getTime()));
+            pstm.setTimestamp(33, new java.sql.Timestamp(bean.getSaida_quinta().getTime()));
+            pstm.setTimestamp(34, new java.sql.Timestamp(bean.getSaida_sexta().getTime()));
+            pstm.setTimestamp(35, new java.sql.Timestamp(bean.getSaida_sabado().getTime()));
+            pstm.setTimestamp(36, new java.sql.Timestamp(bean.getSaida_sabado().getTime()));
+            pstm.setTimestamp(37, new java.sql.Timestamp(bean.getSaida_domingo().getTime()));
             
             System.out.println(pstm.toString());
             System.out.println("Salvando: " + bean);
@@ -114,6 +131,21 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
                 estabelecimentoRetorno.setVagastotal(rs.getInt("vagas_total"));
                 estabelecimentoRetorno.setVagasreservada(rs.getInt("vagas_reservada"));
                 estabelecimentoRetorno.setVagasdisponivel(rs.getInt("vagas_disponivel"));
+                estabelecimentoRetorno.setEntrada_segunda(rs.getTime("entrada_segunda"));
+                estabelecimentoRetorno.setSaida_segunda(rs.getTime("saida_segunda"));
+                estabelecimentoRetorno.setEntrada_terca(rs.getTime("entrada_terca"));
+                estabelecimentoRetorno.setSaida_terca(rs.getTime("saida_terca"));
+                estabelecimentoRetorno.setEntrada_quarta(rs.getTime("entrada_quarta"));
+                estabelecimentoRetorno.setSaida_quarta(rs.getTime("saida_quarta"));
+                estabelecimentoRetorno.setEntrada_quinta(rs.getTime("entrada_quinta"));
+                estabelecimentoRetorno.setSaida_quinta(rs.getTime("saida_quinta"));
+                estabelecimentoRetorno.setEntrada_sexta(rs.getTime("entrada_sexta"));
+                estabelecimentoRetorno.setSaida_sexta(rs.getTime("saida_sexta"));
+                estabelecimentoRetorno.setEntrada_sabado(rs.getTime("entrada_sabado"));
+                estabelecimentoRetorno.setSaida_sabado(rs.getTime("saida_sabado"));
+                estabelecimentoRetorno.setEntrada_domingo(rs.getTime("entrada_domingo"));
+                estabelecimentoRetorno.setSaida_domingo(rs.getTime("saida_domingo"));
+                
             }
             System.out.println("Consulta executada com sucesso");
         } catch (Exception e) {
@@ -264,6 +296,20 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
                 estabelecimento.setVagastotal(rs.getInt("vagas_total"));
                 estabelecimento.setVagasreservada(rs.getInt("vagas_reservada"));
                 estabelecimento.setVagasdisponivel(rs.getInt("vagas_disponivel"));
+                estabelecimento.setEntrada_segunda(rs.getTime("entrada_segunda"));
+                estabelecimento.setSaida_segunda(rs.getTime("saida_segunda"));
+                estabelecimento.setEntrada_terca(rs.getTime("entrada_terca"));
+                estabelecimento.setSaida_terca(rs.getTime("saida_terca"));
+                estabelecimento.setEntrada_quarta(rs.getTime("entrada_quarta"));
+                estabelecimento.setSaida_quarta(rs.getTime("saida_quarta"));
+                estabelecimento.setEntrada_quinta(rs.getTime("entrada_quinta"));
+                estabelecimento.setSaida_quinta(rs.getTime("saida_quinta"));
+                estabelecimento.setEntrada_sexta(rs.getTime("entrada_sexta"));
+                estabelecimento.setSaida_sexta(rs.getTime("saida_sexta"));
+                estabelecimento.setEntrada_sabado(rs.getTime("entrada_sabado"));
+                estabelecimento.setSaida_sabado(rs.getTime("saida_sabado"));
+                estabelecimento.setEntrada_domingo(rs.getTime("entrada_domingo"));
+                estabelecimento.setSaida_domingo(rs.getTime("saida_domingo"));
 
                 lista.add(estabelecimento);
                 System.out.println(estabelecimento.toString());
@@ -318,6 +364,20 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
                 estabelecimento.setVagastotal(rs.getInt("vagas_total"));
                 estabelecimento.setVagasreservada(rs.getInt("vagas_reservada"));
                 estabelecimento.setVagasdisponivel(rs.getInt("vagas_disponivel"));
+                estabelecimento.setEntrada_segunda(rs.getTime("entrada_segunda"));
+                estabelecimento.setSaida_segunda(rs.getTime("saida_segunda"));
+                estabelecimento.setEntrada_terca(rs.getTime("entrada_terca"));
+                estabelecimento.setSaida_terca(rs.getTime("saida_terca"));
+                estabelecimento.setEntrada_quarta(rs.getTime("entrada_quarta"));
+                estabelecimento.setSaida_quarta(rs.getTime("saida_quarta"));
+                estabelecimento.setEntrada_quinta(rs.getTime("entrada_quinta"));
+                estabelecimento.setSaida_quinta(rs.getTime("saida_quinta"));
+                estabelecimento.setEntrada_sexta(rs.getTime("entrada_sexta"));
+                estabelecimento.setSaida_sexta(rs.getTime("saida_sexta"));
+                estabelecimento.setEntrada_sabado(rs.getTime("entrada_sabado"));
+                estabelecimento.setSaida_sabado(rs.getTime("saida_sabado"));
+                estabelecimento.setEntrada_domingo(rs.getTime("entrada_domingo"));
+                estabelecimento.setSaida_domingo(rs.getTime("saida_domingo"));
 
                 lista.add(estabelecimento);
                 System.out.println(estabelecimento.toString());
@@ -369,6 +429,20 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
                 estabelecimento.setVagastotal(rs.getInt("vagas_total"));
                 estabelecimento.setVagasreservada(rs.getInt("vagas_reservada"));
                 estabelecimento.setVagasdisponivel(rs.getInt("vagas_disponivel"));
+                estabelecimento.setEntrada_segunda(rs.getTime("entrada_segunda"));
+                estabelecimento.setSaida_segunda(rs.getTime("saida_segunda"));
+                estabelecimento.setEntrada_terca(rs.getTime("entrada_terca"));
+                estabelecimento.setSaida_terca(rs.getTime("saida_terca"));
+                estabelecimento.setEntrada_quarta(rs.getTime("entrada_quarta"));
+                estabelecimento.setSaida_quarta(rs.getTime("saida_quarta"));
+                estabelecimento.setEntrada_quinta(rs.getTime("entrada_quinta"));
+                estabelecimento.setSaida_quinta(rs.getTime("saida_quinta"));
+                estabelecimento.setEntrada_sexta(rs.getTime("entrada_sexta"));
+                estabelecimento.setSaida_sexta(rs.getTime("saida_sexta"));
+                estabelecimento.setEntrada_sabado(rs.getTime("entrada_sabado"));
+                estabelecimento.setSaida_sabado(rs.getTime("saida_sabado"));
+                estabelecimento.setEntrada_domingo(rs.getTime("entrada_domingo"));
+                estabelecimento.setSaida_domingo(rs.getTime("saida_domingo"));
 
                 lista.add(estabelecimento);
                 System.out.println(estabelecimento.toString());
