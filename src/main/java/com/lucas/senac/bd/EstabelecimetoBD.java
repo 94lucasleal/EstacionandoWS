@@ -21,7 +21,7 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
             PreparedStatement pstm = conn.prepareStatement("INSERT INTO estabelecimento (idusuario, "
                     + "idtipoestabelecimento, razaoSocial, cnpj, estado, municipio, bairro, "
                     + "logradouro, cep, numero, referencia, latitude, longitude,"
-                    + "valormeiahora, valorhora, valordiaria, valormensal, valoradicional, imagem, vagas_total, vagas_reservada, vagas_disponivel "
+                    + "valormeiahora, valorhora, valordiaria, valormensal, valoradicional, imagem, vagas_total, vagas_reservada, vagas_disponivel, "
                     + "entrada_segunda, entrada_terca, entrada_quarta, entrada_quinta, entrada_sexta, entrada_sabado, entrada_domingo,"
                     + "saida_segunda, saida_terca, saida_quarta, saida_quinta, saida_sexta, saida_sabado, saida_domingo) "
                     + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
