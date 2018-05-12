@@ -131,20 +131,20 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
                 estabelecimentoRetorno.setVagastotal(rs.getInt("vagas_total"));
                 estabelecimentoRetorno.setVagasreservada(rs.getInt("vagas_reservada"));
                 estabelecimentoRetorno.setVagasdisponivel(rs.getInt("vagas_disponivel"));
-                estabelecimentoRetorno.setEntrada_segunda(rs.getTime("entrada_segunda"));
-                estabelecimentoRetorno.setSaida_segunda(rs.getTime("saida_segunda"));
-                estabelecimentoRetorno.setEntrada_terca(rs.getTime("entrada_terca"));
-                estabelecimentoRetorno.setSaida_terca(rs.getTime("saida_terca"));
-                estabelecimentoRetorno.setEntrada_quarta(rs.getTime("entrada_quarta"));
-                estabelecimentoRetorno.setSaida_quarta(rs.getTime("saida_quarta"));
-                estabelecimentoRetorno.setEntrada_quinta(rs.getTime("entrada_quinta"));
-                estabelecimentoRetorno.setSaida_quinta(rs.getTime("saida_quinta"));
-                estabelecimentoRetorno.setEntrada_sexta(rs.getTime("entrada_sexta"));
-                estabelecimentoRetorno.setSaida_sexta(rs.getTime("saida_sexta"));
-                estabelecimentoRetorno.setEntrada_sabado(rs.getTime("entrada_sabado"));
-                estabelecimentoRetorno.setSaida_sabado(rs.getTime("saida_sabado"));
-                estabelecimentoRetorno.setEntrada_domingo(rs.getTime("entrada_domingo"));
-                estabelecimentoRetorno.setSaida_domingo(rs.getTime("saida_domingo"));
+                estabelecimentoRetorno.setEntrada_segunda(rs.getDate("entrada_segunda"));
+                estabelecimentoRetorno.setSaida_segunda(rs.getDate("saida_segunda"));
+                estabelecimentoRetorno.setEntrada_terca(rs.getDate("entrada_terca"));
+                estabelecimentoRetorno.setSaida_terca(rs.getDate("saida_terca"));
+                estabelecimentoRetorno.setEntrada_quarta(rs.getDate("entrada_quarta"));
+                estabelecimentoRetorno.setSaida_quarta(rs.getDate("saida_quarta"));
+                estabelecimentoRetorno.setEntrada_quinta(rs.getDate("entrada_quinta"));
+                estabelecimentoRetorno.setSaida_quinta(rs.getDate("saida_quinta"));
+                estabelecimentoRetorno.setEntrada_sexta(rs.getDate("entrada_sexta"));
+                estabelecimentoRetorno.setSaida_sexta(rs.getDate("saida_sexta"));
+                estabelecimentoRetorno.setEntrada_sabado(rs.getDate("entrada_sabado"));
+                estabelecimentoRetorno.setSaida_sabado(rs.getDate("saida_sabado"));
+                estabelecimentoRetorno.setEntrada_domingo(rs.getDate("entrada_domingo"));
+                estabelecimentoRetorno.setSaida_domingo(rs.getDate("saida_domingo"));
                 
             }
             System.out.println("Consulta executada com sucesso");
