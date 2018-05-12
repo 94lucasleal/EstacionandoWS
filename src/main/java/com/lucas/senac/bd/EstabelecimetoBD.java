@@ -46,9 +46,10 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
             pstm.setInt(20, bean.getVagastotal());
             pstm.setInt(21, bean.getVagasreservada());
             pstm.setInt(22, bean.getVagasdisponivel());
-            System.out.println("1"+pstm.toString());
-            System.out.println("2"+bean.getEntrada_segunda());
-            System.out.println("3"+format.parse(bean.getEntrada_segunda()).getTime());
+            System.out.println("1= "+pstm.toString());
+            System.out.println("2= "+bean.getEntrada_segunda());
+            System.out.println("3= "+format.parse(bean.getEntrada_segunda()).toString());
+            System.out.println("4= "+format.parse(bean.getEntrada_segunda()).getTime());
             pstm.setTimestamp(23, new java.sql.Timestamp(format.parse(bean.getEntrada_segunda()).getTime()));
             pstm.setTimestamp(24, new java.sql.Timestamp(format.parse(bean.getEntrada_terca()).getTime()));
             pstm.setTimestamp(25, new java.sql.Timestamp(format.parse(bean.getEntrada_quarta()).getTime()));
