@@ -106,6 +106,7 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
             PreparedStatement pstm = conn.prepareStatement("SELECT * FROM estabelecimento WHERE idestabelecimento=?");
             pstm.setInt(1, bean.getIdestabelecimento());
 
+            System.out.println(pstm.toString());
             System.out.println("Consultando: " + bean);
             ResultSet rs = pstm.executeQuery();
             if (rs.next()) {
@@ -168,7 +169,8 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
                     + "idtipoestabelecimento = ?, razaoSocial = ?, cnpj = ?, estado = ?, municipio = ?, bairro = ?, "
                     + "logradouro = ?, cep = ?, numero = ?, referencia = ?, latitude = ?, longitude = ?, "
                     + "valormeiahora = ?, valorhora = ?, valordiaria = ?, valormensal = ?, valoradicional = ?, imagem = ?, vagas_total = ?, "
-                    + "vagas_reservada = ?, vagas_disponivel = ? "
+                    + "vagas_reservada = ?, vagas_disponivel = ?, entrada_segunda=?, entrada_terca=?, entrada_quarta=?, entrada_quinta=?, entrada_sexta=?, entrada_sabado=?, entrada_domingo=?,"
+                    + "saida_segunda=?, saida_terca=?, saida_quarta=?, saida_quinta=?, saida_sexta=?, saida_sabado=?, saida_domingo=? "
                     + "WHERE idestabelecimento = ?");
             pstm.setInt(1, bean.getIdusuario());
             pstm.setInt(2, bean.getIdtipoestabelecimento());
@@ -192,64 +194,27 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
             pstm.setInt(20, bean.getVagastotal());
             pstm.setInt(21, bean.getVagasreservada());
             pstm.setInt(22, bean.getVagasdisponivel());
-            pstm.setInt(23, bean.getIdestabelecimento());
-            
+            pstm.setTime(23, new java.sql.Time(format.parse(bean.getEntrada_segunda()).getTime()));
+            pstm.setTime(24, new java.sql.Time(format.parse(bean.getEntrada_terca()).getTime()));
+            pstm.setTime(25, new java.sql.Time(format.parse(bean.getEntrada_quarta()).getTime()));
+            pstm.setTime(26, new java.sql.Time(format.parse(bean.getEntrada_quinta()).getTime()));
+            pstm.setTime(27, new java.sql.Time(format.parse(bean.getEntrada_sexta()).getTime()));
+            pstm.setTime(28, new java.sql.Time(format.parse(bean.getEntrada_sabado()).getTime()));
+            pstm.setTime(29, new java.sql.Time(format.parse(bean.getEntrada_domingo()).getTime()));
+            pstm.setTime(30, new java.sql.Time(format.parse(bean.getSaida_segunda()).getTime()));
+            pstm.setTime(31, new java.sql.Time(format.parse(bean.getSaida_terca()).getTime()));
+            pstm.setTime(32, new java.sql.Time(format.parse(bean.getSaida_quarta()).getTime()));
+            pstm.setTime(33, new java.sql.Time(format.parse(bean.getSaida_quinta()).getTime()));
+            pstm.setTime(34, new java.sql.Time(format.parse(bean.getSaida_sexta()).getTime()));
+            pstm.setTime(35, new java.sql.Time(format.parse(bean.getSaida_sabado()).getTime()));
+            pstm.setTime(36, new java.sql.Time(format.parse(bean.getSaida_domingo()).getTime()));
+            pstm.setInt(37, bean.getIdestabelecimento());
 
-
-            System.out.println("Alterando: " + bean);
-            pstm.execute();
-            commitTransacao(conn);
-            System.out.println("Alteração executada com sucesso");
-            System.out.println(bean.toString());
-        } catch (Exception e) {
-            rollbackTransacao(conn);
-            throw new RuntimeException(e);
-        } finally {
-            fecharConexao(conn);
-        }
-    }
-    
-    public void alterarEstabelecimentoCompleto(Estabelecimento bean) {
-        Connection conn = null;
-        try {
-            conn = abrirConexao();
-
-            PreparedStatement pstm = conn.prepareStatement("UPDATE estabelecimento SET idusuario = ?, "
-                    + "idtipoestabelecimento = ?, razaoSocial = ?, cnpj = ?, estado = ?, municipio = ?, bairro = ?, "
-                    + "logradouro = ?, cep = ?, numero = ?, referencia = ?, latitude = ?, longitude = ?,"
-                    + "valormeiahora = ?, valorhora = ?, valordiaria = ?, valormensal = ?, valoradicional = ?, imagem = ?, "
-                    + "vagas_total = ?, vagas_reservada = ?, vagas_disponivel = ? "
-                    + "WHERE idestabelecimento = ?");
-            pstm.setInt(1, bean.getIdusuario());
-            pstm.setInt(2, bean.getIdtipoestabelecimento());
-            pstm.setString(3, bean.getRazaosocial());
-            pstm.setString(4, bean.getCnpj());
-            pstm.setString(5, bean.getEstado());
-            pstm.setString(6, bean.getMunicipio());
-            pstm.setString(7, bean.getBairro());
-            pstm.setString(8, bean.getLogradouro());
-            pstm.setInt(9, bean.getCep());
-            pstm.setInt(10, bean.getNumero());
-            pstm.setString(11, bean.getReferencia());
-            pstm.setDouble(12, bean.getLatitude());
-            pstm.setDouble(13, bean.getLongitude());
-            pstm.setDouble(14, bean.getValormeiahora());
-            pstm.setDouble(15, bean.getValorhora());
-            pstm.setDouble(16, bean.getValordiaria());
-            pstm.setDouble(17, bean.getValormensal());
-            pstm.setDouble(18, bean.getValoradicional());
-            pstm.setString(19, bean.getImagem());
-            pstm.setInt(20, bean.getVagastotal());
-            pstm.setInt(21, bean.getVagasreservada());
-            pstm.setInt(22, bean.getVagasdisponivel());
-            pstm.setInt(23, bean.getIdestabelecimento());
-
-            System.out.println("Alterando: " + bean);
             System.out.println("Script: " + pstm.toString());
+            System.out.println("Alterando: " + bean);
             pstm.execute();
             commitTransacao(conn);
             System.out.println("Alteração executada com sucesso");
-            System.out.println(bean.toString());
         } catch (Exception e) {
             rollbackTransacao(conn);
             throw new RuntimeException(e);
@@ -257,7 +222,7 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
             fecharConexao(conn);
         }
     }
-    
+        
     public ArrayList<Estabelecimento> pesquisarEstabelecimentoUsuario(String pesquisa) {
         ArrayList<Estabelecimento> lista = new ArrayList<Estabelecimento>();
 
@@ -270,6 +235,7 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
             pstm.setInt(1,Integer.parseInt(pesquisa));
 
             System.out.println("2: " + pesquisa);
+            System.out.println(pstm.toString());
             System.out.println("Pesquisando: " + pesquisa);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
@@ -339,6 +305,7 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
             pstm.setString(2, "%" + pesquisa + "%");
 
             System.out.println("Pesquisando: " + pesquisa);
+            System.out.println(pstm.toString());
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
                 System.out.println("Registro encontrado");
@@ -404,6 +371,7 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
             PreparedStatement pstm = conn.prepareStatement("select * from estabelecimento order by idestabelecimento");
 
             System.out.println("Pesquisando: ");
+            System.out.println(pstm.toString());
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
                 System.out.println("Registro encontrado");
