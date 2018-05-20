@@ -6,6 +6,7 @@ import me.pagar.model.Customer;
 
 public class Pagamento {
 
+    private Integer idpagamento;
     private Integer idestabelecimento;
     private Integer idusuario;
     private Double value;
@@ -18,7 +19,8 @@ public class Pagamento {
     public Pagamento() {
     }
 
-    public Pagamento(Integer idestabelecimento, Integer idusuario, Double value, String token, int parcels, String dta_entrada, String dta_saida, Customers customer) {
+    public Pagamento(Integer idpagamento, Integer idestabelecimento, Integer idusuario, Double value, String token, int parcels, String dta_entrada, String dta_saida, Customers customer) {
+        this.idpagamento = idpagamento;
         this.idestabelecimento = idestabelecimento;
         this.idusuario = idusuario;
         this.value = value;
@@ -27,6 +29,14 @@ public class Pagamento {
         this.dta_entrada = dta_entrada;
         this.dta_saida = dta_saida;
         this.customer = customer;
+    }
+
+    public Integer getIdpagamento() {
+        return idpagamento;
+    }
+
+    public void setIdpagamento(Integer idpagamento) {
+        this.idpagamento = idpagamento;
     }
 
     public Integer getIdestabelecimento() {
@@ -95,6 +105,7 @@ public class Pagamento {
 
     @Override
     public String toString() {
-        return "Pagamento{" + "idestabelecimento=" + idestabelecimento + ", idusuario=" + idusuario + ", value=" + value + ", token=" + token + ", parcels=" + parcels + ", dta_entrada=" + dta_entrada + ", dta_saida=" + dta_saida + ", customer=" + customer + '}';
+        return "Pagamento{" + "idpagamento=" + idpagamento + ", idestabelecimento=" + idestabelecimento + ", idusuario=" + idusuario + ", value=" + value + ", token=" + token + ", parcels=" + parcels + ", dta_entrada=" + dta_entrada + ", dta_saida=" + dta_saida + ", customer=" + customer + '}';
     }
+
 }

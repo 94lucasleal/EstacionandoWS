@@ -1,22 +1,14 @@
 package com.lucas.senac.rn;
 
 import com.google.gson.Gson;
-import com.lucas.senac.bd.PagamentoBD;
-import com.lucas.senac.bean.Estabelecimento;
+import com.lucas.senac.bd.TransacaoBD;
 import com.lucas.senac.bean.Pagamento;
 import com.lucas.senac.bean.utils.Customers;
-import com.lucas.senac.bean.utils.Endereco;
-import com.lucas.senac.bean.Historico;
 import com.lucas.senac.bean.Usuario;
-import com.lucas.senac.bean.utils.Cartao;
-import com.lucas.senac.bean.utils.Telefone;
-import com.lucas.senac.bean.utils.Transacao;
-import com.lucas.senac.rnval.CartaoRNVAL;
+import com.lucas.senac.bean.Transacao;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collection;
-import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -32,18 +24,16 @@ import me.pagar.model.Address;
 import me.pagar.model.Customer;
 import me.pagar.model.Phone;
 
-@Path("pagamento/")
-public class PagamentoRN {
+@Path("transacao/")
+public class TransacaoRN {
     
-    private final PagamentoBD cartaoBD;
-    private final CartaoRNVAL cartaoRNVal;
+    private final TransacaoBD transacaoBD;
     private final Gson gson;
     
     SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
-    public PagamentoRN() {
-        cartaoBD = new PagamentoBD();
-        cartaoRNVal = new CartaoRNVAL();
+    public TransacaoRN() {
+        transacaoBD = new TransacaoBD();
         gson = new Gson();
     }
     
@@ -57,13 +47,15 @@ public class PagamentoRN {
         Pagamento pagamento = (Pagamento) gson.fromJson(content, Pagamento.class);
         System.out.println(pagamento);
         
+        
         UsuarioRN usuarioRN = new UsuarioRN();
         String aux1 = usuarioRN.consultar(pagamento.getIdusuario());
         Usuario user = (Usuario) gson.fromJson(aux1, Usuario.class);
-        
+        /*
         EstabelecimentoRN estabelecimentoRN = new EstabelecimentoRN();
         String aux2 = estabelecimentoRN.consultarEstabelecimento(pagamento.getIdestabelecimento());
         Estabelecimento estabelecimento = (Estabelecimento) gson.fromJson(aux2, Estabelecimento.class);
+        */
         
         Address address = new Address(pagamento.getCustomer().getAddresses().get(0).getStreet(), 
                                       pagamento.getCustomer().getAddresses().get(0).getStreetNumber(), 
@@ -98,14 +90,12 @@ public class PagamentoRN {
             
             Transacao transacao = carregaTransacao(tx);
             
-            Historico historico = new Historico();
-            historico.setDta_entrada(format.parse(pagamento.getDta_entrada()));
-            historico.setDta_saida(format.parse(pagamento.getDta_saida()));
-            historico.setTrancasao(transacao);
-            historico.setUsuario(user);
-            historico.setEstabelecimento(estabelecimento);
+            transacao.setDta_entrada(format.parse(pagamento.getDta_entrada()));
+            transacao.setDta_saida(format.parse(pagamento.getDta_saida()));
+            transacao.setIdusuario(pagamento.getIdusuario());
+            transacao.setIdestabelecimento(pagamento.getIdestabelecimento());
                               
-            cartaoBD.inserir(historico);
+            transacaoBD.inserir(transacao);
 
             return gson.toJson(tx);
         } catch (Exception e) {
@@ -122,7 +112,8 @@ public class PagamentoRN {
         System.out.println(content);
         Pagamento pagamento = (Pagamento) gson.fromJson(content, Pagamento.class);
         System.out.println(pagamento);
-        
+       
+        /*
         UsuarioRN usuarioRN = new UsuarioRN();
         String aux1 = usuarioRN.consultar(pagamento.getIdusuario());
         Usuario user = (Usuario) gson.fromJson(aux1, Usuario.class);
@@ -130,6 +121,7 @@ public class PagamentoRN {
         EstabelecimentoRN estabelecimentoRN = new EstabelecimentoRN();
         String aux2 = estabelecimentoRN.consultarEstabelecimento(pagamento.getIdestabelecimento());
         Estabelecimento estabelecimento = (Estabelecimento) gson.fromJson(aux2, Estabelecimento.class);
+        */
                
         Double value = pagamento.getValue() * 100;
         
@@ -141,16 +133,13 @@ public class PagamentoRN {
             tx.save();
             System.out.println(gson.toJson(tx));
             
-            Transacao transacao = carregaTransacao(tx);
-            
-            Historico historico = new Historico();
-            historico.setDta_entrada(format.parse(pagamento.getDta_entrada()));
-            historico.setDta_saida(format.parse(pagamento.getDta_saida()));
-            historico.setTrancasao(transacao);
-            historico.setUsuario(user);
-            historico.setEstabelecimento(estabelecimento);
-                              
-            cartaoBD.inserir(historico);
+            Transacao transacao = carregaTransacao(tx);  
+            transacao.setIdusuario(pagamento.getIdusuario());
+            transacao.setIdestabelecimento(pagamento.getIdestabelecimento());
+            transacao.setDta_entrada(format.parse(pagamento.getDta_entrada()));
+            transacao.setDta_saida(format.parse(pagamento.getDta_saida()));
+             
+            transacaoBD.inserir(transacao);
 
             return gson.toJson(tx);
         } catch (Exception e) {
@@ -162,118 +151,59 @@ public class PagamentoRN {
     public Transacao carregaTransacao(Transaction tx){
         Transacao transacao = new Transacao();
         transacao.setAmount(tx.getAmount());
-        transacao.setRefundedAmount(tx.getRefundedAmount());
-        transacao.setAuthorizedAmount(tx.getAuthorizedAmount());
-        transacao.setPaidAmount(tx.getPaidAmount());
+        transacao.setRefunded_amount(tx.getRefundedAmount());
+        transacao.setAuthorized_amount(tx.getAuthorizedAmount());
+        transacao.setPaid_amount(tx.getPaidAmount());
         transacao.setInstallments(tx.getInstallments());
         transacao.setCost(tx.getCost());
         transacao.setTid(tx.getTid());
         transacao.setNsu(tx.getNsu());
-        transacao.setBoletoUrl(tx.getBoletoUrl());
-        transacao.setBoletoBarcode(tx.getBoletoBarcode());
+        transacao.setBoleto_url(tx.getBoletoUrl());
+        transacao.setBoleto_barcode(tx.getBoletoBarcode());
         transacao.setReferer(tx.getReferer());
         transacao.setIp(tx.getIp());
-        transacao.setAcquirerName(tx.getAcquirerName().name());
-        transacao.setPaymentMethod(tx.getPaymentMethod().name());
+        transacao.setAcquirer_name(tx.getAcquirerName().name());
+        transacao.setPayment_method(tx.getPaymentMethod().name());
         transacao.setStatus(tx.getStatus().name());
-        transacao.setStatusReason(tx.getStatusReason().name());
-        transacao.setDateUpdated(tx.getUpdatedAt().toString("dd/MM/yyyy HH:mm:ss"));
+        transacao.setStatus_reason(tx.getStatusReason().name());
+        transacao.setDate_updated(tx.getUpdatedAt().toString("dd/MM/yyyy HH:mm:ss"));
 
         Customers cus = new Customers();
         if (tx.getCustomer() != null) {
-                
-            cus.setDocumentNumber(tx.getCustomer().getDocumentNumber());
-            cus.setName(tx.getCustomer().getName());
-            cus.setEmail(tx.getCustomer().getEmail());
-
-            List<Telefone> tels = new ArrayList<Telefone>();
-            for (Phone a : tx.getCustomer().getPhones()) {
-                Telefone tel = new Telefone();
-                tel.setDdi(a.getDdi());
-                tel.setDdd(a.getDdd());
-                tel.setNumber(a.getNumber());
-                tels.add(tel);
-            }
-            cus.setPhones(tels);
-
-            List<Endereco> ends = new ArrayList<Endereco>();
-            for (Address a : tx.getCustomer().getAddresses()) {
-                Endereco end = new Endereco();
-                end.setStreet(a.getStreet());
-                end.setStreetNumber(a.getStreetNumber());
-                end.setNeighborhood(a.getNeighborhood());
-                end.setZipcode(a.getZipcode());
-                ends.add(end);
-            }
-            cus.setAddresses(ends);
-            
-            transacao.setCustomer(cus);
+            transacao.setCustomers_document(tx.getCustomer().getDocumentNumber());
+            transacao.setCustomers_email(tx.getCustomer().getEmail());
+            transacao.setCustomers_name(tx.getCustomer().getName());
         }
 
         if (tx.getCard() != null){
-            Cartao card = new Cartao();
-            card.setBrand(tx.getCard().getBrand().name());
-            card.setLastDigits(tx.getCard().getLastDigits());
-            card.setFirstDigits(tx.getCard().getFirstDigits());
-            card.setCountry(tx.getCard().getCountry());
-            card.setId(tx.getCard().getId());
-            card.setHolderName(tx.getCard().getHolderName());
-            card.setValid(tx.getCard().getValid());
-            transacao.setCard(card);
+            transacao.setCartao_brand(tx.getCard().getBrand().name());
+            transacao.setCartao_first_digits(tx.getCard().getFirstDigits());
+            transacao.setCartao_last_digits(tx.getCard().getLastDigits());
+            transacao.setCartao_name(tx.getCard().getHolderName());
+            transacao.setCartao_valid(tx.getCard().getValid());
         }
         
         transacao.setId(tx.getId());
-        transacao.setDateCreated(tx.getCreatedAt().toString("dd/MM/yyyy HH:mm:ss"));
+        transacao.setDate_created(tx.getCreatedAt().toString("dd/MM/yyyy HH:mm:ss"));
         
         return transacao;
     }
     
-    /*
-    
-    @GET
-    @Consumes({"application/json"})
-    @Path("pagamento/{id}/{value}/{token}/{parcels}")
-    public String pagamento(@PathParam("id") String id,
-                            @PathParam("value") Double value,
-                            @PathParam("token") String token,
-                            @PathParam("parcels") int parcels){
-        
-        Pagamento cartao = new Pagamento(0,0,id, value, token, parcels,null,null);
-        System.out.println(cartao);
-        PagarMe.init("ak_test_U9HHME9pST6E6ZDv0cBWeVfd3UoVLG");
-        Map<String, Object> metadata = new HashMap<String, Object>();
-        metadata.put("id", cartao.getProduct_id());
-        Double valor = cartao.getValue() * 100;
-        try {
-            Transaction tx = new Transaction();
-            tx.setAmount(valor.intValue());
-            tx.setCardHash(cartao.getToken());
-            tx.setPaymentMethod(PaymentMethod.CREDIT_CARD);
-            tx.setMetadata(metadata);
-            tx.save();
-            System.out.println(gson.toJson(tx));
-            return gson.toJson(tx);
-        } catch (Exception e) {
-            System.out.println(e);
-            return e.toString();
-        }          
-    }
-    
     @DELETE
-    @Path("excluir/{id}")
-    public void excluir(@PathParam("id") String id) {
-        Pagamento cartao = new Pagamento(0,0,id,null,null,0,null,null);
-        //cartaoRNVal.validarExcluirCartao(cartao);
-        //cartaoBD.excluirCartao(cartao);
+    @Path("excluir/{idtransacao}")
+    public void excluir(@PathParam("idtransacao") int idtransacao) {
+        Transacao transacao = new Transacao();
+        transacao.setIdtransacao(idtransacao);
+        transacaoBD.excluir(transacao);
     }
     
     @GET
     @Produces("application/json")
-    @Path("consultar/{id}")
-    public Pagamento consultar(@PathParam("id") String id) {
-        Pagamento cartao = new Pagamento(0,0,id,null,null,0,null,null);
-        //cartaoRNVal.validarConsultarCartao(cartao);
-        return cartaoBD.consultarCartao(cartao);
+    @Path("consultar/{idtransacao}")
+    public Transacao consultar(@PathParam("idtransacao") int idtransacao) {
+        Transacao transacao = new Transacao();
+        transacao.setIdtransacao(idtransacao);
+        return transacaoBD.consultar(transacao);
     }
     
     @PUT
@@ -281,22 +211,22 @@ public class PagamentoRN {
     @Path("alterar")
     public void alterar(String content) {
         System.out.println(content);
-        Pagamento cartao = (Pagamento) gson.fromJson(content, Pagamento.class);
-        System.out.println("Chegou aqui:"+cartao);
+        Transacao transacao = (Transacao) gson.fromJson(content, Transacao.class);
+        System.out.println("Chegou aqui:"+transacao);
     }
     
     @GET
     @Produces("application/json")
     @Path("pesquisar/{pesquisa}")
     public String pesquisar(@PathParam("pesquisa")  String pesquisa) {
-        return gson.toJson(cartaoBD.pesquisar(pesquisa));
+        return gson.toJson(transacaoBD.pesquisar(pesquisa));
     }
     
     @GET
     @Produces("application/json")
     @Path("buscarTodos")
     public String buscarTodos() {
-        return gson.toJson(cartaoBD.buscarTodosCartao());
+        return gson.toJson(transacaoBD.buscarTodos());
     }
-*/
+
 }

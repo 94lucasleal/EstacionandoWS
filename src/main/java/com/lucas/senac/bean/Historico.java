@@ -1,11 +1,10 @@
 package com.lucas.senac.bean;
 
-import com.lucas.senac.bean.utils.Transacao;
 import java.util.Date;
 
 public class Historico {
 
-    private int id_pagamento;
+    private int idhistorico;
     private Estabelecimento estabelecimento;
     private Usuario usuario;
     private Transacao trancasao;
@@ -15,8 +14,8 @@ public class Historico {
     public Historico() {
     }
 
-    public Historico(int id_pagamento, Estabelecimento estabelecimento, Usuario usuario, Transacao trancasao, Date dta_entrada, Date dta_saida) {
-        this.id_pagamento = id_pagamento;
+    public Historico(int idhistorico, Estabelecimento estabelecimento, Usuario usuario, Transacao trancasao, Date dta_entrada, Date dta_saida) {
+        this.idhistorico = idhistorico;
         this.estabelecimento = estabelecimento;
         this.usuario = usuario;
         this.trancasao = trancasao;
@@ -24,12 +23,12 @@ public class Historico {
         this.dta_saida = dta_saida;
     }
 
-    public int getId_pagamento() {
-        return id_pagamento;
+    public int getIdhistorico() {
+        return idhistorico;
     }
 
-    public void setId_pagamento(int id_pagamento) {
-        this.id_pagamento = id_pagamento;
+    public void setIdhistorico(int idhistorico) {
+        this.idhistorico = idhistorico;
     }
 
     public Estabelecimento getEstabelecimento() {
@@ -74,6 +73,7 @@ public class Historico {
 
     @Override
     public String toString() {
-        return "Pagamento{" + "id_pagamento=" + id_pagamento + ", estabelecimento=" + estabelecimento + ", usuario=" + usuario + ", trancasao=" + trancasao + ", dta_entrada=" + dta_entrada + ", dta_saida=" + dta_saida + '}';
+        return "Historico{" + "idhistorico=" + idhistorico + ", estabelecimento=" + estabelecimento + ", usuario=" + usuario + ", trancasao=" + trancasao + ", dta_entrada=" + dta_entrada + ", dta_saida=" + dta_saida + '}';
     }
+
 }
