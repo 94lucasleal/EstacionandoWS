@@ -256,7 +256,7 @@ public class TransacaoBD extends CrudBD<Transacao> {
         return lista;
     }
     
-    public ArrayList<Transacao> pesquisarUsuario(String pesquisa) {
+    public ArrayList<Transacao> pesquisarHistoricoUsuario(String pesquisa) {
         ArrayList<Transacao> lista = new ArrayList<Transacao>();
 
         Connection conn = null;

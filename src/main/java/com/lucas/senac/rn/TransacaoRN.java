@@ -224,9 +224,9 @@ public class TransacaoRN {
     
     @GET
     @Produces("application/json")
-    @Path("pesquisarUsuario/{pesquisa}")
-    public String pesquisarUsuario(@PathParam("pesquisa")  String pesquisa) {
-        return gson.toJson(transacaoBD.pesquisarUsuario(pesquisa));
+    @Path("pesquisarHistoricoUsuario/{pesquisa}")
+    public String pesquisarHistoricoUsuario(@PathParam("pesquisa")  String pesquisa) {
+        return gson.toJson(transacaoBD.pesquisarHistoricoUsuario(pesquisa));
     }
     
     @GET
