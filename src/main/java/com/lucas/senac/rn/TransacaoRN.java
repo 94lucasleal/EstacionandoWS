@@ -224,6 +224,13 @@ public class TransacaoRN {
     
     @GET
     @Produces("application/json")
+    @Path("pesquisarUsuario/{pesquisa}")
+    public String pesquisarUsuario(@PathParam("pesquisa")  String pesquisa) {
+        return gson.toJson(transacaoBD.pesquisarUsuario(pesquisa));
+    }
+    
+    @GET
+    @Produces("application/json")
     @Path("buscarTodos")
     public String buscarTodos() {
         return gson.toJson(transacaoBD.buscarTodos());
