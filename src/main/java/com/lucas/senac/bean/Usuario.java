@@ -1,8 +1,5 @@
 package com.lucas.senac.bean;
 
-import java.util.Arrays;
-import javax.xml.bind.annotation.XmlRootElement;
-
 public class Usuario {
 
     private Integer idUsuario;
