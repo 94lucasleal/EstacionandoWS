@@ -151,23 +151,36 @@ public class TransacaoRN {
                     
             String json = carteiraRN.consultar(pagamento.getIdusuario());
             System.out.println("5 - TESTE "+json);
-            if (true) {
-                
-            }
             Carteira c = (Carteira) gson.fromJson(json, Carteira.class);
             System.out.println(c);
-            /*
             
-            if (transacao.getStatus().toLowerCase().equals("paid")) {
-                c.setSaldo_disponivel();
+            System.out.println("4 - TESTE oooooooo");
+            Carteira carteira = new Carteira();
+            carteira.setIdusuario(pagamento.getIdusuario());
+            carteira.setSaldo_disponivel(0);
+            carteira.setSaldo_pendente(0);
+            System.out.println("5 - TESTE oooooooo"+carteira);
+            if (c == null) {
+                System.out.println("6 - TESTE oooooooo");
+                if (transacao.getStatus().toLowerCase().equals("paid")) {
+                    carteira.setSaldo_disponivel(transacao.getAmount()/100);
+                } else {
+                    carteira.setSaldo_pendente(transacao.getAmount()/100);   
+                }
+                System.out.println("7 - TESTE oooooooo");
+                carteiraRN.inserir(gson.toJson(carteira));
+                System.out.println("8 - TESTE oooooooo");
             } else {
-                c.setSaldo_pendente(0);   
-            }
-            
-           
-            
-            carteiraRN.inserir(content);
-            */
+                System.out.println("9 - TESTE oooooooo");
+                if (transacao.getStatus().toLowerCase().equals("paid")) {
+                    carteira.setSaldo_disponivel(c.getSaldo_disponivel()+(transacao.getAmount()/100));
+                } else {
+                    carteira.setSaldo_pendente(c.getSaldo_pendente()+(transacao.getAmount()/100));   
+                }
+                System.out.println("10 - TESTE oooooooo");
+                carteiraRN.alterar(gson.toJson(carteira));
+                System.out.println("11 - TESTE oooooooo");
+            }            
 
             return gson.toJson(tx);
         } catch (Exception e) {
