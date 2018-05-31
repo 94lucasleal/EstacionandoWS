@@ -172,6 +172,7 @@ public class TransacaoRN {
                 }
                 carteiraRN.inserir(gson.toJson(carteira));
             } else {
+                System.out.println(c);
                 if (transacao.getStatus().toLowerCase().equals("paid")) {
                     carteira.setSaldo_disponivel(c.getSaldo_disponivel() + (transacao.getAmount() / 100));
                     carteira.setSaldo_pendente(c.getSaldo_pendente());
