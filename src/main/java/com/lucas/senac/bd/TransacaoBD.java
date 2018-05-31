@@ -16,6 +16,8 @@ public class TransacaoBD extends CrudBD<Transacao> {
             
             PreparedStatement pstm;
             
+            System.out.println("teste1 :"+bean);
+            
             if (bean.getDta_entrada() == null || bean.getDta_saida() == null) {
                 pstm = conn.prepareStatement("INSERT INTO transacao(idestabelecimento, idusuario, "
                         + "amount, refunded_amount, authorized_amount, paid_amount, installments, cost, tid, nsu, boleto_url, "
@@ -51,6 +53,7 @@ public class TransacaoBD extends CrudBD<Transacao> {
                 pstm.setString(26, bean.getCartao_last_digits());
                 pstm.setString(27, bean.getCartao_name());
                 pstm.setBoolean(28, bean.getCartao_valid());
+                
             } else {
                 pstm = conn.prepareStatement("INSERT INTO transacao(idestabelecimento, idusuario, dta_entrada, "
                         + "dta_saida, amount, refunded_amount, authorized_amount, paid_amount, installments, cost, tid, nsu, boleto_url, "
