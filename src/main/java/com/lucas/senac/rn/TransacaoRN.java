@@ -135,17 +135,19 @@ public class TransacaoRN {
             tx.setCardHash(pagamento.getToken());
             tx.setPaymentMethod(PaymentMethod.CREDIT_CARD);
             tx.save();
-            System.out.println(gson.toJson(tx));
+            System.out.println("1             "+gson.toJson(tx));
             
             Transacao transacao = carregaTransacao(tx);  
             transacao.setIdusuario(pagamento.getIdusuario());
             transacao.setIdestabelecimento(pagamento.getIdestabelecimento());
             transacao.setDta_entrada(format.parse(pagamento.getDta_entrada()));
             transacao.setDta_saida(format.parse(pagamento.getDta_saida()));
+            System.out.println("2 - TESTE ");
              
             transacaoBD.inserir(transacao);
+            System.out.println("3 - TESTE ");
             
-                        
+             /*           
             ArrayList<Carteira> carteira = new ArrayList<Carteira>();
             System.out.println("TESTE1:");
             String a = carteiraRN.pesquisar(transacao.getIdusuario().toString());
@@ -153,7 +155,7 @@ public class TransacaoRN {
             Carteira c = (Carteira) gson.fromJson(a, Carteira.class);
             System.out.println(c);
             
-            /*
+            
             if (transacao.getStatus().toLowerCase().equals("paid")) {
                 c.setSaldo_disponivel();
             } else {
