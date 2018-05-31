@@ -103,7 +103,7 @@ public class TransacaoRN {
             ArrayList<Carteira> carteira = new ArrayList<Carteira>();
             
             String a = carteiraRN.pesquisar(transacao.getIdusuario().toString());
-            System.out.println(a);
+            System.out.println("TESTE:       "+a);
             Carteira c = (Carteira) gson.fromJson(a, Carteira.class);
             System.out.println(c);
             
