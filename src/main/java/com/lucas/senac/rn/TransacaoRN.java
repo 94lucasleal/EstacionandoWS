@@ -2,6 +2,7 @@ package com.lucas.senac.rn;
 
 import com.google.gson.Gson;
 import com.lucas.senac.bd.TransacaoBD;
+import com.lucas.senac.bean.Carteira;
 import com.lucas.senac.bean.Pagamento;
 import com.lucas.senac.bean.utils.Customers;
 import com.lucas.senac.bean.Usuario;
@@ -28,12 +29,14 @@ import me.pagar.model.Phone;
 public class TransacaoRN {
     
     private final TransacaoBD transacaoBD;
+    private final CarteiraRN carteiraRN;
     private final Gson gson;
     
     SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
     public TransacaoRN() {
         transacaoBD = new TransacaoBD();
+        carteiraRN = new CarteiraRN();
         gson = new Gson();
     }
     
@@ -96,6 +99,25 @@ public class TransacaoRN {
             transacao.setIdestabelecimento(pagamento.getIdestabelecimento());
                               
             transacaoBD.inserir(transacao);
+            
+            ArrayList<Carteira> carteira = new ArrayList<Carteira>();
+            
+            String a = carteiraRN.pesquisar(transacao.getIdusuario().toString());
+            System.out.println(a);
+            Carteira c = (Carteira) gson.fromJson(a, Carteira.class);
+            System.out.println(c);
+            
+            /*
+            if (transacao.getStatus().toLowerCase().equals("paid")) {
+                c.setSaldo_disponivel();
+            } else {
+                c.setSaldo_pendente(0);   
+            }
+            
+           
+            
+            carteiraRN.inserir(content);
+            */
 
             return gson.toJson(tx);
         } catch (Exception e) {
