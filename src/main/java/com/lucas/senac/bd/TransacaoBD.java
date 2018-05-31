@@ -25,35 +25,64 @@ public class TransacaoBD extends CrudBD<Transacao> {
                         + "boleto_barcode, referer, ip, acquirer_name, payment_method, status, status_reason, date_updated, "
                         + "customers_document, customers_name, customers_email, date_created, cartao_brand, cartao_first_digits, "
                         + "cartao_last_digits, cartao_name, cartao_valid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
+                
+                System.out.println("10 - TESTE ");        
                 pstm.setInt(1, bean.getIdestabelecimento());
+                System.out.println("11 - TESTE ");
                 pstm.setInt(2, bean.getIdusuario());
+                System.out.println("12 - TESTE ");
                 pstm.setInt(3, bean.getAmount());
+                System.out.println("13 - TESTE ");
                 pstm.setInt(4, bean.getRefunded_amount());
+                System.out.println("14 - TESTE ");
                 pstm.setInt(5, bean.getAuthorized_amount());
+                System.out.println("15 - TESTE ");
                 pstm.setInt(6, bean.getPaid_amount());
+                System.out.println("16 - TESTE ");
                 pstm.setInt(7, bean.getInstallments());
+                System.out.println("17 - TESTE ");
                 pstm.setInt(8, bean.getCost());
+                System.out.println("18 - TESTE ");
                 pstm.setString(9, bean.getTid());
+                System.out.println("19 - TESTE ");
                 pstm.setString(10, bean.getNsu());
+                System.out.println("20 - TESTE ");
                 pstm.setString(11, bean.getBoleto_url());
+                System.out.println("21 - TESTE ");
                 pstm.setString(12, bean.getBoleto_barcode());
+                System.out.println("22 - TESTE ");
                 pstm.setString(13, bean.getReferer());
+                System.out.println("23 - TESTE ");
                 pstm.setString(14, bean.getIp());
+                System.out.println("24 - TESTE ");
                 pstm.setString(15, bean.getAcquirer_name());
+                System.out.println("25 - TESTE ");
                 pstm.setString(16, bean.getPayment_method());
+                System.out.println("26 - TESTE ");
                 pstm.setString(17, bean.getStatus());
+                System.out.println("27 - TESTE ");
                 pstm.setString(18, bean.getStatus_reason());
+                System.out.println("28 - TESTE ");
                 pstm.setString(19, bean.getDate_updated());
+                System.out.println("29 - TESTE ");
                 pstm.setString(20, bean.getCustomers_document());
+                System.out.println("30 - TESTE ");
                 pstm.setString(21, bean.getCustomers_name());
+                System.out.println("31 - TESTE ");
                 pstm.setString(22, bean.getCustomers_email());
+                System.out.println("32 - TESTE ");
                 pstm.setString(23, bean.getDate_created());
+                System.out.println("33 - TESTE ");
                 pstm.setString(24, bean.getCartao_brand());
+                System.out.println("34 - TESTE ");
                 pstm.setString(25, bean.getCartao_first_digits());
+                System.out.println("35 - TESTE ");
                 pstm.setString(26, bean.getCartao_last_digits());
+                System.out.println("36 - TESTE ");
                 pstm.setString(27, bean.getCartao_name());
+                System.out.println("37 - TESTE ");
                 pstm.setBoolean(28, bean.getCartao_valid());
+                System.out.println("38 - TESTE ");
                 
             } else {
                 System.out.println("4 - TESTE ");
