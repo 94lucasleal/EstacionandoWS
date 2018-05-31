@@ -61,26 +61,60 @@ public class TransacaoBD extends CrudBD<Transacao> {
             if (bean.getNsu() != null) 
                 pstm.setString(12, bean.getNsu());
             else pstm.setObject(12, null);
-            
-            
-            pstm.setString(13, bean.getBoleto_url());
-            pstm.setString(14, bean.getBoleto_barcode());
-            pstm.setString(15, bean.getReferer());
-            pstm.setString(16, bean.getIp());
-            pstm.setString(17, bean.getAcquirer_name());
-            pstm.setString(18, bean.getPayment_method());
-            pstm.setString(19, bean.getStatus());
-            pstm.setString(20, bean.getStatus_reason());
-            pstm.setString(21, bean.getDate_updated());
-            pstm.setString(22, bean.getCustomers_document());
-            pstm.setString(23, bean.getCustomers_name());
-            pstm.setString(24, bean.getCustomers_email());
-            pstm.setString(25, bean.getDate_created());
-            pstm.setString(26, bean.getCartao_brand());
-            pstm.setString(27, bean.getCartao_first_digits());
-            pstm.setString(28, bean.getCartao_last_digits());
-            pstm.setString(29, bean.getCartao_name());
-            pstm.setBoolean(30, bean.getCartao_valid());
+            if (bean.getBoleto_url() != null) 
+                pstm.setString(13, bean.getBoleto_url());
+            else pstm.setObject(13, null);
+            if (bean.getBoleto_barcode() != null) 
+                pstm.setString(14, bean.getBoleto_barcode());
+            else pstm.setObject(14, null);
+            if (bean.getReferer() != null) 
+                pstm.setString(15, bean.getReferer());
+            else pstm.setObject(15, null);
+            if (bean.getIp() != null) 
+                pstm.setString(16, bean.getIp());
+            else pstm.setObject(16, null);
+            if (bean.getAcquirer_name() != null) 
+                pstm.setString(17, bean.getAcquirer_name());
+            else pstm.setObject(17, null);
+            if (bean.getPayment_method() != null) 
+                pstm.setString(18, bean.getPayment_method());
+            else pstm.setObject(18, null);
+            if (bean.getStatus() != null) 
+                pstm.setString(19, bean.getStatus());
+            else pstm.setObject(19, null);
+            if (bean.getStatus_reason() != null) 
+                pstm.setString(20, bean.getStatus_reason());
+            else pstm.setObject(20, null);
+            if (bean.getDate_updated() != null) 
+                pstm.setString(21, bean.getDate_updated());
+            else pstm.setObject(21, null);
+            if (bean.getCustomers_document() != null) 
+                pstm.setString(22, bean.getCustomers_document());
+            else pstm.setObject(22, null);
+            if (bean.getCustomers_name() != null) 
+                pstm.setString(23, bean.getCustomers_name());
+            else pstm.setObject(23, null);
+            if (bean.getCustomers_email() != null) 
+                pstm.setString(24, bean.getCustomers_email());
+            else pstm.setObject(24, null);
+            if (bean.getDate_created() != null) 
+                pstm.setString(25, bean.getDate_created());
+            else pstm.setObject(25, null);
+            if (bean.getCartao_brand() != null) 
+                pstm.setString(26, bean.getCartao_brand());
+            else pstm.setObject(26, null);
+            if (bean.getCartao_first_digits() != null) 
+                pstm.setString(27, bean.getCartao_first_digits());
+            else pstm.setObject(27, null);
+            if (bean.getCartao_last_digits() != null) 
+                pstm.setString(28, bean.getCartao_last_digits());
+            else pstm.setObject(28, null);
+            if (bean.getCartao_name() != null) 
+                pstm.setString(29, bean.getCartao_name());
+            else pstm.setObject(29, null);
+            if (bean.getCartao_valid() != null) 
+                pstm.setBoolean(30, bean.getCartao_valid());
+            else pstm.setObject(30, null);
 
             System.out.println(pstm.toString());
             System.out.println("Salvando: " + bean);
