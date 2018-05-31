@@ -112,14 +112,10 @@ public class TransacaoRN {
     @Consumes({"application/json"})
     @Path("inserirCartao")
     public String inserirCartao(String content){ 
-        System.out.println("1 - TESTE ");
         PagarMe.init("ak_test_U9HHME9pST6E6ZDv0cBWeVfd3UoVLG");
-        System.out.println("2 - TESTE ");
         System.out.println(content);
         Pagamento pagamento = (Pagamento) gson.fromJson(content, Pagamento.class);
-        System.out.println("3 - TESTE ");
         System.out.println(pagamento);
-        System.out.println("4 - TESTE ");
        
         /*
         UsuarioRN usuarioRN = new UsuarioRN();
