@@ -99,25 +99,7 @@ public class TransacaoRN {
             transacao.setIdestabelecimento(pagamento.getIdestabelecimento());
                               
             transacaoBD.inserir(transacao);
-            
-            ArrayList<Carteira> carteira = new ArrayList<Carteira>();
-            
-            String a = carteiraRN.pesquisar(transacao.getIdusuario().toString());
-            System.out.println("TESTE:       "+a);
-            Carteira c = (Carteira) gson.fromJson(a, Carteira.class);
-            System.out.println(c);
-            
-            /*
-            if (transacao.getStatus().toLowerCase().equals("paid")) {
-                c.setSaldo_disponivel();
-            } else {
-                c.setSaldo_pendente(0);   
-            }
-            
-           
-            
-            carteiraRN.inserir(content);
-            */
+
 
             return gson.toJson(tx);
         } catch (Exception e) {
@@ -162,6 +144,26 @@ public class TransacaoRN {
             transacao.setDta_saida(format.parse(pagamento.getDta_saida()));
              
             transacaoBD.inserir(transacao);
+            
+                        
+            ArrayList<Carteira> carteira = new ArrayList<Carteira>();
+            
+            String a = carteiraRN.pesquisar(transacao.getIdusuario().toString());
+            System.out.println("TESTE:       "+a);
+            Carteira c = (Carteira) gson.fromJson(a, Carteira.class);
+            System.out.println(c);
+            
+            /*
+            if (transacao.getStatus().toLowerCase().equals("paid")) {
+                c.setSaldo_disponivel();
+            } else {
+                c.setSaldo_pendente(0);   
+            }
+            
+           
+            
+            carteiraRN.inserir(content);
+            */
 
             return gson.toJson(tx);
         } catch (Exception e) {
