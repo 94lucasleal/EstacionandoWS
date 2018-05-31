@@ -144,8 +144,10 @@ public class TransacaoRN {
             Transacao transacao = carregaTransacao(tx);  
             transacao.setIdusuario(pagamento.getIdusuario());
             transacao.setIdestabelecimento(pagamento.getIdestabelecimento());
-            transacao.setDta_entrada(format.parse(pagamento.getDta_entrada()));
-            transacao.setDta_saida(format.parse(pagamento.getDta_saida()));
+            if (pagamento.getDta_entrada() != null || pagamento.getDta_saida() != null) {
+                transacao.setDta_entrada(format.parse(pagamento.getDta_entrada()));
+                transacao.setDta_saida(format.parse(pagamento.getDta_saida()));
+            }
             System.out.println("2 - TESTE ");
              
             transacaoBD.inserir(transacao);
