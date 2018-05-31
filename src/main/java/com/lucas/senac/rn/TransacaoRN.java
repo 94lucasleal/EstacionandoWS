@@ -146,7 +146,7 @@ public class TransacaoRN {
             }
              
             transacaoBD.inserir(transacao);
-            System.out.println("3 - TESTE ");
+            System.out.println("3 - TESTE oooooooo");
             
                     
             String json = carteiraRN.consultar(pagamento.getIdusuario());
