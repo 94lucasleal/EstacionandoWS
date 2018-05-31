@@ -91,11 +91,12 @@ public class TransacaoRN {
             System.out.println(tx.toString());
 
             Transacao transacao = carregaTransacao(tx);
-
-            transacao.setDta_entrada(format.parse(pagamento.getDta_entrada()));
-            transacao.setDta_saida(format.parse(pagamento.getDta_saida()));
             transacao.setIdusuario(pagamento.getIdusuario());
             transacao.setIdestabelecimento(pagamento.getIdestabelecimento());
+            if (pagamento.getDta_entrada() != null || pagamento.getDta_saida() != null) {
+                transacao.setDta_entrada(format.parse(pagamento.getDta_entrada()));
+                transacao.setDta_saida(format.parse(pagamento.getDta_saida()));
+            }
 
             transacaoBD.inserir(transacao);
 
@@ -136,18 +137,13 @@ public class TransacaoRN {
             tx.save();
             System.out.println(gson.toJson(tx));
 
-            System.out.println("TESTE 1:");
             Transacao transacao = carregaTransacao(tx);
-            System.out.println("TESTE 2:");
             transacao.setIdusuario(pagamento.getIdusuario());
-            System.out.println("TESTE 3:");
             transacao.setIdestabelecimento(pagamento.getIdestabelecimento());
-            System.out.println("TESTE 4:");
             if (pagamento.getDta_entrada() != null || pagamento.getDta_saida() != null) {
                 transacao.setDta_entrada(format.parse(pagamento.getDta_entrada()));
                 transacao.setDta_saida(format.parse(pagamento.getDta_saida()));
             }
-            System.out.println("TESTE 5:"+transacao);
 
             transacaoBD.inserir(transacao);
 
