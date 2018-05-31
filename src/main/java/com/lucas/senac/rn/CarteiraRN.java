@@ -36,10 +36,10 @@ public class CarteiraRN {
 
     @GET
     @Produces("application/json")
-        @Path("consultar/{idcarteira}")
-    public String consultar(@PathParam("idcarteira") int idcarteira) {
+        @Path("consultar/{idusuario}")
+    public String consultar(@PathParam("idusuario") int idusuario) {
         Carteira carteira = new Carteira();
-        carteira.setIdcarteira(idcarteira);
+        carteira.setIdusuario(idusuario);
         return gson.toJson(carteiraBD.consultar(carteira));
     }
 

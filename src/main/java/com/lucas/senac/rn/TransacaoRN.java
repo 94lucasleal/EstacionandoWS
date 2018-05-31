@@ -149,11 +149,12 @@ public class TransacaoRN {
             System.out.println("3 - TESTE ");
             
                     
-            ArrayList<Carteira> carteira = new ArrayList<Carteira>();
-            System.out.println("4 - TESTE ");
-            String a = carteiraRN.pesquisar(transacao.getIdusuario().toString());
-            System.out.println("5 - TESTE "+a);
-            Carteira c = (Carteira) gson.fromJson(a, Carteira.class);
+            String json = carteiraRN.consultar(pagamento.getIdusuario());
+            System.out.println("5 - TESTE "+json);
+            if (true) {
+                
+            }
+            Carteira c = (Carteira) gson.fromJson(json, Carteira.class);
             System.out.println(c);
             /*
             
@@ -229,7 +230,7 @@ public class TransacaoRN {
     @Path("consultar/{idtransacao}")
     public Transacao consultar(@PathParam("idtransacao") int idtransacao) {
         Transacao transacao = new Transacao();
-        transacao.setIdtransacao(idtransacao);
+        transacao.setIdusuario(idtransacao);
         return transacaoBD.consultar(transacao);
     }
     
