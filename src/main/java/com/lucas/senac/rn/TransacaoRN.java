@@ -136,7 +136,9 @@ public class TransacaoRN {
             tx.save();
             System.out.println(gson.toJson(tx));
 
+            System.out.println("TESTE 1:");
             Transacao transacao = carregaTransacao(tx);
+            System.out.println("TESTE 2:");
             transacao.setIdusuario(pagamento.getIdusuario());
             transacao.setIdestabelecimento(pagamento.getIdestabelecimento());
             if (pagamento.getDta_entrada() != null || pagamento.getDta_saida() != null) {
@@ -186,6 +188,7 @@ public class TransacaoRN {
     }
 
     public Transacao carregaTransacao(Transaction tx) {
+        System.out.println("TESTE 3:");
         Transacao transacao = new Transacao();
         transacao.setAmount(tx.getAmount());
         transacao.setRefunded_amount(tx.getRefundedAmount());
@@ -204,6 +207,7 @@ public class TransacaoRN {
         transacao.setStatus(tx.getStatus().name());
         transacao.setStatus_reason(tx.getStatusReason().name());
         transacao.setDate_updated(tx.getUpdatedAt().toString("dd/MM/yyyy HH:mm:ss"));
+        System.out.println("TESTE 4:");
 
         Customers cus = new Customers();
         if (tx.getCustomer() != null) {
@@ -219,9 +223,11 @@ public class TransacaoRN {
             transacao.setCartao_name(tx.getCard().getHolderName());
             transacao.setCartao_valid(tx.getCard().getValid());
         }
+        System.out.println("TESTE 5:");
 
         transacao.setId(tx.getId());
         transacao.setDate_created(tx.getCreatedAt().toString("dd/MM/yyyy HH:mm:ss"));
+        System.out.println("TESTE 6:");
 
         return transacao;
     }
