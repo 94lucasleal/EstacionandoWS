@@ -38,8 +38,10 @@ public class CarteiraRN {
     @Produces("application/json")
         @Path("consultar/{idusuario}")
     public String consultar(@PathParam("idusuario") int idusuario) {
+        System.out.println("20 - TESTE ");
         Carteira carteira = new Carteira();
         carteira.setIdusuario(idusuario);
+        System.out.println("21 - TESTE ");
         return gson.toJson(carteiraBD.consultar(carteira));
     }
 

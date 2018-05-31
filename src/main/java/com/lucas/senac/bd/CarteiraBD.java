@@ -54,16 +54,20 @@ public class CarteiraBD extends CrudBD<Carteira> {
     }
 
     public Carteira consultar(Carteira bean) {
+        System.out.println("22 - TESTE ");
         Carteira carteiraRetorno = null;
         Connection conn = null;
         try {
+            System.out.println("23 - TESTE ");
             conn = abrirConexao();
 
-            PreparedStatement pstm = conn.prepareStatement("SELECT * FROM carteira WHERE idcarteira=?");
-            pstm.setInt(1, bean.getIdcarteira());
+            PreparedStatement pstm = conn.prepareStatement("SELECT * FROM carteira WHERE idusuario=?");
+            pstm.setInt(1, bean.getIdusuario());
+            System.out.println("24 - TESTE ");
 
             System.out.println("Consultando: " + bean);
             ResultSet rs = pstm.executeQuery();
+            System.out.println("25 - TESTE ");
             if (rs.next()) {
                 System.out.println("Registro encontrado");
                 carteiraRetorno = new Carteira();
