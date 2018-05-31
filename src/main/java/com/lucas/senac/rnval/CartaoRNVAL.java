@@ -3,7 +3,7 @@ package com.lucas.senac.rnval;
 import com.lucas.senac.bean.Pagamento;
 
 public class CartaoRNVAL {
-    
+
     public void validarInserirCartao(Pagamento bean) {
         /*
         if (bean.getNomeTitular().isEmpty()) {
@@ -15,7 +15,7 @@ public class CartaoRNVAL {
         if (bean.getNumeroCartao().isEmpty()) {
             throw new RuntimeException("Campo NUMERO DO CARTAO não informado");
         }
-        */
+         */
     }
 
     public void validarExcluirCartao(Pagamento bean) {
@@ -27,11 +27,11 @@ public class CartaoRNVAL {
         if (bean.getIdCartao() == 0) {
             throw new RuntimeException("Campo Código não informado");
         }
-        */
+         */
     }
-    
+
     public void validarAlterarCartao(Pagamento bean) {
         //validarConsultarCartao(bean);
     }
-    
+
 }

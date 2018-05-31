@@ -91,11 +91,11 @@ public class CarteiraBD extends CrudBD<Carteira> {
             conn = abrirConexao();
 
             PreparedStatement pstm = conn.prepareStatement("UPDATE carteira SET idusuario=?, saldo_disponivel=?, saldo_pendente=? ");
-            
+
             pstm.setInt(1, bean.getIdusuario());
             pstm.setFloat(2, bean.getSaldo_disponivel());
             pstm.setFloat(3, bean.getSaldo_pendente());
-            
+
             System.out.println("Alterando: " + bean);
             pstm.execute();
             commitTransacao(conn);
@@ -141,7 +141,7 @@ public class CarteiraBD extends CrudBD<Carteira> {
         }
         return lista;
     }
-    
+
     public ArrayList<Carteira> buscarTodos() {
         ArrayList<Carteira> lista = new ArrayList<Carteira>();
 

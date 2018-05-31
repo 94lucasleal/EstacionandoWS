@@ -9,8 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Arrays;
 
-public class FavoritosBD extends CrudBD<Favoritos>{
-    
+public class FavoritosBD extends CrudBD<Favoritos> {
+
     public void inserir(Favoritos favoritos) {
         Connection conn = null;
         try {
@@ -109,20 +109,20 @@ public class FavoritosBD extends CrudBD<Favoritos>{
 
     public ArrayList<Estabelecimento> pesquisar(Favoritos bean) {
         ArrayList<Estabelecimento> lista = new ArrayList<Estabelecimento>();
-        
+
         Connection conn = null;
         try {
             conn = abrirConexao();
 
             PreparedStatement pstm = conn.prepareStatement("SELECT esta.* FROM favoritos fav, estabelecimento esta WHERE fav.idestabelecimento = esta.idestabelecimento AND fav.ativo = 'S' AND fav.idusuario = ? ");
             pstm.setInt(1, bean.getIdusuario());
-            
+
             System.out.println(pstm.toString());
 
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
                 System.out.println("Registro encontrado");
-                
+
                 Estabelecimento estabelecimento = new Estabelecimento();
                 estabelecimento.setIdestabelecimento(rs.getInt("idestabelecimento"));
                 estabelecimento.setIdusuario(rs.getInt("idusuario"));
@@ -158,7 +158,5 @@ public class FavoritosBD extends CrudBD<Favoritos>{
         }
         return lista;
     }
-   
+
 }
-
-

@@ -14,15 +14,13 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
-
 @Path("servico/")
 public class ServicoRN {
 
     private final ServicoBD servicoBD;
     private final ServicoRNVAL servicoRNVal;
     private final Gson gson;
-    
-    
+
     public ServicoRN() {
         servicoBD = new ServicoBD();
         servicoRNVal = new ServicoRNVAL();
@@ -48,7 +46,7 @@ public class ServicoRN {
 
     @GET
     @Produces("application/json")
-        @Path("consultarServico/{idestabelecimento}")
+    @Path("consultarServico/{idestabelecimento}")
     public String consultarServico(@PathParam("idestabelecimento") int idestabelecimento) {
         Servico servico = new Servico(null, idestabelecimento, null, null, 0);
         servicoRNVal.validarConsultarServico(servico);
@@ -63,7 +61,7 @@ public class ServicoRN {
         servicoRNVal.validarAlterarServico(servico);
         servicoBD.alterarServico(servico);
     }
-        
+
     @GET
     @Produces("application/json")
     @Path("buscarTodosServicos")

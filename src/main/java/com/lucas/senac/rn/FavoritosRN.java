@@ -6,15 +6,13 @@ import com.lucas.senac.bean.Estabelecimento;
 import com.lucas.senac.bean.Favoritos;
 import javax.ws.rs.*;
 
-
 @Path("favoritos/")
 public class FavoritosRN {
 
     private final FavoritosBD favoritosBD;
     //private final UsuarioRNVAL usuarioRNVal;
     private final Gson gson;
-    
-    
+
     public FavoritosRN() {
         favoritosBD = new FavoritosBD();
         //usuarioRNVal = new UsuarioRNVAL();
@@ -40,7 +38,7 @@ public class FavoritosRN {
 
     @GET
     @Produces("application/json")
-        @Path("consultar/{idestabelecimento}/{idusuario}")
+    @Path("consultar/{idestabelecimento}/{idusuario}")
     public String consultar(@PathParam("idestabelecimento") int idestabelecimento, @PathParam("idusuario") int idusuario) {
         Favoritos favoritos = new Favoritos(idestabelecimento, idusuario, '0');
         //usuarioRNVal.validarConsultarUsuario(usuario);
@@ -55,12 +53,12 @@ public class FavoritosRN {
         //usuarioRNVal.validarAlterarUsuario(usuario);
         favoritosBD.alterar(favoritos);
     }
-    
+
     @GET
     @Produces("application/json")
     @Path("pesquisar/{idusuario}")
     public String pesquisar(@PathParam("idusuario") int idusuario) {
-         Favoritos favoritos = new Favoritos(0, idusuario, '0');
+        Favoritos favoritos = new Favoritos(0, idusuario, '0');
         return gson.toJson(favoritosBD.pesquisar(favoritos));
     }
 

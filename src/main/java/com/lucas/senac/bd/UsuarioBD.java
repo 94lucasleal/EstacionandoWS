@@ -8,8 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Arrays;
 
-public class UsuarioBD extends CrudBD<Usuario>{
-    
+public class UsuarioBD extends CrudBD<Usuario> {
+
     public void inserirUsuario(Usuario usuario) {
         Connection conn = null;
         try {
@@ -92,7 +92,7 @@ public class UsuarioBD extends CrudBD<Usuario>{
 
         return usuarioRetorno;
     }
-    
+
     public Usuario consultar(Usuario bean) {
         Usuario usuarioRetorno = null;
 
@@ -143,8 +143,8 @@ public class UsuarioBD extends CrudBD<Usuario>{
             pstm.setLong(7, bean.getTelefone());
             pstm.setString(8, bean.getImagem());
             pstm.setInt(9, bean.getIdUsuario());
-            
-            System.out.println(""+bean.getImagem().toString());
+
+            System.out.println("" + bean.getImagem().toString());
 
             System.out.println("Alterando: " + bean);
             pstm.execute();
@@ -161,7 +161,7 @@ public class UsuarioBD extends CrudBD<Usuario>{
 
     public ArrayList<Usuario> pesquisarUsuario(String pesquisa) {
         ArrayList<Usuario> lista = new ArrayList<Usuario>();
-        
+
         Connection conn = null;
         try {
             conn = abrirConexao();
@@ -175,7 +175,7 @@ public class UsuarioBD extends CrudBD<Usuario>{
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
                 System.out.println("Registro encontrado");
-                
+
                 Usuario usuario = new Usuario();
                 usuario.setIdUsuario(rs.getInt("idusuario"));
                 usuario.setNome(rs.getString("nome"));
@@ -186,7 +186,7 @@ public class UsuarioBD extends CrudBD<Usuario>{
                 usuario.setIdTipoAcesso(rs.getInt("idtipoacesso"));
                 usuario.setTelefone(rs.getLong("telefone"));
                 usuario.setImagem(rs.getString("imagem"));
-                
+
                 lista.add(usuario);
                 System.out.println(usuario.toString());
             }
@@ -198,10 +198,10 @@ public class UsuarioBD extends CrudBD<Usuario>{
         }
         return lista;
     }
-    
+
     public ArrayList<Usuario> buscarTodosUsuario() {
         ArrayList<Usuario> lista = new ArrayList<Usuario>();
-        
+
         Connection conn = null;
         try {
             conn = abrirConexao();
@@ -212,7 +212,7 @@ public class UsuarioBD extends CrudBD<Usuario>{
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
                 System.out.println("Registro encontrado");
-                
+
                 Usuario usuario = new Usuario();
                 usuario.setIdUsuario(rs.getInt("idusuario"));
                 usuario.setNome(rs.getString("nome"));
@@ -223,7 +223,7 @@ public class UsuarioBD extends CrudBD<Usuario>{
                 usuario.setIdTipoAcesso(rs.getInt("idtipoacesso"));
                 usuario.setTelefone(rs.getLong("telefone"));
                 usuario.setImagem(rs.getString("imagem"));
-                
+
                 lista.add(usuario);
             }
             System.out.println("Pesquisa executada com sucesso");
@@ -235,5 +235,3 @@ public class UsuarioBD extends CrudBD<Usuario>{
         return lista;
     }
 }
-
-

@@ -3,7 +3,7 @@ package com.lucas.senac.rnval;
 import com.lucas.senac.bean.Usuario;
 
 public class UsuarioRNVAL {
-    
+
     public void validarInserirUsuario(Usuario bean) {
         if (bean.getNome().isEmpty()) {
             throw new RuntimeException("Campo NOME não informado");
@@ -30,9 +30,9 @@ public class UsuarioRNVAL {
             throw new RuntimeException("Campo senha não informado");
         }
     }
-    
+
     public void validarAlterarUsuario(Usuario bean) {
         validarConsultarUsuario(bean);
     }
-    
+
 }

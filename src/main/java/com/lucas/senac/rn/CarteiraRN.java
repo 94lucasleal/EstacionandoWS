@@ -5,14 +5,12 @@ import com.lucas.senac.bd.CarteiraBD;
 import com.lucas.senac.bean.Carteira;
 import javax.ws.rs.*;
 
-
 @Path("carteira/")
 public class CarteiraRN {
 
     private final CarteiraBD carteiraBD;
     private final Gson gson;
-    
-    
+
     public CarteiraRN() {
         carteiraBD = new CarteiraBD();
         gson = new Gson();
@@ -36,7 +34,7 @@ public class CarteiraRN {
 
     @GET
     @Produces("application/json")
-        @Path("consultar/{idusuario}")
+    @Path("consultar/{idusuario}")
     public String consultar(@PathParam("idusuario") int idusuario) {
         Carteira carteira = new Carteira();
         carteira.setIdusuario(idusuario);
@@ -50,7 +48,7 @@ public class CarteiraRN {
         Carteira carteira = (Carteira) gson.fromJson(content, Carteira.class);
         carteiraBD.alterar(carteira);
     }
-    
+
     @GET
     @Produces("application/json")
     @Path("pesquisar/{pesquisa}")
@@ -58,7 +56,7 @@ public class CarteiraRN {
         System.out.println(pesquisa);
         return gson.toJson(carteiraBD.pesquisar(pesquisa));
     }
-    
+
     @GET
     @Produces("application/json")
     @Path("buscarTodos")

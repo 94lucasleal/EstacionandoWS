@@ -6,15 +6,13 @@ import com.lucas.senac.bean.Usuario;
 import com.lucas.senac.rnval.UsuarioRNVAL;
 import javax.ws.rs.*;
 
-
 @Path("usuario/")
 public class UsuarioRN {
 
     private final UsuarioBD usuarioBD;
     private final UsuarioRNVAL usuarioRNVal;
     private final Gson gson;
-    
-    
+
     public UsuarioRN() {
         usuarioBD = new UsuarioBD();
         usuarioRNVal = new UsuarioRNVAL();
@@ -40,14 +38,14 @@ public class UsuarioRN {
 
     @GET
     @Produces("application/json")
-        @Path("consultarUsuario/{email}/{senha}")
+    @Path("consultarUsuario/{email}/{senha}")
     public String consultarUsuario(@PathParam("email") String email,
             @PathParam("senha") String senha) {
         Usuario usuario = new Usuario(null, null, null, null, email, senha, null, 0, null);
         usuarioRNVal.validarConsultarUsuario(usuario);
         return gson.toJson(usuarioBD.consultarUsuario(usuario));
     }
-    
+
     @GET
     @Produces("application/json")
     @Path("consultar/{idusuario}")
@@ -64,7 +62,7 @@ public class UsuarioRN {
         usuarioRNVal.validarAlterarUsuario(usuario);
         usuarioBD.alterarUsuario(usuario);
     }
-    
+
     @GET
     @Produces("application/json")
     @Path("pesquisarUsuario/{pesquisa}")
@@ -72,7 +70,7 @@ public class UsuarioRN {
         System.out.println(pesquisa);
         return gson.toJson(usuarioBD.pesquisarUsuario(pesquisa));
     }
-    
+
     @GET
     @Produces("application/json")
     @Path("buscarTodosUsuario")

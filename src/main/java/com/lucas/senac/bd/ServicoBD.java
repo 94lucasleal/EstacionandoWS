@@ -8,8 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class ServicoBD extends CrudBD<Usuario>{
-    
+public class ServicoBD extends CrudBD<Usuario> {
+
     public void inserirServico(Servico bean) {
         Connection conn = null;
         try {
@@ -67,7 +67,7 @@ public class ServicoBD extends CrudBD<Usuario>{
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
                 System.out.println("Registro encontrado");
-                
+
                 Servico servico = new Servico();
                 servico.setIdservico(rs.getInt("idservico"));
                 servico.setIdestabelecimento(rs.getInt("idestabelecimento"));
@@ -123,7 +123,7 @@ public class ServicoBD extends CrudBD<Usuario>{
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
                 System.out.println("Registro encontrado");
-                
+
                 Servico servico = new Servico();
                 servico.setIdservico(rs.getInt("idservico"));
                 servico.setIdestabelecimento(rs.getInt("idestabelecimento"));
@@ -141,5 +141,3 @@ public class ServicoBD extends CrudBD<Usuario>{
         return lista;
     }
 }
-
-

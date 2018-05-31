@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
-    
+
     SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
 
     public void inserirEstabelecimento(Estabelecimento bean) {
@@ -33,7 +33,7 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
             pstm.setString(6, bean.getMunicipio());
             pstm.setString(7, bean.getBairro());
             pstm.setString(8, bean.getLogradouro());
-            pstm.setString(9, ""+String.valueOf(bean.getCep()));
+            pstm.setString(9, "" + String.valueOf(bean.getCep()));
             pstm.setInt(10, bean.getNumero());
             pstm.setString(11, bean.getReferencia());
             pstm.setDouble(12, bean.getLatitude());
@@ -61,7 +61,7 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
             pstm.setTime(34, new java.sql.Time(format.parse(bean.getSaida_sexta()).getTime()));
             pstm.setTime(35, new java.sql.Time(format.parse(bean.getSaida_sabado()).getTime()));
             pstm.setTime(36, new java.sql.Time(format.parse(bean.getSaida_domingo()).getTime()));
-            
+
             System.out.println(pstm.toString());
             System.out.println("Salvando: " + bean);
             pstm.execute();
@@ -149,7 +149,7 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
                 estabelecimentoRetorno.setSaida_sabado(rs.getString("saida_sabado"));
                 estabelecimentoRetorno.setEntrada_domingo(rs.getString("entrada_domingo"));
                 estabelecimentoRetorno.setSaida_domingo(rs.getString("saida_domingo"));
-                
+
             }
             System.out.println("Consulta executada com sucesso");
         } catch (Exception e) {
@@ -180,7 +180,7 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
             pstm.setString(6, bean.getMunicipio());
             pstm.setString(7, bean.getBairro());
             pstm.setString(8, bean.getLogradouro());
-            pstm.setString(9, ""+String.valueOf(bean.getCep()));
+            pstm.setString(9, "" + String.valueOf(bean.getCep()));
             pstm.setInt(10, bean.getNumero());
             pstm.setString(11, bean.getReferencia());
             pstm.setDouble(12, bean.getLatitude());
@@ -222,7 +222,7 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
             fecharConexao(conn);
         }
     }
-        
+
     public ArrayList<Estabelecimento> pesquisarEstabelecimentoUsuario(String pesquisa) {
         ArrayList<Estabelecimento> lista = new ArrayList<Estabelecimento>();
 
@@ -232,7 +232,7 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
 
             System.out.println("1: " + pesquisa);
             PreparedStatement pstm = conn.prepareStatement("SELECT * FROM estabelecimento WHERE idusuario = ? order by idestabelecimento");
-            pstm.setInt(1,Integer.parseInt(pesquisa));
+            pstm.setInt(1, Integer.parseInt(pesquisa));
 
             System.out.println("2: " + pesquisa);
             System.out.println(pstm.toString());
@@ -291,7 +291,6 @@ public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
         }
         return lista;
     }
-    
 
     public ArrayList<Estabelecimento> pesquisarEstabelecimento(String pesquisa) {
         ArrayList<Estabelecimento> lista = new ArrayList<Estabelecimento>();

@@ -5,13 +5,12 @@ import com.lucas.senac.bd.FeedbackBD;
 import com.lucas.senac.bean.Feedback;
 import javax.ws.rs.*;
 
-
 @Path("feedback/")
 public class FeedbackRN {
 
     private final FeedbackBD feedbackBD;
     private final Gson gson;
-    
+
     public FeedbackRN() {
         feedbackBD = new FeedbackBD();
         gson = new Gson();
@@ -49,7 +48,7 @@ public class FeedbackRN {
         Feedback feedback = (Feedback) gson.fromJson(content, Feedback.class);
         feedbackBD.alterar(feedback);
     }
-    
+
     @GET
     @Produces("application/json")
     @Path("pesquisar/{idestabelecimento}")

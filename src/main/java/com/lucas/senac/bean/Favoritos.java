@@ -41,10 +41,10 @@ public class Favoritos {
 
     @Override
     public String toString() {
-        return "Favoritos{" +
-                "idestabelecimento=" + idestabelecimento +
-                ", idusuario=" + idusuario +
-                ", ativo=" + ativo +
-                '}';
+        return "Favoritos{"
+                + "idestabelecimento=" + idestabelecimento
+                + ", idusuario=" + idusuario
+                + ", ativo=" + ativo
+                + '}';
     }
 }

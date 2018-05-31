@@ -55,5 +55,5 @@ public class Feedback {
     public String toString() {
         return "Feedback{" + "idfeedback=" + idfeedback + ", idestabelecimento=" + idestabelecimento + ", nome=" + nome + ", nota=" + nota + ", descricao=" + descricao + '}';
     }
-        
+
 }

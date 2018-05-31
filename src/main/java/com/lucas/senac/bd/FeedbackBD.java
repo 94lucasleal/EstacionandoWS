@@ -8,8 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Arrays;
 
-public class FeedbackBD extends CrudBD<Feedback>{
-    
+public class FeedbackBD extends CrudBD<Feedback> {
+
     public void inserir(Feedback bean) {
         Connection conn = null;
         try {
@@ -62,7 +62,7 @@ public class FeedbackBD extends CrudBD<Feedback>{
 
             PreparedStatement pstm = conn.prepareStatement("SELECT * FROM feedback WHERE idfeedback = ?");
             pstm.setInt(1, bean.getIdfeedback());
-            
+
             System.out.println("Consultando: " + bean);
             ResultSet rs = pstm.executeQuery();
             if (rs.next()) {
@@ -107,20 +107,20 @@ public class FeedbackBD extends CrudBD<Feedback>{
 
     public ArrayList<Feedback> pesquisar(Feedback bean) {
         ArrayList<Feedback> lista = new ArrayList<Feedback>();
-        
+
         Connection conn = null;
         try {
             conn = abrirConexao();
 
             PreparedStatement pstm = conn.prepareStatement("SELECT * FROM feedback WHERE idestabelecimento = ?");
             pstm.setInt(1, bean.getIdestabelecimento());
-            
+
             System.out.println(pstm.toString());
 
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
                 System.out.println("Registro encontrado");
-                
+
                 Feedback feedback = new Feedback();
                 feedback.setIdfeedback(rs.getInt("idfeedback"));
                 feedback.setIdestabelecimento(rs.getInt("idestabelecimento"));
@@ -138,7 +138,5 @@ public class FeedbackBD extends CrudBD<Feedback>{
         }
         return lista;
     }
-   
+
 }
-
-

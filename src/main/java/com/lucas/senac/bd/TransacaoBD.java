@@ -25,96 +25,156 @@ public class TransacaoBD extends CrudBD<Transacao> {
                     + "customers_document, customers_name, customers_email, date_created, cartao_brand, cartao_first_digits, "
                     + "cartao_last_digits, cartao_name, cartao_valid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-            if (bean.getIdestabelecimento() != null) 
+            if (bean.getIdestabelecimento() != null) {
                 pstm.setInt(1, bean.getIdestabelecimento());
-            else pstm.setObject(1, null);
-            if (bean.getIdusuario() != null) 
+            } else {
+                pstm.setObject(1, null);
+            }
+            if (bean.getIdusuario() != null) {
                 pstm.setInt(2, bean.getIdusuario());
-            else pstm.setObject(2, null);
-            if (bean.getDta_entrada() != null) 
+            } else {
+                pstm.setObject(2, null);
+            }
+            if (bean.getDta_entrada() != null) {
                 pstm.setTimestamp(3, new java.sql.Timestamp(bean.getDta_entrada().getTime()));
-            else pstm.setObject(3, null);
-            if (bean.getDta_saida() != null) 
+            } else {
+                pstm.setObject(3, null);
+            }
+            if (bean.getDta_saida() != null) {
                 pstm.setTimestamp(4, new java.sql.Timestamp(bean.getDta_saida().getTime()));
-            else pstm.setObject(4, null);
-            if (bean.getAmount() != null) 
+            } else {
+                pstm.setObject(4, null);
+            }
+            if (bean.getAmount() != null) {
                 pstm.setInt(5, bean.getAmount());
-            else pstm.setObject(5, null);
-            if (bean.getRefunded_amount() != null) 
+            } else {
+                pstm.setObject(5, null);
+            }
+            if (bean.getRefunded_amount() != null) {
                 pstm.setInt(6, bean.getRefunded_amount());
-            else pstm.setObject(6, null);
-            if (bean.getAuthorized_amount() != null) 
+            } else {
+                pstm.setObject(6, null);
+            }
+            if (bean.getAuthorized_amount() != null) {
                 pstm.setInt(7, bean.getAuthorized_amount());
-            else pstm.setObject(7, null);
-            if (bean.getPaid_amount() != null) 
+            } else {
+                pstm.setObject(7, null);
+            }
+            if (bean.getPaid_amount() != null) {
                 pstm.setInt(8, bean.getPaid_amount());
-            else pstm.setObject(8, null);
-            if (bean.getInstallments() != null) 
+            } else {
+                pstm.setObject(8, null);
+            }
+            if (bean.getInstallments() != null) {
                 pstm.setInt(9, bean.getInstallments());
-            else pstm.setObject(9, null);
-            if (bean.getCost() != null) 
+            } else {
+                pstm.setObject(9, null);
+            }
+            if (bean.getCost() != null) {
                 pstm.setInt(10, bean.getCost());
-            else pstm.setObject(10, null);
-            if (bean.getTid() != null) 
+            } else {
+                pstm.setObject(10, null);
+            }
+            if (bean.getTid() != null) {
                 pstm.setString(11, bean.getTid());
-            else pstm.setObject(11, null);
-            if (bean.getNsu() != null) 
+            } else {
+                pstm.setObject(11, null);
+            }
+            if (bean.getNsu() != null) {
                 pstm.setString(12, bean.getNsu());
-            else pstm.setObject(12, null);
-            if (bean.getBoleto_url() != null) 
+            } else {
+                pstm.setObject(12, null);
+            }
+            if (bean.getBoleto_url() != null) {
                 pstm.setString(13, bean.getBoleto_url());
-            else pstm.setObject(13, null);
-            if (bean.getBoleto_barcode() != null) 
+            } else {
+                pstm.setObject(13, null);
+            }
+            if (bean.getBoleto_barcode() != null) {
                 pstm.setString(14, bean.getBoleto_barcode());
-            else pstm.setObject(14, null);
-            if (bean.getReferer() != null) 
+            } else {
+                pstm.setObject(14, null);
+            }
+            if (bean.getReferer() != null) {
                 pstm.setString(15, bean.getReferer());
-            else pstm.setObject(15, null);
-            if (bean.getIp() != null) 
+            } else {
+                pstm.setObject(15, null);
+            }
+            if (bean.getIp() != null) {
                 pstm.setString(16, bean.getIp());
-            else pstm.setObject(16, null);
-            if (bean.getAcquirer_name() != null) 
+            } else {
+                pstm.setObject(16, null);
+            }
+            if (bean.getAcquirer_name() != null) {
                 pstm.setString(17, bean.getAcquirer_name());
-            else pstm.setObject(17, null);
-            if (bean.getPayment_method() != null) 
+            } else {
+                pstm.setObject(17, null);
+            }
+            if (bean.getPayment_method() != null) {
                 pstm.setString(18, bean.getPayment_method());
-            else pstm.setObject(18, null);
-            if (bean.getStatus() != null) 
+            } else {
+                pstm.setObject(18, null);
+            }
+            if (bean.getStatus() != null) {
                 pstm.setString(19, bean.getStatus());
-            else pstm.setObject(19, null);
-            if (bean.getStatus_reason() != null) 
+            } else {
+                pstm.setObject(19, null);
+            }
+            if (bean.getStatus_reason() != null) {
                 pstm.setString(20, bean.getStatus_reason());
-            else pstm.setObject(20, null);
-            if (bean.getDate_updated() != null) 
+            } else {
+                pstm.setObject(20, null);
+            }
+            if (bean.getDate_updated() != null) {
                 pstm.setString(21, bean.getDate_updated());
-            else pstm.setObject(21, null);
-            if (bean.getCustomers_document() != null) 
+            } else {
+                pstm.setObject(21, null);
+            }
+            if (bean.getCustomers_document() != null) {
                 pstm.setString(22, bean.getCustomers_document());
-            else pstm.setObject(22, null);
-            if (bean.getCustomers_name() != null) 
+            } else {
+                pstm.setObject(22, null);
+            }
+            if (bean.getCustomers_name() != null) {
                 pstm.setString(23, bean.getCustomers_name());
-            else pstm.setObject(23, null);
-            if (bean.getCustomers_email() != null) 
+            } else {
+                pstm.setObject(23, null);
+            }
+            if (bean.getCustomers_email() != null) {
                 pstm.setString(24, bean.getCustomers_email());
-            else pstm.setObject(24, null);
-            if (bean.getDate_created() != null) 
+            } else {
+                pstm.setObject(24, null);
+            }
+            if (bean.getDate_created() != null) {
                 pstm.setString(25, bean.getDate_created());
-            else pstm.setObject(25, null);
-            if (bean.getCartao_brand() != null) 
+            } else {
+                pstm.setObject(25, null);
+            }
+            if (bean.getCartao_brand() != null) {
                 pstm.setString(26, bean.getCartao_brand());
-            else pstm.setObject(26, null);
-            if (bean.getCartao_first_digits() != null) 
+            } else {
+                pstm.setObject(26, null);
+            }
+            if (bean.getCartao_first_digits() != null) {
                 pstm.setString(27, bean.getCartao_first_digits());
-            else pstm.setObject(27, null);
-            if (bean.getCartao_last_digits() != null) 
+            } else {
+                pstm.setObject(27, null);
+            }
+            if (bean.getCartao_last_digits() != null) {
                 pstm.setString(28, bean.getCartao_last_digits());
-            else pstm.setObject(28, null);
-            if (bean.getCartao_name() != null) 
+            } else {
+                pstm.setObject(28, null);
+            }
+            if (bean.getCartao_name() != null) {
                 pstm.setString(29, bean.getCartao_name());
-            else pstm.setObject(29, null);
-            if (bean.getCartao_valid() != null) 
+            } else {
+                pstm.setObject(29, null);
+            }
+            if (bean.getCartao_valid() != null) {
                 pstm.setBoolean(30, bean.getCartao_valid());
-            else pstm.setObject(30, null);
+            } else {
+                pstm.setObject(30, null);
+            }
 
             System.out.println(pstm.toString());
             System.out.println("Salvando: " + bean);

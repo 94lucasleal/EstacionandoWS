@@ -15,7 +15,7 @@ public class Pagamento {
     private String dta_entrada;
     private String dta_saida;
     private Customers customer;
-    
+
     public Pagamento() {
     }
 

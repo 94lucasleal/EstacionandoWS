@@ -6,7 +6,7 @@ public class Endereco {
     private String streetNumber;
     private String neighborhood;
     private String zipcode;
-    
+
     public Endereco() {
     }
 

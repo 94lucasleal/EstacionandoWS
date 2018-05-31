@@ -19,7 +19,7 @@ public abstract class CrudBD<T> {
     protected final String BD_PASSWORD = "80003be419ede4c9ad33afc1d680d720493bf756508b5b8d63bc9eaab5505ef1";
 
     public CrudBD() {
-       /*try {
+        /*try {
             System.out.println("Identificando Driver JDBC");
             Class.forName("com.postgres.jdbc.Driver");
             System.out.println("Driver JDBC identificado com sucesso");

@@ -10,7 +10,6 @@ public class Servico {
     private String descricao;
     private double preco;
 
-
     public Servico() {
     }
 
@@ -66,5 +65,5 @@ public class Servico {
     public String toString() {
         return "Servico{" + "idservico=" + idservico + ", idestabelecimento=" + idestabelecimento + ", nome=" + nome + ", descricao=" + descricao + ", preco=" + preco + '}';
     }
-   
+
 }

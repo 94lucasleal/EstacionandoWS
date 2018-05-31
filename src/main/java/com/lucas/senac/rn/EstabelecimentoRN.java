@@ -64,15 +64,13 @@ public class EstabelecimentoRN {
         estabalecimentoRNVAL.validarAlterarEstabelecimento(estabelecimento);
         estabelecimetoBD.alterarEstabelecimento(estabelecimento);
     }
-   
-    
+
     @GET
     @Produces("application/json")
     @Path("pesquisarEstabelecimentoUsuario/{pesquisa}")
     public String pesquisarEstabelecimentoUsuario(@PathParam("pesquisa") String pesquisa) {
         return gson.toJson(estabelecimetoBD.pesquisarEstabelecimentoUsuario(pesquisa));
     }
-    
 
     @GET
     @Produces("application/json")

@@ -27,11 +27,11 @@ import me.pagar.model.Phone;
 
 @Path("transacao/")
 public class TransacaoRN {
-    
+
     private final TransacaoBD transacaoBD;
     private final CarteiraRN carteiraRN;
     private final Gson gson;
-    
+
     SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
     public TransacaoRN() {
@@ -39,18 +39,17 @@ public class TransacaoRN {
         carteiraRN = new CarteiraRN();
         gson = new Gson();
     }
-    
+
     @POST
     @Consumes({"application/json"})
     @Path("inserirBoleto")
-    public String inserirBoleto(String content){ 
+    public String inserirBoleto(String content) {
         PagarMe.init("ak_test_U9HHME9pST6E6ZDv0cBWeVfd3UoVLG");
-        
+
         System.out.println(content);
         Pagamento pagamento = (Pagamento) gson.fromJson(content, Pagamento.class);
         System.out.println(pagamento);
-        
-        
+
         UsuarioRN usuarioRN = new UsuarioRN();
         String aux1 = usuarioRN.consultar(pagamento.getIdusuario());
         Usuario user = (Usuario) gson.fromJson(aux1, Usuario.class);
@@ -58,15 +57,15 @@ public class TransacaoRN {
         EstabelecimentoRN estabelecimentoRN = new EstabelecimentoRN();
         String aux2 = estabelecimentoRN.consultarEstabelecimento(pagamento.getIdestabelecimento());
         Estabelecimento estabelecimento = (Estabelecimento) gson.fromJson(aux2, Estabelecimento.class);
-        */
-        
-        Address address = new Address(pagamento.getCustomer().getAddresses().get(0).getStreet(), 
-                                      pagamento.getCustomer().getAddresses().get(0).getStreetNumber(), 
-                                      pagamento.getCustomer().getAddresses().get(0).getNeighborhood(),
-                                      pagamento.getCustomer().getAddresses().get(0).getZipcode());
+         */
+
+        Address address = new Address(pagamento.getCustomer().getAddresses().get(0).getStreet(),
+                pagamento.getCustomer().getAddresses().get(0).getStreetNumber(),
+                pagamento.getCustomer().getAddresses().get(0).getNeighborhood(),
+                pagamento.getCustomer().getAddresses().get(0).getZipcode());
         Collection<Address> addresses = new ArrayList<Address>();
         addresses.add(address);
-        
+
         Phone phone = new Phone();
         phone.setDdd(pagamento.getCustomer().getPhones().get(0).getDdd());
         phone.setDdi(pagamento.getCustomer().getPhones().get(0).getDdi());
@@ -80,9 +79,9 @@ public class TransacaoRN {
         customer.setName(user.getNome());
         customer.setEmail(user.getEmail());
         customer.setDocumentNumber(user.getCpf());
-        
+
         Double value = pagamento.getValue() * 100;
-        
+
         try {
             Transaction tx = new Transaction();
             tx.setCustomer(customer);
@@ -90,35 +89,34 @@ public class TransacaoRN {
             tx.setPaymentMethod(PaymentMethod.BOLETO);
             tx.save();
             System.out.println(tx.toString());
-            
+
             Transacao transacao = carregaTransacao(tx);
-            
+
             transacao.setDta_entrada(format.parse(pagamento.getDta_entrada()));
             transacao.setDta_saida(format.parse(pagamento.getDta_saida()));
             transacao.setIdusuario(pagamento.getIdusuario());
             transacao.setIdestabelecimento(pagamento.getIdestabelecimento());
-                              
-            transacaoBD.inserir(transacao);
-            
-            atualizaCarteira(transacao);
 
+            transacaoBD.inserir(transacao);
+
+            atualizaCarteira(transacao);
 
             return gson.toJson(tx);
         } catch (Exception e) {
             System.out.println(e);
             return gson.toJson(e);
-        }   
+        }
     }
-    
+
     @POST
     @Consumes({"application/json"})
     @Path("inserirCartao")
-    public String inserirCartao(String content){ 
+    public String inserirCartao(String content) {
         PagarMe.init("ak_test_U9HHME9pST6E6ZDv0cBWeVfd3UoVLG");
         System.out.println(content);
         Pagamento pagamento = (Pagamento) gson.fromJson(content, Pagamento.class);
         System.out.println(pagamento);
-       
+
         /*
         UsuarioRN usuarioRN = new UsuarioRN();
         String aux1 = usuarioRN.consultar(pagamento.getIdusuario());
@@ -127,10 +125,9 @@ public class TransacaoRN {
         EstabelecimentoRN estabelecimentoRN = new EstabelecimentoRN();
         String aux2 = estabelecimentoRN.consultarEstabelecimento(pagamento.getIdestabelecimento());
         Estabelecimento estabelecimento = (Estabelecimento) gson.fromJson(aux2, Estabelecimento.class);
-        */
-               
+         */
         Double value = pagamento.getValue() * 100;
-        
+
         try {
             Transaction tx = new Transaction();
             tx.setAmount(value.intValue());
@@ -138,15 +135,15 @@ public class TransacaoRN {
             tx.setPaymentMethod(PaymentMethod.CREDIT_CARD);
             tx.save();
             System.out.println(gson.toJson(tx));
-            
-            Transacao transacao = carregaTransacao(tx);  
+
+            Transacao transacao = carregaTransacao(tx);
             transacao.setIdusuario(pagamento.getIdusuario());
             transacao.setIdestabelecimento(pagamento.getIdestabelecimento());
             if (pagamento.getDta_entrada() != null || pagamento.getDta_saida() != null) {
                 transacao.setDta_entrada(format.parse(pagamento.getDta_entrada()));
                 transacao.setDta_saida(format.parse(pagamento.getDta_saida()));
             }
-             
+
             transacaoBD.inserir(transacao);
 
             atualizaCarteira(transacao);
@@ -155,10 +152,10 @@ public class TransacaoRN {
         } catch (Exception e) {
             System.out.println(e);
             return gson.toJson(e);
-        }   
+        }
     }
-    
-    public Boolean atualizaCarteira(Transacao transacao){
+
+    public Boolean atualizaCarteira(Transacao transacao) {
         try {
             String json = carteiraRN.consultar(transacao.getIdusuario());
             Carteira c = (Carteira) gson.fromJson(json, Carteira.class);
@@ -168,27 +165,27 @@ public class TransacaoRN {
             carteira.setSaldo_pendente(0);
             if (c == null) {
                 if (transacao.getStatus().toLowerCase().equals("paid")) {
-                    carteira.setSaldo_disponivel(transacao.getAmount()/100);
+                    carteira.setSaldo_disponivel(transacao.getAmount() / 100);
                 } else {
-                    carteira.setSaldo_pendente(transacao.getAmount()/100);   
+                    carteira.setSaldo_pendente(transacao.getAmount() / 100);
                 }
                 carteiraRN.inserir(gson.toJson(carteira));
             } else {
                 if (transacao.getStatus().toLowerCase().equals("paid")) {
-                    carteira.setSaldo_disponivel(c.getSaldo_disponivel()+(transacao.getAmount()/100));
+                    carteira.setSaldo_disponivel(c.getSaldo_disponivel() + (transacao.getAmount() / 100));
                 } else {
-                    carteira.setSaldo_pendente(c.getSaldo_pendente()+(transacao.getAmount()/100));   
+                    carteira.setSaldo_pendente(c.getSaldo_pendente() + (transacao.getAmount() / 100));
                 }
                 carteiraRN.alterar(gson.toJson(carteira));
-            }         
+            }
             return true;
         } catch (Exception e) {
             System.out.println(e.toString());
             return false;
         }
     }
-    
-    public Transacao carregaTransacao(Transaction tx){
+
+    public Transacao carregaTransacao(Transaction tx) {
         Transacao transacao = new Transacao();
         transacao.setAmount(tx.getAmount());
         transacao.setRefunded_amount(tx.getRefundedAmount());
@@ -215,20 +212,20 @@ public class TransacaoRN {
             transacao.setCustomers_name(tx.getCustomer().getName());
         }
 
-        if (tx.getCard() != null){
+        if (tx.getCard() != null) {
             transacao.setCartao_brand(tx.getCard().getBrand().name());
             transacao.setCartao_first_digits(tx.getCard().getFirstDigits());
             transacao.setCartao_last_digits(tx.getCard().getLastDigits());
             transacao.setCartao_name(tx.getCard().getHolderName());
             transacao.setCartao_valid(tx.getCard().getValid());
         }
-        
+
         transacao.setId(tx.getId());
         transacao.setDate_created(tx.getCreatedAt().toString("dd/MM/yyyy HH:mm:ss"));
-        
+
         return transacao;
     }
-    
+
     @DELETE
     @Path("excluir/{idtransacao}")
     public void excluir(@PathParam("idtransacao") int idtransacao) {
@@ -236,7 +233,7 @@ public class TransacaoRN {
         transacao.setIdtransacao(idtransacao);
         transacaoBD.excluir(transacao);
     }
-    
+
     @GET
     @Produces("application/json")
     @Path("consultar/{idtransacao}")
@@ -245,30 +242,30 @@ public class TransacaoRN {
         transacao.setIdusuario(idtransacao);
         return transacaoBD.consultar(transacao);
     }
-    
+
     @PUT
     @Consumes({"application/json"})
     @Path("alterar")
     public void alterar(String content) {
         System.out.println(content);
         Transacao transacao = (Transacao) gson.fromJson(content, Transacao.class);
-        System.out.println("Chegou aqui:"+transacao);
+        System.out.println("Chegou aqui:" + transacao);
     }
-    
+
     @GET
     @Produces("application/json")
     @Path("pesquisar/{pesquisa}")
-    public String pesquisar(@PathParam("pesquisa")  String pesquisa) {
+    public String pesquisar(@PathParam("pesquisa") String pesquisa) {
         return gson.toJson(transacaoBD.pesquisar(pesquisa));
     }
-    
+
     @GET
     @Produces("application/json")
     @Path("pesquisarHistoricoUsuario/{pesquisa}")
-    public String pesquisarHistoricoUsuario(@PathParam("pesquisa")  String pesquisa) {
+    public String pesquisarHistoricoUsuario(@PathParam("pesquisa") String pesquisa) {
         return gson.toJson(transacaoBD.pesquisarHistoricoUsuario(pesquisa));
     }
-    
+
     @GET
     @Produces("application/json")
     @Path("buscarTodos")
