@@ -14,7 +14,7 @@ public class CarteiraBD extends CrudBD<Carteira> {
         try {
             conn = abrirConexao();
 
-            PreparedStatement pstm = conn.prepareStatement("INSERT INTO cartao(idusuario, saldo_disponivel, saldo_pendente) VALUES (?, ?, ?)");
+            PreparedStatement pstm = conn.prepareStatement("INSERT INTO carteira(idusuario, saldo_disponivel, saldo_pendente) VALUES (?, ?, ?)");
             pstm.setInt(1, bean.getIdusuario());
             pstm.setFloat(2, bean.getSaldo_disponivel());
             pstm.setFloat(3, bean.getSaldo_pendente());
