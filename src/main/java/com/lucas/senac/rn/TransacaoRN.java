@@ -99,6 +99,8 @@ public class TransacaoRN {
             transacao.setIdestabelecimento(pagamento.getIdestabelecimento());
                               
             transacaoBD.inserir(transacao);
+            
+            atualizaCarteira(transacao);
 
 
             return gson.toJson(tx);
@@ -146,47 +148,44 @@ public class TransacaoRN {
             }
              
             transacaoBD.inserir(transacao);
-            System.out.println("3 - TESTE oooooooo");
-            
-                    
-            String json = carteiraRN.consultar(pagamento.getIdusuario());
-            System.out.println("5 - TESTE "+json);
-            Carteira c = (Carteira) gson.fromJson(json, Carteira.class);
-            System.out.println(c);
-            
-            System.out.println("4 - TESTE oooooooo");
-            Carteira carteira = new Carteira();
-            carteira.setIdusuario(pagamento.getIdusuario());
-            carteira.setSaldo_disponivel(0);
-            carteira.setSaldo_pendente(0);
-            System.out.println("5 - TESTE oooooooo"+carteira);
-            if (c == null) {
-                System.out.println("6 - TESTE oooooooo");
-                if (transacao.getStatus().toLowerCase().equals("paid")) {
-                    carteira.setSaldo_disponivel(transacao.getAmount()/100);
-                } else {
-                    carteira.setSaldo_pendente(transacao.getAmount()/100);   
-                }
-                System.out.println("7 - TESTE oooooooo");
-                carteiraRN.inserir(gson.toJson(carteira));
-                System.out.println("8 - TESTE oooooooo");
-            } else {
-                System.out.println("9 - TESTE oooooooo");
-                if (transacao.getStatus().toLowerCase().equals("paid")) {
-                    carteira.setSaldo_disponivel(c.getSaldo_disponivel()+(transacao.getAmount()/100));
-                } else {
-                    carteira.setSaldo_pendente(c.getSaldo_pendente()+(transacao.getAmount()/100));   
-                }
-                System.out.println("10 - TESTE oooooooo");
-                carteiraRN.alterar(gson.toJson(carteira));
-                System.out.println("11 - TESTE oooooooo");
-            }            
+
+            atualizaCarteira(transacao);
 
             return gson.toJson(tx);
         } catch (Exception e) {
             System.out.println(e);
             return gson.toJson(e);
         }   
+    }
+    
+    public Boolean atualizaCarteira(Transacao transacao){
+        try {
+            String json = carteiraRN.consultar(transacao.getIdusuario());
+            Carteira c = (Carteira) gson.fromJson(json, Carteira.class);
+            Carteira carteira = new Carteira();
+            carteira.setIdusuario(transacao.getIdusuario());
+            carteira.setSaldo_disponivel(0);
+            carteira.setSaldo_pendente(0);
+            if (c == null) {
+                if (transacao.getStatus().toLowerCase().equals("paid")) {
+                    carteira.setSaldo_disponivel(transacao.getAmount()/100);
+                } else {
+                    carteira.setSaldo_pendente(transacao.getAmount()/100);   
+                }
+                carteiraRN.inserir(gson.toJson(carteira));
+            } else {
+                if (transacao.getStatus().toLowerCase().equals("paid")) {
+                    carteira.setSaldo_disponivel(c.getSaldo_disponivel()+(transacao.getAmount()/100));
+                } else {
+                    carteira.setSaldo_pendente(c.getSaldo_pendente()+(transacao.getAmount()/100));   
+                }
+                carteiraRN.alterar(gson.toJson(carteira));
+            }         
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return false;
+        }
     }
     
     public Transacao carregaTransacao(Transaction tx){

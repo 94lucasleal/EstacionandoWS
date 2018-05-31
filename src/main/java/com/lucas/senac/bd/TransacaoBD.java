@@ -13,87 +13,74 @@ public class TransacaoBD extends CrudBD<Transacao> {
         Connection conn = null;
         try {
             conn = abrirConexao();
-            
+
             PreparedStatement pstm;
-            
-            System.out.println("teste1 :"+bean);
-            
-            if (bean.getDta_entrada() == null || bean.getDta_saida() == null) {
-                System.out.println("3 - TESTE ");
-                pstm = conn.prepareStatement("INSERT INTO transacao(idusuario, "
-                        + "amount, refunded_amount, authorized_amount, paid_amount, installments, cost, tid, nsu, boleto_url, "
-                        + "boleto_barcode, referer, ip, acquirer_name, payment_method, status, status_reason, date_updated, "
-                        + "customers_document, customers_name, customers_email, date_created, cartao_brand, cartao_first_digits, "
-                        + "cartao_last_digits, cartao_name, cartao_valid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-                
-                pstm.setInt(1, bean.getIdusuario());
-                pstm.setInt(2, bean.getAmount());
-                pstm.setInt(3, bean.getRefunded_amount());
-                pstm.setInt(4, bean.getAuthorized_amount());
-                pstm.setInt(5, bean.getPaid_amount());
-                pstm.setInt(6, bean.getInstallments());
-                pstm.setInt(7, bean.getCost());
-                pstm.setString(8, bean.getTid());
-                pstm.setString(9, bean.getNsu());
-                pstm.setString(10, bean.getBoleto_url());
-                pstm.setString(11, bean.getBoleto_barcode());
-                pstm.setString(12, bean.getReferer());
-                pstm.setString(13, bean.getIp());
-                pstm.setString(14, bean.getAcquirer_name());
-                pstm.setString(15, bean.getPayment_method());
-                pstm.setString(16, bean.getStatus());
-                pstm.setString(17, bean.getStatus_reason());
-                pstm.setString(18, bean.getDate_updated());
-                pstm.setString(19, bean.getCustomers_document());
-                pstm.setString(20, bean.getCustomers_name());
-                pstm.setString(21, bean.getCustomers_email());
-                pstm.setString(22, bean.getDate_created());
-                pstm.setString(23, bean.getCartao_brand());
-                pstm.setString(24, bean.getCartao_first_digits());
-                pstm.setString(25, bean.getCartao_last_digits());
-                pstm.setString(26, bean.getCartao_name());
-                pstm.setBoolean(27, bean.getCartao_valid());
-                
-            } else {
-                System.out.println("4 - TESTE ");
-                pstm = conn.prepareStatement("INSERT INTO transacao(idestabelecimento, idusuario, dta_entrada, "
-                        + "dta_saida, amount, refunded_amount, authorized_amount, paid_amount, installments, cost, tid, nsu, boleto_url, "
-                        + "boleto_barcode, referer, ip, acquirer_name, payment_method, status, status_reason, date_updated, "
-                        + "customers_document, customers_name, customers_email, date_created, cartao_brand, cartao_first_digits, "
-                        + "cartao_last_digits, cartao_name, cartao_valid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
+            System.out.println("teste1 :" + bean);
+
+            System.out.println("4 - TESTE ");
+            pstm = conn.prepareStatement("INSERT INTO transacao(idestabelecimento, idusuario, dta_entrada, "
+                    + "dta_saida, amount, refunded_amount, authorized_amount, paid_amount, installments, cost, tid, nsu, boleto_url, "
+                    + "boleto_barcode, referer, ip, acquirer_name, payment_method, status, status_reason, date_updated, "
+                    + "customers_document, customers_name, customers_email, date_created, cartao_brand, cartao_first_digits, "
+                    + "cartao_last_digits, cartao_name, cartao_valid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+            if (bean.getIdestabelecimento() != null) 
                 pstm.setInt(1, bean.getIdestabelecimento());
+            else pstm.setObject(1, null);
+            if (bean.getIdusuario() != null) 
                 pstm.setInt(2, bean.getIdusuario());
+            else pstm.setObject(2, null);
+            if (bean.getDta_entrada() != null) 
                 pstm.setTimestamp(3, new java.sql.Timestamp(bean.getDta_entrada().getTime()));
+            else pstm.setObject(3, null);
+            if (bean.getDta_saida() != null) 
                 pstm.setTimestamp(4, new java.sql.Timestamp(bean.getDta_saida().getTime()));
+            else pstm.setObject(4, null);
+            if (bean.getAmount() != null) 
                 pstm.setInt(5, bean.getAmount());
+            else pstm.setObject(5, null);
+            if (bean.getRefunded_amount() != null) 
                 pstm.setInt(6, bean.getRefunded_amount());
+            else pstm.setObject(6, null);
+            if (bean.getAuthorized_amount() != null) 
                 pstm.setInt(7, bean.getAuthorized_amount());
+            else pstm.setObject(7, null);
+            if (bean.getPaid_amount() != null) 
                 pstm.setInt(8, bean.getPaid_amount());
+            else pstm.setObject(8, null);
+            if (bean.getInstallments() != null) 
                 pstm.setInt(9, bean.getInstallments());
+            else pstm.setObject(9, null);
+            if (bean.getCost() != null) 
                 pstm.setInt(10, bean.getCost());
+            else pstm.setObject(10, null);
+            if (bean.getTid() != null) 
                 pstm.setString(11, bean.getTid());
+            else pstm.setObject(11, null);
+            if (bean.getNsu() != null) 
                 pstm.setString(12, bean.getNsu());
-                pstm.setString(13, bean.getBoleto_url());
-                pstm.setString(14, bean.getBoleto_barcode());
-                pstm.setString(15, bean.getReferer());
-                pstm.setString(16, bean.getIp());
-                pstm.setString(17, bean.getAcquirer_name());
-                pstm.setString(18, bean.getPayment_method());
-                pstm.setString(19, bean.getStatus());
-                pstm.setString(20, bean.getStatus_reason());
-                pstm.setString(21, bean.getDate_updated());
-                pstm.setString(22, bean.getCustomers_document());
-                pstm.setString(23, bean.getCustomers_name());
-                pstm.setString(24, bean.getCustomers_email());
-                pstm.setString(25, bean.getDate_created());
-                pstm.setString(26, bean.getCartao_brand());
-                pstm.setString(27, bean.getCartao_first_digits());
-                pstm.setString(28, bean.getCartao_last_digits());
-                pstm.setString(29, bean.getCartao_name());
-                pstm.setBoolean(30, bean.getCartao_valid());
-            }
-
+            else pstm.setObject(12, null);
+            
+            
+            pstm.setString(13, bean.getBoleto_url());
+            pstm.setString(14, bean.getBoleto_barcode());
+            pstm.setString(15, bean.getReferer());
+            pstm.setString(16, bean.getIp());
+            pstm.setString(17, bean.getAcquirer_name());
+            pstm.setString(18, bean.getPayment_method());
+            pstm.setString(19, bean.getStatus());
+            pstm.setString(20, bean.getStatus_reason());
+            pstm.setString(21, bean.getDate_updated());
+            pstm.setString(22, bean.getCustomers_document());
+            pstm.setString(23, bean.getCustomers_name());
+            pstm.setString(24, bean.getCustomers_email());
+            pstm.setString(25, bean.getDate_created());
+            pstm.setString(26, bean.getCartao_brand());
+            pstm.setString(27, bean.getCartao_first_digits());
+            pstm.setString(28, bean.getCartao_last_digits());
+            pstm.setString(29, bean.getCartao_name());
+            pstm.setBoolean(30, bean.getCartao_valid());
 
             System.out.println(pstm.toString());
             System.out.println("Salvando: " + bean);
@@ -194,7 +181,7 @@ public class TransacaoBD extends CrudBD<Transacao> {
                     + "boleto_barcode = ?, referer = ?, ip = ?, acquirer_name = ?, payment_method = ?, status = ?, status_reason = ?, date_updated = ?, "
                     + "customers_document = ?, customers_name = ?, customers_email = ?, date_created = ?, cartao_brand = ?, cartao_first_digits = ?, "
                     + "cartao_last_digits = ?, cartao_name = ?, cartao_valid = ? where idtransacao = ?");
-            
+
             pstm.setInt(1, bean.getIdestabelecimento());
             pstm.setInt(2, bean.getIdusuario());
             pstm.setTimestamp(3, new java.sql.Timestamp(bean.getDta_entrada().getTime()));
@@ -226,7 +213,7 @@ public class TransacaoBD extends CrudBD<Transacao> {
             pstm.setString(29, bean.getCartao_name());
             pstm.setBoolean(30, bean.getCartao_valid());
             pstm.setInt(31, bean.getIdtransacao());
-            
+
             System.out.println("Alterando: " + bean);
             pstm.execute();
             commitTransacao(conn);
@@ -299,7 +286,7 @@ public class TransacaoBD extends CrudBD<Transacao> {
         }
         return lista;
     }
-    
+
     public ArrayList<Transacao> pesquisarHistoricoUsuario(String pesquisa) {
         ArrayList<Transacao> lista = new ArrayList<Transacao>();
 
