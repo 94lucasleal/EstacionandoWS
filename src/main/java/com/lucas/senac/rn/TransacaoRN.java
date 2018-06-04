@@ -285,8 +285,8 @@ public class TransacaoRN {
     @GET
     @Produces("application/json")
     @Path("pesquisarVagas/{dtaentrada}/{dtasaida}")
-    public String pesquisarVagas(@PathParam("dtaentrada") Date dtaEntrada, @PathParam("dtasaida") Date dtaSaida) {
-        return gson.toJson(transacaoBD.pesquisarVagas(dtaEntrada,dtaSaida));
+    public String pesquisarVagas(@PathParam("dtaentrada") long dtaentrada, @PathParam("dtasaida") long dtasaida) {
+        return gson.toJson(transacaoBD.pesquisarVagas(dtaentrada,dtasaida));
     }
 
     @GET
