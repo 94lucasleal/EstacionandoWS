@@ -322,6 +322,64 @@ public class TransacaoBD extends CrudBD<Transacao> {
         }
     }
     
+    public ArrayList<Transacao> pesquisarReservas() {
+        ArrayList<Transacao> lista = new ArrayList<Transacao>();
+
+        Connection conn = null;
+        try {
+            conn = abrirConexao();
+
+            PreparedStatement pstm = conn.prepareStatement("SELECT * FROM transacao WHERE dta_entrada > now()");
+
+            System.out.println(pstm.toString());
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                System.out.println("Registro encontrado");
+                Transacao transacaoRetorno = new Transacao();
+                transacaoRetorno.setIdtransacao(rs.getInt("idtransacao"));
+                transacaoRetorno.setIdestabelecimento(rs.getInt("idestabelecimento"));
+                transacaoRetorno.setIdusuario(rs.getInt("idusuario"));
+                transacaoRetorno.setDta_entrada(rs.getTimestamp("dta_entrada"));
+                transacaoRetorno.setDta_saida(rs.getTimestamp("dta_saida"));
+                transacaoRetorno.setAmount(rs.getInt("amount"));
+                transacaoRetorno.setRefunded_amount(rs.getInt("refunded_amount"));
+                transacaoRetorno.setAuthorized_amount(rs.getInt("authorized_amount"));
+                transacaoRetorno.setPaid_amount(rs.getInt("paid_amount"));
+                transacaoRetorno.setInstallments(rs.getInt("installments"));
+                transacaoRetorno.setCost(rs.getInt("cost"));
+                transacaoRetorno.setTid(rs.getString("tid"));
+                transacaoRetorno.setNsu(rs.getString("nsu"));
+                transacaoRetorno.setBoleto_url(rs.getString("boleto_url"));
+                transacaoRetorno.setBoleto_barcode(rs.getString("boleto_barcode"));
+                transacaoRetorno.setReferer(rs.getString("referer"));
+                transacaoRetorno.setIp(rs.getString("ip"));
+                transacaoRetorno.setAcquirer_name(rs.getString("acquirer_name"));
+                transacaoRetorno.setPayment_method(rs.getString("payment_method"));
+                transacaoRetorno.setStatus(rs.getString("status"));
+                transacaoRetorno.setStatus_reason(rs.getString("status_reason"));
+                transacaoRetorno.setDate_updated(rs.getString("date_updated"));
+                transacaoRetorno.setCustomers_document(rs.getString("customers_document"));
+                transacaoRetorno.setCustomers_name(rs.getString("customers_name"));
+                transacaoRetorno.setCustomers_email(rs.getString("customers_email"));
+                transacaoRetorno.setDate_created(rs.getString("date_created"));
+                transacaoRetorno.setCartao_brand(rs.getString("cartao_brand"));
+                transacaoRetorno.setCartao_first_digits(rs.getString("cartao_first_digits"));
+                transacaoRetorno.setCartao_last_digits(rs.getString("cartao_last_digits"));
+                transacaoRetorno.setCartao_name(rs.getString("cartao_name"));
+                transacaoRetorno.setCartao_valid(rs.getBoolean("cartao_valid"));
+
+                lista.add(transacaoRetorno);
+                System.out.println(transacaoRetorno.toString());
+            }
+            System.out.println("Pesquisa executada com sucesso");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            fecharConexao(conn);
+        }
+        return lista;
+    }
+    
     public ArrayList<Transacao> pesquisarVagas(long dtaentrada, long dtasaida) {
         ArrayList<Transacao> lista = new ArrayList<Transacao>();
 
@@ -443,6 +501,8 @@ public class TransacaoBD extends CrudBD<Transacao> {
         }
         return lista;
     }
+    
+    
 
     public ArrayList<Transacao> pesquisarHistoricoUsuario(String pesquisa) {
         ArrayList<Transacao> lista = new ArrayList<Transacao>();

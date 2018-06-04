@@ -284,6 +284,13 @@ public class TransacaoRN {
     
     @GET
     @Produces("application/json")
+    @Path("pesquisarReservas")
+    public String pesquisarReservas() {
+        return gson.toJson(transacaoBD.pesquisarReservas());
+    }
+    
+    @GET
+    @Produces("application/json")
     @Path("pesquisarVagas/{dtaentrada}/{dtasaida}")
     public String pesquisarVagas(@PathParam("dtaentrada") long dtaentrada, @PathParam("dtasaida") long dtasaida) {
         return gson.toJson(transacaoBD.pesquisarVagas(dtaentrada,dtasaida));
