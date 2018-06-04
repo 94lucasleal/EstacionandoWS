@@ -322,14 +322,15 @@ public class TransacaoBD extends CrudBD<Transacao> {
         }
     }
     
-    public ArrayList<Transacao> pesquisarReservas() {
+    public ArrayList<Transacao> pesquisarReservas(String pesquisa) {
         ArrayList<Transacao> lista = new ArrayList<Transacao>();
 
         Connection conn = null;
         try {
             conn = abrirConexao();
 
-            PreparedStatement pstm = conn.prepareStatement("SELECT * FROM transacao WHERE dta_entrada > now()");
+            PreparedStatement pstm = conn.prepareStatement("SELECT * FROM transacao WHERE dta_entrada > now() AND idusuario = ?");
+            pstm.setInt(1, Integer.parseInt(pesquisa));
 
             System.out.println(pstm.toString());
             ResultSet rs = pstm.executeQuery();
