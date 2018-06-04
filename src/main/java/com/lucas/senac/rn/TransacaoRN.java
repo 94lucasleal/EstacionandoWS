@@ -3,6 +3,7 @@ package com.lucas.senac.rn;
 import com.google.gson.Gson;
 import com.lucas.senac.bd.TransacaoBD;
 import com.lucas.senac.bean.Carteira;
+import com.lucas.senac.bean.Estabelecimento;
 import com.lucas.senac.bean.Pagamento;
 import com.lucas.senac.bean.utils.Customers;
 import com.lucas.senac.bean.Usuario;
@@ -30,6 +31,7 @@ public class TransacaoRN {
 
     private final TransacaoBD transacaoBD;
     private final CarteiraRN carteiraRN;
+    private final EstabelecimentoRN estabelecimentoRN;
     private final Gson gson;
 
     SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -37,6 +39,7 @@ public class TransacaoRN {
     public TransacaoRN() {
         transacaoBD = new TransacaoBD();
         carteiraRN = new CarteiraRN();
+        estabelecimentoRN = new EstabelecimentoRN();
         gson = new Gson();
     }
 
@@ -188,6 +191,22 @@ public class TransacaoRN {
             return false;
         }
     }
+    
+    public Boolean atualizaVagas(Transacao transacao) {
+        try {
+            String json = estabelecimentoRN.consultarEstabelecimento(transacao.getIdestabelecimento());
+            Estabelecimento e = (Estabelecimento) gson.fromJson(json, Estabelecimento.class);
+            if (e.getVagasdisponivel() > 0) {
+                e.setVagasdisponivel(e.getVagasdisponivel() - 1);
+                e.setVagasreservada(e.getVagasreservada() + 1);
+                estabelecimentoRN.alterarEstabelecimento(gson.toJson(e));
+            }
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return false;
+        }
+    }
 
     public Transacao carregaTransacao(Transaction tx) {
         Transacao transacao = new Transacao();
@@ -254,6 +273,13 @@ public class TransacaoRN {
         System.out.println(content);
         Transacao transacao = (Transacao) gson.fromJson(content, Transacao.class);
         System.out.println("Chegou aqui:" + transacao);
+    }
+    
+    @GET
+    @Produces("application/json")
+    @Path("pesquisarVagas/{dtaentrada}/{dtasaida}")
+    public String pesquisar(@PathParam("dtaentrada") String dtaEntrada, @PathParam("dtasaida") String dtaSaida) {
+        return gson.toJson(transacaoBD.pesquisarVagas(dtaEntrada,dtaSaida));
     }
 
     @GET
