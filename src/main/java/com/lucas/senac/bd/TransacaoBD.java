@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class TransacaoBD extends CrudBD<Transacao> {
 
@@ -321,7 +322,7 @@ public class TransacaoBD extends CrudBD<Transacao> {
         }
     }
     
-    public ArrayList<Transacao> pesquisarVagas(String dtaEntrada, String dtaSaida) {
+    public ArrayList<Transacao> pesquisarVagas(Date dtaEntrada, Date dtaSaida) {
         ArrayList<Transacao> lista = new ArrayList<Transacao>();
 
         Connection conn = null;
@@ -329,10 +330,10 @@ public class TransacaoBD extends CrudBD<Transacao> {
             conn = abrirConexao();
 
             PreparedStatement pstm = conn.prepareStatement("SELECT * FROM transacao WHERE (dta_entrada <= ? AND dta_saida >= ?) OR (dta_entrada <= ? AND dta_saida >= ?)");
-            pstm.setString(1, dtaEntrada);
-            pstm.setString(2, dtaEntrada);
-            pstm.setString(3, dtaSaida);
-            pstm.setString(4, dtaSaida);
+            pstm.setTimestamp(1, new java.sql.Timestamp(dtaEntrada.getTime()));
+            pstm.setTimestamp(2, new java.sql.Timestamp(dtaEntrada.getTime()));
+            pstm.setTimestamp(3, new java.sql.Timestamp(dtaSaida.getTime()));
+            pstm.setTimestamp(4, new java.sql.Timestamp(dtaSaida.getTime()));
             
             System.out.println(pstm.toString());
             ResultSet rs = pstm.executeQuery();

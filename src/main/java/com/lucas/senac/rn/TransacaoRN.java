@@ -11,6 +11,7 @@ import com.lucas.senac.bean.Transacao;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -104,6 +105,10 @@ public class TransacaoRN {
             transacaoBD.inserir(transacao);
 
             atualizaCarteira(transacao);
+            
+            if (transacao.getDta_entrada() != null || transacao.getDta_saida() != null) {
+                atualizaVagas(transacao);
+            }
 
             return gson.toJson(tx);
         } catch (Exception e) {
@@ -194,13 +199,15 @@ public class TransacaoRN {
     
     public Boolean atualizaVagas(Transacao transacao) {
         try {
+            //SimpleDateFormat formatodatahora = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            
             String json = estabelecimentoRN.consultarEstabelecimento(transacao.getIdestabelecimento());
             Estabelecimento e = (Estabelecimento) gson.fromJson(json, Estabelecimento.class);
-            if (e.getVagasdisponivel() > 0) {
-                e.setVagasdisponivel(e.getVagasdisponivel() - 1);
-                e.setVagasreservada(e.getVagasreservada() + 1);
-                estabelecimentoRN.alterarEstabelecimento(gson.toJson(e));
-            }
+            
+            //ArrayList<Transacao> trans = transacaoBD.pesquisarVagas(formatodatahora.format(transacao.getDta_entrada()),formatodatahora.format(transacao.getDta_saida()));
+
+            e.setVagasreservada(e.getVagasreservada() + 1);
+            estabelecimentoRN.alterarEstabelecimento(gson.toJson(e));
             return true;
         } catch (Exception e) {
             System.out.println(e.toString());
@@ -278,7 +285,7 @@ public class TransacaoRN {
     @GET
     @Produces("application/json")
     @Path("pesquisarVagas/{dtaentrada}/{dtasaida}")
-    public String pesquisar(@PathParam("dtaentrada") String dtaEntrada, @PathParam("dtasaida") String dtaSaida) {
+    public String pesquisarVagas(@PathParam("dtaentrada") Date dtaEntrada, @PathParam("dtasaida") Date dtaSaida) {
         return gson.toJson(transacaoBD.pesquisarVagas(dtaEntrada,dtaSaida));
     }
 
