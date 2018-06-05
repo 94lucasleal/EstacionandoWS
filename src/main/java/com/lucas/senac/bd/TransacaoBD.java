@@ -396,10 +396,13 @@ public class TransacaoBD extends CrudBD<Transacao> {
         
         Date d1 = new Date(dtaentrada);
         Date d2 = new Date(dtasaida);
-        
+        System.out.println("1 Entrada: "+dtaentrada);
+        System.out.println("1 Saida: "+dtasaida);
         SimpleDateFormat isoFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         isoFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
         try {
+           System.out.println("2 Entrada: "+isoFormat.format(d1));
+           System.out.println("2 Saida: "+isoFormat.format(d2));
            d1 = isoFormat.parse(isoFormat.format(d1));
            d2 = isoFormat.parse(isoFormat.format(d2));
         } catch (ParseException ex) {
