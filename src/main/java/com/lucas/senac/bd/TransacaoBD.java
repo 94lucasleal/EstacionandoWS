@@ -5,6 +5,11 @@ import com.lucas.senac.infra.CrudBD;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -383,16 +388,24 @@ public class TransacaoBD extends CrudBD<Transacao> {
     
     public ArrayList<Transacao> pesquisarVagas(long dtaentrada, long dtasaida, int idestabelecimento) {
         ArrayList<Transacao> lista = new ArrayList<Transacao>();
+        LocalDateTime ldt = LocalDateTime.now();
+        ZonedDateTime zdt = ZonedDateTime.of(ldt, ZoneId.systemDefault());
+        ZonedDateTime gmt = zdt.withZoneSameInstant(ZoneId.of("GMT"));
+        Timestamp timestamp = Timestamp.valueOf(gmt.toLocalDateTime());
+        
+        
 
         Connection conn = null;
         try {
             conn = abrirConexao();
 
             PreparedStatement pstm = conn.prepareStatement("SELECT * FROM transacao WHERE (dta_entrada <= ? AND dta_saida >= ?) OR (dta_entrada <= ? AND dta_saida >= ?) and idestabelecimento = ?");
-            pstm.setTimestamp(1, new java.sql.Timestamp(dtaentrada));
-            pstm.setTimestamp(2, new java.sql.Timestamp(dtaentrada));
-            pstm.setTimestamp(3, new java.sql.Timestamp(dtasaida));
-            pstm.setTimestamp(4, new java.sql.Timestamp(dtasaida));
+            timestamp.setTime(dtaentrada);
+            pstm.setTimestamp(1, timestamp);
+            pstm.setTimestamp(2, timestamp);
+            timestamp.setTime(dtasaida);
+            pstm.setTimestamp(3, timestamp);
+            pstm.setTimestamp(4, timestamp);
             pstm.setInt(5, idestabelecimento);
             
             System.out.println(pstm.toString());
