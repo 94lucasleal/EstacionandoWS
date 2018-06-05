@@ -512,7 +512,7 @@ public class TransacaoBD extends CrudBD<Transacao> {
         try {
             conn = abrirConexao();
 
-            PreparedStatement pstm = conn.prepareStatement("SELECT * FROM transacao WHERE idusuario = ?");
+            PreparedStatement pstm = conn.prepareStatement("SELECT * FROM transacao WHERE idusuario = ? AND dta_entrada IS NOT NULL");
             pstm.setInt(1, Integer.parseInt(pesquisa));
 
             System.out.println("Pesquisando: " + pesquisa);
