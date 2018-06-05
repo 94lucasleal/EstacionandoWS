@@ -48,9 +48,19 @@ public class UsuarioRN {
 
     @GET
     @Produces("application/json")
+    @Path("consultarFace/{email}")
+    public String consultarFace(@PathParam("email") String email) {
+        Usuario usuario = new Usuario();
+        usuario.setEmail(email);
+        return gson.toJson(usuarioBD.consultarFace(usuario));
+    }
+    
+    @GET
+    @Produces("application/json")
     @Path("consultar/{idusuario}")
     public String consultar(@PathParam("idusuario") int idusuario) {
-        Usuario usuario = new Usuario(idusuario, null, null, null, null, null, null, 0, null);
+        Usuario usuario = new Usuario();
+        usuario.setIdUsuario(idusuario);
         return gson.toJson(usuarioBD.consultar(usuario));
     }
 
