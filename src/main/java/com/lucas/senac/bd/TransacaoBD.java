@@ -388,10 +388,9 @@ public class TransacaoBD extends CrudBD<Transacao> {
     
     public ArrayList<Transacao> pesquisarVagas(long dtaentrada, long dtasaida, int idestabelecimento) {
         ArrayList<Transacao> lista = new ArrayList<Transacao>();
-        LocalDateTime ldt = LocalDateTime.now();
-        ZonedDateTime zdt = ZonedDateTime.of(ldt, ZoneId.systemDefault());
-        ZonedDateTime gmt = zdt.withZoneSameInstant(ZoneId.of("GMT"));
-        Timestamp timestamp = Timestamp.valueOf(gmt.toLocalDateTime());
+        
+        Date d1 = new Date(dtaentrada);
+        Date d2 = new Date(dtasaida);
         
         
 
@@ -400,12 +399,10 @@ public class TransacaoBD extends CrudBD<Transacao> {
             conn = abrirConexao();
 
             PreparedStatement pstm = conn.prepareStatement("SELECT * FROM transacao WHERE (dta_entrada <= ? AND dta_saida >= ?) OR (dta_entrada <= ? AND dta_saida >= ?) and idestabelecimento = ?");
-            timestamp.setTime(dtaentrada);
-            pstm.setTimestamp(1, timestamp);
-            pstm.setTimestamp(2, timestamp);
-            timestamp.setTime(dtasaida);
-            pstm.setTimestamp(3, timestamp);
-            pstm.setTimestamp(4, timestamp);
+            pstm.setTimestamp(1, new Timestamp(d1.getTime()));
+            pstm.setTimestamp(2, new Timestamp(d1.getTime()));
+            pstm.setTimestamp(3, new Timestamp(d2.getTime()));
+            pstm.setTimestamp(4, new Timestamp(d2.getTime()));
             pstm.setInt(5, idestabelecimento);
             
             System.out.println(pstm.toString());
