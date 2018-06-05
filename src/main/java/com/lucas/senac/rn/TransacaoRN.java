@@ -181,8 +181,10 @@ public class TransacaoRN {
             Transaction tx = new Transaction();
             tx.setAmount(value.intValue());
             System.out.println(gson.toJson(tx));
-
-            Transacao transacao = carregaTransacao(tx);
+            
+            Transacao transacao = new Transacao();
+            transacao.setAmount(value.intValue());
+            transacao.setPayment_method("Carteira Eletronica");
             transacao.setIdusuario(pagamento.getIdusuario());
             transacao.setIdestabelecimento(pagamento.getIdestabelecimento());
             if (pagamento.getDta_entrada() != null || pagamento.getDta_saida() != null) {
