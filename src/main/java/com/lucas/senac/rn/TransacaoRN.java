@@ -100,16 +100,12 @@ public class TransacaoRN {
             if (pagamento.getDta_entrada() != null || pagamento.getDta_saida() != null) {
                 transacao.setDta_entrada(format.parse(pagamento.getDta_entrada()));
                 transacao.setDta_saida(format.parse(pagamento.getDta_saida()));
+                //atualizaVagas(transacao);
+            } else {
+                atualizaCarteira(transacao);
             }
-
             transacaoBD.inserir(transacao);
-
-            atualizaCarteira(transacao);
-            
-            if (transacao.getDta_entrada() != null || transacao.getDta_saida() != null) {
-                atualizaVagas(transacao);
-            }
-
+   
             return gson.toJson(tx);
         } catch (Exception e) {
             System.out.println(e);
@@ -152,12 +148,12 @@ public class TransacaoRN {
             if (pagamento.getDta_entrada() != null || pagamento.getDta_saida() != null) {
                 transacao.setDta_entrada(format.parse(pagamento.getDta_entrada()));
                 transacao.setDta_saida(format.parse(pagamento.getDta_saida()));
+                //atualizaVagas(transacao);
+            } else {
+                atualizaCarteira(transacao);  
             }
 
             transacaoBD.inserir(transacao);
-            if (pagamento.getDta_entrada() != null || pagamento.getDta_saida() != null) {
-                atualizaCarteira(transacao);    
-            }
             
             return gson.toJson(tx);
         } catch (Exception e) {
