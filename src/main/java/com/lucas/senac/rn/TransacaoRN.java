@@ -181,6 +181,7 @@ public class TransacaoRN {
             Transacao transacao = new Transacao();
             transacao.setAmount(value.intValue());
             transacao.setPayment_method("Carteira Eletronica");
+            transacao.setStatus("paid");
             transacao.setIdusuario(pagamento.getIdusuario());
             transacao.setIdestabelecimento(pagamento.getIdestabelecimento());
             if (pagamento.getDta_entrada() != null || pagamento.getDta_saida() != null) {
