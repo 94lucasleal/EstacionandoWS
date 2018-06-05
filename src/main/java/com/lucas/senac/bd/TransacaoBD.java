@@ -6,12 +6,17 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.TimeZone;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class TransacaoBD extends CrudBD<Transacao> {
 
@@ -392,7 +397,14 @@ public class TransacaoBD extends CrudBD<Transacao> {
         Date d1 = new Date(dtaentrada);
         Date d2 = new Date(dtasaida);
         
-        
+        SimpleDateFormat isoFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        isoFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+        try {
+           d1 = isoFormat.parse(isoFormat.format(d1));
+           d2 = isoFormat.parse(isoFormat.format(d2));
+        } catch (ParseException ex) {
+            Logger.getLogger(TransacaoBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         Connection conn = null;
         try {
