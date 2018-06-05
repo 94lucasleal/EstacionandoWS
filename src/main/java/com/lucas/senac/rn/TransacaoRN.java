@@ -134,7 +134,8 @@ public class TransacaoRN {
         EstabelecimentoRN estabelecimentoRN = new EstabelecimentoRN();
         String aux2 = estabelecimentoRN.consultarEstabelecimento(pagamento.getIdestabelecimento());
         Estabelecimento estabelecimento = (Estabelecimento) gson.fromJson(aux2, Estabelecimento.class);
-         */
+        */
+        
         Double value = pagamento.getValue() * 100;
 
         try {
@@ -154,9 +155,46 @@ public class TransacaoRN {
             }
 
             transacaoBD.inserir(transacao);
+            if (pagamento.getDta_entrada() != null || pagamento.getDta_saida() != null) {
+                atualizaCarteira(transacao);    
+            }
+            
+            return gson.toJson(tx);
+        } catch (Exception e) {
+            System.out.println(e);
+            return gson.toJson(e);
+        }
+    }
+    
+    @POST
+    @Consumes({"application/json"})
+    @Path("inserirCarteira")
+    public String inserirCarteira(String content) {
+        PagarMe.init("ak_test_U9HHME9pST6E6ZDv0cBWeVfd3UoVLG");
+        System.out.println(content);
+        Pagamento pagamento = (Pagamento) gson.fromJson(content, Pagamento.class);
+        System.out.println(pagamento);
+        
+        Double value = pagamento.getValue() * 100;
 
-            atualizaCarteira(transacao);
+        try {
+            Transaction tx = new Transaction();
+            tx.setAmount(value.intValue());
+            System.out.println(gson.toJson(tx));
 
+            Transacao transacao = carregaTransacao(tx);
+            transacao.setIdusuario(pagamento.getIdusuario());
+            transacao.setIdestabelecimento(pagamento.getIdestabelecimento());
+            if (pagamento.getDta_entrada() != null || pagamento.getDta_saida() != null) {
+                transacao.setDta_entrada(format.parse(pagamento.getDta_entrada()));
+                transacao.setDta_saida(format.parse(pagamento.getDta_saida()));
+            }
+
+            transacaoBD.inserir(transacao);
+            if (pagamento.getDta_entrada() != null || pagamento.getDta_saida() != null) {
+                atualizaCarteira(transacao);    
+            }
+            
             return gson.toJson(tx);
         } catch (Exception e) {
             System.out.println(e);
