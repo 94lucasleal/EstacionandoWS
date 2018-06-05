@@ -381,18 +381,19 @@ public class TransacaoBD extends CrudBD<Transacao> {
         return lista;
     }
     
-    public ArrayList<Transacao> pesquisarVagas(long dtaentrada, long dtasaida) {
+    public ArrayList<Transacao> pesquisarVagas(long dtaentrada, long dtasaida, int idestabelecimento) {
         ArrayList<Transacao> lista = new ArrayList<Transacao>();
 
         Connection conn = null;
         try {
             conn = abrirConexao();
 
-            PreparedStatement pstm = conn.prepareStatement("SELECT * FROM transacao WHERE (dta_entrada <= ? AND dta_saida >= ?) OR (dta_entrada <= ? AND dta_saida >= ?)");
+            PreparedStatement pstm = conn.prepareStatement("SELECT * FROM transacao WHERE (dta_entrada <= ? AND dta_saida >= ?) OR (dta_entrada <= ? AND dta_saida >= ?) and idestabelecimento = ?");
             pstm.setTimestamp(1, new java.sql.Timestamp(dtaentrada));
             pstm.setTimestamp(2, new java.sql.Timestamp(dtaentrada));
             pstm.setTimestamp(3, new java.sql.Timestamp(dtasaida));
             pstm.setTimestamp(4, new java.sql.Timestamp(dtasaida));
+            pstm.setInt(5, idestabelecimento);
             
             System.out.println(pstm.toString());
             ResultSet rs = pstm.executeQuery();
