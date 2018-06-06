@@ -4,6 +4,7 @@ import com.lucas.senac.bean.Transacao;
 import com.lucas.senac.estacionando3.utils.Hash;
 import com.lucas.senac.infra.CrudBD;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
@@ -15,7 +16,6 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.TimeZone;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -362,8 +362,6 @@ public class TransacaoBD extends CrudBD<Transacao> {
 
             pstm.setInt(1, bean.getIdestabelecimento());
             pstm.setInt(2, bean.getIdusuario());
-            //Date a = new Date(format.parse(bean.getDta_entrada_real()).getTime());
-            //dateTime.setTimeInMillis(a.getTime());
             d1 = new Date(format.parse(bean.getDta_entrada_real()).getTime());
             pstm.setTimestamp(3, new java.sql.Timestamp(d1.getTime()));
             d1 = new Date(format.parse(bean.getDta_saida()).getTime());
@@ -490,8 +488,8 @@ public class TransacaoBD extends CrudBD<Transacao> {
         try {
            System.out.println("2 Entrada: "+isoFormat.format(d1));
            System.out.println("2 Saida: "+isoFormat.format(d2));
-           d1 = isoFormat.parse(isoFormat.format(d1));
-           d2 = isoFormat.parse(isoFormat.format(d2));
+           d1 = (Date) isoFormat.parse(isoFormat.format(d1));
+           d2 = (Date) isoFormat.parse(isoFormat.format(d2));
         } catch (ParseException ex) {
             System.out.println(ex.toString());
         }
