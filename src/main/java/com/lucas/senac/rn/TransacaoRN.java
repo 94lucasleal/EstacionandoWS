@@ -100,10 +100,6 @@ public class TransacaoRN {
             if (pagamento.getDta_entrada() != null || pagamento.getDta_saida() != null) {
                 transacao.setDta_entrada(format.parse(pagamento.getDta_entrada()));
                 transacao.setDta_saida(format.parse(pagamento.getDta_saida()));
-                transacao.setQrcode(""+Long.parseLong(transacao.getNsu())*value);
-                System.out.println("Original: "+transacao.getNsu());
-                System.out.println("Criptografado: "+Long.parseLong(transacao.getNsu())*value);
-                System.out.println("Descriptografado: "+Long.parseLong(transacao.getNsu())/value);
                 //atualizaVagas(transacao);
             } else {
                 atualizaCarteira(transacao);
@@ -153,6 +149,10 @@ public class TransacaoRN {
                 transacao.setDta_entrada(format.parse(pagamento.getDta_entrada()));
                 transacao.setDta_saida(format.parse(pagamento.getDta_saida()));
                 //atualizaVagas(transacao);
+                transacao.setQrcode(""+Long.parseLong(transacao.getNsu())*value);
+                System.out.println("Original: "+transacao.getNsu());
+                System.out.println("Criptografado: "+Long.parseLong(transacao.getNsu())*value);
+                System.out.println("Descriptografado: "+Long.parseLong(transacao.getNsu())/value);
             } else {
                 atualizaCarteira(transacao);  
             }
