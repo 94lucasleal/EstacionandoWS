@@ -400,14 +400,11 @@ public class TransacaoBD extends CrudBD<Transacao> {
             pstm.setString(29, bean.getCartao_name());
             pstm.setBoolean(30, bean.getCartao_valid());
             pstm.setString(31, bean.getQrcode());
-            System.out.println(pstm.toString());
-            System.out.println("11"+bean.getDta_entrada_real());
             if (bean.getDta_entrada_real() != null) {
                 pstm.setTimestamp(32, new java.sql.Timestamp(format.parse(bean.getDta_entrada_real()).getTime()));
             } else {
                 pstm.setObject(32, null);
             }
-            System.out.println("12");
             if (bean.getDta_saida_prevista() != null) {
                 pstm.setTimestamp(33, new java.sql.Timestamp(format.parse(bean.getDta_saida_prevista()).getTime()));
             } else {
@@ -418,11 +415,8 @@ public class TransacaoBD extends CrudBD<Transacao> {
             } else {
                 pstm.setObject(34, null);
             }
-            System.out.println("16");
             pstm.setBoolean(35, bean.getUtilizou_reserva());
-            System.out.println("17");
             pstm.setInt(36, bean.getIdtransacao());
-            System.out.println("18");
 
             System.out.println("Alterando: " + bean);
             pstm.execute();
