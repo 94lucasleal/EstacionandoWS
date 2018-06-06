@@ -365,13 +365,13 @@ public class TransacaoBD extends CrudBD<Transacao> {
             System.out.println("2");
             pstm.setInt(2, bean.getIdusuario());
             System.out.println("3");
-            d1 = new Date(format.parse(bean.getDta_entrada_real()).getTime());
+            //d1 = new Date(format.parse(bean.getDta_entrada_real()).getTime());
             System.out.println("4");
-            pstm.setTimestamp(3, new java.sql.Timestamp(d1.getTime()));
+            pstm.setTimestamp(3, new java.sql.Timestamp(format.parse(bean.getDta_entrada()).getTime()));
             System.out.println("5");
-            d1 = new Date(format.parse(bean.getDta_saida()).getTime());
+            //d1 = new Date(format.parse(bean.getDta_saida()).getTime());
             System.out.println("6");
-            pstm.setTimestamp(4, new java.sql.Timestamp(d1.getTime()));
+            pstm.setTimestamp(4, new java.sql.Timestamp(format.parse(bean.getDta_saida()).getTime()));
             System.out.println("7");
             pstm.setInt(5, bean.getAmount());
             System.out.println("8");
