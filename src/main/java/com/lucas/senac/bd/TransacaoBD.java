@@ -402,13 +402,22 @@ public class TransacaoBD extends CrudBD<Transacao> {
             pstm.setString(31, bean.getQrcode());
             System.out.println(pstm.toString());
             System.out.println("11"+bean.getDta_entrada_real());
-            pstm.setTimestamp(32, new java.sql.Timestamp(format.parse(bean.getDta_entrada_real()).getTime()));
+            if (bean.getDta_entrada_real() != null) {
+                pstm.setTimestamp(32, new java.sql.Timestamp(format.parse(bean.getDta_entrada_real()).getTime()));
+            } else {
+                pstm.setObject(32, null);
+            }
             System.out.println("12");
-            System.out.println("13");
-            pstm.setTimestamp(33, new java.sql.Timestamp(format.parse(bean.getDta_saida_prevista()).getTime()));
-            System.out.println("14");
-            System.out.println("15");
-            pstm.setTimestamp(34, new java.sql.Timestamp(format.parse(bean.getDta_saida_real()).getTime()));
+            if (bean.getDta_saida_prevista() != null) {
+                pstm.setTimestamp(33, new java.sql.Timestamp(format.parse(bean.getDta_saida_prevista()).getTime()));
+            } else {
+                pstm.setObject(33, null);
+            }
+            if (bean.getDta_saida_real() != null) {
+                pstm.setTimestamp(34, new java.sql.Timestamp(format.parse(bean.getDta_saida_real()).getTime()));
+            } else {
+                pstm.setObject(34, null);
+            }
             System.out.println("16");
             pstm.setBoolean(35, bean.getUtilizou_reserva());
             System.out.println("17");
