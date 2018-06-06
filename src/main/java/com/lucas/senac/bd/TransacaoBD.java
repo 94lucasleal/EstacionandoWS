@@ -351,6 +351,7 @@ public class TransacaoBD extends CrudBD<Transacao> {
         Calendar dateTime = Calendar.getInstance();
         Connection conn = null;
         try {
+            Date d1;
             conn = abrirConexao();
 
             PreparedStatement pstm = conn.prepareStatement("UPDATE transacao SET idestabelecimento = ?, idusuario = ?, dta_entrada = ?, "
@@ -363,8 +364,10 @@ public class TransacaoBD extends CrudBD<Transacao> {
             pstm.setInt(2, bean.getIdusuario());
             //Date a = new Date(format.parse(bean.getDta_entrada_real()).getTime());
             //dateTime.setTimeInMillis(a.getTime());
-            pstm.setTimestamp(3, new java.sql.Timestamp(format.parse(bean.getDta_entrada_real()).getTime()));
-            pstm.setTimestamp(4, new java.sql.Timestamp(format.parse(bean.getDta_saida()).getTime()));
+            d1 = new Date(format.parse(bean.getDta_entrada_real()).getTime());
+            pstm.setTimestamp(3, new java.sql.Timestamp(d1.getTime()));
+            d1 = new Date(format.parse(bean.getDta_saida()).getTime());
+            pstm.setTimestamp(4, new java.sql.Timestamp(d1.getTime()));
             pstm.setInt(5, bean.getAmount());
             pstm.setInt(6, bean.getRefunded_amount());
             pstm.setInt(7, bean.getAuthorized_amount());
@@ -392,9 +395,12 @@ public class TransacaoBD extends CrudBD<Transacao> {
             pstm.setString(29, bean.getCartao_name());
             pstm.setBoolean(30, bean.getCartao_valid());
             pstm.setBoolean(31, bean.getUtilizou_reserva());
-            pstm.setTimestamp(32, new java.sql.Timestamp(format.parse(bean.getDta_entrada_real()).getTime()));
-            pstm.setTimestamp(33, new java.sql.Timestamp(format.parse(bean.getDta_saida_prevista()).getTime()));
-            pstm.setTimestamp(34, new java.sql.Timestamp(format.parse(bean.getDta_saida_real()).getTime()));
+            d1 = new Date(format.parse(bean.getDta_entrada_real()).getTime());
+            pstm.setTimestamp(32, new java.sql.Timestamp(d1.getTime()));
+            d1 = new Date(format.parse(bean.getDta_saida_prevista()).getTime());
+            pstm.setTimestamp(33, new java.sql.Timestamp(d1.getTime()));
+            d1 = new Date(format.parse(bean.getDta_saida_real()).getTime());
+            pstm.setTimestamp(34, new java.sql.Timestamp(d1.getTime()));
             pstm.setBoolean(35, bean.getUtilizou_reserva());
             pstm.setInt(36, bean.getIdtransacao());
 
