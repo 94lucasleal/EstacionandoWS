@@ -360,14 +360,23 @@ public class TransacaoBD extends CrudBD<Transacao> {
                     + "customers_document = ?, customers_name = ?, customers_email = ?, date_created = ?, cartao_brand = ?, cartao_first_digits = ?, "
                     + "cartao_last_digits = ?, cartao_name = ?, cartao_valid = ?, qrcode = ?, dta_entrada_real = ?, dta_saida_prevista = ?, dta_saida_real = ?, utilizou_reserva = ? where idtransacao = ?");
 
+            System.out.println("1");
             pstm.setInt(1, bean.getIdestabelecimento());
+            System.out.println("2");
             pstm.setInt(2, bean.getIdusuario());
+            System.out.println("3");
             d1 = new Date(format.parse(bean.getDta_entrada_real()).getTime());
+            System.out.println("4");
             pstm.setTimestamp(3, new java.sql.Timestamp(d1.getTime()));
+            System.out.println("5");
             d1 = new Date(format.parse(bean.getDta_saida()).getTime());
+            System.out.println("6");
             pstm.setTimestamp(4, new java.sql.Timestamp(d1.getTime()));
+            System.out.println("7");
             pstm.setInt(5, bean.getAmount());
+            System.out.println("8");
             pstm.setInt(6, bean.getRefunded_amount());
+            System.out.println("9");
             pstm.setInt(7, bean.getAuthorized_amount());
             pstm.setInt(8, bean.getPaid_amount());
             pstm.setInt(9, bean.getInstallments());
@@ -393,14 +402,23 @@ public class TransacaoBD extends CrudBD<Transacao> {
             pstm.setString(29, bean.getCartao_name());
             pstm.setBoolean(30, bean.getCartao_valid());
             pstm.setBoolean(31, bean.getUtilizou_reserva());
+            System.out.println("10");
             d1 = new Date(format.parse(bean.getDta_entrada_real()).getTime());
+            System.out.println("11");
             pstm.setTimestamp(32, new java.sql.Timestamp(d1.getTime()));
+            System.out.println("12");
             d1 = new Date(format.parse(bean.getDta_saida_prevista()).getTime());
+            System.out.println("13");
             pstm.setTimestamp(33, new java.sql.Timestamp(d1.getTime()));
+            System.out.println("14");
             d1 = new Date(format.parse(bean.getDta_saida_real()).getTime());
+            System.out.println("15");
             pstm.setTimestamp(34, new java.sql.Timestamp(d1.getTime()));
+            System.out.println("16");
             pstm.setBoolean(35, bean.getUtilizou_reserva());
+            System.out.println("17");
             pstm.setInt(36, bean.getIdtransacao());
+            System.out.println("18");
 
             System.out.println("Alterando: " + bean);
             pstm.execute();
