@@ -504,8 +504,8 @@ public class TransacaoBD extends CrudBD<Transacao> {
         try {
            System.out.println("2 Entrada: "+isoFormat.format(d1));
            System.out.println("2 Saida: "+isoFormat.format(d2));
-           d1 = (Date) isoFormat.parse(isoFormat.format(d1));
-           d2 = (Date) isoFormat.parse(isoFormat.format(d2));
+           d1 = new Date(isoFormat.parse(isoFormat.format(d1)).getTime());
+           d2 = new Date(isoFormat.parse(isoFormat.format(d2)).getTime());
         } catch (ParseException ex) {
             System.out.println(ex.toString());
         }
