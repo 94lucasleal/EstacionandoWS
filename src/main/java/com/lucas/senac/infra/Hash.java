@@ -11,13 +11,13 @@ public class Hash {
     public static final String IV = "estacionando9631";
     public static final String chaveencriptacao = "6l6u4k2a4s9d1c8a";
 
-    public void teste(String texto){
+    public void teste(String texto, double value){
         try {
             System.out.println("Texto Puro: " + texto);
             String s = encrypt(texto);
             System.out.println("Texto Encriptado: "+ s);
             String textodecriptado = decrypt(s);
-            System.out.println("Texto Decriptado: " + textodecriptado);
+            System.out.println("Texto Decriptado: " + Double.parseDouble(textodecriptado) * value);
         } catch (Exception e) {
             System.out.println(e.toString());
             e.printStackTrace();

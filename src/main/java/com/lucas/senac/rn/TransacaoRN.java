@@ -150,9 +150,9 @@ public class TransacaoRN {
                 transacao.setDta_entrada(format.parse(pagamento.getDta_entrada()));
                 transacao.setDta_saida(format.parse(pagamento.getDta_saida()));
                 //atualizaVagas(transacao);
-                transacao.setQrcode(transacao.getNsu());
+                transacao.setQrcode(""+Double.parseDouble(transacao.getNsu())/value);
                 Hash hash = new Hash();
-                hash.teste(transacao.getQrcode());
+                hash.teste(transacao.getQrcode(), value);
             } else {
                 atualizaCarteira(transacao);  
             }
