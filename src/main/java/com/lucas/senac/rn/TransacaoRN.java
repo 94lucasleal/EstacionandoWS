@@ -8,6 +8,7 @@ import com.lucas.senac.bean.Pagamento;
 import com.lucas.senac.bean.utils.Customers;
 import com.lucas.senac.bean.Usuario;
 import com.lucas.senac.bean.Transacao;
+import com.lucas.senac.estacionando3.utils.Hash;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -149,10 +150,9 @@ public class TransacaoRN {
                 transacao.setDta_entrada(format.parse(pagamento.getDta_entrada()));
                 transacao.setDta_saida(format.parse(pagamento.getDta_saida()));
                 //atualizaVagas(transacao);
-                transacao.setQrcode(""+Long.parseLong(transacao.getNsu())*value);
-                System.out.println("Original: "+transacao.getNsu());
-                System.out.println("Criptografado: "+Long.parseLong(transacao.getNsu())*value);
-                System.out.println("Descriptografado: "+Long.parseLong(transacao.getNsu())/value);
+                transacao.setQrcode(transacao.getNsu());
+                Hash hash = new Hash();
+                hash.teste(transacao.getQrcode());
             } else {
                 atualizaCarteira(transacao);  
             }
