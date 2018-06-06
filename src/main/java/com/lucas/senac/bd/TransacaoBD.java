@@ -401,7 +401,7 @@ public class TransacaoBD extends CrudBD<Transacao> {
             pstm.setBoolean(30, bean.getCartao_valid());
             pstm.setString(31, bean.getQrcode());
             System.out.println(pstm.toString());
-            System.out.println("11");
+            System.out.println("11"+bean.getDta_entrada_real());
             pstm.setTimestamp(32, new java.sql.Timestamp(format.parse(bean.getDta_entrada_real()).getTime()));
             System.out.println("12");
             System.out.println("13");
