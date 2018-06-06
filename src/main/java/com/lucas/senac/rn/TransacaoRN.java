@@ -332,6 +332,7 @@ public class TransacaoRN {
         System.out.println(content);
         Transacao transacao = (Transacao) gson.fromJson(content, Transacao.class);
         System.out.println("Chegou aqui:" + transacao);
+        transacaoBD.alterar(transacao);
     }
     
     @GET
