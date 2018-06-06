@@ -50,12 +50,12 @@ public class TransacaoBD extends CrudBD<Transacao> {
                 pstm.setObject(2, null);
             }
             if (bean.getDta_entrada() != null) {
-                pstm.setTimestamp(3, new java.sql.Timestamp(bean.getDta_entrada().getTime()));
+                pstm.setTimestamp(3, new java.sql.Timestamp(format.parse(bean.getDta_entrada()).getTime()));
             } else {
                 pstm.setObject(3, null);
             }
             if (bean.getDta_saida() != null) {
-                pstm.setTimestamp(4, new java.sql.Timestamp(bean.getDta_saida().getTime()));
+                pstm.setTimestamp(4, new java.sql.Timestamp(format.parse(bean.getDta_saida()).getTime()));
             } else {
                 pstm.setObject(4, null);
             }
@@ -249,8 +249,8 @@ public class TransacaoBD extends CrudBD<Transacao> {
                 transacaoRetorno.setIdtransacao(rs.getInt("idtransacao"));
                 transacaoRetorno.setIdestabelecimento(rs.getInt("idestabelecimento"));
                 transacaoRetorno.setIdusuario(rs.getInt("idusuario"));
-                transacaoRetorno.setDta_entrada(rs.getTimestamp("dta_entrada"));
-                transacaoRetorno.setDta_saida(rs.getTimestamp("dta_saida"));
+                transacaoRetorno.setDta_entrada(rs.getString("dta_entrada"));
+                transacaoRetorno.setDta_saida(rs.getString("dta_saida"));
                 transacaoRetorno.setAmount(rs.getInt("amount"));
                 transacaoRetorno.setRefunded_amount(rs.getInt("refunded_amount"));
                 transacaoRetorno.setAuthorized_amount(rs.getInt("authorized_amount"));
@@ -306,8 +306,8 @@ public class TransacaoBD extends CrudBD<Transacao> {
                 transacaoRetorno.setIdtransacao(rs.getInt("idtransacao"));
                 transacaoRetorno.setIdestabelecimento(rs.getInt("idestabelecimento"));
                 transacaoRetorno.setIdusuario(rs.getInt("idusuario"));
-                transacaoRetorno.setDta_entrada(rs.getTimestamp("dta_entrada"));
-                transacaoRetorno.setDta_saida(rs.getTimestamp("dta_saida"));
+                transacaoRetorno.setDta_entrada(rs.getString("dta_entrada"));
+                transacaoRetorno.setDta_saida(rs.getString("dta_saida"));
                 transacaoRetorno.setAmount(rs.getInt("amount"));
                 transacaoRetorno.setRefunded_amount(rs.getInt("refunded_amount"));
                 transacaoRetorno.setAuthorized_amount(rs.getInt("authorized_amount"));
@@ -358,8 +358,8 @@ public class TransacaoBD extends CrudBD<Transacao> {
 
             pstm.setInt(1, bean.getIdestabelecimento());
             pstm.setInt(2, bean.getIdusuario());
-            pstm.setTimestamp(3, new java.sql.Timestamp(bean.getDta_entrada().getTime()));
-            pstm.setTimestamp(4, new java.sql.Timestamp(bean.getDta_saida().getTime()));
+            pstm.setTimestamp(3, new java.sql.Timestamp(format.parse(bean.getDta_entrada()).getTime()));
+            pstm.setTimestamp(4, new java.sql.Timestamp(format.parse(bean.getDta_saida()).getTime()));
             pstm.setInt(5, bean.getAmount());
             pstm.setInt(6, bean.getRefunded_amount());
             pstm.setInt(7, bean.getAuthorized_amount());
@@ -424,8 +424,8 @@ public class TransacaoBD extends CrudBD<Transacao> {
                 transacaoRetorno.setIdtransacao(rs.getInt("idtransacao"));
                 transacaoRetorno.setIdestabelecimento(rs.getInt("idestabelecimento"));
                 transacaoRetorno.setIdusuario(rs.getInt("idusuario"));
-                transacaoRetorno.setDta_entrada(rs.getTimestamp("dta_entrada"));
-                transacaoRetorno.setDta_saida(rs.getTimestamp("dta_saida"));
+                transacaoRetorno.setDta_entrada(rs.getString("dta_entrada"));
+                transacaoRetorno.setDta_saida(rs.getString("dta_saida"));
                 transacaoRetorno.setAmount(rs.getInt("amount"));
                 transacaoRetorno.setRefunded_amount(rs.getInt("refunded_amount"));
                 transacaoRetorno.setAuthorized_amount(rs.getInt("authorized_amount"));
@@ -504,8 +504,8 @@ public class TransacaoBD extends CrudBD<Transacao> {
                 transacaoRetorno.setIdtransacao(rs.getInt("idtransacao"));
                 transacaoRetorno.setIdestabelecimento(rs.getInt("idestabelecimento"));
                 transacaoRetorno.setIdusuario(rs.getInt("idusuario"));
-                transacaoRetorno.setDta_entrada(rs.getTimestamp("dta_entrada"));
-                transacaoRetorno.setDta_saida(rs.getTimestamp("dta_saida"));
+                transacaoRetorno.setDta_entrada(rs.getString("dta_entrada"));
+                transacaoRetorno.setDta_saida(rs.getString("dta_saida"));
                 transacaoRetorno.setAmount(rs.getInt("amount"));
                 transacaoRetorno.setRefunded_amount(rs.getInt("refunded_amount"));
                 transacaoRetorno.setAuthorized_amount(rs.getInt("authorized_amount"));
@@ -565,8 +565,8 @@ public class TransacaoBD extends CrudBD<Transacao> {
                 transacaoRetorno.setIdtransacao(rs.getInt("idtransacao"));
                 transacaoRetorno.setIdestabelecimento(rs.getInt("idestabelecimento"));
                 transacaoRetorno.setIdusuario(rs.getInt("idusuario"));
-                transacaoRetorno.setDta_entrada(rs.getTimestamp("dta_entrada"));
-                transacaoRetorno.setDta_saida(rs.getTimestamp("dta_saida"));
+                transacaoRetorno.setDta_entrada(rs.getString("dta_entrada"));
+                transacaoRetorno.setDta_saida(rs.getString("dta_saida"));
                 transacaoRetorno.setAmount(rs.getInt("amount"));
                 transacaoRetorno.setRefunded_amount(rs.getInt("refunded_amount"));
                 transacaoRetorno.setAuthorized_amount(rs.getInt("authorized_amount"));
@@ -628,8 +628,8 @@ public class TransacaoBD extends CrudBD<Transacao> {
                 transacaoRetorno.setIdtransacao(rs.getInt("idtransacao"));
                 transacaoRetorno.setIdestabelecimento(rs.getInt("idestabelecimento"));
                 transacaoRetorno.setIdusuario(rs.getInt("idusuario"));
-                transacaoRetorno.setDta_entrada(rs.getTimestamp("dta_entrada"));
-                transacaoRetorno.setDta_saida(rs.getTimestamp("dta_saida"));
+                transacaoRetorno.setDta_entrada(rs.getString("dta_entrada"));
+                transacaoRetorno.setDta_saida(rs.getString("dta_saida"));
                 transacaoRetorno.setAmount(rs.getInt("amount"));
                 transacaoRetorno.setRefunded_amount(rs.getInt("refunded_amount"));
                 transacaoRetorno.setAuthorized_amount(rs.getInt("authorized_amount"));
@@ -688,8 +688,8 @@ public class TransacaoBD extends CrudBD<Transacao> {
                 transacaoRetorno.setIdtransacao(rs.getInt("idtransacao"));
                 transacaoRetorno.setIdestabelecimento(rs.getInt("idestabelecimento"));
                 transacaoRetorno.setIdusuario(rs.getInt("idusuario"));
-                transacaoRetorno.setDta_entrada(rs.getTimestamp("dta_entrada"));
-                transacaoRetorno.setDta_saida(rs.getTimestamp("dta_saida"));
+                transacaoRetorno.setDta_entrada(rs.getString("dta_entrada"));
+                transacaoRetorno.setDta_saida(rs.getString("dta_saida"));
                 transacaoRetorno.setAmount(rs.getInt("amount"));
                 transacaoRetorno.setRefunded_amount(rs.getInt("refunded_amount"));
                 transacaoRetorno.setAuthorized_amount(rs.getInt("authorized_amount"));

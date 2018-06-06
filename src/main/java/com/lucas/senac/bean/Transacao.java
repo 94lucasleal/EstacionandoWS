@@ -7,8 +7,8 @@ public class Transacao {
     private Integer idtransacao;
     private Integer idestabelecimento;
     private Integer idusuario;
-    private Date dta_entrada;
-    private Date dta_saida;
+    private String dta_entrada;
+    private String dta_saida;
     private Integer id;
     private Integer amount;
     private Integer refunded_amount;
@@ -45,7 +45,7 @@ public class Transacao {
     public Transacao() {
     }
 
-    public Transacao(Integer idtransacao, Integer idestabelecimento, Integer idusuario, Date dta_entrada, Date dta_saida, Integer id, Integer amount, Integer refunded_amount, Integer authorized_amount, Integer paid_amount, Integer installments, Integer cost, String tid, String nsu, String boleto_url, String boleto_barcode, String referer, String ip, String acquirer_name, String payment_method, String status, String status_reason, String date_updated, String customers_document, String customers_name, String customers_email, String date_created, String cartao_brand, String cartao_first_digits, String cartao_last_digits, String cartao_name, Boolean cartao_valid, String qrcode, String dta_entrada_real, String dta_saida_prevista, String dta_saida_real, Boolean utilizou_reserva) {
+    public Transacao(Integer idtransacao, Integer idestabelecimento, Integer idusuario, String dta_entrada, String dta_saida, Integer id, Integer amount, Integer refunded_amount, Integer authorized_amount, Integer paid_amount, Integer installments, Integer cost, String tid, String nsu, String boleto_url, String boleto_barcode, String referer, String ip, String acquirer_name, String payment_method, String status, String status_reason, String date_updated, String customers_document, String customers_name, String customers_email, String date_created, String cartao_brand, String cartao_first_digits, String cartao_last_digits, String cartao_name, Boolean cartao_valid, String qrcode, String dta_entrada_real, String dta_saida_prevista, String dta_saida_real, Boolean utilizou_reserva) {
         this.idtransacao = idtransacao;
         this.idestabelecimento = idestabelecimento;
         this.idusuario = idusuario;
@@ -109,19 +109,19 @@ public class Transacao {
         this.idusuario = idusuario;
     }
 
-    public Date getDta_entrada() {
+    public String getDta_entrada() {
         return dta_entrada;
     }
 
-    public void setDta_entrada(Date dta_entrada) {
+    public void setDta_entrada(String dta_entrada) {
         this.dta_entrada = dta_entrada;
     }
 
-    public Date getDta_saida() {
+    public String getDta_saida() {
         return dta_saida;
     }
 
-    public void setDta_saida(Date dta_saida) {
+    public void setDta_saida(String dta_saida) {
         this.dta_saida = dta_saida;
     }
 

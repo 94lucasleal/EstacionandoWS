@@ -99,8 +99,8 @@ public class TransacaoRN {
             transacao.setIdusuario(pagamento.getIdusuario());
             transacao.setIdestabelecimento(pagamento.getIdestabelecimento());
             if (pagamento.getDta_entrada() != null || pagamento.getDta_saida() != null) {
-                transacao.setDta_entrada(format.parse(pagamento.getDta_entrada()));
-                transacao.setDta_saida(format.parse(pagamento.getDta_saida()));
+                transacao.setDta_entrada(pagamento.getDta_entrada());
+                transacao.setDta_saida(pagamento.getDta_saida());
                 //atualizaVagas(transacao);
                 Hash hash = new Hash();
                 transacao.setQrcode(hash.encrypt(transacao.getNsu()));
@@ -149,8 +149,8 @@ public class TransacaoRN {
             transacao.setIdusuario(pagamento.getIdusuario());
             transacao.setIdestabelecimento(pagamento.getIdestabelecimento());
             if (pagamento.getDta_entrada() != null || pagamento.getDta_saida() != null) {
-                transacao.setDta_entrada(format.parse(pagamento.getDta_entrada()));
-                transacao.setDta_saida(format.parse(pagamento.getDta_saida()));
+                transacao.setDta_entrada(pagamento.getDta_entrada());
+                transacao.setDta_saida(pagamento.getDta_saida());
                 //atualizaVagas(transacao);
                 Hash hash = new Hash();
                 transacao.setQrcode(hash.encrypt(transacao.getNsu()));
@@ -189,8 +189,8 @@ public class TransacaoRN {
             transacao.setIdusuario(pagamento.getIdusuario());
             transacao.setIdestabelecimento(pagamento.getIdestabelecimento());
             if (pagamento.getDta_entrada() != null || pagamento.getDta_saida() != null) {
-                transacao.setDta_entrada(format.parse(pagamento.getDta_entrada()));
-                transacao.setDta_saida(format.parse(pagamento.getDta_saida()));
+                transacao.setDta_entrada(pagamento.getDta_entrada());
+                transacao.setDta_saida(pagamento.getDta_saida());
                 Hash hash = new Hash();
                 transacao.setQrcode(hash.encrypt(transacao.getNsu()));
             }
