@@ -37,15 +37,15 @@ public class Transacao {
     private String cartao_name;
     private Boolean cartao_valid;
     private String qrcode;
-    private Date dta_entrada_real;
-    private Date dta_saida_prevista;
-    private Date dta_saida_real;
+    private String dta_entrada_real;
+    private String dta_saida_prevista;
+    private String dta_saida_real;
     private Boolean utilizou_reserva;
 
     public Transacao() {
     }
 
-    public Transacao(Integer idtransacao, Integer idestabelecimento, Integer idusuario, Date dta_entrada, Date dta_saida, Integer id, Integer amount, Integer refunded_amount, Integer authorized_amount, Integer paid_amount, Integer installments, Integer cost, String tid, String nsu, String boleto_url, String boleto_barcode, String referer, String ip, String acquirer_name, String payment_method, String status, String status_reason, String date_updated, String customers_document, String customers_name, String customers_email, String date_created, String cartao_brand, String cartao_first_digits, String cartao_last_digits, String cartao_name, Boolean cartao_valid, String qrcode, Date dta_entrada_real, Date dta_saida_prevista, Date dta_saida_real, Boolean utilizou_reserva) {
+    public Transacao(Integer idtransacao, Integer idestabelecimento, Integer idusuario, Date dta_entrada, Date dta_saida, Integer id, Integer amount, Integer refunded_amount, Integer authorized_amount, Integer paid_amount, Integer installments, Integer cost, String tid, String nsu, String boleto_url, String boleto_barcode, String referer, String ip, String acquirer_name, String payment_method, String status, String status_reason, String date_updated, String customers_document, String customers_name, String customers_email, String date_created, String cartao_brand, String cartao_first_digits, String cartao_last_digits, String cartao_name, Boolean cartao_valid, String qrcode, String dta_entrada_real, String dta_saida_prevista, String dta_saida_real, Boolean utilizou_reserva) {
         this.idtransacao = idtransacao;
         this.idestabelecimento = idestabelecimento;
         this.idusuario = idusuario;
@@ -349,27 +349,27 @@ public class Transacao {
         this.qrcode = qrcode;
     }
 
-    public Date getDta_entrada_real() {
+    public String getDta_entrada_real() {
         return dta_entrada_real;
     }
 
-    public void setDta_entrada_real(Date dta_entrada_real) {
+    public void setDta_entrada_real(String dta_entrada_real) {
         this.dta_entrada_real = dta_entrada_real;
     }
 
-    public Date getDta_saida_prevista() {
+    public String getDta_saida_prevista() {
         return dta_saida_prevista;
     }
 
-    public void setDta_saida_prevista(Date dta_saida_prevista) {
+    public void setDta_saida_prevista(String dta_saida_prevista) {
         this.dta_saida_prevista = dta_saida_prevista;
     }
 
-    public Date getDta_saida_real() {
+    public String getDta_saida_real() {
         return dta_saida_real;
     }
 
-    public void setDta_saida_real(Date dta_saida_real) {
+    public void setDta_saida_real(String dta_saida_real) {
         this.dta_saida_real = dta_saida_real;
     }
 

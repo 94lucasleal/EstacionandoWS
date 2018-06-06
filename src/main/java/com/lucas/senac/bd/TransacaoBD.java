@@ -20,6 +20,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class TransacaoBD extends CrudBD<Transacao> {
+    
+    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
     public void inserir(Transacao bean) {
         Connection conn = null;
@@ -385,9 +387,9 @@ public class TransacaoBD extends CrudBD<Transacao> {
             pstm.setString(29, bean.getCartao_name());
             pstm.setBoolean(30, bean.getCartao_valid());
             pstm.setBoolean(31, bean.getUtilizou_reserva());
-            pstm.setTimestamp(32, new java.sql.Timestamp(bean.getDta_entrada_real().getTime()));
-            pstm.setTimestamp(33, new java.sql.Timestamp(bean.getDta_saida_prevista().getTime()));
-            pstm.setTimestamp(34, new java.sql.Timestamp(bean.getDta_saida_real().getTime()));
+            pstm.setTimestamp(32, new java.sql.Timestamp(format.parse(bean.getDta_entrada_real()).getTime()));
+            pstm.setTimestamp(33, new java.sql.Timestamp(format.parse(bean.getDta_saida_prevista()).getTime()));
+            pstm.setTimestamp(34, new java.sql.Timestamp(format.parse(bean.getDta_saida_real()).getTime()));
             pstm.setBoolean(35, bean.getUtilizou_reserva());
             pstm.setInt(36, bean.getIdtransacao());
 
