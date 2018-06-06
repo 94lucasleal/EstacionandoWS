@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 import java.util.logging.Level;
@@ -21,7 +22,8 @@ import java.util.logging.Logger;
 
 public class TransacaoBD extends CrudBD<Transacao> {
     
-    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+    SimpleDateFormat formataa = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     public void inserir(Transacao bean) {
         Connection conn = null;
@@ -346,6 +348,7 @@ public class TransacaoBD extends CrudBD<Transacao> {
     }
 
     public void alterar(Transacao bean) {
+        Calendar dateTime = Calendar.getInstance();
         Connection conn = null;
         try {
             conn = abrirConexao();
@@ -358,7 +361,9 @@ public class TransacaoBD extends CrudBD<Transacao> {
 
             pstm.setInt(1, bean.getIdestabelecimento());
             pstm.setInt(2, bean.getIdusuario());
-            pstm.setTimestamp(3, new java.sql.Timestamp(format.parse(bean.getDta_entrada()).getTime()));
+            //Date a = new Date(format.parse(bean.getDta_entrada_real()).getTime());
+            //dateTime.setTimeInMillis(a.getTime());
+            pstm.setTimestamp(3, new java.sql.Timestamp(format.parse(bean.getDta_entrada_real()).getTime()));
             pstm.setTimestamp(4, new java.sql.Timestamp(format.parse(bean.getDta_saida()).getTime()));
             pstm.setInt(5, bean.getAmount());
             pstm.setInt(6, bean.getRefunded_amount());
