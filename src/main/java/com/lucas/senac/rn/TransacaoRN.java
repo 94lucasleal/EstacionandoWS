@@ -102,6 +102,8 @@ public class TransacaoRN {
                 transacao.setDta_entrada(format.parse(pagamento.getDta_entrada()));
                 transacao.setDta_saida(format.parse(pagamento.getDta_saida()));
                 //atualizaVagas(transacao);
+                Hash hash = new Hash();
+                transacao.setQrcode(hash.encrypt(transacao.getNsu()));
             } else {
                 atualizaCarteira(transacao);
             }
@@ -150,13 +152,11 @@ public class TransacaoRN {
                 transacao.setDta_entrada(format.parse(pagamento.getDta_entrada()));
                 transacao.setDta_saida(format.parse(pagamento.getDta_saida()));
                 //atualizaVagas(transacao);
-                transacao.setQrcode(""+Double.parseDouble(transacao.getNsu())/value);
                 Hash hash = new Hash();
-                hash.teste(transacao.getQrcode(), value);
+                transacao.setQrcode(hash.encrypt(transacao.getNsu()));
             } else {
                 atualizaCarteira(transacao);  
             }
-
             transacaoBD.inserir(transacao);
             
             return gson.toJson(tx);
@@ -191,6 +191,8 @@ public class TransacaoRN {
             if (pagamento.getDta_entrada() != null || pagamento.getDta_saida() != null) {
                 transacao.setDta_entrada(format.parse(pagamento.getDta_entrada()));
                 transacao.setDta_saida(format.parse(pagamento.getDta_saida()));
+                Hash hash = new Hash();
+                transacao.setQrcode(hash.encrypt(transacao.getNsu()));
             }
 
             transacaoBD.inserir(transacao);
