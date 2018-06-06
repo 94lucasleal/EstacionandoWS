@@ -306,6 +306,15 @@ public class TransacaoRN {
         transacao.setIdtransacao(idtransacao);
         transacaoBD.excluir(transacao);
     }
+    
+    @GET
+    @Produces("application/json")
+    @Path("consultarQrCode/{qrcode}")
+    public Transacao consultarQrCode(@PathParam("qrcode") String qrcode) {
+        Transacao transacao = new Transacao();
+        transacao.setQrcode(qrcode);
+        return transacaoBD.consultarQrCode(transacao);
+    }
 
     @GET
     @Produces("application/json")
