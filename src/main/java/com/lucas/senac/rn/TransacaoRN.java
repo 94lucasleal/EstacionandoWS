@@ -192,6 +192,7 @@ public class TransacaoRN {
                 transacao.setDta_entrada(pagamento.getDta_entrada());
                 transacao.setDta_saida(pagamento.getDta_saida());
                 Hash hash = new Hash();
+                //Double a = (transacao.getAmount().doubleValue()+transacao.getIdusuario().doubleValue()+transacao.getIdtransacao().doubleValue())*32;
                 transacao.setQrcode(hash.encrypt(transacao.getNsu()));
             }
 

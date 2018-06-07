@@ -1,5 +1,8 @@
 package com.lucas.senac.estacionando3.utils;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import javax.crypto.spec.SecretKeySpec;
 import javax.crypto.spec.IvParameterSpec;
@@ -30,7 +33,8 @@ public class Hash {
             SecretKeySpec key = new SecretKeySpec(chaveencriptacao.getBytes("UTF-8"), "AES");
             encripta.init(Cipher.ENCRYPT_MODE, key,new IvParameterSpec(IV.getBytes("UTF-8")));
             byte[] bytes = encripta.doFinal(textopuro.getBytes("UTF-8"));
-            return Base64.getEncoder().encodeToString(bytes);
+            String texto = Base64.getEncoder().encodeToString(bytes);
+            return texto.replaceAll("/", "@");
         } catch (Exception e) {
             System.out.println(e.toString());
             e.printStackTrace();
@@ -39,6 +43,7 @@ public class Hash {
     }
 
     public String decrypt(String textoencriptado){
+        textoencriptado = textoencriptado.replaceAll("@", "/");
         try {
             byte[] bytes = Base64.getDecoder().decode(textoencriptado);
             Cipher decripta = Cipher.getInstance("AES/CBC/PKCS5Padding");
