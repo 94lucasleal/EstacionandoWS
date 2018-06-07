@@ -523,7 +523,7 @@ public class TransacaoBD extends CrudBD<Transacao> {
             pstm.setInt(5, idestabelecimento);
             */
             
-            PreparedStatement pstm = conn.prepareStatement("SELECT * FROM transacao WHERE (dta_entrada > ? AND dta_entrada < ?) and idestabelecimento = ?");
+            PreparedStatement pstm = conn.prepareStatement("SELECT * FROM transacao WHERE (dta_entrada > ? AND dta_entrada < ?) and idestabelecimento = ? order by dta_entrada");
             pstm.setTimestamp(1, new Timestamp(d1.getTime()));
             pstm.setTimestamp(2, new Timestamp(d2.getTime()));
             pstm.setInt(3, idestabelecimento);
