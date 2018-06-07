@@ -496,7 +496,7 @@ public class TransacaoBD extends CrudBD<Transacao> {
         
         Date d1 = new Date(dtaentrada);
         Date d2 = new Date(dtasaida);
-        SimpleDateFormat isoFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat isoFormat = new SimpleDateFormat("yyyy-MM-dd");
         TimeZone tz = TimeZone.getTimeZone("GMT-03:00");
 	TimeZone.setDefault(tz);
         isoFormat.setTimeZone(tz);
@@ -514,12 +514,19 @@ public class TransacaoBD extends CrudBD<Transacao> {
         try {
             conn = abrirConexao();
 
+            /*
             PreparedStatement pstm = conn.prepareStatement("SELECT * FROM transacao WHERE (dta_entrada <= ? AND dta_saida >= ?) OR (dta_entrada <= ? AND dta_saida >= ?) and idestabelecimento = ?");
             pstm.setTimestamp(1, new Timestamp(d1.getTime()));
             pstm.setTimestamp(2, new Timestamp(d1.getTime()));
             pstm.setTimestamp(3, new Timestamp(d2.getTime()));
             pstm.setTimestamp(4, new Timestamp(d2.getTime()));
             pstm.setInt(5, idestabelecimento);
+            */
+            
+            PreparedStatement pstm = conn.prepareStatement("SELECT * FROM transacao WHERE (dta_entrada > ? AND dta_entrada < ?) and idestabelecimento = ?");
+            pstm.setTimestamp(1, new Timestamp(d1.getTime()));
+            pstm.setTimestamp(2, new Timestamp(d1.getTime()));
+            pstm.setInt(3, idestabelecimento);
             
             System.out.println(pstm.toString());
             ResultSet rs = pstm.executeQuery();
