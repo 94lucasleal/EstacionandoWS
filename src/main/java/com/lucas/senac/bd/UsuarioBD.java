@@ -64,9 +64,9 @@ public class UsuarioBD extends CrudBD<Usuario> {
         try {
             conn = abrirConexao();
 
-            PreparedStatement pstm = conn.prepareStatement("SELECT * FROM usuario WHERE email = ? and senha = ?");
+            PreparedStatement pstm = conn.prepareStatement("SELECT * FROM usuario WHERE email = ? and senha like ?");
             pstm.setString(1, bean.getEmail());
-            pstm.setString(2, bean.getSenha());
+            pstm.setString(2, "%"+bean.getSenha()+"%");
 
             System.out.println("Consultando: " + bean);
             ResultSet rs = pstm.executeQuery();
