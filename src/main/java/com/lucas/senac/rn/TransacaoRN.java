@@ -345,10 +345,25 @@ public class TransacaoRN {
     
     @GET
     @Produces("application/json")
+    @Path("pesquisarVagasEfetivadas/{dtaentrada}/{dtasaida}/{idestabelecimento}")
+    public String pesquisarVagasEfetivadas(@PathParam("dtaentrada") long dtaentrada, @PathParam("dtasaida") long dtasaida, @PathParam("idestabelecimento") int idestabelecimento) {
+        return gson.toJson(transacaoBD.pesquisarVagasEfetivadas(dtaentrada,dtasaida,idestabelecimento));
+    }
+    
+    @GET
+    @Produces("application/json")
+    @Path("pesquisarVagasAgendadas/{dtaentrada}/{dtasaida}/{idestabelecimento}")
+    public String pesquisarVagasAgendadas(@PathParam("dtaentrada") long dtaentrada, @PathParam("dtasaida") long dtasaida, @PathParam("idestabelecimento") int idestabelecimento) {
+        return gson.toJson(transacaoBD.pesquisarVagasAgendadas(dtaentrada,dtasaida,idestabelecimento));
+    }
+    
+    @GET
+    @Produces("application/json")
     @Path("pesquisarVagas/{dtaentrada}/{dtasaida}/{idestabelecimento}")
     public String pesquisarVagas(@PathParam("dtaentrada") long dtaentrada, @PathParam("dtasaida") long dtasaida, @PathParam("idestabelecimento") int idestabelecimento) {
         return gson.toJson(transacaoBD.pesquisarVagas(dtaentrada,dtasaida,idestabelecimento));
     }
+    
 
     @GET
     @Produces("application/json")
