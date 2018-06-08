@@ -518,7 +518,7 @@ public class TransacaoBD extends CrudBD<Transacao> {
             pstm.setTimestamp(1, new Timestamp(d1.getTime()));
             pstm.setTimestamp(2, new Timestamp(d2.getTime()));
             pstm.setInt(3, idestabelecimento);
-            pstm.setBoolean(4, true);
+            pstm.setString(4, "true");
             
             System.out.println(pstm.toString());
             ResultSet rs = pstm.executeQuery();
