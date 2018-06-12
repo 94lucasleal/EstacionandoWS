@@ -308,7 +308,7 @@ public class TransacaoRN {
         Transacao transacao = (Transacao) gson.fromJson(content, Transacao.class);
         System.out.println("Chegou aqui:" + transacao);
         
-        Boolean validou = false;
+        transacao.setEstornado(false);
         transacao.setId(transacao.getId());
         
         PagarMe.init("ak_test_U9HHME9pST6E6ZDv0cBWeVfd3UoVLG");
@@ -318,11 +318,11 @@ public class TransacaoRN {
             System.out.println(tx.toJson());
             tx.refund(transacao.getAmount());
             System.out.println("Chegou aquiiiiii ausdhausidh");
-            validou = true;
+            transacao.setEstornado(true);
         } catch (PagarMeException ex) {
             System.out.println(ex.toString());
         }
-        if (validou) {
+        if (transacao.getEstornado()) {
             transacaoBD.estonarPagamento(transacao);
         }
     }
