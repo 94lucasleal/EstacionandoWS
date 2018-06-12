@@ -443,10 +443,11 @@ public class TransacaoBD extends CrudBD<Transacao> {
         try {
             conn = abrirConexao();
 
-            PreparedStatement pstm = conn.prepareStatement("UPDATE transacao SET estornado = ? where idtransacao = ?");
+            PreparedStatement pstm = conn.prepareStatement("UPDATE transacao SET estornado = ? and status = ? where idtransacao = ?");
             pstm.setBoolean(1, bean.getEstornado());
-            pstm.setInt(2, bean.getIdtransacao());
-
+            pstm.setString(2, "Estornado");
+            pstm.setInt(3, bean.getIdtransacao());
+            
             System.out.println("Estornando: " + bean);
             pstm.execute();
             commitTransacao(conn);
@@ -471,8 +472,6 @@ public class TransacaoBD extends CrudBD<Transacao> {
         try {
             conn = abrirConexao();
             
-
-
             PreparedStatement pstm = conn.prepareStatement("SELECT * FROM transacao WHERE dta_entrada > ? AND idusuario = ?");
             pstm.setTimestamp(1, new Timestamp(cal.getTime().getTime()));
             pstm.setInt(2, Integer.parseInt(pesquisa));
