@@ -441,12 +441,11 @@ public class TransacaoBD extends CrudBD<Transacao> {
    public void estonarPagamento(Transacao bean) {
         Connection conn = null;
         try {
-            Date d1;
             conn = abrirConexao();
 
-            PreparedStatement pstm = conn.prepareStatement("UPDATE transacao SET estornado = ? where id = ?");
-            pstm.setBoolean(1, bean.getEstornado());
-            pstm.setInt(2, bean.getId());
+            PreparedStatement pstm = conn.prepareStatement("UPDATE transacao SET estornado = ? where idtransacao = ?");
+            pstm.setString(1, bean.getEstornado().toString());
+            pstm.setInt(2, bean.getIdtransacao());
 
             System.out.println("Estonando: " + bean);
             pstm.execute();
