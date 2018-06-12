@@ -315,7 +315,7 @@ public class TransacaoRN {
         Transaction tx;
         try {
             tx = new Transaction().find(transacao.getId());
-            tx.refund(1000);
+            tx.refund(transacao.getAmount());
             validou = true;
         } catch (PagarMeException ex) {
             System.out.println(ex.toString());
