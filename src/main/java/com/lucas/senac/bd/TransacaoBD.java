@@ -360,14 +360,13 @@ public class TransacaoBD extends CrudBD<Transacao> {
         try {
             conn = abrirConexao();
 
-            PreparedStatement pstm = conn.prepareStatement("SELECT nextval('transacao_idtransacao_seq') as prox;");
+            PreparedStatement pstm = conn.prepareStatement("select max(idtransacao)+1 as prox from transacao");
 
             System.out.println("Consultando: " + pstm.toString());
             ResultSet rs = pstm.executeQuery();
             if (rs.next()) {
                 value = rs.getInt("prox");
             }
-            
 
             System.out.println("Consulta executada com sucesso");
         } catch (Exception e) {
