@@ -39,7 +39,7 @@ public class TransacaoBD extends CrudBD<Transacao> {
                     + "dta_saida, amount, refunded_amount, authorized_amount, paid_amount, installments, cost, tid, nsu, boleto_url, "
                     + "boleto_barcode, referer, ip, acquirer_name, payment_method, status, status_reason, date_updated, "
                     + "customers_document, customers_name, customers_email, date_created, cartao_brand, cartao_first_digits, "
-                    + "cartao_last_digits, cartao_name, cartao_valid, qrcode) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                    + "cartao_last_digits, cartao_name, cartao_valid, qrcode, id) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
             if (bean.getIdestabelecimento() != null) {
                 pstm.setInt(1, bean.getIdestabelecimento());
@@ -196,6 +196,12 @@ public class TransacaoBD extends CrudBD<Transacao> {
             } else {
                 pstm.setObject(31, null);
             }
+            if (bean.getId() != null) {
+                pstm.setInt(31, bean.getId());
+            } else {
+                pstm.setObject(31, null);
+            }
+
 
             System.out.println(pstm.toString());
             System.out.println("Salvando: " + bean);

@@ -293,9 +293,7 @@ public class TransacaoRN {
             transacao.setCartao_name(tx.getCard().getHolderName());
             transacao.setCartao_valid(tx.getCard().getValid());
         }
-        System.out.println("1 TESTE ID: "+tx.getId());
         transacao.setId(tx.getId());
-        System.out.println("2 TESTE ID: "+transacao.getId());
         transacao.setDate_created(tx.getCreatedAt().toString("dd/MM/yyyy HH:mm:ss"));
 
         return transacao;
