@@ -180,11 +180,7 @@ public class TransacaoRN {
         
         Double value = pagamento.getValue() * 100;
 
-        try {
-            Transaction tx = new Transaction();
-            tx.setAmount(value.intValue());
-            System.out.println(gson.toJson(tx));
-            
+        try {            
             Transacao transacao = new Transacao();
             transacao.setAmount(value.intValue());
             transacao.setPayment_method("Carteira Eletronica");
@@ -202,7 +198,7 @@ public class TransacaoRN {
                 atualizaCarteira(transacao);    
             }
             
-            return gson.toJson(tx);
+            return gson.toJson(transacao);
         } catch (Exception e) {
             System.out.println(e);
             return gson.toJson(e);
