@@ -108,7 +108,7 @@ public class TransacaoRN {
                 Hash hash = new Hash();
                 transacao.setQrcode(hash.encrypt(transacao.getNsu()));
             } else {
-                atualizaCarteira(transacao);
+                atualizaCarteira(transacao,0);
             }
             transacaoBD.inserir(transacao);
    
@@ -158,7 +158,7 @@ public class TransacaoRN {
                 Hash hash = new Hash();
                 transacao.setQrcode(hash.encrypt(transacao.getNsu()));
             } else {
-                atualizaCarteira(transacao);  
+                atualizaCarteira(transacao,0);  
             }
             transacaoBD.inserir(transacao);
             
@@ -195,9 +195,6 @@ public class TransacaoRN {
             }
             System.out.println(transacao);
             transacaoBD.inserir(transacao);
-            if (pagamento.getDta_entrada() != null || pagamento.getDta_saida() != null) {
-                atualizaCarteira(transacao);    
-            }
             
             return gson.toJson(transacao);
         } catch (Exception e) {
@@ -206,7 +203,7 @@ public class TransacaoRN {
         }
     }
 
-    public Boolean atualizaCarteira(Transacao transacao) {
+    public Boolean atualizaCarteira(Transacao transacao, int x) {
         try {
             String json = carteiraRN.consultar(transacao.getIdusuario());
             Carteira c = (Carteira) gson.fromJson(json, Carteira.class);
@@ -224,8 +221,13 @@ public class TransacaoRN {
             } else {
                 System.out.println(c);
                 if (transacao.getStatus().toLowerCase().equals("paid")) {
-                    carteira.setSaldo_disponivel(c.getSaldo_disponivel() + (transacao.getAmount() / 100));
-                    carteira.setSaldo_pendente(c.getSaldo_pendente());
+                    if (x == 1) {
+                        carteira.setSaldo_disponivel(c.getSaldo_disponivel() + (transacao.getAmount() / 100));
+                        carteira.setSaldo_pendente(c.getSaldo_pendente());
+                    } else {
+                        carteira.setSaldo_disponivel(c.getSaldo_disponivel() - (transacao.getAmount() / 100));
+                        carteira.setSaldo_pendente(c.getSaldo_pendente());
+                    }
                 } else {
                     carteira.setSaldo_pendente(c.getSaldo_pendente() + (transacao.getAmount() / 100));
                     carteira.setSaldo_disponivel(c.getSaldo_disponivel());
@@ -322,10 +324,10 @@ public class TransacaoRN {
             }
             if (transacao.getEstornado()) {
                 transacaoBD.estonarPagamento(transacao);
-                atualizaCarteira(transacao);
+                atualizaCarteira(transacao, 1);
             }
         } else {
-            atualizaCarteira(transacao);
+            atualizaCarteira(transacao, 1);
         }
     }
     
