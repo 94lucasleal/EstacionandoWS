@@ -364,7 +364,9 @@ public class TransacaoBD extends CrudBD<Transacao> {
 
             System.out.println("Consultando: " + pstm.toString());
             ResultSet rs = pstm.executeQuery();
-            value = rs.getInt("prox");
+            if (rs.next()) {
+                value = rs.getInt("prox");
+            }
             
 
             System.out.println("Consulta executada com sucesso");
