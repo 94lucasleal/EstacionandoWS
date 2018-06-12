@@ -447,7 +447,7 @@ public class TransacaoBD extends CrudBD<Transacao> {
             pstm.setString(1, bean.getEstornado().toString());
             pstm.setInt(2, bean.getIdtransacao());
 
-            System.out.println("Estonando: " + bean);
+            System.out.println("Estornando: " + bean);
             pstm.execute();
             commitTransacao(conn);
             System.out.println("Estorno realizado com sucesso");
