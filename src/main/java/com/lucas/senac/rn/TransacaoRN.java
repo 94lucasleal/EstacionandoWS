@@ -300,19 +300,21 @@ public class TransacaoRN {
         return transacao;
     }
     
-    
-    @GET
-    @Produces("application/json")
-    @Path("estornarPagamento/{id}")
-    public void estornarPagamento(@PathParam("id") int id) {
+    @PUT
+    @Consumes({"application/json"})
+    @Path("estornarPagamento")
+    public void estornarPagamento(String content) {
+        System.out.println(content);
+        Transacao transacao = (Transacao) gson.fromJson(content, Transacao.class);
+        System.out.println("Chegou aqui:" + transacao);
+        
         Boolean validou = false;
-        Transacao transacao = new Transacao();
-        transacao.setId(id);
+        transacao.setId(transacao.getId());
         
         PagarMe.init("ak_test_U9HHME9pST6E6ZDv0cBWeVfd3UoVLG");
         Transaction tx;
         try {
-            tx = new Transaction().find(id);
+            tx = new Transaction().find(transacao.getId());
             tx.refund(1000);
             validou = true;
         } catch (PagarMeException ex) {
@@ -321,7 +323,6 @@ public class TransacaoRN {
         if (validou) {
             transacaoBD.estonarPagamento(transacao);
         }
-        
     }
 
     @DELETE
