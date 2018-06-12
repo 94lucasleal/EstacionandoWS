@@ -354,6 +354,28 @@ public class TransacaoBD extends CrudBD<Transacao> {
         return transacaoRetorno;
     }
 
+    public int proximoNumero() {
+        Connection conn = null;
+        int value = 0;
+        try {
+            conn = abrirConexao();
+
+            PreparedStatement pstm = conn.prepareStatement("SELECT nextval('transacao_idtransacao_seq') as prox;");
+
+            System.out.println("Consultando: " + pstm.toString());
+            ResultSet rs = pstm.executeQuery();
+            value = rs.getInt("prox");
+            
+
+            System.out.println("Consulta executada com sucesso");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            fecharConexao(conn);
+        }
+        return value;
+    }
+    
     public void alterar(Transacao bean) {
         Calendar dateTime = Calendar.getInstance();
         Connection conn = null;

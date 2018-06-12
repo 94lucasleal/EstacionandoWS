@@ -201,8 +201,7 @@ public class TransacaoRN {
                 System.out.println("9");
                 Hash hash = new Hash();
                 System.out.println("10");
-                System.out.println(transacao);
-                transacao.setQrcode(hash.encrypt(transacao.getIdtransacao().toString()));
+                transacao.setQrcode(hash.encrypt(transacaoBD.proximoNumero()+""));
                 System.out.println("11");
             }
             System.out.println(transacao);
