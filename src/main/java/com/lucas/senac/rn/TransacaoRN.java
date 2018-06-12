@@ -181,28 +181,17 @@ public class TransacaoRN {
         Double value = pagamento.getValue() * 100;
 
         try {            
-            System.out.println("1");
             Transacao transacao = new Transacao();
-            System.out.println("2");
             transacao.setAmount(value.intValue());
-            System.out.println("3");
             transacao.setPayment_method("Carteira Eletronica");
-            System.out.println("4");
             transacao.setStatus("paid");
-            System.out.println("5");
             transacao.setIdusuario(pagamento.getIdusuario());
-            System.out.println("6");
             transacao.setIdestabelecimento(pagamento.getIdestabelecimento());
-            System.out.println("7");
             if (pagamento.getDta_entrada() != null || pagamento.getDta_saida() != null) {
                 transacao.setDta_entrada(pagamento.getDta_entrada());
-                System.out.println("8");
                 transacao.setDta_saida(pagamento.getDta_saida());
-                System.out.println("9");
                 Hash hash = new Hash();
-                System.out.println("10");
                 transacao.setQrcode(hash.encrypt(transacaoBD.proximoNumero()+""));
-                System.out.println("11");
             }
             System.out.println(transacao);
             transacaoBD.inserir(transacao);
@@ -319,22 +308,27 @@ public class TransacaoRN {
         transacao.setEstornado(false);
         transacao.setId(transacao.getId());
         
-        PagarMe.init("ak_test_U9HHME9pST6E6ZDv0cBWeVfd3UoVLG");
-        Transaction tx;
-        try {
-            tx = new Transaction().find(transacao.getId());
-            System.out.println(tx.toJson());
-            tx.refund(transacao.getAmount());
-            System.out.println("Chegou aquiiiiii ausdhausidh");
-            transacao.setEstornado(true);
-        } catch (PagarMeException ex) {
-            System.out.println(ex.toString());
-        }
-        if (transacao.getEstornado()) {
-            transacaoBD.estonarPagamento(transacao);
+        if (transacao.getPayment_method().toLowerCase().equals("credit_card")) {
+            PagarMe.init("ak_test_U9HHME9pST6E6ZDv0cBWeVfd3UoVLG");
+            Transaction tx;
+            try {
+                tx = new Transaction().find(transacao.getId());
+                System.out.println(tx.toJson());
+                tx.refund(transacao.getAmount());
+                System.out.println("Chegou aquiiiiii ausdhausidh");
+                transacao.setEstornado(true);
+            } catch (PagarMeException ex) {
+                System.out.println(ex.toString());
+            }
+            if (transacao.getEstornado()) {
+                transacaoBD.estonarPagamento(transacao);
+                atualizaCarteira(transacao);
+            }
+        } else {
+            atualizaCarteira(transacao);
         }
     }
-
+    
     @DELETE
     @Path("excluir/{idtransacao}")
     public void excluir(@PathParam("idtransacao") int idtransacao) {
