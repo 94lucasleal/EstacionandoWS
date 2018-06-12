@@ -13,6 +13,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -26,6 +28,7 @@ import me.pagar.model.Transaction;
 import me.pagar.model.Transaction.PaymentMethod;
 import me.pagar.model.Address;
 import me.pagar.model.Customer;
+import me.pagar.model.PagarMeException;
 import me.pagar.model.Phone;
 
 @Path("transacao/")
@@ -295,6 +298,30 @@ public class TransacaoRN {
         transacao.setDate_created(tx.getCreatedAt().toString("dd/MM/yyyy HH:mm:ss"));
 
         return transacao;
+    }
+    
+    
+    @GET
+    @Produces("application/json")
+    @Path("estornarPagamento/{id}")
+    public void estornarPagamento(@PathParam("id") int id) {
+        Boolean validou = false;
+        Transacao transacao = new Transacao();
+        transacao.setId(id);
+        
+        PagarMe.init("ak_test_U9HHME9pST6E6ZDv0cBWeVfd3UoVLG");
+        Transaction tx;
+        try {
+            tx = new Transaction().find(id);
+            tx.refund(1000);
+            validou = true;
+        } catch (PagarMeException ex) {
+            System.out.println(ex.toString());
+        }
+        if (validou) {
+            transacaoBD.estonarPagamento(transacao);
+        }
+        
     }
 
     @DELETE

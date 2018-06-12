@@ -41,11 +41,12 @@ public class Transacao {
     private String dta_saida_prevista;
     private String dta_saida_real;
     private Boolean utilizou_reserva;
+    private Boolean estornado;
 
     public Transacao() {
     }
 
-    public Transacao(Integer idtransacao, Integer idestabelecimento, Integer idusuario, String dta_entrada, String dta_saida, Integer id, Integer amount, Integer refunded_amount, Integer authorized_amount, Integer paid_amount, Integer installments, Integer cost, String tid, String nsu, String boleto_url, String boleto_barcode, String referer, String ip, String acquirer_name, String payment_method, String status, String status_reason, String date_updated, String customers_document, String customers_name, String customers_email, String date_created, String cartao_brand, String cartao_first_digits, String cartao_last_digits, String cartao_name, Boolean cartao_valid, String qrcode, String dta_entrada_real, String dta_saida_prevista, String dta_saida_real, Boolean utilizou_reserva) {
+    public Transacao(Integer idtransacao, Integer idestabelecimento, Integer idusuario, String dta_entrada, String dta_saida, Integer id, Integer amount, Integer refunded_amount, Integer authorized_amount, Integer paid_amount, Integer installments, Integer cost, String tid, String nsu, String boleto_url, String boleto_barcode, String referer, String ip, String acquirer_name, String payment_method, String status, String status_reason, String date_updated, String customers_document, String customers_name, String customers_email, String date_created, String cartao_brand, String cartao_first_digits, String cartao_last_digits, String cartao_name, Boolean cartao_valid, String qrcode, String dta_entrada_real, String dta_saida_prevista, String dta_saida_real, Boolean utilizou_reserva, Boolean estornado) {
         this.idtransacao = idtransacao;
         this.idestabelecimento = idestabelecimento;
         this.idusuario = idusuario;
@@ -83,6 +84,7 @@ public class Transacao {
         this.dta_saida_prevista = dta_saida_prevista;
         this.dta_saida_real = dta_saida_real;
         this.utilizou_reserva = utilizou_reserva;
+        this.estornado = estornado;
     }
 
     public Integer getIdtransacao() {
@@ -381,8 +383,16 @@ public class Transacao {
         this.utilizou_reserva = utilizou_reserva;
     }
 
+    public Boolean getEstornado() {
+        return estornado;
+    }
+
+    public void setEstornado(Boolean estornado) {
+        this.estornado = estornado;
+    }
+
     @Override
     public String toString() {
-        return "Transacao{" + "idtransacao=" + idtransacao + ", idestabelecimento=" + idestabelecimento + ", idusuario=" + idusuario + ", dta_entrada=" + dta_entrada + ", dta_saida=" + dta_saida + ", id=" + id + ", amount=" + amount + ", refunded_amount=" + refunded_amount + ", authorized_amount=" + authorized_amount + ", paid_amount=" + paid_amount + ", installments=" + installments + ", cost=" + cost + ", tid=" + tid + ", nsu=" + nsu + ", boleto_url=" + boleto_url + ", boleto_barcode=" + boleto_barcode + ", referer=" + referer + ", ip=" + ip + ", acquirer_name=" + acquirer_name + ", payment_method=" + payment_method + ", status=" + status + ", status_reason=" + status_reason + ", date_updated=" + date_updated + ", customers_document=" + customers_document + ", customers_name=" + customers_name + ", customers_email=" + customers_email + ", date_created=" + date_created + ", cartao_brand=" + cartao_brand + ", cartao_first_digits=" + cartao_first_digits + ", cartao_last_digits=" + cartao_last_digits + ", cartao_name=" + cartao_name + ", cartao_valid=" + cartao_valid + ", qrcode=" + qrcode + ", dta_entrada_real=" + dta_entrada_real + ", dta_saida_prevista=" + dta_saida_prevista + ", dta_saida_real=" + dta_saida_real + ", utilizou_reserva=" + utilizou_reserva + '}';
+        return "Transacao{" + "idtransacao=" + idtransacao + ", idestabelecimento=" + idestabelecimento + ", idusuario=" + idusuario + ", dta_entrada=" + dta_entrada + ", dta_saida=" + dta_saida + ", id=" + id + ", amount=" + amount + ", refunded_amount=" + refunded_amount + ", authorized_amount=" + authorized_amount + ", paid_amount=" + paid_amount + ", installments=" + installments + ", cost=" + cost + ", tid=" + tid + ", nsu=" + nsu + ", boleto_url=" + boleto_url + ", boleto_barcode=" + boleto_barcode + ", referer=" + referer + ", ip=" + ip + ", acquirer_name=" + acquirer_name + ", payment_method=" + payment_method + ", status=" + status + ", status_reason=" + status_reason + ", date_updated=" + date_updated + ", customers_document=" + customers_document + ", customers_name=" + customers_name + ", customers_email=" + customers_email + ", date_created=" + date_created + ", cartao_brand=" + cartao_brand + ", cartao_first_digits=" + cartao_first_digits + ", cartao_last_digits=" + cartao_last_digits + ", cartao_name=" + cartao_name + ", cartao_valid=" + cartao_valid + ", qrcode=" + qrcode + ", dta_entrada_real=" + dta_entrada_real + ", dta_saida_prevista=" + dta_saida_prevista + ", dta_saida_real=" + dta_saida_real + ", utilizou_reserva=" + utilizou_reserva + ", estornado=" + estornado + '}';
     }
 }

@@ -437,6 +437,29 @@ public class TransacaoBD extends CrudBD<Transacao> {
         }
     }
     
+   public void estonarPagamento(Transacao bean) {
+        Connection conn = null;
+        try {
+            Date d1;
+            conn = abrirConexao();
+
+            PreparedStatement pstm = conn.prepareStatement("UPDATE transacao SET estornado = ? where id = ?");
+            pstm.setBoolean(1, bean.getEstornado());
+            pstm.setInt(2, bean.getId());
+
+            System.out.println("Estonando: " + bean);
+            pstm.execute();
+            commitTransacao(conn);
+            System.out.println("Estorno realizado com sucesso");
+            System.out.println(bean.toString());
+        } catch (Exception e) {
+            rollbackTransacao(conn);
+            throw new RuntimeException(e);
+        } finally {
+            fecharConexao(conn);
+        }
+    }
+    
     public ArrayList<Transacao> pesquisarReservas(String pesquisa) {
         ArrayList<Transacao> lista = new ArrayList<Transacao>();
 
