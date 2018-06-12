@@ -181,18 +181,30 @@ public class TransacaoRN {
         Double value = pagamento.getValue() * 100;
 
         try {            
+            System.out.println("1");
             Transacao transacao = new Transacao();
+            System.out.println("2");
             transacao.setAmount(value.intValue());
+            System.out.println("3");
             transacao.setPayment_method("Carteira Eletronica");
+            System.out.println("4");
             transacao.setStatus("paid");
+            System.out.println("5");
             transacao.setIdusuario(pagamento.getIdusuario());
+            System.out.println("6");
             transacao.setIdestabelecimento(pagamento.getIdestabelecimento());
+            System.out.println("7");
             if (pagamento.getDta_entrada() != null || pagamento.getDta_saida() != null) {
                 transacao.setDta_entrada(pagamento.getDta_entrada());
+                System.out.println("8");
                 transacao.setDta_saida(pagamento.getDta_saida());
+                System.out.println("9");
                 Hash hash = new Hash();
+                System.out.println("10");
                 transacao.setQrcode(hash.encrypt(transacao.getIdtransacao().toString()));
+                System.out.println("11");
             }
+            System.out.println(transacao);
             transacaoBD.inserir(transacao);
             if (pagamento.getDta_entrada() != null || pagamento.getDta_saida() != null) {
                 atualizaCarteira(transacao);    
