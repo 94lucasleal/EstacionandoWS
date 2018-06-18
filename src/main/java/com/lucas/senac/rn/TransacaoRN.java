@@ -333,6 +333,8 @@ public class TransacaoRN {
             }
         } else {
             atualizaCarteira(transacao, 1);
+            transacao.setEstornado(true);
+            transacaoBD.alterar(transacao);
         }
     }
     
