@@ -406,46 +406,79 @@ public class TransacaoBD extends CrudBD<Transacao> {
             pstm.setInt(6, bean.getRefunded_amount());
             System.out.println("9");
             pstm.setInt(7, bean.getAuthorized_amount());
+            System.out.println("10");
             pstm.setInt(8, bean.getPaid_amount());
+            System.out.println("11");
             pstm.setInt(9, bean.getInstallments());
+            System.out.println("12");
             pstm.setInt(10, bean.getCost());
+            System.out.println("13");
             pstm.setString(11, bean.getTid());
+            System.out.println("14");
             pstm.setString(12, bean.getNsu());
+            System.out.println("15");
             pstm.setString(13, bean.getBoleto_url());
+            System.out.println("16");
             pstm.setString(14, bean.getBoleto_barcode());
+            System.out.println("17");
             pstm.setString(15, bean.getReferer());
+            System.out.println("18");
             pstm.setString(16, bean.getIp());
+            System.out.println("19");
             pstm.setString(17, bean.getAcquirer_name());
+            System.out.println("20");
             pstm.setString(18, bean.getPayment_method());
+            System.out.println("21");
             pstm.setString(19, bean.getStatus());
+            System.out.println("22");
             pstm.setString(20, bean.getStatus_reason());
+            System.out.println("23");
             pstm.setString(21, bean.getDate_updated());
+            System.out.println("24");
             pstm.setString(22, bean.getCustomers_document());
+            System.out.println("25");
             pstm.setString(23, bean.getCustomers_name());
+            System.out.println("26");
             pstm.setString(24, bean.getCustomers_email());
+            System.out.println("27");
             pstm.setString(25, bean.getDate_created());
+            System.out.println("28");
             pstm.setString(26, bean.getCartao_brand());
+            System.out.println("29");
             pstm.setString(27, bean.getCartao_first_digits());
+            System.out.println("30");
             pstm.setString(28, bean.getCartao_last_digits());
+            System.out.println("31");
             pstm.setString(29, bean.getCartao_name());
+            System.out.println("32");
             pstm.setBoolean(30, bean.getCartao_valid());
+            System.out.println("33");
             pstm.setString(31, bean.getQrcode());
+            System.out.println("34");
             if (bean.getDta_entrada_real() != null) {
                 pstm.setTimestamp(32, new java.sql.Timestamp(format.parse(bean.getDta_entrada_real()).getTime()));
             } else {
                 pstm.setObject(32, null);
             }
+            System.out.println("35");
             if (bean.getDta_saida_prevista() != null) {
                 pstm.setTimestamp(33, new java.sql.Timestamp(format.parse(bean.getDta_saida_prevista()).getTime()));
             } else {
                 pstm.setObject(33, null);
             }
+            System.out.println("36");
             if (bean.getDta_saida_real() != null) {
                 pstm.setTimestamp(34, new java.sql.Timestamp(format.parse(bean.getDta_saida_real()).getTime()));
             } else {
                 pstm.setObject(34, null);
             }
-            pstm.setBoolean(35, bean.getUtilizou_reserva());
+            System.out.println("37");
+            if (bean.getUtilizou_reserva() != null) {
+                pstm.setString(35, bean.getUtilizou_reserva().toString());
+            } else {
+                pstm.setObject(35, null);
+            }
+            System.out.println("38");
             pstm.setInt(36, bean.getIdtransacao());
 
             System.out.println("Alterando: " + bean);
