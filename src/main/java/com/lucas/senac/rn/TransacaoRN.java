@@ -319,6 +319,7 @@ public class TransacaoRN {
                 tx.refund(transacao.getAmount());
                 System.out.println("Chegou aquiiiiii ausdhausidh");
                 transacao.setEstornado(true);
+                transacaoBD.alterar(transacao);
             } catch (PagarMeException ex) {
                 System.out.println(ex.toString());
             }
