@@ -322,6 +322,8 @@ public class TransacaoRN {
                 transacaoBD.alterar(transacao);
             } catch (PagarMeException ex) {
                 System.out.println(ex.toString());
+                transacao.setEstornado(true);
+                transacaoBD.alterar(transacao);
             }
             if (transacao.getEstornado()) {
                 transacaoBD.estonarPagamento(transacao);
