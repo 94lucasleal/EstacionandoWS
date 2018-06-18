@@ -505,7 +505,7 @@ public class TransacaoBD extends CrudBD<Transacao> {
         try {
             conn = abrirConexao();
 
-            PreparedStatement pstm = conn.prepareStatement("UPDATE transacao SET and status = ? where idtransacao = ?");
+            PreparedStatement pstm = conn.prepareStatement("UPDATE transacao SET status = ? where idtransacao = ?");
             pstm.setString(1, "Estornado");
             pstm.setInt(2, bean.getIdtransacao());
             
