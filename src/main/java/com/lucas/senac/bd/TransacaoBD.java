@@ -479,7 +479,13 @@ public class TransacaoBD extends CrudBD<Transacao> {
                 pstm.setObject(35, null);
             }
             System.out.println("38");
-            pstm.setInt(36, bean.getIdtransacao());
+            if (bean.getEstornado() != null) {
+                pstm.setBoolean(36, bean.getEstornado());
+            } else {
+                pstm.setObject(36, null);
+            }
+            System.out.println("39");
+            pstm.setInt(37, bean.getIdtransacao());
 
             System.out.println("Alterando: " + bean);
             pstm.execute();
