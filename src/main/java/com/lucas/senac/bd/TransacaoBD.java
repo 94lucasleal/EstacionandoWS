@@ -494,7 +494,7 @@ public class TransacaoBD extends CrudBD<Transacao> {
         try {
             conn = abrirConexao();
             
-            PreparedStatement pstm = conn.prepareStatement("SELECT * FROM transacao WHERE dta_entrada > ? AND idusuario = ? AND utilizou_reserva != ?");
+            PreparedStatement pstm = conn.prepareStatement("SELECT * FROM transacao WHERE dta_entrada > ? AND idusuario = ? AND estornado is null or utilizou_reserva != ?");
             pstm.setTimestamp(1, new Timestamp(cal.getTime().getTime()));
             pstm.setInt(2, Integer.parseInt(pesquisa));
             pstm.setString(3, "true");
