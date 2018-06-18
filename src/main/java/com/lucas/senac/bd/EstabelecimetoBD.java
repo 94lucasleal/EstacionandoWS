@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class EstabelecimetoBD extends CrudBD<Estabelecimento> {
 
-    SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+    SimpleDateFormat format = new SimpleDateFormat("HH:mm");
 
     public void inserirEstabelecimento(Estabelecimento bean) {
         Connection conn = null;
