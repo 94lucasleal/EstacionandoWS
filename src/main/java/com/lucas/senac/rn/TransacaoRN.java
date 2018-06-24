@@ -158,7 +158,7 @@ public class TransacaoRN {
                 Hash hash = new Hash();
                 transacao.setQrcode(hash.encrypt(transacao.getNsu()));
             } else {
-                atualizaCarteira(transacao,0);  
+                atualizaCarteira(transacao,1);  
             }
             transacaoBD.inserir(transacao);
             
