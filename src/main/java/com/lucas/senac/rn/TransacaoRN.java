@@ -317,12 +317,13 @@ public class TransacaoRN {
                 tx = new Transaction().find(transacao.getId());
                 System.out.println(tx.toJson());
                 tx.refund(transacao.getAmount());
-                System.out.println("Chegou aquiiiiii ausdhausidh");
+                transacao.setStatus("Estornado");
                 transacao.setEstornado(true);
                 transacaoBD.alterar(transacao);
             } catch (PagarMeException ex) {
                 System.out.println(ex.toString());
                 transacao.setEstornado(true);
+                transacao.setStatus("Estornado");
                 transacaoBD.alterar(transacao);
             }
             /*
