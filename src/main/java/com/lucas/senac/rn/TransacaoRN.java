@@ -325,12 +325,14 @@ public class TransacaoRN {
                 transacao.setEstornado(true);
                 transacaoBD.alterar(transacao);
             }
+            /*
             if (transacao.getEstornado()) {
                 transacaoBD.estonarPagamento(transacao);
                 atualizaCarteira(transacao, 1);
                 transacao.setEstornado(true);
                 transacaoBD.alterar(transacao);
             }
+            */
         } else {
             atualizaCarteira(transacao, 1);
             transacao.setEstornado(true);
