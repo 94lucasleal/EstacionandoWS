@@ -336,6 +336,7 @@ public class TransacaoRN {
             */
         } else {
             atualizaCarteira(transacao, 1);
+            transacao.setStatus("Estornado");
             transacao.setEstornado(true);
             transacaoBD.alterar(transacao);
         }
