@@ -20,6 +20,7 @@ public class CarteiraRN {
     @Consumes({"application/json"})
     @Path("inserir")
     public void inserir(String content) {
+        System.out.println(content);
         Carteira carteira = (Carteira) gson.fromJson(content, Carteira.class);
         carteiraBD.inserir(carteira);
     }
