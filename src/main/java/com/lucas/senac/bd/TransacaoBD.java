@@ -244,10 +244,9 @@ public class TransacaoBD extends CrudBD<Transacao> {
             conn = abrirConexao();
             Hash hash = new Hash();
 
-            PreparedStatement pstm = conn.prepareStatement("SELECT * FROM transacao WHERE qrcode = ? AND idtransacao = ?");
+            PreparedStatement pstm = conn.prepareStatement("SELECT * FROM transacao WHERE qrcode = ?");
             pstm.setString(1, bean.getQrcode());
-            pstm.setInt(2, Integer.parseInt(hash.decrypt(bean.getQrcode())));
-
+            
             System.out.println(pstm.toString());
             System.out.println("Consultando: " + bean);
             ResultSet rs = pstm.executeQuery();
