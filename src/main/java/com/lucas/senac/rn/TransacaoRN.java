@@ -107,7 +107,7 @@ public class TransacaoRN {
                 transacao.setDta_saida(pagamento.getDta_saida());
                 //atualizaVagas(transacao);
                 Hash hash = new Hash();
-                transacao.setQrcode(hash.encrypt(transacao.getNsu()));
+                transacao.setQrcode(hash.encrypt(transacaoBD.proximoNumero()+""));
             } else {
                 atualizaCarteira(transacao,0);
             }
@@ -157,7 +157,7 @@ public class TransacaoRN {
                 transacao.setDta_saida(pagamento.getDta_saida());
                 //atualizaVagas(transacao);
                 Hash hash = new Hash();
-                transacao.setQrcode(hash.encrypt(transacao.getNsu()));
+                transacao.setQrcode(hash.encrypt(transacaoBD.proximoNumero()+""));
             } else {
                 atualizaCarteira(transacao,1);  
             }
