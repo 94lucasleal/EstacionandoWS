@@ -95,7 +95,7 @@ public class TransacaoRN {
             tx.setCustomer(customer);
             tx.setAmount(value.intValue());
             tx.setPaymentMethod(PaymentMethod.BOLETO);
-            tx.setPostbackUrl("https://estacionandoweb.herokuapp.com/carteira/inserir");
+            //tx.setPostbackUrl("https://estacionandoweb.herokuapp.com/carteira/inserir");
             tx.save();
             System.out.println(tx.toString());
 
