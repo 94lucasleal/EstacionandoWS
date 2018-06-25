@@ -157,6 +157,7 @@ public class TransacaoRN {
                 transacao.setDta_saida(pagamento.getDta_saida());
                 //atualizaVagas(transacao);
                 Hash hash = new Hash();
+                System.out.println("AAAAAAAAAAAAAAAAAAAA: "+transacaoBD.proximoNumero()+"");
                 transacao.setQrcode(hash.encrypt(transacaoBD.proximoNumero()+""));
             } else {
                 atualizaCarteira(transacao,1);  
