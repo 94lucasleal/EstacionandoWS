@@ -258,6 +258,7 @@ public class TransacaoBD extends CrudBD<Transacao> {
                 transacaoRetorno.setIdusuario(rs.getInt("idusuario"));
                 transacaoRetorno.setDta_entrada(rs.getString("dta_entrada"));
                 transacaoRetorno.setDta_saida(rs.getString("dta_saida"));
+                transacaoRetorno.setId(rs.getInt("id"));
                 transacaoRetorno.setAmount(rs.getInt("amount"));
                 transacaoRetorno.setRefunded_amount(rs.getInt("refunded_amount"));
                 transacaoRetorno.setAuthorized_amount(rs.getInt("authorized_amount"));
@@ -270,7 +271,6 @@ public class TransacaoBD extends CrudBD<Transacao> {
                 transacaoRetorno.setBoleto_barcode(rs.getString("boleto_barcode"));
                 transacaoRetorno.setReferer(rs.getString("referer"));
                 transacaoRetorno.setIp(rs.getString("ip"));
-                transacaoRetorno.setId(rs.getInt("id"));
                 transacaoRetorno.setAcquirer_name(rs.getString("acquirer_name"));
                 transacaoRetorno.setPayment_method(rs.getString("payment_method"));
                 transacaoRetorno.setStatus(rs.getString("status"));
@@ -285,7 +285,11 @@ public class TransacaoBD extends CrudBD<Transacao> {
                 transacaoRetorno.setCartao_last_digits(rs.getString("cartao_last_digits"));
                 transacaoRetorno.setCartao_name(rs.getString("cartao_name"));
                 transacaoRetorno.setCartao_valid(rs.getBoolean("cartao_valid"));
-                transacaoRetorno.setQrcode(rs.getString("qrcode"));
+                transacaoRetorno.setQrcode(rs.getString("dta_entrada_real"));
+                transacaoRetorno.setDta_entrada_real(rs.getString("dta_saida_prevista"));
+                transacaoRetorno.setDta_saida_real(rs.getString("dta_saida_real"));
+                transacaoRetorno.setUtilizou_reserva(rs.getBoolean("utilizou_reserva"));
+                transacaoRetorno.setEstornado(rs.getBoolean("estornado"));
                 System.out.println(transacaoRetorno);
             }
             System.out.println("Consulta executada com sucesso");
@@ -316,6 +320,7 @@ public class TransacaoBD extends CrudBD<Transacao> {
                 transacaoRetorno.setIdusuario(rs.getInt("idusuario"));
                 transacaoRetorno.setDta_entrada(rs.getString("dta_entrada"));
                 transacaoRetorno.setDta_saida(rs.getString("dta_saida"));
+                transacaoRetorno.setId(rs.getInt("id"));
                 transacaoRetorno.setAmount(rs.getInt("amount"));
                 transacaoRetorno.setRefunded_amount(rs.getInt("refunded_amount"));
                 transacaoRetorno.setAuthorized_amount(rs.getInt("authorized_amount"));
@@ -342,7 +347,12 @@ public class TransacaoBD extends CrudBD<Transacao> {
                 transacaoRetorno.setCartao_last_digits(rs.getString("cartao_last_digits"));
                 transacaoRetorno.setCartao_name(rs.getString("cartao_name"));
                 transacaoRetorno.setCartao_valid(rs.getBoolean("cartao_valid"));
-                transacaoRetorno.setQrcode(rs.getString("qrcode"));
+                transacaoRetorno.setQrcode(rs.getString("dta_entrada_real"));
+                transacaoRetorno.setDta_entrada_real(rs.getString("dta_saida_prevista"));
+                transacaoRetorno.setDta_saida_real(rs.getString("dta_saida_real"));
+                transacaoRetorno.setUtilizou_reserva(rs.getBoolean("utilizou_reserva"));
+                transacaoRetorno.setEstornado(rs.getBoolean("estornado"));
+                
             }
             System.out.println("Consulta executada com sucesso");
         } catch (Exception e) {
@@ -547,6 +557,7 @@ public class TransacaoBD extends CrudBD<Transacao> {
                 transacaoRetorno.setIdusuario(rs.getInt("idusuario"));
                 transacaoRetorno.setDta_entrada(rs.getString("dta_entrada"));
                 transacaoRetorno.setDta_saida(rs.getString("dta_saida"));
+                transacaoRetorno.setId(rs.getInt("id"));
                 transacaoRetorno.setAmount(rs.getInt("amount"));
                 transacaoRetorno.setRefunded_amount(rs.getInt("refunded_amount"));
                 transacaoRetorno.setAuthorized_amount(rs.getInt("authorized_amount"));
@@ -555,7 +566,6 @@ public class TransacaoBD extends CrudBD<Transacao> {
                 transacaoRetorno.setCost(rs.getInt("cost"));
                 transacaoRetorno.setTid(rs.getString("tid"));
                 transacaoRetorno.setNsu(rs.getString("nsu"));
-                transacaoRetorno.setId(rs.getInt("id"));
                 transacaoRetorno.setBoleto_url(rs.getString("boleto_url"));
                 transacaoRetorno.setBoleto_barcode(rs.getString("boleto_barcode"));
                 transacaoRetorno.setReferer(rs.getString("referer"));
@@ -574,7 +584,11 @@ public class TransacaoBD extends CrudBD<Transacao> {
                 transacaoRetorno.setCartao_last_digits(rs.getString("cartao_last_digits"));
                 transacaoRetorno.setCartao_name(rs.getString("cartao_name"));
                 transacaoRetorno.setCartao_valid(rs.getBoolean("cartao_valid"));
-                transacaoRetorno.setQrcode(rs.getString("qrcode"));
+                transacaoRetorno.setQrcode(rs.getString("dta_entrada_real"));
+                transacaoRetorno.setDta_entrada_real(rs.getString("dta_saida_prevista"));
+                transacaoRetorno.setDta_saida_real(rs.getString("dta_saida_real"));
+                transacaoRetorno.setUtilizou_reserva(rs.getBoolean("utilizou_reserva"));
+                transacaoRetorno.setEstornado(rs.getBoolean("estornado"));
 
                 lista.add(transacaoRetorno);
                 System.out.println(transacaoRetorno.toString());
@@ -627,13 +641,13 @@ public class TransacaoBD extends CrudBD<Transacao> {
                 transacaoRetorno.setIdusuario(rs.getInt("idusuario"));
                 transacaoRetorno.setDta_entrada(rs.getString("dta_entrada"));
                 transacaoRetorno.setDta_saida(rs.getString("dta_saida"));
+                transacaoRetorno.setId(rs.getInt("id"));
                 transacaoRetorno.setAmount(rs.getInt("amount"));
                 transacaoRetorno.setRefunded_amount(rs.getInt("refunded_amount"));
                 transacaoRetorno.setAuthorized_amount(rs.getInt("authorized_amount"));
                 transacaoRetorno.setPaid_amount(rs.getInt("paid_amount"));
                 transacaoRetorno.setInstallments(rs.getInt("installments"));
                 transacaoRetorno.setCost(rs.getInt("cost"));
-                transacaoRetorno.setId(rs.getInt("id"));
                 transacaoRetorno.setTid(rs.getString("tid"));
                 transacaoRetorno.setNsu(rs.getString("nsu"));
                 transacaoRetorno.setBoleto_url(rs.getString("boleto_url"));
@@ -654,7 +668,11 @@ public class TransacaoBD extends CrudBD<Transacao> {
                 transacaoRetorno.setCartao_last_digits(rs.getString("cartao_last_digits"));
                 transacaoRetorno.setCartao_name(rs.getString("cartao_name"));
                 transacaoRetorno.setCartao_valid(rs.getBoolean("cartao_valid"));
-                transacaoRetorno.setQrcode(rs.getString("qrcode"));
+                transacaoRetorno.setQrcode(rs.getString("dta_entrada_real"));
+                transacaoRetorno.setDta_entrada_real(rs.getString("dta_saida_prevista"));
+                transacaoRetorno.setDta_saida_real(rs.getString("dta_saida_real"));
+                transacaoRetorno.setUtilizou_reserva(rs.getBoolean("utilizou_reserva"));
+                transacaoRetorno.setEstornado(rs.getBoolean("estornado"));
 
                 lista.add(transacaoRetorno);
                 System.out.println(transacaoRetorno.toString());
@@ -706,13 +724,13 @@ public class TransacaoBD extends CrudBD<Transacao> {
                 transacaoRetorno.setIdusuario(rs.getInt("idusuario"));
                 transacaoRetorno.setDta_entrada(rs.getString("dta_entrada"));
                 transacaoRetorno.setDta_saida(rs.getString("dta_saida"));
+                transacaoRetorno.setId(rs.getInt("id"));
                 transacaoRetorno.setAmount(rs.getInt("amount"));
                 transacaoRetorno.setRefunded_amount(rs.getInt("refunded_amount"));
                 transacaoRetorno.setAuthorized_amount(rs.getInt("authorized_amount"));
                 transacaoRetorno.setPaid_amount(rs.getInt("paid_amount"));
                 transacaoRetorno.setInstallments(rs.getInt("installments"));
                 transacaoRetorno.setCost(rs.getInt("cost"));
-                transacaoRetorno.setId(rs.getInt("id"));
                 transacaoRetorno.setTid(rs.getString("tid"));
                 transacaoRetorno.setNsu(rs.getString("nsu"));
                 transacaoRetorno.setBoleto_url(rs.getString("boleto_url"));
@@ -733,7 +751,11 @@ public class TransacaoBD extends CrudBD<Transacao> {
                 transacaoRetorno.setCartao_last_digits(rs.getString("cartao_last_digits"));
                 transacaoRetorno.setCartao_name(rs.getString("cartao_name"));
                 transacaoRetorno.setCartao_valid(rs.getBoolean("cartao_valid"));
-                transacaoRetorno.setQrcode(rs.getString("qrcode"));
+                transacaoRetorno.setQrcode(rs.getString("dta_entrada_real"));
+                transacaoRetorno.setDta_entrada_real(rs.getString("dta_saida_prevista"));
+                transacaoRetorno.setDta_saida_real(rs.getString("dta_saida_real"));
+                transacaoRetorno.setUtilizou_reserva(rs.getBoolean("utilizou_reserva"));
+                transacaoRetorno.setEstornado(rs.getBoolean("estornado"));
 
                 lista.add(transacaoRetorno);
                 System.out.println(transacaoRetorno.toString());
@@ -787,13 +809,13 @@ public class TransacaoBD extends CrudBD<Transacao> {
                 transacaoRetorno.setIdusuario(rs.getInt("idusuario"));
                 transacaoRetorno.setDta_entrada(rs.getString("dta_entrada"));
                 transacaoRetorno.setDta_saida(rs.getString("dta_saida"));
+                transacaoRetorno.setId(rs.getInt("id"));
                 transacaoRetorno.setAmount(rs.getInt("amount"));
                 transacaoRetorno.setRefunded_amount(rs.getInt("refunded_amount"));
                 transacaoRetorno.setAuthorized_amount(rs.getInt("authorized_amount"));
                 transacaoRetorno.setPaid_amount(rs.getInt("paid_amount"));
                 transacaoRetorno.setInstallments(rs.getInt("installments"));
                 transacaoRetorno.setCost(rs.getInt("cost"));
-                transacaoRetorno.setId(rs.getInt("id"));
                 transacaoRetorno.setTid(rs.getString("tid"));
                 transacaoRetorno.setNsu(rs.getString("nsu"));
                 transacaoRetorno.setBoleto_url(rs.getString("boleto_url"));
@@ -814,7 +836,11 @@ public class TransacaoBD extends CrudBD<Transacao> {
                 transacaoRetorno.setCartao_last_digits(rs.getString("cartao_last_digits"));
                 transacaoRetorno.setCartao_name(rs.getString("cartao_name"));
                 transacaoRetorno.setCartao_valid(rs.getBoolean("cartao_valid"));
-                transacaoRetorno.setQrcode(rs.getString("qrcode"));
+                transacaoRetorno.setQrcode(rs.getString("dta_entrada_real"));
+                transacaoRetorno.setDta_entrada_real(rs.getString("dta_saida_prevista"));
+                transacaoRetorno.setDta_saida_real(rs.getString("dta_saida_real"));
+                transacaoRetorno.setUtilizou_reserva(rs.getBoolean("utilizou_reserva"));
+                transacaoRetorno.setEstornado(rs.getBoolean("estornado"));
 
                 lista.add(transacaoRetorno);
                 System.out.println(transacaoRetorno.toString());
@@ -850,13 +876,13 @@ public class TransacaoBD extends CrudBD<Transacao> {
                 transacaoRetorno.setIdusuario(rs.getInt("idusuario"));
                 transacaoRetorno.setDta_entrada(rs.getString("dta_entrada"));
                 transacaoRetorno.setDta_saida(rs.getString("dta_saida"));
+                transacaoRetorno.setId(rs.getInt("id"));
                 transacaoRetorno.setAmount(rs.getInt("amount"));
                 transacaoRetorno.setRefunded_amount(rs.getInt("refunded_amount"));
                 transacaoRetorno.setAuthorized_amount(rs.getInt("authorized_amount"));
                 transacaoRetorno.setPaid_amount(rs.getInt("paid_amount"));
                 transacaoRetorno.setInstallments(rs.getInt("installments"));
                 transacaoRetorno.setCost(rs.getInt("cost"));
-                transacaoRetorno.setId(rs.getInt("id"));
                 transacaoRetorno.setTid(rs.getString("tid"));
                 transacaoRetorno.setNsu(rs.getString("nsu"));
                 transacaoRetorno.setBoleto_url(rs.getString("boleto_url"));
@@ -877,7 +903,11 @@ public class TransacaoBD extends CrudBD<Transacao> {
                 transacaoRetorno.setCartao_last_digits(rs.getString("cartao_last_digits"));
                 transacaoRetorno.setCartao_name(rs.getString("cartao_name"));
                 transacaoRetorno.setCartao_valid(rs.getBoolean("cartao_valid"));
-                transacaoRetorno.setQrcode(rs.getString("qrcode"));
+                transacaoRetorno.setQrcode(rs.getString("dta_entrada_real"));
+                transacaoRetorno.setDta_entrada_real(rs.getString("dta_saida_prevista"));
+                transacaoRetorno.setDta_saida_real(rs.getString("dta_saida_real"));
+                transacaoRetorno.setUtilizou_reserva(rs.getBoolean("utilizou_reserva"));
+                transacaoRetorno.setEstornado(rs.getBoolean("estornado"));
 
                 lista.add(transacaoRetorno);
                 System.out.println(transacaoRetorno.toString());
@@ -914,6 +944,7 @@ public class TransacaoBD extends CrudBD<Transacao> {
                 transacaoRetorno.setIdusuario(rs.getInt("idusuario"));
                 transacaoRetorno.setDta_entrada(rs.getString("dta_entrada"));
                 transacaoRetorno.setDta_saida(rs.getString("dta_saida"));
+                transacaoRetorno.setId(rs.getInt("id"));
                 transacaoRetorno.setAmount(rs.getInt("amount"));
                 transacaoRetorno.setRefunded_amount(rs.getInt("refunded_amount"));
                 transacaoRetorno.setAuthorized_amount(rs.getInt("authorized_amount"));
@@ -921,7 +952,6 @@ public class TransacaoBD extends CrudBD<Transacao> {
                 transacaoRetorno.setInstallments(rs.getInt("installments"));
                 transacaoRetorno.setCost(rs.getInt("cost"));
                 transacaoRetorno.setTid(rs.getString("tid"));
-                transacaoRetorno.setId(rs.getInt("id"));
                 transacaoRetorno.setNsu(rs.getString("nsu"));
                 transacaoRetorno.setBoleto_url(rs.getString("boleto_url"));
                 transacaoRetorno.setBoleto_barcode(rs.getString("boleto_barcode"));
@@ -941,7 +971,11 @@ public class TransacaoBD extends CrudBD<Transacao> {
                 transacaoRetorno.setCartao_last_digits(rs.getString("cartao_last_digits"));
                 transacaoRetorno.setCartao_name(rs.getString("cartao_name"));
                 transacaoRetorno.setCartao_valid(rs.getBoolean("cartao_valid"));
-                transacaoRetorno.setQrcode(rs.getString("qrcode"));
+                transacaoRetorno.setQrcode(rs.getString("dta_entrada_real"));
+                transacaoRetorno.setDta_entrada_real(rs.getString("dta_saida_prevista"));
+                transacaoRetorno.setDta_saida_real(rs.getString("dta_saida_real"));
+                transacaoRetorno.setUtilizou_reserva(rs.getBoolean("utilizou_reserva"));
+                transacaoRetorno.setEstornado(rs.getBoolean("estornado"));
 
                 lista.add(transacaoRetorno);
                 System.out.println(transacaoRetorno.toString());
@@ -975,13 +1009,13 @@ public class TransacaoBD extends CrudBD<Transacao> {
                 transacaoRetorno.setIdusuario(rs.getInt("idusuario"));
                 transacaoRetorno.setDta_entrada(rs.getString("dta_entrada"));
                 transacaoRetorno.setDta_saida(rs.getString("dta_saida"));
+                transacaoRetorno.setId(rs.getInt("id"));
                 transacaoRetorno.setAmount(rs.getInt("amount"));
                 transacaoRetorno.setRefunded_amount(rs.getInt("refunded_amount"));
                 transacaoRetorno.setAuthorized_amount(rs.getInt("authorized_amount"));
                 transacaoRetorno.setPaid_amount(rs.getInt("paid_amount"));
                 transacaoRetorno.setInstallments(rs.getInt("installments"));
                 transacaoRetorno.setCost(rs.getInt("cost"));
-                transacaoRetorno.setId(rs.getInt("id"));
                 transacaoRetorno.setTid(rs.getString("tid"));
                 transacaoRetorno.setNsu(rs.getString("nsu"));
                 transacaoRetorno.setBoleto_url(rs.getString("boleto_url"));
@@ -1002,7 +1036,11 @@ public class TransacaoBD extends CrudBD<Transacao> {
                 transacaoRetorno.setCartao_last_digits(rs.getString("cartao_last_digits"));
                 transacaoRetorno.setCartao_name(rs.getString("cartao_name"));
                 transacaoRetorno.setCartao_valid(rs.getBoolean("cartao_valid"));
-                transacaoRetorno.setQrcode(rs.getString("qrcode"));
+                transacaoRetorno.setQrcode(rs.getString("dta_entrada_real"));
+                transacaoRetorno.setDta_entrada_real(rs.getString("dta_saida_prevista"));
+                transacaoRetorno.setDta_saida_real(rs.getString("dta_saida_real"));
+                transacaoRetorno.setUtilizou_reserva(rs.getBoolean("utilizou_reserva"));
+                transacaoRetorno.setEstornado(rs.getBoolean("estornado"));
 
                 lista.add(transacaoRetorno);
                 System.out.println(transacaoRetorno.toString());
