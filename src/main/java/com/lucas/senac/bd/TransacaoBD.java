@@ -869,7 +869,7 @@ public class TransacaoBD extends CrudBD<Transacao> {
         try {
             conn = abrirConexao();
 
-            PreparedStatement pstm = conn.prepareStatement("SELECT * FROM transacao WHERE idestabelecimento = ?");
+            PreparedStatement pstm = conn.prepareStatement("SELECT * FROM transacao WHERE idestabelecimento = ? AND dta_entrada is not null AND dta_saida is not null");
             pstm.setInt(1, Integer.parseInt(pesquisa));
 
             System.out.println("Pesquisando: " + pesquisa);
